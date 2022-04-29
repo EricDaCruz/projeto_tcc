@@ -28,9 +28,9 @@ const HeaderHome = () => {
 
    return (
       <header>
-         <nav class="navbar" role="navigation" aria-label="main navigation">
-            <div class="navbar-brand">
-               <a class="navbar-item" href="https://bulma.io">
+         <nav className="navbar" role="navigation" aria-label="main navigation">
+            <div className="navbar-brand">
+               <a className="navbar-item" href="https://bulma.io">
                   <img
                      src="https://bulma.io/images/bulma-logo.png"
                      width="112"
@@ -41,7 +41,7 @@ const HeaderHome = () => {
                <a
 							 		onClick={handleNavburger}
                   role="button"
-                  class="navbar-burger"
+                  className="navbar-burger"
                   aria-label="menu"
                   aria-expanded="false"
                   data-target="navbarBasicExample"
@@ -52,11 +52,11 @@ const HeaderHome = () => {
                </a>
             </div>
 
-            <div id="navbarBasicExample" class="navbar-menu">
-               <div class="navbar-end">
-                  <div class="navbar-item">
-                     <div class="buttons">
-                        <Link to="/sing-up" class="button" 
+            <div id="navbarBasicExample" className="navbar-menu">
+               <div className="navbar-end">
+                  <div className="navbar-item">
+                     <div className="buttons">
+                        <Link to="/sing-up" className="button" 
                            style={{
                               backgroundColor: `${colors.green}`,
                               color:"white",

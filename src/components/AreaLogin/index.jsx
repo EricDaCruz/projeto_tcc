@@ -11,8 +11,6 @@ import { FcGoogle } from "react-icons/fc";
 
 const AreaLogin = () => {
    const [viewPassword, setViewPassword] = useState(false);
-   const [valuePassword, setValuePassword] = useState();
-
    const handleViewPassword = () => {
       setViewPassword(!viewPassword);
    };
@@ -46,7 +44,6 @@ const AreaLogin = () => {
                               className="input is-medium"
                               type={viewPassword ? "text" : "password"}
                               placeholder="Password"
-                              value={valuePassword}
                            />
                            <span className="icon is-small is-left">
                               <FiLock />
