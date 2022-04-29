@@ -1,9 +1,11 @@
-
+import HeaderHome from '../../components/HeaderHome'
+import AreaLogin from '../../components/AreaLogin'
 
 const Home = () => {
     return(
         <div className="container is-widescreen">
-            <h1>Home</h1>
+            <HeaderHome />
+            <AreaLogin />
         </div>
     )
 
