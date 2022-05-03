@@ -5,8 +5,8 @@ import {
 } from "react-router-dom";
 
 /* Pages */
-import Home from './pages/Home'
-import Error from './pages/Error'
+import {Home} from './pages/Home'
+import {Error} from './pages/Error'
 
 const Router = () =>{
     return(

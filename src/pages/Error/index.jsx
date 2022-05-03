@@ -1,6 +1,6 @@
 
 
-const Error = () => {
+export function Error (){
     return(
         <div>
             <h1>Error 4040</h1>
@@ -9,5 +9,3 @@ const Error = () => {
     )
 
 }
-
-export default Error;

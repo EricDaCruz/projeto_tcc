@@ -1,7 +1,6 @@
 import * as C from "./styles";
-import image from '../../assets/images/img-example-area-info.png'
 
-const AreaInfoHome = () => {
+export function AreaInfoHome(){
    return (
        <>
         <C.Content className="columns">
@@ -36,4 +35,3 @@ const AreaInfoHome = () => {
    );
 };
 
-export default AreaInfoHome;
