@@ -13,6 +13,9 @@ const Home = () => {
             <div className="container is-fluid">
                 <AreaInfoHome />
             </div>
+            <div className="container is-fluid" style={{backgroundColor: '#E8F4F0', height: '95vh'}}>
+               
+            </div>
         </>
     )
 
