@@ -1,5 +1,5 @@
 import * as C from "./styles";
-import image from '../../assets/images/img-example-area-info.png'
+import image from '../../../assets/images/img-example-area-info.png'
 
 const AreaInfoHome = () => {
    return (

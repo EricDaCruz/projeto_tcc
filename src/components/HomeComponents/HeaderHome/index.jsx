@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import colors from '../../App.styles'
+import colors from '../../../App.styles'
 
 const HeaderHome = () => {
 	const handleNavburger = () => {

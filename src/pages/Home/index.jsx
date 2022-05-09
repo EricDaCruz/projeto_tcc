@@ -1,6 +1,7 @@
-import HeaderHome from '../../components/HeaderHome'
-import AreaLogin from '../../components/AreaLogin'
-import AreaInfoHome from '../../components/AreaInfoHome';
+import HeaderHome from '../../components/HomeComponents/HeaderHome'
+import AreaLogin from '../../components/HomeComponents/AreaLogin'
+import AreaInfoHome from '../../components/HomeComponents/AreaInfoHome';
+import { FaqArea } from '../../components/HomeComponents/FaqArea';
 
 const Home = () => {
     return(
@@ -13,9 +14,7 @@ const Home = () => {
             <div className="container is-fluid">
                 <AreaInfoHome />
             </div>
-            <div className="container is-fluid" style={{backgroundColor: '#E8F4F0', height: '95vh'}}>
-               
-            </div>
+            <FaqArea />
         </>
     )
 

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import colors from "../../App.styles";
+import colors from "../../../App.styles";
 
 export const Container = styled.div`
    max-width: 60%;
