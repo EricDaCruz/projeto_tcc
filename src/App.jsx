@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Router from './router'
 
-function App() {
+export function App() {
 
   return (
     <div className="App">
@@ -12,4 +12,4 @@ function App() {
   )
 }
 
-export default App
+

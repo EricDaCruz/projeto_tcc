@@ -1,9 +1,11 @@
-import HeaderHome from '../../components/HomeComponents/HeaderHome'
-import AreaLogin from '../../components/HomeComponents/AreaLogin'
-import AreaInfoHome from '../../components/HomeComponents/AreaInfoHome';
+
+import {HeaderHome} from '../../components/HomeComponents/HeaderHome'
+import {AreaLogin} from '../../components/HomeComponents/AreaLogin'
+import {AreaInfoHome} from '../../components/HomeComponents/AreaInfoHome';
 import { FaqArea } from '../../components/HomeComponents/FaqArea';
 
-const Home = () => {
+
+export function Home (){
     return(
         <>
             <div className="container is-widescreen">
@@ -19,5 +21,3 @@ const Home = () => {
     )
 
 }
-
-export default Home;
