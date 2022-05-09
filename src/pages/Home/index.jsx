@@ -3,6 +3,8 @@ import {HeaderHome} from '../../components/HomeComponents/HeaderHome'
 import {AreaLogin} from '../../components/HomeComponents/AreaLogin'
 import {AreaInfoHome} from '../../components/HomeComponents/AreaInfoHome';
 import { FaqArea } from '../../components/HomeComponents/FaqArea';
+import { RatingArea } from '../../components/HomeComponents/RatingArea';
+
 
 
 export function Home (){
@@ -17,6 +19,7 @@ export function Home (){
                 <AreaInfoHome />
             </div>
             <FaqArea />
+            <RatingArea />
         </>
     )
 
