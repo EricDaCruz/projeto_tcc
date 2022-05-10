@@ -8,7 +8,7 @@ export function FaqArea (){
                     backgroundImage: "url('./src/assets/images/other-bg-questions.png')",
                     backgroundPosition: 'center center',
                     backgroundRepeat: 'no-repeat',
-                    backgroundSize: '70%'
+                    backgroundSize: '65%'
                     
                 }}>
                 

@@ -1,12 +1,15 @@
 import {FaArrowRight} from 'react-icons/fa'
-import './styles.css'
+import { Input } from './styles';
+import phoneImage from '../../../assets/images/phoneImage.png'
 
 export function WriteUsArea() {
    return (
-      <section className="hero is-medium is-link">
-         <div className="hero-body">
-            <div className="container is-max-desktop has-background-success is-flex is-justify-content-space-evenly">
-               <div>image</div>
+      <section className="hero is-small">
+         <div className="hero-body has-background-light	">
+            <div className="container is-max-desktop is-flex is-justify-content-space-evenly is-align-items-center">
+               <div>
+                  <img src={phoneImage} />
+               </div>
                <div>
                   <h2
                     className="is-size-3 has-text-weight-semibold mb-4"
@@ -34,15 +37,10 @@ export function WriteUsArea() {
                         padding: '0 12px'
                     }}
                   >
-                      <input 
+                      <Input 
                         type="text" 
-                        className="sendEmail input mr-2"
+                        className="has-text-white is-size-5 mr-2"
                         placeholder='Seu Email'
-                        style={{
-                            border: 'none',
-                            background: 'none',
-                            outline: 'none',
-                        }}
                     />
                       <span
                       className="is-flex is-align-items-center is-justify-content-center"
