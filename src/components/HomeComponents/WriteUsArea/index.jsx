@@ -5,9 +5,9 @@ import phoneImage from '../../../assets/images/phoneImage.png'
 export function WriteUsArea() {
    return (
       <section className="hero is-small">
-         <div className="hero-body has-background-light	">
+         <div className="hero-bodyhas-background-white-bis	">
             <div className="container is-max-desktop is-flex is-justify-content-space-evenly is-align-items-center">
-               <div>
+               <div className='is-hidden-mobile'>
                   <img src={phoneImage} />
                </div>
                <div>

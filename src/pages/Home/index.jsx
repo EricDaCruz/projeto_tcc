@@ -5,6 +5,7 @@ import {AreaInfoHome} from '../../components/HomeComponents/AreaInfoHome';
 import { FaqArea } from '../../components/HomeComponents/FaqArea';
 import { RatingArea } from '../../components/HomeComponents/RatingArea';
 import { WriteUsArea } from '../../components/HomeComponents/WriteUsArea';
+import { FooterArea } from '../../components/FooterArea';
 
 
 
@@ -22,6 +23,7 @@ export function Home (){
             <FaqArea />
             <RatingArea />
             <WriteUsArea />
+            <FooterArea />
         </>
     )
 
