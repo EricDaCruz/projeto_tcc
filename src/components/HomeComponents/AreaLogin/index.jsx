@@ -18,14 +18,14 @@ export function AreaLogin(){
    return (
       <div className="columns is-tablet mt-6 ">
          <div className="login column is-7 pl-5">
-            <C.Container>
-               <C.ContentLogin>
-                  <h1>Login</h1>
+            <div>
+               <C.ContentLogin  className="teste">
+                  <h1 className="has-text-weight-bold is-size-2">Login</h1>
                   <p className="titleHeader">
                      Utilize seus dados de acesso para entrar
                   </p>
-                  <C.ContentLoginInputs>
-                     <div className="field">
+                  <C.ContentLoginInputs className="">
+                     <div className="field mb-2">
                         <p className="control has-icons-left has-icons-right">
                            <input
                               className="input is-medium"
@@ -38,7 +38,7 @@ export function AreaLogin(){
                            </span>
                         </p>
                      </div>
-                     <div className="field">
+                     <div className="field mt-5">
                         <p className="control has-icons-left has-icons-right">
                            <input
                               className="input is-medium"
@@ -57,7 +57,7 @@ export function AreaLogin(){
                            </span>
                         </p>
                      </div>
-                     <p>Esqueceu a senha?</p>
+                     <p className="has-text-right has-text-weight-semibold">Esqueceu a senha?</p>
                      <C.ContentButton>
                         <button className="button ">Login</button>
                      </C.ContentButton>
@@ -78,7 +78,7 @@ export function AreaLogin(){
                      <Link to="/sing-up">Cadastre-se</Link>
                   </p>
                </C.ContentOthersLogin>
-            </C.Container>
+            </div>
          </div>
          <C.ImageLogin className="column is-5 is-hidden-mobile"></C.ImageLogin>
       </div>

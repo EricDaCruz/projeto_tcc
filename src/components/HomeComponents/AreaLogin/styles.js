@@ -1,15 +1,10 @@
 import styled from "styled-components";
 import colors from "../../../App.styles";
 
-export const Container = styled.div`
-   max-width: 60%;
-`;
 export const ContentLogin = styled.div`
    h1 {
       font-family: "Roboto";
       font-style: normal;
-      font-weight: 800;
-      font-size: 2.5rem;
       color: #563939;
    }
    p.titleHeader {
@@ -21,10 +16,6 @@ export const ContentLogin = styled.div`
    }
 `;
 export const ContentLoginInputs = styled.div`
-   .field {
-      &:nth-child(1) {
-         margin-bottom: 2rem;
-      }
       input {
          background-color: #e3e3e3;
          outline: none;
@@ -44,9 +35,7 @@ export const ContentLoginInputs = styled.div`
       }
    }
    p {
-      text-align: right;
       font-family: "Roboto";
-      font-weight: 500;
       color: #12694c;
       cursor: pointer;
    }
