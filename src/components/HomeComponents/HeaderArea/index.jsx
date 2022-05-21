@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import colors from '../../../App.styles'
 
-export function HeaderHome() {
+export function HeaderArea() {
 	const handleNavburger = () => {
 		// Get all "navbar-burger" elements
     const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);

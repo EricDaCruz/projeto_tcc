@@ -9,7 +9,7 @@ import { FiUser, FiLock } from "react-icons/fi";
 import { BsEyeSlash, BsEye, BsFacebook } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 
-export function AreaLogin(){
+export function LoginArea(){
    const [viewPassword, setViewPassword] = useState(false);
    const handleViewPassword = () => {
       setViewPassword(!viewPassword);

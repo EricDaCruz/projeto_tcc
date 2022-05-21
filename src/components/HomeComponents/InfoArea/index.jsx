@@ -1,6 +1,6 @@
 import * as C from "./styles";
 
-export function AreaInfoHome(){
+export function InfoArea(){
    return (
        <>
         <C.Content className="columns">
