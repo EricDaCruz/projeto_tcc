@@ -1,4 +1,4 @@
-import {FaArrowRight} from 'react-icons/fa'
+import { FaArrowRight } from 'react-icons/fa'
 import { Input } from './styles';
 import phoneImage from '../../../assets/images/phoneImage.png'
 

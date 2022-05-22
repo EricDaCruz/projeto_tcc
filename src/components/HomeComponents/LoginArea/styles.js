@@ -1,18 +1,16 @@
 import styled from "styled-components";
-import colors from "../../../App.styles";
+import {colors} from "../../../App.styles";
 
 export const ContentLogin = styled.div`
-   h1 {
-      font-family: "Roboto";
-      font-style: normal;
-      color: #563939;
+   width: 70%;
+
+   form{
+      width:100%;
    }
-   p.titleHeader {
-      font-family: "Roboto";
-      font-weight: 400;
-      color: #563939;
-      font-size: 1.3rem;
-      margin-bottom: 3rem;
+
+   @media (min-width: 769px) and
+   (max-width: 1023px) {
+      width: 100%;
    }
 `;
 export const ContentLoginInputs = styled.div`
@@ -33,7 +31,7 @@ export const ContentLoginInputs = styled.div`
             color: #666666; 
         }
       }
-   }
+   
    p {
       font-family: "Roboto";
       color: #12694c;

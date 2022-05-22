@@ -1,30 +1,30 @@
 import { Link } from "react-router-dom";
-import colors from '../../../App.styles'
+import { colors } from "../../../App.styles";
 
 export function HeaderArea() {
-	const handleNavburger = () => {
-		// Get all "navbar-burger" elements
-    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
-  
-    // Check if there are any navbar burgers
-    if ($navbarBurgers.length > 0) {
-  
-      // Add a click event on each of them
-      $navbarBurgers.forEach( el => {
-        el.addEventListener('click', () => {
-  
-          // Get the target from the "data-target" attribute
-          const target = el.dataset.target;
-          const $target = document.getElementById(target);
-  
-          // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
-          el.classList.toggle('is-active');
-          $target.classList.toggle('is-active');
-  
-        });
-      });
-    }
-	}
+   const handleNavburger = () => {
+      // Get all "navbar-burger" elements
+      const $navbarBurgers = Array.prototype.slice.call(
+         document.querySelectorAll(".navbar-burger"),
+         0
+      );
+
+      // Check if there are any navbar burgers
+      if ($navbarBurgers.length > 0) {
+         // Add a click event on each of them
+         $navbarBurgers.forEach((el) => {
+            el.addEventListener("click", () => {
+               // Get the target from the "data-target" attribute
+               const target = el.dataset.target;
+               const $target = document.getElementById(target);
+
+               // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+               el.classList.toggle("is-active");
+               $target.classList.toggle("is-active");
+            });
+         });
+      }
+   };
 
    return (
       <header>
@@ -39,7 +39,7 @@ export function HeaderArea() {
                </a>
 
                <a
-							 		onClick={handleNavburger}
+                  onClick={handleNavburger}
                   role="button"
                   className="navbar-burger"
                   aria-label="menu"
@@ -56,14 +56,16 @@ export function HeaderArea() {
                <div className="navbar-end">
                   <div className="navbar-item">
                      <div className="buttons">
-                        <Link to="/sing-up" className="button" 
+                        <Link
+                           to="/sing-up"
+                           className="button"
                            style={{
                               backgroundColor: `${colors.green}`,
-                              color:"white",
+                              color: "white",
                               width: "160px",
                               height: "45px",
                               borderRadius: "100px",
-                              letterSpacing:"1px"                              
+                              letterSpacing: "1px",
                            }}
                         >
                            <strong>Cadastre-se</strong>
@@ -75,5 +77,4 @@ export function HeaderArea() {
          </nav>
       </header>
    );
-};
-
+}

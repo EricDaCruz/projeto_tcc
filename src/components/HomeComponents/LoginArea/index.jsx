@@ -9,78 +9,49 @@ import { FiUser, FiLock } from "react-icons/fi";
 import { BsEyeSlash, BsEye, BsFacebook } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 
-export function LoginArea(){
+export function LoginArea() {
    const [viewPassword, setViewPassword] = useState(false);
    const handleViewPassword = () => {
       setViewPassword(!viewPassword);
    };
 
    return (
-      <div className="columns is-tablet mt-6 ">
-         <div className="login column is-7 pl-5">
+      <section className=" mt-4 has-background-primary columns">
+         <div className="column .is-narrow-mobile is-three-fifths">
             <div>
-               <C.ContentLogin  className="teste">
-                  <h1 className="has-text-weight-bold is-size-2">Login</h1>
-                  <p className="titleHeader">
-                     Utilize seus dados de acesso para entrar
-                  </p>
-                  <C.ContentLoginInputs className="">
-                     <div className="field mb-2">
-                        <p className="control has-icons-left has-icons-right">
-                           <input
-                              className="input is-medium"
-                              autoFocus
-                              type="email"
-                              placeholder="Email"
-                           />
-                           <span className="icon  is-left">
-                              <FiUser />
-                           </span>
-                        </p>
-                     </div>
-                     <div className="field mt-5">
-                        <p className="control has-icons-left has-icons-right">
-                           <input
-                              className="input is-medium"
-                              type={viewPassword ? "text" : "password"}
-                              placeholder="Password"
-                           />
-                           <span className="icon is-small is-left">
-                              <FiLock />
-                           </span>
-                           <span
-                              onClick={handleViewPassword}
-                              style={{ cursor: "pointer" }}
-                              className="icon is-small is-right"
-                           >
-                              {viewPassword ? <BsEye /> : <BsEyeSlash />}
-                           </span>
-                        </p>
-                     </div>
-                     <p className="has-text-right has-text-weight-semibold">Esqueceu a senha?</p>
-                     <C.ContentButton>
-                        <button className="button ">Login</button>
-                     </C.ContentButton>
-                  </C.ContentLoginInputs>
-               </C.ContentLogin>
-               <C.ContentOthersLogin>
-                  <p>Entre com</p>
-                  <C.ColSocialMedia>
-                     <div className="socialMedia-item">
-                        <FcGoogle />
-                     </div>
-                     <div className="socialMedia-item">
-                        <BsFacebook />
-                     </div>
-                  </C.ColSocialMedia>
-                  <p className="singUp">
-                     Ainda não tem uma conta?{" "}
-                     <Link to="/sing-up">Cadastre-se</Link>
-                  </p>
-               </C.ContentOthersLogin>
+               <h2
+                  className="has-text-weight-bold is-size-2"
+                  style={{ color: "#563939" }}
+               >
+                  Login
+               </h2>
+               <p className="is-size-5" style={{ color: "#563939" }}>
+                  Utilize seus dados de acesso para entrar
+               </p>
             </div>
+            <C.ContentLogin className="is-flex is-flex-direction-column is-align-items-center has-background-danger">
+               <form className="has-background-grey">
+                  <div className="field is-flex is-align-items-center ">
+                     <span>
+                        <FiUser />
+                     </span>
+                     <input type="text" />
+                  </div>
+                  <div className="field has-background-primary is-flex is-align-items-center">
+                     <span>
+                        <FiLock />
+                     </span>
+                     <input type="password" />
+                     <span>
+                        <BsEye />
+                     </span>
+                  </div>
+               </form>
+               <button>Login</button>
+               <div>...</div>
+            </C.ContentLogin>
          </div>
-         <C.ImageLogin className="column is-5 is-hidden-mobile"></C.ImageLogin>
-      </div>
+         <div className="column">...</div>
+      </section>
    );
-};
+}
