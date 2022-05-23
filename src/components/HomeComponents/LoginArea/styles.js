@@ -2,7 +2,7 @@ import styled from "styled-components";
 import {colors} from "../../../App.styles";
 
 export const ContentLogin = styled.div`
-   width: 70%;
+   width: 60%;
 
    form{
       width:100%;
@@ -11,6 +11,26 @@ export const ContentLogin = styled.div`
    @media (min-width: 769px) and
    (max-width: 1023px) {
       width: 100%;
+   }
+
+   form{
+      div.contentInput{
+         background-color: #E3E3E3;
+         height: 3rem;
+         border-radius: 8px;
+
+         input{
+            width: 90%;   
+            background: transparent;
+            height: 2.75rem;
+            border: none;
+            outline: none;
+            &::placeholder {
+               color: #969696;
+               font-size: 1.25rem;
+            }
+         }
+      }
    }
 `;
 export const ContentLoginInputs = styled.div`

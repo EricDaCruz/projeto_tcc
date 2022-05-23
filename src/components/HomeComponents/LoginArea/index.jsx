@@ -29,29 +29,47 @@ export function LoginArea() {
                   Utilize seus dados de acesso para entrar
                </p>
             </div>
-            <C.ContentLogin className="is-flex is-flex-direction-column is-align-items-center has-background-danger">
-               <form className="has-background-grey">
-                  <div className="field is-flex is-align-items-center ">
+            <C.ContentLogin className="mt-6 is-flex is-flex-direction-column is-align-items-center has-background-danger">
+               <form>
+                  <div className="contentInput mb-5 px-4 is-flex is-align-items-center">
                      <span>
-                        <FiUser />
+                        <FiUser className="mr-2" size="23" style={{color: '#666666'}}/>
                      </span>
-                     <input type="text" />
+                     <input type="email" className="is-size-5" placeholder="E-mail"/>
                   </div>
-                  <div className="field has-background-primary is-flex is-align-items-center">
+                  <div className="contentInput mb-2 px-4 is-flex is-align-items-center">
                      <span>
-                        <FiLock />
+                        <FiLock className="mr-2" size="23" style={{color: '#666666'}}/>
                      </span>
-                     <input type="password" />
+                     <input type={viewPassword? 'text' : 'password'}  className="is-size-5" placeholder="Senha"/>
                      <span>
-                        <BsEye />
+                        {
+                           viewPassword
+                           ?<BsEyeSlash onClick={handleViewPassword} size="23" style={{color: '#666666', cursor: 'pointer'}}/>
+                           :<BsEye onClick={handleViewPassword} size="23" style={{color: '#666666', cursor: 'pointer'}}/>
+                        }
+                        
                      </span>
                   </div>
+                  <div className="has-text-right">
+                     <a 
+                        href="/forgetPassword" 
+                        style={{color:'#12694C'}} 
+                        className="is-size-6 has-text-weight-medium">
+                           Esqueceu sua senha?
+                     </a>
+                     </div>
                </form>
-               <button>Login</button>
+               <button 
+                  className="py-3 px-6"
+                  style={{background:'#1DA87A', borderRadius:'10px', border:'none', cursor:'pointer'}}
+               >
+                     Login
+               </button>
                <div>...</div>
             </C.ContentLogin>
          </div>
-         <div className="column">...</div>
+         <div className="is-hidden-mobile column">...</div>
       </section>
    );
 }
