@@ -71,7 +71,7 @@ export function LoginArea() {
                </button>
                <div className="mt-6 is-flex is-flex-direction-column is-align-items-center">
                   <p className="mb-4">Entre com</p>
-                  <div className="is-size-6">
+                  <div className="is-size-6 mb-4">
                      <FcGoogle className="mr-6" size="45" style={{cursor:'pointer'}}/>
                      <BsFacebook size="45" style={{color:"#3B5998", cursor:'pointer'}}/>
                   </div>
