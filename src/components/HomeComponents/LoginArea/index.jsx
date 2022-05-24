@@ -2,7 +2,10 @@ import { useState } from "react";
 /*Styles */
 import * as C from "./styles";
 
+import Img from '../../../assets/images/Bg.png'
+
 import { Link } from "react-router-dom";
+
 
 /* Icons */
 import { FiUser, FiLock } from "react-icons/fi";
@@ -16,9 +19,9 @@ export function LoginArea() {
    };
 
    return (
-      <section className=" mt-4 has-background-primary columns">
-         <div className="column .is-narrow-mobile is-three-fifths">
-            <div>
+      <section className=" mt-4 columns">
+         <C.Container className="column is-narrow-mobile is-half">
+            <div className="contentText">
                <h2
                   className="has-text-weight-bold is-size-2"
                   style={{ color: "#563939" }}
@@ -29,7 +32,7 @@ export function LoginArea() {
                   Utilize seus dados de acesso para entrar
                </p>
             </div>
-            <C.ContentLogin className="mt-6 is-flex is-flex-direction-column is-align-items-center has-background-danger">
+            <C.ContentLogin className="mt-6 is-flex is-flex-direction-column is-align-items-center ">
                <form>
                   <div className="contentInput mb-5 px-4 is-flex is-align-items-center">
                      <span>
@@ -61,15 +64,29 @@ export function LoginArea() {
                      </div>
                </form>
                <button 
-                  className="py-3 px-6"
+                  className=" mt-5 py-3 px-6 has-text-white has-text-weight-semibold is-size-5"
                   style={{background:'#1DA87A', borderRadius:'10px', border:'none', cursor:'pointer'}}
                >
                      Login
                </button>
-               <div>...</div>
+               <div className="mt-6 is-flex is-flex-direction-column is-align-items-center">
+                  <p className="mb-4">Entre com</p>
+                  <div className="is-size-6">
+                     <FcGoogle className="mr-6" size="45" style={{cursor:'pointer'}}/>
+                     <BsFacebook size="45" style={{color:"#3B5998", cursor:'pointer'}}/>
+                  </div>
+                  <p className="is-size-6">
+                     Ainda não tem uma conta? 
+                     <a href="/sing-up" className="ml-1 has-text-weight-bold" style={{color: '#12694C'}}>
+                        Cadastre-se
+                     </a>
+                  </p>
+               </div>
             </C.ContentLogin>
+         </C.Container>
+         <div className="is-hidden-mobile column is-flex is-justify-content-center is-align-items-center">
+            <img src={Img} style={{width:'90%'}}/>
          </div>
-         <div className="is-hidden-mobile column">...</div>
       </section>
    );
 }

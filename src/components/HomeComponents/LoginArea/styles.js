@@ -1,8 +1,18 @@
 import styled from "styled-components";
-import {colors} from "../../../App.styles";
+import { colors } from "../../../App.styles";
+
+export const Container = styled.div`
+   @media (max-width: 768px){
+      display: flex;
+      flex-direction: column;
+      align-items:center;
+      text-align: center;
+     
+   }
+`
 
 export const ContentLogin = styled.div`
-   width: 60%;
+   width: 65%;
 
    form{
       width:100%;
@@ -20,6 +30,10 @@ export const ContentLogin = styled.div`
          border-radius: 8px;
 
          input{
+            @media (min-width: 769px) and
+            (max-width: 1023px) {
+               width: 100%;
+            }
             width: 90%;   
             background: transparent;
             height: 2.75rem;
