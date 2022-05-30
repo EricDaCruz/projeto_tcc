@@ -17,9 +17,8 @@ export function Home (){
                 <LoginArea />
             </div>
             <hr style={{height: '3px', backgroundColor: '#12694C'}}/>
-            <div className="container is-fluid">
-                <InfoArea />
-            </div>
+
+            <InfoArea />
             <FaqArea />
             <RatingArea />
             <WriteUsArea />
