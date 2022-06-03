@@ -77,9 +77,9 @@ export function LoginArea() {
                   </div>
                   <p className="is-size-6">
                      Ainda não tem uma conta? 
-                     <a href="/sing-up" className="ml-1 has-text-weight-bold" style={{color: '#12694C'}}>
+                     <Link to="/sing-up/step1" className="ml-1 has-text-weight-bold" style={{color: '#12694C'}}>
                         Cadastre-se
-                     </a>
+                     </Link>
                   </p>
                </div>
             </C.ContentLogin>

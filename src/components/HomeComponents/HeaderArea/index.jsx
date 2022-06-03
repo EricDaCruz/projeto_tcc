@@ -57,7 +57,7 @@ export function HeaderArea() {
                   <div className="navbar-item">
                      <div className="buttons">
                         <Link
-                           to="/sing-up"
+                           to="/sing-up/step1"
                            className="button"
                            style={{
                               backgroundColor: `${colors.green}`,

@@ -27,8 +27,8 @@ export function Header() {
             <div id="navbarBasicExample" className="navbar-menu">
                <div className="navbar-end">
                   <div className="navbar-item">
-                     <div className="buttons">
-                        <a className="button is-primary">
+                     <div className="buttons" >
+                        <a className="button" style={{background:'#1DA87A', color:'white'}}>
                            <strong>Entrar</strong>
                         </a>
                      </div>

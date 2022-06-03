@@ -1,13 +1,14 @@
-import {Header} from '../Header'
+import { Footer } from '../Footer';
+import { Header } from '../Header'
 
 export function ThemeSingUp({ children }) {
    return (
       <div>
          <Header />
-         <section className="has-background-danger">
+         <section>
             {children}
          </section>
-         <footer>...</footer>
+         <Footer />
       </div>
    );
 }
