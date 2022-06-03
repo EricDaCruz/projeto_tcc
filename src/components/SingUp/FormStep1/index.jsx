@@ -4,7 +4,7 @@ import { BiUser, BiAt } from 'react-icons/bi'
 
 export function FormStep1() {
    return (
-      <div className="mx-auto my-auto " style={{ maxWidth: "700px" }}>
+      <div className="mx-auto my-auto" style={{ maxWidth: "700px" }}>
          <div className="mb-6 is-flex is-flex-direction-column is-align-items-center">
             <h1 className="mb-3 is-size-3 has-text-weight-semibold has-text-dark">
                Seja bem-vindo à HETEC!

@@ -1,6 +1,8 @@
+import { Button } from './styles'
+
 export function Header() {
    return (
-      <header>
+      <header className="container is-widescreen">
          <nav className="navbar" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
                <a className="navbar-item" href="https://bulma.io">
@@ -27,11 +29,11 @@ export function Header() {
             <div id="navbarBasicExample" className="navbar-menu">
                <div className="navbar-end">
                   <div className="navbar-item">
-                     <div className="buttons" >
-                        <a className="button" style={{background:'#1DA87A', color:'white'}}>
-                           <strong>Entrar</strong>
+                     <Button className="buttons" >
+                        <a >
+                           Entrar
                         </a>
-                     </div>
+                     </Button>
                   </div>
                </div>
             </div>

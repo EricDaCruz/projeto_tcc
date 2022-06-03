@@ -4,7 +4,7 @@ import {ThemeSingUp} from '../../components/SingUp/ThemeSingUp'
 export function SingUp({children}){
 
     return(
-        <main className="container is-widescreen" >
+        <main>
             <ThemeSingUp>
                 {children}
             </ThemeSingUp>

@@ -25,7 +25,7 @@ export const ButtonNextStep = styled.div`
     color:#fff;
     box-shadow: 0px 3px 12px rgba(74, 58, 255, 0.18);
     border-radius: 56px;    
-    padding: 18px 35px;
+    padding: 15px 30px;
 
     p{
         font-size: 1rem;
