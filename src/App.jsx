@@ -1,4 +1,4 @@
-  import { useState } from 'react'
+import { useState } from 'react'
 import Router from './router'
 
 export function App() {
@@ -6,7 +6,7 @@ export function App() {
   return (
     <div className="App">
 
-        <Router />
+          <Router />
 
     </div>
   )
