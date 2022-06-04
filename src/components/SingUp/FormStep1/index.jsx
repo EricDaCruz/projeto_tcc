@@ -1,6 +1,6 @@
 import { ContentForm, Inputs, ButtonNextStep } from "./styles";
-
 import { BiUser, BiAt } from 'react-icons/bi'
+import { Link } from "react-router-dom";
 
 export function FormStep1() {
    return (
@@ -15,7 +15,7 @@ export function FormStep1() {
             </p>
          </div>
          <ContentForm className="px-6 py-6 has-background-white">
-            <div>barra de progresso</div>
+            <div>barra de progresso 1/4</div>
             <hr />
             <div className="mb-4">
                <h2 className="mb-3 is-size-5 has-text-weight-semibold has-text-centered has-text-dark">Quem é você?</h2>
@@ -52,14 +52,14 @@ export function FormStep1() {
                </div>
             </form>
          </ContentForm>
-         <a
+         <Link
             className="mt-6 is-flex is-justify-content-flex-end"
-            href="/sing-up/step2"
+            to="/sing-up/step2"
          >
             <ButtonNextStep>
                <p>Próxima Etapa</p>
             </ButtonNextStep>
-         </a>
+         </Link>
       </div>
    );
 }
