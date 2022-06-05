@@ -1,8 +1,28 @@
+import { useEffect } from "react";
+import { useForm } from "../../../contexts/FormContext";
+
 import { ContentForm, Inputs, ButtonNextStep } from "./styles";
+
 import { BiUser, BiAt } from 'react-icons/bi'
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 export function FormStep1() {
+   const navigate = useNavigate()
+   const {data, setData} = useForm() 
+
+   useEffect(()=>{
+      setData({...data, currentStep:1})
+   },[])
+
+   const handleNextStep = () => {
+      if(data.name != "" && data.email != ""){
+         navigate('/sing-up/step2')
+      }else{
+         toast.error("Por favor, preencha todos os campo")
+      }
+   }
+
    return (
       <div className="mx-auto my-auto" style={{ maxWidth: "700px" }}>
          <div className="mb-6 is-flex is-flex-direction-column is-align-items-center">
@@ -15,7 +35,7 @@ export function FormStep1() {
             </p>
          </div>
          <ContentForm className="px-6 py-6 has-background-white">
-            <div>barra de progresso 1/4</div>
+            <div>barra de progresso {data.currentStep}/4</div>
             <hr />
             <div className="mb-4">
                <h2 className="mb-3 is-size-5 has-text-weight-semibold has-text-centered has-text-dark">Quem é você?</h2>
@@ -29,6 +49,8 @@ export function FormStep1() {
                         className="input is-medium"
                         type="text"
                         placeholder="Seu nome"
+                        onChange={e => setData({...data, name:e.target.value})}
+                        value={data.name}
                      />
                      <span className="icon is-small is-right">
                         <BiUser />
@@ -43,6 +65,8 @@ export function FormStep1() {
                         className="input is-medium"
                         type="email"
                         placeholder="Seu Email"
+                        onChange={e => setData({...data, email:e.target.value})}
+                        value={data.email}
                      />
                      <span className="icon is-small is-right">
                         <BiAt />
@@ -52,14 +76,11 @@ export function FormStep1() {
                </div>
             </form>
          </ContentForm>
-         <Link
-            className="mt-6 is-flex is-justify-content-flex-end"
-            to="/sing-up/step2"
-         >
-            <ButtonNextStep>
+         <span className="mt-6 is-flex is-justify-content-flex-end">
+            <ButtonNextStep onClick={handleNextStep}>
                <p>Próxima Etapa</p>
             </ButtonNextStep>
-         </Link>
+         </span>
       </div>
    );
 }

@@ -1,4 +1,7 @@
+
+
 import { ContentForm, Inputs, ButtonNextStep, Select } from "./styles";
+
 import { BiUser, BiAt } from 'react-icons/bi'
 import { IoPhonePortraitOutline } from 'react-icons/io5'
 import {BsBuilding} from 'react-icons/bs'
