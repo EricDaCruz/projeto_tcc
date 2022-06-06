@@ -36,7 +36,7 @@ export function FormStep2(){
               <form>
                  <div className="is-flex is-flex-wrap-wrap is-justify-content-space-between">
                      <div className="field">
-                     <label className="label has-text-dark" >Data de Nascimento</label>
+                        <label className="label has-text-dark" >Data de Nascimento</label>
                         <SelectDate data={data} setData={setData}/>
                      </div>
                      <div className="field">

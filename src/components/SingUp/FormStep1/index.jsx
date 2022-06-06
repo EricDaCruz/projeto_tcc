@@ -12,7 +12,7 @@ export function FormStep1() {
    const {data, setData} = useForm() 
 
    useEffect(()=>{
-      setData({...data, currentStep:1})
+      setData({...data, currentStep: 1})
    },[])
 
    const handleNextStep = () => {
@@ -56,7 +56,6 @@ export function FormStep1() {
                         <BiUser />
                      </span>
                   </div>
-                  {/* <p className="help is-success">This username is available</p> */}
                </div>
                <div className="field">
                   <label className="label has-text-dark" >Email</label>
@@ -72,7 +71,6 @@ export function FormStep1() {
                         <BiAt />
                      </span>
                   </div>
-                  {/* <p className="help is-success">This username is available</p> */}
                </div>
             </form>
          </ContentForm>
