@@ -1,28 +1,33 @@
-import { useState } from 'react'
-import { MdDateRange } from 'react-icons/md'
+import { LocalizationProvider, DatePicker } from '@mui/lab'
+import AdapterDateFns from '@mui/lab/AdapterDateFns'
+import { TextField } from '@mui/material'
+import { useEffect, useState } from 'react'
+import frLocale from 'date-fns/locale/fr'
+import { Container } from './styles'
+import { FormatDate } from '../../helpers/FormatDate'
 
-import { Container } from './styles';
+export function SelectDate({data, setData}){
+    const[selectDate, setSelectDate] = useState(null)
 
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import { FormatDate } from '../../helpers/FormatDate';
-
-export function SelectDate({ data, setData }) {
-    const [date, setDate] = useState(new Date());
-
-    const handleSelectDate = (date) => {
-        setDate(date)
-        let dateFormat = FormatDate(date)
-        setData({...data, dateBorn: FormatDate(date)})
-        console.log(data);
+    const handleSetData = (value) => {
+        const formatDate = FormatDate(value)
+        setSelectDate(selectDate)
+        setData({...data, dateBorn: formatDate})
     }
-
-    return (
-        <Container className='control has-icons-right'>
-            <DatePicker dateFormat="dd/MM/yyyy" className='input is-rounded is-medium' selected={date} onSelect={(date) => handleSelectDate(date)} />
-            <span className="icon is-small is-right">
-                <MdDateRange />
-            </span>
+    useEffect(()=>{
+        console.log(data);
+    },[data])
+    return(
+        <Container>
+            <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={frLocale}>
+                    <DatePicker 
+                        label="" 
+                        mask="__/__/____"
+                        renderInput={(params)=> <TextField {...params}/>}
+                        value={selectDate}
+                        onChange={(newValue)=>{handleSetData(newValue)}}
+                    />
+            </LocalizationProvider>
         </Container>
-    );
+    )
 }

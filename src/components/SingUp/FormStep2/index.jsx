@@ -1,5 +1,5 @@
 import { ContentForm, Inputs, ButtonNextStep, Select } from "./styles";
-
+import { useNavigate } from 'react-router-dom'
 import { BiUser, BiAt } from 'react-icons/bi'
 import { IoPhonePortraitOutline } from 'react-icons/io5'
 import {BsBuilding} from 'react-icons/bs'
@@ -11,8 +11,12 @@ import { SelectDate } from "../../SelectDate";
 
 export function FormStep2(){
    const {data, setData} = useForm()
+   const navigate = useNavigate();
 
    useEffect(()=>{
+      // if(data.name === "" || data.email === ""){
+      //    navigate('/sing-up/step1')
+      // }
       console.log(data);
    },[])
 
