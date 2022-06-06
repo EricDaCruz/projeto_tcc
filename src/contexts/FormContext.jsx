@@ -8,7 +8,7 @@ export const FormProvider = ({children}) =>{
         currentStep: 0,
         name: "",
         email: "",
-        age: 0,
+        dateBorn: "",
         phone: 0,
         state: "",
         city: "",
@@ -22,6 +22,19 @@ export const FormProvider = ({children}) =>{
             {children}
         </FormContext.Provider>
     )
+}
+
+export const ChangeData = {
+    currentStep: value => setData({...data, currentStep:value}),
+    name: value => setData({...data, name:value}),
+    email: value => setData({...data, email:value}),
+    dateBorn: value => setData({...data, dateBorn:value}),
+    phone: value => setData({...data, phone:value}),
+    state: value => setData({...data, state:value}),
+    city: value => setData({...data, city:value}),
+    interests: value => setData({...data, interests:value}),
+    username: value => setData({...data, username:value}),
+    password: value => setData({...data, password:value}),
 }
 
 export const useForm = () => useContext(FormContext)

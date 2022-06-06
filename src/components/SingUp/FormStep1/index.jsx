@@ -37,7 +37,7 @@ export function FormStep1() {
          <ContentForm className="px-6 py-6 has-background-white">
             <div>barra de progresso {data.currentStep}/4</div>
             <hr />
-            <div className="mb-4">
+            <div className="mb-6">
                <h2 className="mb-3 is-size-5 has-text-weight-semibold has-text-centered has-text-dark">Quem é você?</h2>
                <p className="is-size-6 has-text-centered">Para começar, por favor me diga seu nome e email!</p>
             </div>
