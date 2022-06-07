@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "../../../contexts/FormContext";
 
 import { ContentForm, Inputs, ButtonNextStep } from "./styles";
@@ -11,12 +11,16 @@ export function FormStep1() {
    const navigate = useNavigate()
    const {data, setData} = useForm() 
 
+   const [inputName, setInputName] = useState(data.name)
+   const [inputEmail, setInputEmail] = useState(data.email)
+
    useEffect(()=>{
       setData({...data, currentStep: 1})
    },[])
 
    const handleNextStep = () => {
-      if(data.name != "" && data.email != ""){
+      setData({...data, name:inputName, email:inputEmail})
+      if(inputName != "" && inputEmail != ""){
          navigate('/sing-up/step2')
       }else{
          toast.error("Por favor, preencha todos os campo")
@@ -49,8 +53,8 @@ export function FormStep1() {
                         className="input is-medium"
                         type="text"
                         placeholder="Seu nome"
-                        onChange={e => setData({...data, name:e.target.value})}
-                        value={data.name}
+                        onChange={e => setInputName(e.target.value)}
+                        value={inputName}
                      />
                      <span className="icon is-small is-right">
                         <BiUser />
@@ -64,8 +68,8 @@ export function FormStep1() {
                         className="input is-medium"
                         type="email"
                         placeholder="Seu Email"
-                        onChange={e => setData({...data, email:e.target.value})}
-                        value={data.email}
+                        onChange={e => setInputEmail(e.target.value)}
+                        value={inputEmail}
                      />
                      <span className="icon is-small is-right">
                         <BiAt />
@@ -74,7 +78,7 @@ export function FormStep1() {
                </div>
             </form>
          </ContentForm>
-         <span className="mt-6 is-flex is-justify-content-flex-end">
+         <span className="is-clickable mt-6 is-flex is-justify-content-flex-end">
             <ButtonNextStep onClick={handleNextStep}>
                <p>Próxima Etapa</p>
             </ButtonNextStep>

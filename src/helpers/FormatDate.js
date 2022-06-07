@@ -1,4 +1,5 @@
 export function FormatDate(date){
+   if(date){
     let day = date.getDate()
     let month = date.getMonth() + 1
     let year = date.getFullYear()
@@ -11,4 +12,5 @@ export function FormatDate(date){
     }
         
     return `${day}/${month}/${year}`;
+   }
 }

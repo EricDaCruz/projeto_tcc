@@ -1,10 +1,8 @@
 import { ContentForm, Inputs, ButtonNextStep, Select } from "./styles";
 import { useNavigate } from 'react-router-dom'
-import { BiUser, BiAt } from 'react-icons/bi'
 import { IoPhonePortraitOutline } from 'react-icons/io5'
 import {BsBuilding} from 'react-icons/bs'
-import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "../../../contexts/FormContext";
 import { SelectDate } from "../../SelectDate";
 
@@ -19,6 +17,10 @@ export function FormStep2(){
       // }
       console.log(data);
    },[])
+
+   const handleNextStep = () =>{
+      
+   }
 
     return (
         <div className="mx-auto my-auto" style={{ maxWidth: "700px" }}>
@@ -83,19 +85,15 @@ export function FormStep2(){
                               <BsBuilding />
                            </span>
                         </div>
-                        {/* <p className="help is-success">This username is available</p> */}
                      </div>
                  </div>
               </form>
            </ContentForm>
-           <Link
-              className="mt-6 is-flex is-justify-content-flex-end"
-              to="/sing-up/step3"
-           >
-              <ButtonNextStep>
-                 <p>Próxima Etapa</p>
-              </ButtonNextStep>
-           </Link>
+           <span className="mt-6 is-flex is-justify-content-flex-end">
+            <ButtonNextStep onClick={handleNextStep}>
+               <p>Próxima Etapa</p>
+            </ButtonNextStep>
+         </span>
         </div>
 )
         

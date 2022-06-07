@@ -10,8 +10,8 @@ export function SelectDate({data, setData}){
     const[selectDate, setSelectDate] = useState(null)
 
     const handleSetData = (value) => {
+        setSelectDate(FormatDate(value))
         const formatDate = FormatDate(value)
-        setSelectDate(selectDate)
         setData({...data, dateBorn: formatDate})
     }
     useEffect(()=>{
