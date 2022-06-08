@@ -6,7 +6,7 @@ import frLocale from 'date-fns/locale/fr'
 import { Container } from './styles'
 import { FormatDate } from '../../../helpers/FormatDate'
 
-export function SelectDate({setDateBorn}){
+export function SelectDate({data, setDateBorn}){
     const[selectDate, setSelectDate] = useState(null)
 
     const handleSetData = (value) => {
@@ -18,6 +18,7 @@ export function SelectDate({setDateBorn}){
         <Container>
             <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={frLocale}>
                     <DatePicker 
+                        className='date-picker'
                         label="" 
                         mask="__/__/____"
                         renderInput={(params)=> <TextField {...params}/>}

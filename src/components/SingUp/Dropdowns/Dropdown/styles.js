@@ -1,5 +1,5 @@
 import styled from 'styled-components'
 
 export const Select = styled.select`
-   max-width: 100%;
+   widht:100%;
 `

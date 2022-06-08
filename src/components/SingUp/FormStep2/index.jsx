@@ -8,6 +8,7 @@ import { SelectDate } from "../SelectDate";
 import { DropdownStates } from "../Dropdowns/DropdownStates";
 import { DropdownCities } from "../Dropdowns/DropdownCities";
 import { toast } from "react-hot-toast";
+import { Field } from "../Field";
 
 
 export function FormStep2(){
@@ -17,9 +18,9 @@ export function FormStep2(){
    const[phoneNumber, setPhoneNumber] = useState("")
    const[formLocalization, setFormLocalization] = useState({state:"", city:""});
    useEffect(()=>{
-      if(data.name === "" || data.email === ""){
-         navigate('/sing-up/step1')
-      }
+      // if(data.name === "" || data.email === ""){
+      //    navigate('/sing-up/step1')
+      // }
       setData({...data, currentStep:2})
       console.log(data);
    },[])
@@ -59,14 +60,12 @@ export function FormStep2(){
                  <p className="is-size-6 has-text-centered">Por favor, preencha todos os campos abaixo.</p>
               </div>
               <form>
-                 <div className="is-flex is-flex-wrap-wrap is-justify-content-space-between">
-                     <div className="field">
-                        <label className="label has-text-dark" >Data de Nascimento</label>
-                        <SelectDate setDateBorn={setDateBorn}/>
-                     </div>
-                     <div className="field">
-                        <label htmlFor="inputPhone" className="label has-text-dark">Telefone</label>
-                        <div id="inputPhone" className="control has-icons-right">
+                 <div className="is-flex is-flex-wrap-wrap">
+                     <Field label="Data de Nascimento">
+                        <SelectDate data={data} setDateBorn={setDateBorn}/>
+                     </Field>
+                     <Field label="Celular">
+                        <div className="control has-icons-right">
                            <Inputs
                               className="input is-rounded is-medium"
                               type="email"
@@ -77,21 +76,13 @@ export function FormStep2(){
                               <IoPhonePortraitOutline />
                            </span>
                         </div>
-                     </div>
-                     <div className="field">
-                        <label className="label has-text-dark" >Estado</label>
-                        <div className="control">
-                           <div className="select is-medium is-rounded">
-                             <DropdownStates formLocalization={formLocalization} handleFormLocalization={handleFormLocalization}/>
-                           </div>
-                        </div>
-                     </div>
-                     <div className="field">
-                        <label className="label has-text-dark" >Cidade</label>
-                        <div className="select is-medium is-rounded">
-                           <DropdownCities disabled={formLocalization.state ? false : true} formLocalization={formLocalization} handleFormLocalization={handleFormLocalization}/>
-                        </div>
-                     </div>
+                     </Field>
+                     <Field label="Estados">
+                        <DropdownStates formLocalization={formLocalization} handleFormLocalization={handleFormLocalization}/>
+                     </Field>
+                     <Field label="Cidades">
+                        <DropdownCities disabled={formLocalization.state ? false : true} formLocalization={formLocalization} handleFormLocalization={handleFormLocalization}/>
+                     </Field>
                  </div>
               </form>
            </ContentForm>
