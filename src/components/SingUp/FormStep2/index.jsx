@@ -4,20 +4,23 @@ import { IoPhonePortraitOutline } from 'react-icons/io5'
 import {BsBuilding} from 'react-icons/bs'
 import { useEffect, useState } from "react";
 import { useForm } from "../../../contexts/FormContext";
-import { SelectDate } from "../../SelectDate";
+import { SelectDate } from "../SelectDate";
 import { DropdownStates } from "../Dropdowns/DropdownStates";
 import { DropdownCities } from "../Dropdowns/DropdownCities";
+import { toast } from "react-hot-toast";
 
 
 export function FormStep2(){
    const {data, setData} = useForm()
    const navigate = useNavigate();
    const[dateBorn, setDateBorn] = useState("")
+   const[phoneNumber, setPhoneNumber] = useState("")
    const[formLocalization, setFormLocalization] = useState({state:"", city:""});
    useEffect(()=>{
-      // if(data.name === "" || data.email === ""){
-      //    navigate('/sing-up/step1')
-      // }
+      if(data.name === "" || data.email === ""){
+         navigate('/sing-up/step1')
+      }
+      setData({...data, currentStep:2})
       console.log(data);
    },[])
 
@@ -26,7 +29,16 @@ export function FormStep2(){
     }
 
    const handleNextStep = () =>{
-      console.log(formLocalization, dateBorn);
+      if(dateBorn == "" || 
+      phoneNumber == "" || 
+      formLocalization.state == "" || 
+      formLocalization.city == "" || 
+      formLocalization.state == ""){
+         toast.error("Por favor, preencha todos os campos")
+      }else{
+         setData({...data,dateBorn:dateBorn, phone:phoneNumber, location:formLocalization})
+         navigate('/sing-up/step3')
+      }
    }
 
     return (
@@ -40,7 +52,7 @@ export function FormStep2(){
               </p>
            </div>
            <ContentForm className="px-6 py-6 has-background-white">
-              <div>barra de progresso 2/4</div>
+              <div>barra de progresso {data.currentStep}/4</div>
               <hr />
               <div className="mb-6">
                  <h2 className="mb-3 is-size-5 has-text-weight-semibold has-text-centered has-text-dark">Dados pessoais</h2>
@@ -50,7 +62,7 @@ export function FormStep2(){
                  <div className="is-flex is-flex-wrap-wrap is-justify-content-space-between">
                      <div className="field">
                         <label className="label has-text-dark" >Data de Nascimento</label>
-                        <SelectDate data={data} setData={setData}/>
+                        <SelectDate setDateBorn={setDateBorn}/>
                      </div>
                      <div className="field">
                         <label htmlFor="inputPhone" className="label has-text-dark">Telefone</label>
@@ -59,6 +71,7 @@ export function FormStep2(){
                               className="input is-rounded is-medium"
                               type="email"
                               placeholder="(00) 00000 0000"
+                              onChange={e => setPhoneNumber(e.target.value)}
                            />
                            <span className="icon is-small is-right">
                               <IoPhonePortraitOutline />
@@ -82,7 +95,7 @@ export function FormStep2(){
                  </div>
               </form>
            </ContentForm>
-           <span className="mt-6 is-flex is-justify-content-flex-end">
+           <span className="is-clickable mt-6 is-flex is-justify-content-flex-end">
             <ButtonNextStep onClick={handleNextStep}>
                <p>Próxima Etapa</p>
             </ButtonNextStep>

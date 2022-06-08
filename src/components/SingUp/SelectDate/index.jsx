@@ -4,19 +4,16 @@ import { TextField } from '@mui/material'
 import { useEffect, useState } from 'react'
 import frLocale from 'date-fns/locale/fr'
 import { Container } from './styles'
-import { FormatDate } from '../../helpers/FormatDate'
+import { FormatDate } from '../../../helpers/FormatDate'
 
-export function SelectDate({data, setData}){
+export function SelectDate({setDateBorn}){
     const[selectDate, setSelectDate] = useState(null)
 
     const handleSetData = (value) => {
-        setSelectDate(FormatDate(value))
+        setSelectDate(value)
         const formatDate = FormatDate(value)
-        setData({...data, dateBorn: formatDate})
+        setDateBorn(formatDate)
     }
-    useEffect(()=>{
-        console.log(data);
-    },[data])
     return(
         <Container>
             <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={frLocale}>
