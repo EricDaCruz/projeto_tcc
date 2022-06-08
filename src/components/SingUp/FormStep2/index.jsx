@@ -33,8 +33,7 @@ export function FormStep2(){
       if(dateBorn == "" || 
       phoneNumber == "" || 
       formLocalization.state == "" || 
-      formLocalization.city == "" || 
-      formLocalization.state == ""){
+      formLocalization.city == ""){
          toast.error("Por favor, preencha todos os campos")
       }else{
          setData({...data,dateBorn:dateBorn, phone:phoneNumber, location:formLocalization})
@@ -60,7 +59,7 @@ export function FormStep2(){
                  <p className="is-size-6 has-text-centered">Por favor, preencha todos os campos abaixo.</p>
               </div>
               <form>
-                 <div className="is-flex is-flex-wrap-wrap">
+                 <div className="is-flex is-justify-content-space-between is-flex-wrap-wrap">
                      <Field label="Data de Nascimento">
                         <SelectDate data={data} setDateBorn={setDateBorn}/>
                      </Field>

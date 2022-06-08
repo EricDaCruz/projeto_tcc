@@ -1,10 +1,31 @@
 import { ContentForm, ButtonNextStep, ContentOptions } from "./styles";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import  Ds  from '../../../assets/images/ds.png';
 import  Wd  from '../../../assets/images/wd.png';
 import { SelectOption } from "../../SelectOption"
+import { useEffect, useState } from "react";
+import { useForm } from "../../../contexts/FormContext";
 
 export function FormStep3() {
+   const navigate = useNavigate()
+   const {data, setData} = useForm()
+   const [interests, setInterests] = useState(data.interests)
+
+   useEffect(()=>{
+      // if(data.dateBorn == "" || 
+      // data.phone == "" || 
+      // data.location.state == "" || 
+      // data.location.city == ""){
+      //   navigate('/sing-up/step2')
+      // }
+      setData({...data, currentStep: 3})
+   },[])
+
+   const handleNextStep = () => {
+      setData({...data, interests: interests})
+      navigate('/sing-up/step4')
+   }
+
    return (
       <div className="mx-auto my-auto" style={{ maxWidth: "700px" }}>
          <div className="mb-6 is-flex is-flex-direction-column is-align-items-center">
@@ -20,7 +41,7 @@ export function FormStep3() {
             </p>
          </div>
          <ContentForm className="px-6 py-6 has-background-white">
-            <div>barra de progresso 3/4</div>
+            <div>barra de progresso {data.currentStep}/4</div>
             <hr />
             <div className="mb-4">
                <h2 className="mb-3 is-size-5 has-text-weight-semibold has-text-centered has-text-dark">
@@ -32,23 +53,20 @@ export function FormStep3() {
             </div>
          <ContentOptions className="mt-6">
             <div className="is-flex is-justify-content-space-between">
-                <SelectOption title="Desenvolvimento de Sistemas" icon={Ds} selected={true}/>
-                <SelectOption title="Web Design" icon={Wd} selected={false}/>
+                <SelectOption title="Desenvolvimento de Sistemas" icon={Ds} selected={interests === 0} onClick={() => setInterests(0)}/>
+                <SelectOption title="Web Design" icon={Wd} selected={interests === 1} onClick={() => setInterests(1)}/>
             </div>
             <div className="is-flex is-justify-content-space-between mt-5">
-                <SelectOption title="Web Design" icon={Wd} selected={false}/>
-                <SelectOption title="Web Design" icon={Wd} selected={false}/>
+                <SelectOption title="Web Design" icon={Wd} selected={interests === 2} onClick={() => setInterests(2)}/>
+                <SelectOption title="Web Design" icon={Wd} selected={interests === 3} onClick={() => setInterests(3)}/>
             </div>
          </ContentOptions>
          </ContentForm>
-         <Link
-            className="mt-6 is-flex is-justify-content-flex-end"
-            to="/sing-up/step4"
-         >
-            <ButtonNextStep>
+            <span className="is-clickable mt-6 is-flex is-justify-content-flex-end">
+            <ButtonNextStep onClick={handleNextStep}>
                <p>Próxima Etapa</p>
             </ButtonNextStep>
-         </Link>
+         </span>
       </div>
    );
 }
