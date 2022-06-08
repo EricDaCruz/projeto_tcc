@@ -1,16 +1,19 @@
-import { ContentForm, Inputs, ButtonNextStep, Select } from "./styles";
+import { ContentForm, Inputs, ButtonNextStep} from "./styles";
 import { useNavigate } from 'react-router-dom'
 import { IoPhonePortraitOutline } from 'react-icons/io5'
 import {BsBuilding} from 'react-icons/bs'
 import { useEffect, useState } from "react";
 import { useForm } from "../../../contexts/FormContext";
 import { SelectDate } from "../../SelectDate";
+import { DropdownStates } from "../Dropdowns/DropdownStates";
+import { DropdownCities } from "../Dropdowns/DropdownCities";
 
 
 export function FormStep2(){
    const {data, setData} = useForm()
    const navigate = useNavigate();
-
+   const[dateBorn, setDateBorn] = useState("")
+   const[formLocalization, setFormLocalization] = useState({state:"", city:""});
    useEffect(()=>{
       // if(data.name === "" || data.email === ""){
       //    navigate('/sing-up/step1')
@@ -18,8 +21,12 @@ export function FormStep2(){
       console.log(data);
    },[])
 
+   const handleFormLocalization = (name, value) =>{
+      setFormLocalization({...formLocalization, [name]:value})
+    }
+
    const handleNextStep = () =>{
-      
+      console.log(formLocalization, dateBorn);
    }
 
     return (
@@ -46,8 +53,8 @@ export function FormStep2(){
                         <SelectDate data={data} setData={setData}/>
                      </div>
                      <div className="field">
-                        <label className="label has-text-dark">Telefone</label>
-                        <div className="control has-icons-right">
+                        <label htmlFor="inputPhone" className="label has-text-dark">Telefone</label>
+                        <div id="inputPhone" className="control has-icons-right">
                            <Inputs
                               className="input is-rounded is-medium"
                               type="email"
@@ -57,33 +64,19 @@ export function FormStep2(){
                               <IoPhonePortraitOutline />
                            </span>
                         </div>
-                        {/* <p className="help is-success">This username is available</p> */}
                      </div>
                      <div className="field">
                         <label className="label has-text-dark" >Estado</label>
                         <div className="control">
                            <div className="select is-medium is-rounded">
-                              <Select>
-                                 <option defaultValue disabled>Selecione</option>
-                                 <option value="sp">São Paulo</option>
-                                 <option value="mg">Minas Gerais</option>
-                                 <option value="rj">Rio de Janeiro</option>
-                              </Select>
+                             <DropdownStates formLocalization={formLocalization} handleFormLocalization={handleFormLocalization}/>
                            </div>
                         </div>
-                        {/* <p className="help is-success">This username is available</p> */}
                      </div>
                      <div className="field">
                         <label className="label has-text-dark" >Cidade</label>
-                        <div className="control has-icons-right">
-                           <Inputs
-                              className="input is-rounded is-medium"
-                              type="email"
-                              placeholder="Sorocaba"
-                           />
-                           <span className="icon is-small is-right">
-                              <BsBuilding />
-                           </span>
+                        <div className="select is-medium is-rounded">
+                           <DropdownCities disabled={formLocalization.state ? false : true} formLocalization={formLocalization} handleFormLocalization={handleFormLocalization}/>
                         </div>
                      </div>
                  </div>

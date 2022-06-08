@@ -19,16 +19,6 @@ export const Inputs = styled.input`
        box-shadow: none;    
     }
 `
-export const Select = styled.select`
-    width: 100%;
-    box-shadow: 0px 2px 6px rgba(19, 18, 66, 0.07);
-    border: 1px solid #EFF0F7;
-    
-    &:focus{
-       border: 1px solid #1da87a;
-       box-shadow: none;    
-    }
-`
 export const ButtonNextStep = styled.div`
     background:#1DA87A;
     color:#fff;
