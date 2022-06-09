@@ -6,7 +6,6 @@ import { ContentForm, Inputs, ButtonNextStep } from "./styles";
 import { BiUser, BiAt } from 'react-icons/bi'
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
-import { getUsers } from "../../../helpers/firebaseHelpers";
 
 export function FormStep1() {
    const navigate = useNavigate()
@@ -17,10 +16,6 @@ export function FormStep1() {
 
    useEffect(()=>{
       setData({...data, currentStep: 1})
-   },[])
-
-   useEffect(()=>{
-      console.log(getUsers())
    },[])
 
    const handleNextStep = () => {

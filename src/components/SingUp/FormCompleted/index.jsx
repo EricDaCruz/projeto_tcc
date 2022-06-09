@@ -4,7 +4,10 @@ import { ButtonNextStep } from "./styles";
 import { useForm } from "../../../contexts/FormContext";
 import { useNavigate } from 'react-router-dom';
 
+import { CreateAuthEmail } from '../../../services/AuthEmail'
+
 export function FormCompleted() {
+
    const navigate = useNavigate()
    const {data, setData} = useForm()
 
@@ -15,6 +18,10 @@ export function FormCompleted() {
          navigate('/sing-up/step1')
       }
    })
+
+   const handleCreate = async () =>{
+      CreateAuthEmail(data.email, data.password)
+   }
 
    return (
       <div className="mx-auto my-auto" style={{ maxWidth: "700px" }}>
@@ -38,7 +45,7 @@ export function FormCompleted() {
                com outros etzinhos, e compartilhar seu conhecimento com eles,
                acesse agora mesmo:
             </p>
-            <ButtonNextStep className="is-clickable">
+            <ButtonNextStep onClick={handleCreate} className="is-clickable">
                <p>Entrar</p>
             </ButtonNextStep>
          </div>
