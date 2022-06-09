@@ -11,7 +11,7 @@ export function ThemeSingUp({ children }) {
          </section>
          <Footer />
          <Toaster 
-             position="bottom-right"
+             position="top-right"
          />
       </div>
    );

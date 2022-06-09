@@ -1,7 +1,6 @@
 import { ContentForm, Inputs, ButtonNextStep} from "./styles";
 import { useNavigate } from 'react-router-dom'
 import { IoPhonePortraitOutline } from 'react-icons/io5'
-import {BsBuilding} from 'react-icons/bs'
 import { useEffect, useState } from "react";
 import { useForm } from "../../../contexts/FormContext";
 import { SelectDate } from "../SelectDate";
@@ -18,11 +17,10 @@ export function FormStep2(){
    const[phoneNumber, setPhoneNumber] = useState("")
    const[formLocalization, setFormLocalization] = useState({state:"", city:""});
    useEffect(()=>{
-      // if(data.name === "" || data.email === ""){
-      //    navigate('/sing-up/step1')
-      // }
+      if(data.name === "" || data.email === ""){
+         navigate('/sing-up/step1')
+      }
       setData({...data, currentStep:2})
-      console.log(data);
    },[])
 
    const handleFormLocalization = (name, value) =>{

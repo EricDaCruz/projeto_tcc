@@ -1,12 +1,26 @@
+import { useEffect } from 'react'
 import ImgCompleted from "../../../assets/images/imgCompleted.png";
 import { ButtonNextStep } from "./styles";
+import { useForm } from "../../../contexts/FormContext";
+import { useNavigate } from 'react-router-dom';
 
 export function FormCompleted() {
+   const navigate = useNavigate()
+   const {data, setData} = useForm()
+
+   console.log(data);
+
+   useEffect(()=>{
+      if(data.name === ""){
+         navigate('/sing-up/step1')
+      }
+   })
+
    return (
       <div className="mx-auto my-auto" style={{ maxWidth: "700px" }}>
          <div className="mb-6 is-flex is-flex-direction-column is-align-items-center ">
             <h1 className="mb-3 is-size-3 has-text-weight-semibold has-text-dark">
-               Prontinho!!, (Nome)!
+               Prontinho!!, {data.name}!
             </h1>
             <p
                className="is-size-6 has-text-centered"
