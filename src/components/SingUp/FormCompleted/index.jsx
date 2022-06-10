@@ -20,7 +20,7 @@ export function FormCompleted() {
    })
 
    const handleCreate = async () =>{
-      CreateAuthEmail(data.email, data.password)
+      CreateAuthEmail(data)
    }
 
    return (
