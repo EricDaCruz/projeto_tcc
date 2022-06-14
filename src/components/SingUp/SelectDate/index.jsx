@@ -1,31 +1,31 @@
-import { LocalizationProvider, DatePicker } from '@mui/lab'
-import AdapterDateFns from '@mui/lab/AdapterDateFns'
-import { TextField } from '@mui/material'
-import { useEffect, useState } from 'react'
-import frLocale from 'date-fns/locale/fr'
-import { Container } from './styles'
+import { useState } from 'react'
 import { FormatDate } from '../../../helpers/FormatDate'
+/* DatePicker */
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { Container } from './styles'
+
+import { useEffect } from 'react';
 
 export function SelectDate({data, setDateBorn}){
-    const[selectDate, setSelectDate] = useState(null)
+    const[selectDate, setSelectDate] = useState(data.dateBorn)
+
+    useEffect(()=>{
+        console.log(selectDate);
+    },[selectDate])
 
     const handleSetData = (value) => {
         setSelectDate(value)
-        const formatDate = FormatDate(value)
-        setDateBorn(formatDate)
+        setDateBorn(value)
     }
     return(
-        <Container>
-            <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={frLocale}>
-                    <DatePicker 
-                        className='date-picker'
-                        label="" 
-                        mask="__/__/____"
-                        renderInput={(params)=> <TextField {...params}/>}
-                        value={selectDate}
-                        onChange={(newValue)=>{handleSetData(newValue)}}
-                    />
-            </LocalizationProvider>
-        </Container>
+            <Container className="control">
+                <input 
+                    type="date" 
+                    className="input is-rounded is-medium"
+                    onChange={(e) => handleSetData(e.target.value)}
+                    value={selectDate} 
+                />
+            </Container>
     )
 }
