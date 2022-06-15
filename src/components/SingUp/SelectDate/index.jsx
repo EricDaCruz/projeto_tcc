@@ -1,8 +1,5 @@
 import { useState } from 'react'
-import { FormatDate } from '../../../helpers/FormatDate'
 /* DatePicker */
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 import { Container } from './styles'
 
 import { useEffect } from 'react';

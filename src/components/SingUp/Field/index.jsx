@@ -1,8 +1,8 @@
 import { Container } from "./styles"
 
-export function  Field({label, children}) {
+export function  Field({label, children, className}) {
     return(
-        <Container className="mb-4 pr-3">
+        <Container className={className}>
             <label className="label has-text-dark" >{label}</label>
             {children}
         </Container>

@@ -1,6 +1,7 @@
 import { ContentForm, Inputs, ButtonNextStep} from "./styles";
 import { useNavigate } from 'react-router-dom'
 import { IoPhonePortraitOutline } from 'react-icons/io5'
+import { MdOutlineKeyboardArrowDown } from 'react-icons/md'
 import { useEffect, useState } from "react";
 import { useForm } from "../../../contexts/FormContext";
 import { SelectDate } from "../SelectDate";
@@ -57,11 +58,11 @@ export function FormStep2(){
                  <p className="is-size-6 has-text-centered">Por favor, preencha todos os campos abaixo.</p>
               </div>
               <form>
-                 <div className="is-flex is-justify-content-space-between is-flex-wrap-wrap">
-                     <Field label="Data de Nascimento">
+                 <div className="columns is-flex-wrap-wrap">
+                     <Field className="column is-half mb-4 pr-3" label="Data de Nascimento">
                         <SelectDate data={data} setDateBorn={setDateBorn}/>
                      </Field>
-                     <Field label="Celular">
+                     <Field className="column is-half mb-4 pr-3" label="Celular">
                         <div className="control has-icons-right">
                            <Inputs
                               className="input is-rounded is-medium"
@@ -70,15 +71,25 @@ export function FormStep2(){
                               onChange={e => setPhoneNumber(e.target.value)}
                            />
                            <span className="icon is-small is-right">
-                              <IoPhonePortraitOutline />
+                              <IoPhonePortraitOutline style={{color:'#A0A3BD'}}/>
                            </span>
                         </div>
                      </Field>
-                     <Field label="Estados">
-                        <DropdownStates formLocalization={formLocalization} handleFormLocalization={handleFormLocalization}/>
+                     <Field className="column is-half mb-4 pr-3" label="Estados">
+                        <div className="control has-icons-right">
+                           <DropdownStates formLocalization={formLocalization} handleFormLocalization={handleFormLocalization}/>
+                           <span className="icon is-small is-right">
+                              <MdOutlineKeyboardArrowDown style={{color:'#A0A3BD'}}/>
+                           </span>
+                        </div>
                      </Field>
-                     <Field label="Cidades">
-                        <DropdownCities disabled={formLocalization.state ? false : true} formLocalization={formLocalization} handleFormLocalization={handleFormLocalization}/>
+                     <Field className="column is-half mb-4 pr-3" label="Cidades">
+                        <div className="control has-icons-right">
+                           <DropdownCities disabled={formLocalization.state ? false : true} formLocalization={formLocalization} handleFormLocalization={handleFormLocalization}/>
+                           <span className="icon is-small is-right">
+                              <MdOutlineKeyboardArrowDown style={{color:'#A0A3BD'}}/>
+                           </span>
+                        </div>
                      </Field>
                  </div>
               </form>

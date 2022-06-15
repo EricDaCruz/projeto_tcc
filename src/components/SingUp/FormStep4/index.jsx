@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import { useForm } from "../../../contexts/FormContext";
 import toast from "react-hot-toast";
 
+import {Field} from '../Field'
+
 export function FormStep4() {
    const navigate = useNavigate()
    const{data, setData} = useForm()
@@ -59,46 +61,42 @@ export function FormStep4() {
             </div>
             <form>
                <div className="mb-5">
-                   <div className="field">
-                      <label className="label has-text-dark">Nome de usuário</label>
-                      <div className="is-flex is-align-items-center control has-icons-right">
-                         <Inputs
-                            className="input is-medium is-rounded"
-                            type="text"
-                            placeholder="Seu nome de usuário"
-                            value={username}
-                            onChange={e => setUsername(e.target.value)}
-                         />
-                         <span className="icon is-small is-right">
-                            <BiUser />
-                         </span>
-                      </div>
-                      {/* <p className="help is-success">This username is available</p> */}
-                   </div>
+                  <Field label='Nome de usuário'>
+                        <div className="control has-icons-right">
+                           <Inputs
+                               className="input is-medium is-rounded"
+                               type="text"
+                               placeholder="Seu nome de usuário"
+                               value={username}
+                               onChange={e => setUsername(e.target.value)}
+                            />
+                            <span className="icon is-small is-right">
+                               <BiUser style={{color:'#A0A3BD'}}/>
+                            </span>
+                        </div>
+                  </Field>
                </div>
-               <div className="is-flex">
-                   <div className="field mr-5">
-                      <label className="label has-text-dark">Senha</label>
-                      <div className="control">
-                         <Inputs
-                            className="input is-medium is-rounded"
-                            type="password"
-                            placeholder="Seu senha"
-                            onChange={e => setPassword(e.target.value)}
-                         />
-                      </div>
-                   </div>
-                   <div className="field">
-                      <label className="label has-text-dark">Confirme sua senha</label>
-                      <div className="control">
-                         <Inputs
-                            className="input is-medium is-rounded"
-                            type="password"
-                            placeholder="Seu senha novamente"
-                            onChange={e => setConfirmPassword(e.target.value)}
-                         />
-                      </div>
-                   </div>
+               <div className="columns is-flex-wrap-wrap">
+                  <Field className="column is-half" label="Senha">
+                        <div className="control">
+                           <Inputs
+                              className="input is-medium is-rounded"
+                              type="password"
+                              placeholder="Seu senha"
+                              onChange={e => setPassword(e.target.value)}
+                           />
+                        </div>
+                  </Field>
+                   <Field className="column is-half" label="Confirmar Senha">
+                     <div className="control">
+                           <Inputs
+                              className="input is-medium is-rounded"
+                              type="password"
+                              placeholder="Seu senha novamente"
+                              onChange={e => setConfirmPassword(e.target.value)}
+                           />
+                     </div>
+                   </Field>
                </div>
             </form>
          </ContentForm>

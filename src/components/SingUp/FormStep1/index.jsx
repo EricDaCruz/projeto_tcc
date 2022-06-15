@@ -57,7 +57,7 @@ export function FormStep1() {
                         value={inputName}
                      />
                      <span className="icon is-small is-right">
-                        <BiUser />
+                        <BiUser style={{color:'#A0A3BD'}}/>
                      </span>
                   </div>
                </div>
@@ -72,7 +72,7 @@ export function FormStep1() {
                         value={inputEmail}
                      />
                      <span className="icon is-small is-right">
-                        <BiAt />
+                        <BiAt style={{color:'#A0A3BD'}}/>
                      </span>
                   </div>
                </div>
