@@ -9,6 +9,7 @@ import { DropdownStates } from "../Dropdowns/DropdownStates";
 import { DropdownCities } from "../Dropdowns/DropdownCities";
 import { toast } from "react-hot-toast";
 import { Field } from "../Field";
+import {ProgressStepBar} from '../ProgressStepBar'
 
 
 export function FormStep2(){
@@ -51,7 +52,9 @@ export function FormStep2(){
               </p>
            </div>
            <ContentForm className="px-6 py-6 has-background-white">
-              <div>barra de progresso {data.currentStep}/4</div>
+               <div>
+                  <ProgressStepBar currentStep={data.currentStep}/>
+               </div>
               <hr />
               <div className="mb-6">
                  <h2 className="mb-3 is-size-5 has-text-weight-semibold has-text-centered has-text-dark">Dados pessoais</h2>

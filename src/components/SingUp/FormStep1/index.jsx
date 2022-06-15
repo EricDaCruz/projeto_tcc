@@ -3,29 +3,30 @@ import { useForm } from "../../../contexts/FormContext";
 
 import { ContentForm, Inputs, ButtonNextStep } from "./styles";
 
-import { BiUser, BiAt } from 'react-icons/bi'
+import { BiUser, BiAt } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
+import { ProgressStepBar } from "../ProgressStepBar";
 
 export function FormStep1() {
-   const navigate = useNavigate()
-   const {data, setData} = useForm() 
+   const navigate = useNavigate();
+   const { data, setData } = useForm();
 
-   const [inputName, setInputName] = useState(data.name)
-   const [inputEmail, setInputEmail] = useState(data.email)
+   const [inputName, setInputName] = useState(data.name);
+   const [inputEmail, setInputEmail] = useState(data.email);
 
-   useEffect(()=>{
-      setData({...data, currentStep: 1})
-   },[])
+   useEffect(() => {
+      setData({ ...data, currentStep: 1 });
+   }, []);
 
    const handleNextStep = () => {
-      setData({...data, name:inputName, email:inputEmail})
-      if(inputName != "" && inputEmail != ""){
-         navigate('/sing-up/step2')
-      }else{
-         toast.error("Por favor, preencha todos os campo")
+      setData({ ...data, name: inputName, email: inputEmail });
+      if (inputName != "" && inputEmail != "") {
+         navigate("/sing-up/step2");
+      } else {
+         toast.error("Por favor, preencha todos os campo");
       }
-   }
+   };
 
    return (
       <div className="mx-auto my-auto" style={{ maxWidth: "700px" }}>
@@ -33,17 +34,24 @@ export function FormStep1() {
             <h1 className="mb-3 is-size-3 has-text-weight-semibold has-text-dark">
                Seja bem-vindo à HETEC!
             </h1>
-            <p className="is-size-6 has-text-centered" style={{ maxWidth:'500px' }}>
+            <p
+               className="is-size-6 has-text-centered"
+               style={{ maxWidth: "500px" }}
+            >
                Eu me chamo Etevaldo, e vou ajuda-lo a se cadastrar no melhor
                fórum tira dúvidas do mundo!
             </p>
          </div>
          <ContentForm className="px-6 py-6 has-background-white">
-            <div>barra de progresso {data.currentStep}/4</div>
+            <ProgressStepBar currentStep={data.currentStep} />
             <hr />
             <div className="mb-6">
-               <h2 className="mb-3 is-size-5 has-text-weight-semibold has-text-centered has-text-dark">Quem é você?</h2>
-               <p className="is-size-6 has-text-centered">Para começar, por favor me diga seu nome e email!</p>
+               <h2 className="mb-3 is-size-5 has-text-weight-semibold has-text-centered has-text-dark">
+                  Quem é você?
+               </h2>
+               <p className="is-size-6 has-text-centered">
+                  Para começar, por favor me diga seu nome e email!
+               </p>
             </div>
             <form>
                <div className="field">
@@ -53,26 +61,26 @@ export function FormStep1() {
                         className="input is-medium"
                         type="text"
                         placeholder="Seu nome"
-                        onChange={e => setInputName(e.target.value)}
+                        onChange={(e) => setInputName(e.target.value)}
                         value={inputName}
                      />
                      <span className="icon is-small is-right">
-                        <BiUser style={{color:'#A0A3BD'}}/>
+                        <BiUser style={{ color: "#A0A3BD" }} />
                      </span>
                   </div>
                </div>
                <div className="field">
-                  <label className="label has-text-dark" >Email</label>
+                  <label className="label has-text-dark">Email</label>
                   <div className="control has-icons-right">
                      <Inputs
                         className="input is-medium"
                         type="email"
                         placeholder="Seu Email"
-                        onChange={e => setInputEmail(e.target.value)}
+                        onChange={(e) => setInputEmail(e.target.value)}
                         value={inputEmail}
                      />
                      <span className="icon is-small is-right">
-                        <BiAt style={{color:'#A0A3BD'}}/>
+                        <BiAt style={{ color: "#A0A3BD" }} />
                      </span>
                   </div>
                </div>

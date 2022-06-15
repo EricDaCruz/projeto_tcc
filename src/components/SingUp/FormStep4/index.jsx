@@ -1,6 +1,6 @@
 import { ContentForm, Inputs, ButtonNextStep, Select } from "./styles";
 import { BiUser } from "react-icons/bi";
-
+import {ProgressStepBar} from '../ProgressStepBar'
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useForm } from "../../../contexts/FormContext";
@@ -48,7 +48,9 @@ export function FormStep4() {
             </p>
          </div>
          <ContentForm className="px-6 py-6 has-background-white">
-            <div>barra de progresso {data.currentStep}/4</div>
+            <div>
+               <ProgressStepBar currentStep={data.currentStep}/>
+            </div>
             <hr />
             <div className="mb-6">
                <h2 className="mb-3 is-size-5 has-text-weight-semibold has-text-centered has-text-dark">

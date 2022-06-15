@@ -5,6 +5,7 @@ import  Wd  from '../../../assets/images/wd.png';
 import { SelectOption } from "../../SelectOption"
 import { useEffect, useState } from "react";
 import { useForm } from "../../../contexts/FormContext";
+import {ProgressStepBar} from '../ProgressStepBar'
 
 export function FormStep3() {
    const navigate = useNavigate()
@@ -41,7 +42,9 @@ export function FormStep3() {
             </p>
          </div>
          <ContentForm className="px-6 py-6 has-background-white">
-            <div>barra de progresso {data.currentStep}/4</div>
+            <div>
+               <ProgressStepBar currentStep={data.currentStep}/>
+            </div>
             <hr />
             <div className="mb-4">
                <h2 className="mb-3 is-size-5 has-text-weight-semibold has-text-centered has-text-dark">
