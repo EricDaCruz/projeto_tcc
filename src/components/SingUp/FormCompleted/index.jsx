@@ -4,14 +4,12 @@ import { ButtonNextStep } from "./styles";
 import { useForm } from "../../../contexts/FormContext";
 import { useNavigate } from 'react-router-dom';
 
-import { CreateAuthEmail } from '../../../services/AuthEmail'
+import { CreateAuthEmail, RegisterUser } from '../../../services/CreateUser'
 
 export function FormCompleted() {
 
    const navigate = useNavigate()
    const {data, setData} = useForm()
-
-   console.log(data);
 
    useEffect(()=>{
       if(data.name === ""){
@@ -19,8 +17,11 @@ export function FormCompleted() {
       }
    })
 
-   const handleCreate = async () =>{
-      CreateAuthEmail(data)
+   const handleCreateUser = async () =>{
+      const user = await CreateAuthEmail(data)
+      const uid = user.user.uid
+      console.log(uid)
+      await RegisterUser(data, uid)
    }
 
    return (
@@ -45,7 +46,7 @@ export function FormCompleted() {
                com outros etzinhos, e compartilhar seu conhecimento com eles,
                acesse agora mesmo:
             </p>
-            <ButtonNextStep onClick={handleCreate} className="is-clickable">
+            <ButtonNextStep onClick={handleCreateUser} className="is-clickable">
                <p>Entrar</p>
             </ButtonNextStep>
          </div>
