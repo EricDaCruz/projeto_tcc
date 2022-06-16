@@ -1,27 +1,26 @@
 import { useEffect, useState } from "react";
 import { useForm } from "../../../contexts/FormContext";
-
 import { ContentForm, Inputs, ButtonNextStep } from "./styles";
-
 import { BiUser, BiAt } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { ProgressStepBar } from "../ProgressStepBar";
+import {Field} from '../Field'
 
 export function FormStep1() {
    const navigate = useNavigate();
    const { data, setData } = useForm();
 
    const [inputName, setInputName] = useState(data.name);
-   const [inputEmail, setInputEmail] = useState(data.email);
+   const [inputUsername, setInptuUsername] = useState(data.username);
 
    useEffect(() => {
       setData({ ...data, currentStep: 1 });
    }, []);
 
    const handleNextStep = () => {
-      setData({ ...data, name: inputName, email: inputEmail });
-      if (inputName != "" && inputEmail != "") {
+      setData({ ...data, name: inputName, username: inputUsername });
+      if (inputName != "" && inputUsername != "") {
          navigate("/sing-up/step2");
       } else {
          toast.error("Por favor, preencha todos os campo");
@@ -53,9 +52,8 @@ export function FormStep1() {
                   Para começar, por favor me diga seu nome e email!
                </p>
             </div>
-            <form>
-               <div className="field">
-                  <label className="label has-text-dark">Nome</label>
+            <form className="columns is-flex-wrap-wrap">
+               <Field className="column is-full mb-4" label="Nome">
                   <div className="is-flex is-align-items-center control has-icons-right">
                      <Inputs
                         className="input is-medium"
@@ -68,22 +66,21 @@ export function FormStep1() {
                         <BiUser style={{ color: "#A0A3BD" }} />
                      </span>
                   </div>
-               </div>
-               <div className="field">
-                  <label className="label has-text-dark">Email</label>
+               </Field>
+               <Field className="column is-full mb-4" label='Nome de usuário'>
                   <div className="control has-icons-right">
                      <Inputs
-                        className="input is-medium"
-                        type="email"
-                        placeholder="Seu Email"
-                        onChange={(e) => setInputEmail(e.target.value)}
-                        value={inputEmail}
-                     />
-                     <span className="icon is-small is-right">
-                        <BiAt style={{ color: "#A0A3BD" }} />
-                     </span>
+                           className="input is-medium is-rounded"
+                           type="text"
+                           placeholder="Seu nome de usuário"
+                           value={inputUsername}
+                           onChange={e => setInptuUsername(e.target.value)}
+                        />
+                        <span className="icon is-small is-right">
+                           <BiUser style={{color:'#A0A3BD'}}/>
+                        </span>
                   </div>
-               </div>
+               </Field>
             </form>
          </ContentForm>
          <span className="is-clickable mt-6 is-flex is-justify-content-flex-end">

@@ -9,7 +9,7 @@ export const FormProvider = ({children}) =>{
         name: "",
         email: "",
         dateBorn: "",
-        phone: 0,
+        phone: "",
         location:{state:"", city:""},
         interests: 0,
         username: "",

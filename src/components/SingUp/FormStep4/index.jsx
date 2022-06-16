@@ -12,7 +12,7 @@ export function FormStep4() {
    const navigate = useNavigate()
    const{data, setData} = useForm()
 
-   const[username, setUsername] = useState(data.username)
+   const[inputEmail, setInputEmail] = useState(data.email)
    const[password, setPassword] = useState(data.password)
    const[confirmPassword, setConfirmPassword] = useState("")
 
@@ -21,13 +21,13 @@ export function FormStep4() {
    },[])
 
    const handleNextStep = () => {
-      if(username == "" || password == "" || confirmPassword == "") {
+      if(inputEmail, password, confirmPassword == "") {
          toast.error('Por favor, preencha todos os campos')
       }else{
          if(password != confirmPassword) {
             toast.error('Senhas diferentes')
          }else{
-            setData({...data, username: username, password: password})
+            setData({...data, email: inputEmail, password: password})
             navigate('/sing-up/completed')
          }
       }
@@ -63,14 +63,14 @@ export function FormStep4() {
             </div>
             <form>
                <div className="mb-5">
-                  <Field label='Nome de usuário'>
+                  <Field label='Email'>
                         <div className="control has-icons-right">
                            <Inputs
                                className="input is-medium is-rounded"
                                type="text"
-                               placeholder="Seu nome de usuário"
-                               value={username}
-                               onChange={e => setUsername(e.target.value)}
+                               placeholder="Seu email"
+                               value={inputEmail}
+                               onChange={e => setInputEmail(e.target.value)}
                             />
                             <span className="icon is-small is-right">
                                <BiUser style={{color:'#A0A3BD'}}/>

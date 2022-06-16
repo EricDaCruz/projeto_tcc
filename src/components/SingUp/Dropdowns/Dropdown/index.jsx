@@ -1,11 +1,12 @@
 import { Select } from './styles';
 
-export function Dropdown({disabled, name, handleForm, data}) {
+export function Dropdown({value, disabled, name, handleForm, data}) {
   return (
     <Select 
       disabled={name === "city" ? disabled : ''}  
       onChange={e => handleForm(name,e.target.value)}
       className="input is-medium"
+      value={value}
     >
         <option value="">Selecione a cidade</option>
         {

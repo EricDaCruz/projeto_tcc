@@ -11,15 +11,14 @@ import { toast } from "react-hot-toast";
 import { Field } from "../Field";
 import {ProgressStepBar} from '../ProgressStepBar'
 
-
 export function FormStep2(){
-   const {data, setData} = useForm()
    const navigate = useNavigate();
-   const[dateBorn, setDateBorn] = useState("")
-   const[phoneNumber, setPhoneNumber] = useState("")
-   const[formLocalization, setFormLocalization] = useState({state:"", city:""});
+   const {data, setData} = useForm()
+   const [dateBorn, setDateBorn] = useState(data.dateBorn)
+   const [phoneNumber, setPhoneNumber] = useState(data.phone)
+   const [formLocalization, setFormLocalization] = useState({state:data.location.state, city:data.location.city});
    useEffect(()=>{
-      if(data.name === "" || data.email === ""){
+      if(data.name, data.username === ""){
          navigate('/sing-up/step1')
       }
       setData({...data, currentStep:2})
@@ -30,13 +29,10 @@ export function FormStep2(){
     }
 
    const handleNextStep = () =>{
-      if(dateBorn == "" || 
-      phoneNumber == "" || 
-      formLocalization.state == "" || 
-      formLocalization.city == ""){
+      if(dateBorn, phoneNumber,formLocalization.state, formLocalization.city === ""){
          toast.error("Por favor, preencha todos os campos")
       }else{
-         setData({...data,dateBorn:dateBorn, phone:phoneNumber, location:formLocalization})
+         setData({...data, dateBorn:dateBorn, phone:phoneNumber, location: formLocalization})
          navigate('/sing-up/step3')
       }
    }
@@ -63,7 +59,7 @@ export function FormStep2(){
               <form>
                  <div className="columns is-flex-wrap-wrap">
                      <Field className="column is-half mb-4 pr-3" label="Data de Nascimento">
-                        <SelectDate data={data} setDateBorn={setDateBorn}/>
+                        <SelectDate value={dateBorn} setDateBorn={setDateBorn}/>
                      </Field>
                      <Field className="column is-half mb-4 pr-3" label="Celular">
                         <div className="control has-icons-right">
@@ -72,6 +68,7 @@ export function FormStep2(){
                               type="email"
                               placeholder="(00) 00000 0000"
                               onChange={e => setPhoneNumber(e.target.value)}
+                              value={phoneNumber}
                            />
                            <span className="icon is-small is-right">
                               <IoPhonePortraitOutline style={{color:'#A0A3BD'}}/>
@@ -80,7 +77,7 @@ export function FormStep2(){
                      </Field>
                      <Field className="column is-half mb-4 pr-3" label="Estados">
                         <div className="control has-icons-right">
-                           <DropdownStates formLocalization={formLocalization} handleFormLocalization={handleFormLocalization}/>
+                           <DropdownStates value={formLocalization.state} formLocalization={formLocalization} handleFormLocalization={handleFormLocalization}/>
                            <span className="icon is-small is-right">
                               <MdOutlineKeyboardArrowDown style={{color:'#A0A3BD'}}/>
                            </span>
@@ -88,7 +85,7 @@ export function FormStep2(){
                      </Field>
                      <Field className="column is-half mb-4 pr-3" label="Cidades">
                         <div className="control has-icons-right">
-                           <DropdownCities disabled={formLocalization.state ? false : true} formLocalization={formLocalization} handleFormLocalization={handleFormLocalization}/>
+                           <DropdownCities value={formLocalization.city} disabled={formLocalization.state ? false : true} formLocalization={formLocalization} handleFormLocalization={handleFormLocalization}/>
                            <span className="icon is-small is-right">
                               <MdOutlineKeyboardArrowDown style={{color:'#A0A3BD'}}/>
                            </span>

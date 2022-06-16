@@ -1,11 +1,14 @@
 import { ContentForm, ButtonNextStep, ContentOptions } from "./styles";
 import { useNavigate } from "react-router-dom";
-import  Ds  from '../../../assets/images/ds.png';
-import  Wd  from '../../../assets/images/wd.png';
-import { SelectOption } from "../../SelectOption"
+import { SelectOption } from "../SelectOption"
 import { useEffect, useState } from "react";
 import { useForm } from "../../../contexts/FormContext";
 import {ProgressStepBar} from '../ProgressStepBar'
+/*Images*/
+import  Ds  from '../../../assets/images/ds.png';
+import  Wd  from '../../../assets/images/wd.png';
+import  Mk from '../../../assets/images/marketing.png';
+import  Ot  from '../../../assets/images/others.png';
 
 export function FormStep3() {
    const navigate = useNavigate()
@@ -60,8 +63,8 @@ export function FormStep3() {
                 <SelectOption title="Web Design" icon={Wd} selected={interests === 1} onClick={() => setInterests(1)}/>
             </div>
             <div className="is-flex is-justify-content-space-between mt-5">
-                <SelectOption title="Web Design" icon={Wd} selected={interests === 2} onClick={() => setInterests(2)}/>
-                <SelectOption title="Web Design" icon={Wd} selected={interests === 3} onClick={() => setInterests(3)}/>
+                <SelectOption title="Marketing" icon={Mk} selected={interests === 2} onClick={() => setInterests(2)}/>
+                <SelectOption title="Others" icon={Ot} selected={interests === 3} onClick={() => setInterests(3)}/>
             </div>
          </ContentOptions>
          </ContentForm>

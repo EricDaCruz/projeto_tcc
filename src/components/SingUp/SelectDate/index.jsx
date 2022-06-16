@@ -2,14 +2,8 @@ import { useState } from 'react'
 /* DatePicker */
 import { Container } from './styles'
 
-import { useEffect } from 'react';
-
-export function SelectDate({data, setDateBorn}){
-    const[selectDate, setSelectDate] = useState(data.dateBorn)
-
-    useEffect(()=>{
-        console.log(selectDate);
-    },[selectDate])
+export function SelectDate({value, setDateBorn}){
+    const[selectDate, setSelectDate] = useState(value)
 
     const handleSetData = (value) => {
         setSelectDate(value)
@@ -22,6 +16,8 @@ export function SelectDate({data, setDateBorn}){
                     className="input is-rounded is-medium"
                     onChange={(e) => handleSetData(e.target.value)}
                     value={selectDate} 
+                    min="1900-01-01"
+                    max="2012-12-31"
                 />
             </Container>
     )

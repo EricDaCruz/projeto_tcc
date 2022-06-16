@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react';
 import { getCitiesByState, parseCity } from '../../../../services/IbgeApi';
 import {Dropdown} from '../Dropdown';
 
-export function DropdownCities({disabled, formLocalization, handleFormLocalization}) {
+export function DropdownCities({value, disabled, formLocalization, handleFormLocalization}) {
   const[cities, setCities] = useState([])
 
   useEffect(()=>{
@@ -10,6 +10,6 @@ export function DropdownCities({disabled, formLocalization, handleFormLocalizati
   },[formLocalization])
 
   return(
-      <Dropdown disabled={disabled} name="city" data={cities} handleForm={handleFormLocalization}/>
+      <Dropdown value={value} disabled={disabled} name="city" data={cities} handleForm={handleFormLocalization}/>
   );
 }
