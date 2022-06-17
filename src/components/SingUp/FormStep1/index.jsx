@@ -3,7 +3,7 @@ import { useForm } from "../../../contexts/FormContext";
 import { ContentForm, Inputs } from "./styles";
 import { BiUser } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-hot-toast";
+import { toast } from 'react-toastify'
 import { ProgressStepBar } from "../ProgressStepBar";
 import {Field} from '../Field'
 import { NextStep } from "../Buttons/NextStep";

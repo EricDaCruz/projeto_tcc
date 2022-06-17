@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import Router from './router'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.min.css';
 
 export function App() {
 
@@ -7,7 +9,7 @@ export function App() {
     <div className="App">
 
           <Router />
-
+          <ToastContainer />
     </div>
   )
 }

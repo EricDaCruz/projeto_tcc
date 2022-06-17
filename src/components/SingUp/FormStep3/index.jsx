@@ -6,6 +6,7 @@ import { useForm } from "../../../contexts/FormContext";
 import { ProgressStepBar } from "../ProgressStepBar";
 import { NextStep } from "../Buttons/NextStep";
 import { PreviousStep } from "../Buttons/PreviousStep";
+import { toast } from 'react-toastify'
 /*Images*/
 import Ds from "../../../assets/images/ds.png";
 import Wd from "../../../assets/images/wd.png";

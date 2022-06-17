@@ -7,7 +7,7 @@ import { useForm } from "../../../contexts/FormContext";
 import { SelectDate } from "../SelectDate";
 import { DropdownStates } from "../Dropdowns/DropdownStates";
 import { DropdownCities } from "../Dropdowns/DropdownCities";
-import { toast } from "react-hot-toast";
+import { toast } from 'react-toastify'
 import { Field } from "../Field";
 import {ProgressStepBar} from '../ProgressStepBar'
 import { NextStep } from "../Buttons/NextStep"

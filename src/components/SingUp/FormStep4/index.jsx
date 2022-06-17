@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "../../../contexts/FormContext";
 import { NextStep } from "../Buttons/NextStep";
 import { PreviousStep } from "../Buttons/PreviousStep";
-import toast from "react-hot-toast";
+import { toast } from 'react-toastify'
 import { Field } from "../Field";
 
 export function FormStep4() {
@@ -29,7 +29,7 @@ export function FormStep4() {
             navigate("/sing-up/completed");
          }
       } else {
-         toast.error("Por favor, selecione algum interesse");
+         toast.error("Por favor, preencha todos os dados");
       }
    };
    const handlePreviousStep = () => {
