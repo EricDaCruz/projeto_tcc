@@ -11,7 +11,7 @@ export const FormProvider = ({children}) =>{
         dateBorn: "",
         phone: "",
         location:{state:"", city:""},
-        interests: 0,
+        interests: "",
         username: "",
         password: ""
     })

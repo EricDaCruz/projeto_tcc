@@ -1,4 +1,4 @@
-import { ContentForm, Inputs, ButtonNextStep} from "./styles";
+import { ContentForm, Inputs} from "./styles";
 import { useNavigate } from 'react-router-dom'
 import { IoPhonePortraitOutline } from 'react-icons/io5'
 import { MdOutlineKeyboardArrowDown } from 'react-icons/md'
@@ -10,6 +10,8 @@ import { DropdownCities } from "../Dropdowns/DropdownCities";
 import { toast } from "react-hot-toast";
 import { Field } from "../Field";
 import {ProgressStepBar} from '../ProgressStepBar'
+import { NextStep } from "../Buttons/NextStep"
+import { PreviousStep } from "../Buttons/PreviousStep"
 
 export function FormStep2(){
    const navigate = useNavigate();
@@ -23,17 +25,23 @@ export function FormStep2(){
       }
       setData({...data, currentStep:2})
    },[])
-
    const handleFormLocalization = (name, value) =>{
       setFormLocalization({...formLocalization, [name]:value})
-    }
-
-   const handleNextStep = () =>{
-      if(dateBorn, phoneNumber,formLocalization.state, formLocalization.city === ""){
-         toast.error("Por favor, preencha todos os campos")
-      }else{
+   }
+   const handleNextStep = () => {
+      if (dateBorn, phoneNumber,formLocalization.state, formLocalization.city !== "") {
          setData({...data, dateBorn:dateBorn, phone:phoneNumber, location: formLocalization})
-         navigate('/sing-up/step3')
+         navigate(`/sing-up/step${data.currentStep + 1}`);
+      } else {
+         toast.error("Por favor, preencha todos os campo");
+      }
+   };
+   const handlePreviousStep = () => {
+      if(data.currentStep === 1){
+         navigate('/')
+      }else{
+
+         navigate(`/sing-up/step${data.currentStep - 1}`);
       }
    }
 
@@ -94,11 +102,10 @@ export function FormStep2(){
                  </div>
               </form>
            </ContentForm>
-           <span className="is-clickable mt-6 is-flex is-justify-content-flex-end">
-            <ButtonNextStep onClick={handleNextStep}>
-               <p>Próxima Etapa</p>
-            </ButtonNextStep>
-         </span>
+           <div className="is-flex is-justify-content-space-between mt-6">
+               <PreviousStep onClick={handlePreviousStep}/>
+               <NextStep text="Próxima Etapa" onClick={handleNextStep}/>
+            </div>
         </div>
 )
         

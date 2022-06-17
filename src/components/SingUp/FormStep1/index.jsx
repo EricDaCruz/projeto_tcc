@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { useForm } from "../../../contexts/FormContext";
-import { ContentForm, Inputs, ButtonNextStep } from "./styles";
-import { BiUser, BiAt } from "react-icons/bi";
+import { ContentForm, Inputs } from "./styles";
+import { BiUser } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { ProgressStepBar } from "../ProgressStepBar";
 import {Field} from '../Field'
+import { NextStep } from "../Buttons/NextStep";
+import { PreviousStep } from "../Buttons/PreviousStep";
 
 export function FormStep1() {
    const navigate = useNavigate();
@@ -19,13 +21,20 @@ export function FormStep1() {
    }, []);
 
    const handleNextStep = () => {
-      setData({ ...data, name: inputName, username: inputUsername });
-      if (inputName != "" && inputUsername != "") {
-         navigate("/sing-up/step2");
+      if (inputName, inputUsername !== "") {
+         setData({ ...data, name: inputName, username: inputUsername });
+         navigate(`/sing-up/step${data.currentStep + 1}`);
       } else {
          toast.error("Por favor, preencha todos os campo");
       }
    };
+   const handlePreviousStep = () => {
+      if(data.currentStep === 1){
+         navigate('/')
+      }else{
+         navigate(`/sing-up/step${data.currentStep - 1}`);
+      }
+   }
 
    return (
       <div className="mx-auto my-auto" style={{ maxWidth: "700px" }}>
@@ -83,11 +92,10 @@ export function FormStep1() {
                </Field>
             </form>
          </ContentForm>
-         <span className="is-clickable mt-6 is-flex is-justify-content-flex-end">
-            <ButtonNextStep onClick={handleNextStep}>
-               <p>Próxima Etapa</p>
-            </ButtonNextStep>
-         </span>
+         <div className="is-flex is-justify-content-space-between mt-6">
+            <PreviousStep onClick={handlePreviousStep}/>
+            <NextStep text="Próxima Etapa" onClick={handleNextStep}/>
+         </div>
       </div>
    );
 }
