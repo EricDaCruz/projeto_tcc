@@ -39,7 +39,7 @@ export function FormStep1() {
    return (
       <div className="mx-auto my-auto" style={{ maxWidth: "700px" }}>
          <div className="mb-6 is-flex is-flex-direction-column is-align-items-center">
-            <h1 className="mb-3 is-size-3 has-text-weight-semibold has-text-dark">
+            <h1 className="mb-3 is-size-3 has-text-weight-semibold has-text-dark has-text-centered	">
                Seja bem-vindo à HETEC!
             </h1>
             <p
@@ -65,7 +65,7 @@ export function FormStep1() {
                <Field className="column is-full mb-4" label="Nome">
                   <div className="is-flex is-align-items-center control has-icons-right">
                      <Inputs
-                        className="input is-medium"
+                        className="input is-rounded is-medium"
                         type="text"
                         placeholder="Seu nome"
                         onChange={(e) => setInputName(e.target.value)}

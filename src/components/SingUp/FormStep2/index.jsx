@@ -1,15 +1,15 @@
-import { ContentForm, Inputs} from "./styles";
-import { useNavigate } from 'react-router-dom'
-import { IoPhonePortraitOutline } from 'react-icons/io5'
-import { MdOutlineKeyboardArrowDown } from 'react-icons/md'
 import { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom'
 import { useForm } from "../../../contexts/FormContext";
-import { SelectDate } from "../SelectDate";
-import { DropdownStates } from "../Dropdowns/DropdownStates";
-import { DropdownCities } from "../Dropdowns/DropdownCities";
 import { toast } from 'react-toastify'
+import { ProgressStepBar } from '../ProgressStepBar'
+import { ContentForm, Inputs} from "./styles";
 import { Field } from "../Field";
-import {ProgressStepBar} from '../ProgressStepBar'
+import { SelectDate } from "../SelectDate";
+import { IoPhonePortraitOutline } from 'react-icons/io5'
+import { DropdownCities } from "../Dropdowns/DropdownCities";
+import { DropdownStates } from "../Dropdowns/DropdownStates";
+import { MdOutlineKeyboardArrowDown } from 'react-icons/md'
 import { NextStep } from "../Buttons/NextStep"
 import { PreviousStep } from "../Buttons/PreviousStep"
 
@@ -48,7 +48,7 @@ export function FormStep2(){
     return (
         <div className="mx-auto my-auto" style={{ maxWidth: "700px" }}>
            <div className="mb-6 is-flex is-flex-direction-column is-align-items-center">
-              <h1 className="mb-3 is-size-3 has-text-weight-semibold has-text-dark">
+              <h1 className="mb-3 is-size-3 has-text-weight-semibold has-text-dark has-text-centered	">
               {data.name}, estamos na segunda etapa!
               </h1>
               <p className="is-size-6 has-text-centered" style={{ maxWidth:'500px' }}>

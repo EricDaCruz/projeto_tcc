@@ -48,7 +48,7 @@ export function FormStep3() {
    return (
       <div className="mx-auto my-auto" style={{ maxWidth: "700px" }}>
          <div className="mb-6 is-flex is-flex-direction-column is-align-items-center">
-            <h1 className="mb-3 is-size-3 has-text-weight-semibold has-text-dark">
+            <h1 className="mb-3 is-size-3 has-text-weight-semibold has-text-dark has-text-centered	">
                Quero te conhecer melhor!
             </h1>
             <p
@@ -95,7 +95,7 @@ export function FormStep3() {
                      onClick={() => setInterests(2)}
                   />
                   <SelectOption
-                     title="Others"
+                     title="Outros"
                      icon={Ot}
                      selected={interests === 3}
                      onClick={() => setInterests(3)}

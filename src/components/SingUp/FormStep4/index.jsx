@@ -1,4 +1,4 @@
-import { ContentForm, Inputs, ButtonNextStep, Select } from "./styles";
+import { ContentForm, Inputs } from "./styles";
 import { BiUser } from "react-icons/bi";
 import { ProgressStepBar } from "../ProgressStepBar";
 import { useNavigate } from "react-router-dom";
@@ -26,7 +26,7 @@ export function FormStep4() {
             toast.error("Senhas diferentes");
          } else {
             setData({ ...data, email: inputEmail, password: password });
-            navigate("/sing-up/completed");
+            navigate(`/sing-up/step${data.currentStep + 1}`);
          }
       } else {
          toast.error("Por favor, preencha todos os dados");
@@ -43,7 +43,7 @@ export function FormStep4() {
    return (
       <div className="mx-auto my-auto" style={{ maxWidth: "700px" }}>
          <div className="mb-6 is-flex is-flex-direction-column is-align-items-center">
-            <h1 className="mb-3 is-size-3 has-text-weight-semibold has-text-dark">
+            <h1 className="mb-3 is-size-3 has-text-weight-semibold has-text-dark has-text-centered	">
                Estamos concluindo, {data.name}!
             </h1>
             <p
@@ -87,7 +87,7 @@ export function FormStep4() {
                </div>
                <div className="columns is-flex-wrap-wrap">
                   <Field className="column is-half" label="Senha">
-                     <div className="control">
+                     <div className="control has-icons-right">
                         <Inputs
                            className="input is-medium is-rounded"
                            type="password"
@@ -95,6 +95,7 @@ export function FormStep4() {
                            onChange={(e) => setPassword(e.target.value)}
                         />
                      </div>
+                    
                   </Field>
                   <Field className="column is-half" label="Confirmar Senha">
                      <div className="control">

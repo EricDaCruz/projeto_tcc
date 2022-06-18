@@ -8,7 +8,7 @@ export function Dropdown({value, disabled, name, handleForm, data}) {
       className="input is-medium"
       value={value}
     >
-        <option value="">Selecione a cidade</option>
+        <option value="">Selecione {name === "city" ? "a cidade" : "o estado"}</option>
         {
         data.map(item =>{
             const {label, value} = item

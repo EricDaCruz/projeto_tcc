@@ -1,21 +1,29 @@
 import { useEffect } from 'react'
-import ImgCompleted from "../../../assets/images/imgCompleted.png";
-import { ButtonNextStep } from "./styles";
-import { useForm } from "../../../contexts/FormContext";
-import { useNavigate } from 'react-router-dom';
-
+import ImgCompleted from "../../../assets/images/imgCompleted.png"
+import { useForm } from "../../../contexts/FormContext"
+import { useNavigate } from 'react-router-dom'
+import { PreviousStep } from '../Buttons/PreviousStep'
 import { CreateAuthEmail, RegisterUser } from '../../../services/CreateUser'
 
-export function FormCompleted() {
+export function FormStep6() {
 
    const navigate = useNavigate()
    const {data, setData} = useForm()
 
    useEffect(()=>{
+      setData({...data, currentStep: 6})
       if(data.name === ""){
          navigate('/sing-up/step1')
       }
    })
+
+   const handlePreviousStep = () => {
+      if (data.currentStep === 1) {
+         navigate("/");
+      } else {
+         navigate(`/sing-up/step${data.currentStep - 1}`);
+      }
+   };
 
    const handleCreateUser = async () =>{
       const user = await CreateAuthEmail(data)
@@ -46,9 +54,9 @@ export function FormCompleted() {
                com outros etzinhos, e compartilhar seu conhecimento com eles,
                acesse agora mesmo:
             </p>
-            <ButtonNextStep onClick={handleCreateUser} className="is-clickable">
-               <p>Entrar</p>
-            </ButtonNextStep>
+            <div className="is-flex is-justify-content-space-between mt-6">
+               <PreviousStep onClick={handlePreviousStep}/>
+         </div>
          </div>
       </div>
    );
