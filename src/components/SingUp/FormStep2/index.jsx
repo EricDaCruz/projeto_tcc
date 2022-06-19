@@ -39,7 +39,6 @@ export function FormStep2() {
       const validPhone = validatePhoneNumber(phone)
       if(validPhone !== null){
          const formatPhone = format(validPhone).replace(/[-]/g," ")
-         console.log(formatPhone) 
          setPhoneNumber(formatPhone) 
       }else{
          setPhoneNumber(validPhone) 
