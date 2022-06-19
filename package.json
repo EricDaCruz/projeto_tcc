@@ -17,7 +17,9 @@
     "react-router-dom": "^6.3.0",
     "react-step-progress-bar": "^1.0.3",
     "react-toastify": "^9.0.4",
-    "styled-components": "^5.3.5"
+    "styled-components": "^5.3.5",
+    "telefone": "^1.2.2",
+    "validar-telefone": "^0.1.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",

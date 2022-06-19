@@ -12,6 +12,8 @@ import { DropdownInterest } from "../Dropdowns/DropdownInterest";
 import { MdOutlineKeyboardArrowDown } from 'react-icons/md'
 import { PreviousStep } from "../Buttons/PreviousStep";
 import { NextStep } from "../Buttons/NextStep";
+/* Validações */
+import { validatePhoneNumber } from "../../../helpers/ValidForm";
 
 export function FormStep5() {
    const navigate = useNavigate();
