@@ -26,12 +26,14 @@ export function FormStep2() {
       city: data.location.city,
    });
    const regExPhone = /[a-z]|[A-Z]|[/]|[|]|[@]|[#]|[!]|[$]|[%]|[¨]|[&]|[*]|[_]|[+]|[=]/g
+
    useEffect(() => {
-      if ((data.name, data.username === "")) {
-         navigate("/sing-up/step1");
-      }
       setData({ ...data, currentStep: 2 });
+      if ((data.name, data.username === "")) {
+         navigate('/sing-up/step1')
+      }
    }, []);
+   
    const handleFormLocalization = (name, value) => {
       setFormLocalization({ ...formLocalization, [name]: value });
    };

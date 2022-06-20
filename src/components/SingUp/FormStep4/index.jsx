@@ -18,6 +18,9 @@ export function FormStep4() {
 
    useEffect(() => {
       setData({ ...data, currentStep: 4 });
+      if(data.interests === ""){
+         navigate('/sing-up/step1')
+      }
    }, []);
 
    const handleNextStep = () => {

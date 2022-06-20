@@ -13,7 +13,7 @@ import { MdOutlineKeyboardArrowDown } from 'react-icons/md'
 import { PreviousStep } from "../Buttons/PreviousStep";
 import { NextStep } from "../Buttons/NextStep";
 /* Validações */
-import { validatePhoneNumber } from "../../../helpers/ValidForm";
+import { validatePhoneNumber } from "../../../helpers/ValidFormRegister";
 
 export function FormStep5() {
    const navigate = useNavigate();
@@ -31,6 +31,9 @@ export function FormStep5() {
 
    useEffect(() => {
       setData({ ...data, currentStep: 5 });
+      if(data.name === ""){
+         navigate('/sing-up/step1')
+      }
    }, []);
 
    const handleFormLocalization = (name, value) =>{

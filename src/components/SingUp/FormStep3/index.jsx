@@ -19,16 +19,12 @@ export function FormStep3() {
    const [interests, setInterests] = useState(data.interests);
 
    useEffect(() => {
-      if (
-         data.dateBorn == "" ||
-         data.phone == "" ||
-         data.location.state == "" ||
-         data.location.city == ""
-      ) {
-         navigate("/sing-up/step2");
-      }
       setData({ ...data, currentStep: 3 });
+      if (data.dateBorn, data.phone, data.location.state, data.location.city == "") {
+         navigate('/sing-up/step1')
+      }
    }, []);
+   
    const handleNextStep = () => {
       if (interests !== "") {
          setData({ ...data, interests: interests });
