@@ -36,12 +36,11 @@ export function FormStep2() {
       setFormLocalization({ ...formLocalization, [name]: value });
    };
    const handlePhoneNumber = (phone) =>{
+      setPhoneNumber(phone) 
       const validPhone = validatePhoneNumber(phone)
       if(validPhone !== null){
          const formatPhone = format(validPhone).replace(/[-]/g," ")
          setPhoneNumber(formatPhone) 
-      }else{
-         setPhoneNumber(validPhone) 
       }
    }
    const handleNextStep = () => {
