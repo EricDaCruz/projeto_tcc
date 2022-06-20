@@ -14,6 +14,8 @@ import { PreviousStep } from "../Buttons/PreviousStep";
 import { NextStep } from "../Buttons/NextStep";
 /* Validações */
 import { validatePhoneNumber } from "../../../helpers/ValidFormRegister";
+/* Registrar usuarios */
+import { CreateAuthEmail, RegisterUser } from '../../../services/CreateUser'
 
 export function FormStep5() {
    const navigate = useNavigate();
@@ -39,8 +41,11 @@ export function FormStep5() {
    const handleFormLocalization = (name, value) =>{
       setFormLocalization({...formLocalization, [name]:value})
    }
-   const handleRegisterUser= () => {
-      
+   const handleRegisterUser = async () => {
+      const user = await CreateAuthEmail(data)
+      const uid = user.user.uid
+      console.log(uid)
+      await RegisterUser(data, uid)
    };
    const handlePreviousStep = () => {
       if (data.currentStep === 1) {
