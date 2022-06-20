@@ -13,7 +13,7 @@ import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { NextStep } from "../Buttons/NextStep";
 import { PreviousStep } from "../Buttons/PreviousStep";
 /* Validações */
-import { validatePhoneNumber } from "../../../helpers/ValidForm";
+import { validatePhoneNumber, validateDateBorn } from "../../../helpers/ValidFormRegister";
 import { format } from 'telefone'
 
 export function FormStep2() {
@@ -44,24 +44,25 @@ export function FormStep2() {
       }
    }
    const handleNextStep = () => {
-      if (
-         (dateBorn,
-         phoneNumber,
-         formLocalization.state,
-         formLocalization.city !== "")
-      ) {
-         if (validatePhoneNumber(phoneNumber) !== null) {
-            setData({
-               ...data,
-               dateBorn: dateBorn,
-               phone: phoneNumber,
-               location: formLocalization,
-            });
-            navigate(`/sing-up/step${data.currentStep + 1}`);
-         } else {
-            toast.error("Por favor, insira um número de celular válido");
+      if (dateBorn, phoneNumber, formLocalization.state, formLocalization.city !== ""){
+         if(validateDateBorn(dateBorn)){
+            if (validatePhoneNumber(phoneNumber) !== null) {
+               setData({
+                  ...data,
+                  dateBorn: dateBorn,
+                  phone: phoneNumber,
+                  location: formLocalization,
+               });
+               navigate(`/sing-up/step${data.currentStep + 1}`);
+            } else {
+               toast.error("Por favor, insira um número de celular válido");
+            }
+         }else{
+            toast.error("Insira uma data válida")
          }
-      } else {
+         
+      } 
+      else {
          toast.error("Por favor, preencha todos os campo");
       }
    };
