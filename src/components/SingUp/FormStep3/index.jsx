@@ -26,11 +26,11 @@ export function FormStep3() {
    }, []);
    
    const handleNextStep = () => {
-      if (interests !== "") {
+      if (interests === "") {
+         toast.error("Por favor, selecione algum interesse");
+      } else {
          setData({ ...data, interests: interests });
          navigate(`/sing-up/step${data.currentStep + 1}`);
-      } else {
-         toast.error("Por favor, selecione algum interesse");
       }
    };
    const handlePreviousStep = () => {

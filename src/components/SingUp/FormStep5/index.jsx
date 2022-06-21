@@ -27,9 +27,6 @@ export function FormStep5() {
    const [formLocalization, setFormLocalization] = useState({state:data.location.state, city:data.location.city});
    const [interests, setInterests] = useState(data.interests);
    const [inputEmail, setInputEmail] = useState(data.email);
-   const [password, setPassword] = useState(data.password);
-   const [confirmPassword, setConfirmPassword] = useState("");
-
 
    useEffect(() => {
       setData({ ...data, currentStep: 5 });
@@ -42,10 +39,11 @@ export function FormStep5() {
       setFormLocalization({...formLocalization, [name]:value})
    }
    const handleRegisterUser = async () => {
-      const user = await CreateAuthEmail(data)
-      const uid = user.user.uid
-      console.log(uid)
-      await RegisterUser(data, uid)
+      // const user = await CreateAuthEmail(data)
+      // const uid = user.user.uid
+      // console.log(uid)
+      // await RegisterUser(data, uid)
+      navigate('/sing-up/step6')
    };
    const handlePreviousStep = () => {
       if (data.currentStep === 1) {

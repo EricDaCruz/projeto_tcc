@@ -46,7 +46,10 @@ export function FormStep2() {
       }
    }
    const handleNextStep = () => {
-      if (dateBorn, phoneNumber, formLocalization.state, formLocalization.city !== ""){
+      if (dateBorn === "" || phoneNumber === "" || formLocalization.state === "" || formLocalization.city === ""){
+         toast.error("Por favor, preencha todos os campos");
+      } 
+      else {
          if(validateDateBorn(dateBorn)){
             if (validatePhoneNumber(phoneNumber) !== null) {
                setData({
@@ -63,9 +66,6 @@ export function FormStep2() {
             toast.error("Insira uma data válida")
          }
          
-      } 
-      else {
-         toast.error("Por favor, preencha todos os campo");
       }
    };
    const handlePreviousStep = () => {

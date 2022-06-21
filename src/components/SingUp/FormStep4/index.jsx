@@ -8,6 +8,8 @@ import { NextStep } from "../Buttons/NextStep";
 import { PreviousStep } from "../Buttons/PreviousStep";
 import { toast } from 'react-toastify'
 import { Field } from "../Field";
+/*Validação*/
+import validator from 'validator'
 
 export function FormStep4() {
    const navigate = useNavigate();
@@ -24,15 +26,23 @@ export function FormStep4() {
    }, []);
 
    const handleNextStep = () => {
-      if ((inputEmail, password, confirmPassword !== "")) {
-         if (password != confirmPassword) {
-            toast.error("Senhas diferentes");
-         } else {
-            setData({ ...data, email: inputEmail, password: password });
-            navigate(`/sing-up/step${data.currentStep + 1}`);
-         }
+      if (inputEmail === "" || password === "" || confirmPassword === "") {
+         toast.error("Por favor, preencha todos os dados"); 
       } else {
-         toast.error("Por favor, preencha todos os dados");
+         if(validator.isEmail(inputEmail)){
+            if(password.length < 6){
+               toast.error('Insira uma senha maior que 6 digitos')
+            }else{
+               if (password != confirmPassword) {
+                  toast.error("Senhas diferentes");
+               } else {
+                  setData({ ...data, email: inputEmail, password: password });
+                  navigate(`/sing-up/step${data.currentStep + 1}`);
+               }
+            }
+         }else{
+            toast.error("Insira um email válido")
+         }
       }
    };
    const handlePreviousStep = () => {

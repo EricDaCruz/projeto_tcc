@@ -21,11 +21,12 @@ export function FormStep1() {
    }, []);
 
    const handleNextStep = () => {
-      if (inputName, inputUsername !== "") {
-         setData({ ...data, name: inputName, username: inputUsername });
-         navigate(`/sing-up/step${data.currentStep + 1}`);
+      if (inputName === "" || inputUsername === "") {
+         toast.error("Por favor, preencha todos os campo"); 
       } else {
-         toast.error("Por favor, preencha todos os campo");
+         setData({ ...data, name: inputName, username: inputUsername });
+         console.log(data.name);
+         navigate(`/sing-up/step${data.currentStep + 1}`);
       }
    };
    const handlePreviousStep = () => {

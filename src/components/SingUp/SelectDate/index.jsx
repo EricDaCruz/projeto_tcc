@@ -16,7 +16,7 @@ export function SelectDate({value, setDateBorn}){
                     className="input is-rounded is-medium"
                     onChange={(e) => handleSetData(e.target.value)}
                     value={selectDate} 
-                    min="1900-01-01"
+                    min="1942-01-01"
                     max="2012-12-31"
                 />
             </Container>

@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import ImgCompleted from "../../../assets/images/imgCompleted.png"
 import { useForm } from "../../../contexts/FormContext"
 import { useNavigate } from 'react-router-dom'
-import { PreviousStep } from '../Buttons/PreviousStep'
+import { NextStep } from '../Buttons/NextStep'
 import { CreateAuthEmail, RegisterUser } from '../../../services/CreateUser'
 
 export function FormStep6() {
@@ -12,24 +12,13 @@ export function FormStep6() {
 
    useEffect(()=>{
       setData({...data, currentStep: 6})
-      if(data.name === ""){
-         navigate('/sing-up/step1')
-      }
+      // if(data.name === ""){
+      //    navigate('/sing-up/step1')
+      // }
    })
 
-   const handlePreviousStep = () => {
-      if (data.currentStep === 1) {
-         navigate("/");
-      } else {
-         navigate(`/sing-up/step${data.currentStep - 1}`);
-      }
-   };
-
-   const handleCreateUser = async () =>{
-      const user = await CreateAuthEmail(data)
-      const uid = user.user.uid
-      console.log(uid)
-      await RegisterUser(data, uid)
+   const handleLoginUser = async () =>{
+      console.log('Entrou');
    }
 
    return (
@@ -55,7 +44,7 @@ export function FormStep6() {
                acesse agora mesmo:
             </p>
             <div className="is-flex is-justify-content-space-between mt-6">
-               <PreviousStep onClick={handlePreviousStep}/>
+               <NextStep text="Entrar" onClick={handleLoginUser}/>
          </div>
          </div>
       </div>
