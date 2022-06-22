@@ -73,11 +73,14 @@ export function FormStep5() {
    }
 
    const handleRegisterUser = async () => {
-      const user = await CreateAuthEmail(data)
-      const uid = user.user.uid
-      console.log(uid)
-      await RegisterUser(data, uid)
-      navigate('/sing-up/step6')
+      const user = await CreateAuthEmail(data).catch((err) => err.code)
+      if(user === 'auth/email-already-in-use'){
+         toast.warning('Usuário já cadastrado')
+      }
+      // const uid = user.user.uid
+      // console.log(uid)
+      // await RegisterUser(data, uid)
+      // navigate('/sing-up/step6')
    };
    const handlePreviousStep = () => {
       if (data.currentStep === 1) {
