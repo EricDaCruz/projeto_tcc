@@ -106,6 +106,7 @@ export function FormStep4() {
                            type="password"
                            placeholder="Seu senha"
                            onChange={(e) => setPassword(e.target.value)}
+                           value={password}
                         />
                      </div>
                     

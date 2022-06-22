@@ -12,9 +12,9 @@ export function FormStep6() {
 
    useEffect(()=>{
       setData({...data, currentStep: 6})
-      // if(data.name === ""){
-      //    navigate('/sing-up/step1')
-      // }
+      if(data.name === ""){
+         navigate('/sing-up/step1')
+      }
    })
 
    const handleLoginUser = async () =>{

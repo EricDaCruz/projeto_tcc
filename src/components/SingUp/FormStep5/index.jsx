@@ -14,6 +14,7 @@ import { PreviousStep } from "../Buttons/PreviousStep";
 import { NextStep } from "../Buttons/NextStep";
 /* Validações */
 import { validatePhoneNumber } from "../../../helpers/ValidFormRegister";
+import { format } from 'telefone'
 /* Registrar usuarios */
 import { CreateAuthEmail, RegisterUser } from '../../../services/CreateUser'
 
@@ -21,12 +22,13 @@ export function FormStep5() {
    const navigate = useNavigate();
    const { data, setData } = useForm();
    const [inputName, setInputName] = useState(data.name)
-   const [inputUsername, setInptuUsername] = useState(data.username);
+   const [inputUsername, setInputUsername] = useState(data.username);
    const [dateBorn, setDateBorn] = useState(data.dateBorn)
    const [phoneNumber, setPhoneNumber] = useState(data.phone)
    const [formLocalization, setFormLocalization] = useState({state:data.location.state, city:data.location.city});
    const [interests, setInterests] = useState(data.interests);
    const [inputEmail, setInputEmail] = useState(data.email);
+  
 
    useEffect(() => {
       setData({ ...data, currentStep: 5 });
@@ -35,14 +37,46 @@ export function FormStep5() {
       }
    }, []);
 
-   const handleFormLocalization = (name, value) =>{
-      setFormLocalization({...formLocalization, [name]:value})
+   const handleFormName = (name) =>{
+      setInputName(name)
+      setData({...data, name:name})
    }
+   const handleFormUsername = (username) =>{
+      setInputUsername(username)
+      setData({...data, username:username})
+   }
+   const handleFormDateBorn = (date) =>{
+      setDateBorn(date)
+      setData({...data, dateBorn:date})
+   }
+   const handleFormPhone = (phone) =>{
+      setPhoneNumber(phone) 
+      const validPhone = validatePhoneNumber(phone)
+      if(validPhone !== null){
+         const formatPhone = format(validPhone).replace(/[-]/g," ")
+         setPhoneNumber(formatPhone) 
+         setData({...data, phone: formatPhone})
+      }
+   }
+   /* Arrumar essa joça, não está alterando a cidade corretamente */
+   const handleFormLocalization = (name, value) =>{
+      setFormLocalization({...formLocalization, [name]:value}) 
+      setData({...data, location: formLocalization })
+   }
+   const handleFormInterests = (interest) =>{
+      setInterests(interest)
+      setData({...data, interests: interest})
+   }
+   const handleFormEmail = (email) =>{
+      setInputEmail(email)
+      setData({...data, email: email})
+   }
+
    const handleRegisterUser = async () => {
-      // const user = await CreateAuthEmail(data)
-      // const uid = user.user.uid
-      // console.log(uid)
-      // await RegisterUser(data, uid)
+      const user = await CreateAuthEmail(data)
+      const uid = user.user.uid
+      console.log(uid)
+      await RegisterUser(data, uid)
       navigate('/sing-up/step6')
    };
    const handlePreviousStep = () => {
@@ -86,7 +120,7 @@ export function FormStep5() {
                         className="input  is-rounded is-medium"
                         type="text"
                         placeholder="Seu nome"
-                        onChange={(e) => setInputName(e.target.value)}
+                        onChange={(e) => handleFormName(e.target.value)}
                         value={inputName}
                      />
                   </div>
@@ -97,21 +131,21 @@ export function FormStep5() {
                         className="input  is-rounded is-medium"
                         type="text"
                         placeholder="Seu nome de usuário"
-                        onChange={(e) => setInptuUsername(e.target.value)}
+                        onChange={(e) => handleFormUsername(e.target.value)}
                         value={inputUsername}
                      />
                   </div>
                </Field>
                <Field className="column is-half mb-4 pr-3" label="Data de Nascimento">
-                        <SelectDate value={dateBorn} setDateBorn={setDateBorn}/>
+                  <SelectDate value={dateBorn} setDateBorn={handleFormDateBorn}/>
                </Field>
                <Field className="column is-half mb-4 pr-3" label="Celular">
                   <div className="control">
                      <Inputs
                         className="input is-rounded is-medium"
-                        type="email"
+                        type="text"
                         placeholder="(00) 00000 0000"
-                        onChange={e => setPhoneNumber(e.target.value)}
+                        onChange={e => handleFormPhone(e.target.value)}
                         value={phoneNumber}
                      />
                   </div>
@@ -134,7 +168,7 @@ export function FormStep5() {
                </Field>
                <Field className="column is-full mb-4 pr-3" label="Interesses">
                   <div className="control has-icons-right">
-                     <DropdownInterest value={interests} onChange={(e)=>setInterests(e.target.value)}/>
+                     <DropdownInterest value={interests} onChange={(e)=>handleFormInterests(e.target.value)}/>
                      <span className="icon is-small is-right">
                         <MdOutlineKeyboardArrowDown style={{color:'#A0A3BD'}}/>
                      </span>
@@ -147,7 +181,7 @@ export function FormStep5() {
                            type="text"
                            placeholder="Seu email"
                            value={inputEmail}
-                           onChange={(e) => setInputEmail(e.target.value)}
+                           onChange={(e) => handleFormEmail(e.target.value)}
                         />
                      </div>
                </Field>
