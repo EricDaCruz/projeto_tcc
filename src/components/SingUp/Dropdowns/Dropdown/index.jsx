@@ -4,7 +4,7 @@ export function Dropdown({value, disabled, name, handleForm, data}) {
   return (
     <Select 
       disabled={name === "city" ? disabled : ''}  
-      onChange={e => handleForm(name,e.target.value)}
+      onChange={e => handleForm(e.target.value)}
       className="input is-medium"
       value={value}
     >

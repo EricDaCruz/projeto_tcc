@@ -25,7 +25,8 @@ export function FormStep5() {
    const [inputUsername, setInputUsername] = useState(data.username);
    const [dateBorn, setDateBorn] = useState(data.dateBorn)
    const [phoneNumber, setPhoneNumber] = useState(data.phone)
-   const [formLocalization, setFormLocalization] = useState({state:data.location.state, city:data.location.city});
+   const [locationState, setLocationState] = useState(data.state);
+   const [locationCity, setLocationCity] = useState(data.city);
    const [interests, setInterests] = useState(data.interests);
    const [inputEmail, setInputEmail] = useState(data.email);
   
@@ -59,10 +60,15 @@ export function FormStep5() {
       }
    }
    /* Arrumar essa joça, não está alterando a cidade corretamente */
-   const handleFormLocalization = (name, value) =>{
-      setFormLocalization({...formLocalization, [name]:value}) 
-      setData({...data, location: formLocalization })
-   }
+   const handleLocationState = ( state) => {
+      setLocationState(state);
+      setData({...data, state: state})
+   };
+   const handleLocationCity = (city) => {
+      setLocationCity(city);
+      setData({...data, city: city})
+   };
+  
    const handleFormInterests = (interest) =>{
       setInterests(interest)
       setData({...data, interests: interest})
@@ -73,15 +79,26 @@ export function FormStep5() {
    }
 
    const handleRegisterUser = async () => {
-      const user = await CreateAuthEmail(data).catch((err) => err.code)
+     
+      const user = await CreateAuthEmail(data)
       if(user === 'auth/email-already-in-use'){
          toast.warning('Usuário já cadastrado')
+      }else{
+         const uid = user.user.uid
+         const dataUser = {
+            dateBorn: data.dateBorn,
+            email: data.email,
+            interests: data.interests,
+            location: {state: data.state, city: data.city},
+            name: data.name,
+            phone: data.phone,
+            username: data.username
+         }
+         await RegisterUser(dataUser, uid)
+         navigate('/sing-up/step6')
       }
-      // const uid = user.user.uid
-      // console.log(uid)
-      // await RegisterUser(data, uid)
-      // navigate('/sing-up/step6')
    };
+   
    const handlePreviousStep = () => {
       if (data.currentStep === 1) {
          navigate("/");
@@ -155,7 +172,7 @@ export function FormStep5() {
                </Field>
                <Field className="column is-half mb-4 pr-3" label="Estados">
                   <div className="control has-icons-right">
-                     <DropdownStates value={formLocalization.state} formLocalization={formLocalization} handleFormLocalization={handleFormLocalization}/>
+                     <DropdownStates value={locationState} handleFormLocalization={handleLocationState}/>
                      <span className="icon is-small is-right">
                         <MdOutlineKeyboardArrowDown style={{color:'#A0A3BD'}}/>
                      </span>
@@ -163,7 +180,12 @@ export function FormStep5() {
                </Field>
                <Field className="column is-half mb-4 pr-3" label="Cidades">
                   <div className="control has-icons-right">
-                     <DropdownCities value={formLocalization.city} disabled={formLocalization.state ? false : true} formLocalization={formLocalization} handleFormLocalization={handleFormLocalization}/>
+                     <DropdownCities 
+                        value={locationCity} 
+                        state={locationState}
+                        disabled={locationCity ? false : true} 
+                        handleFormLocalization={handleLocationCity}
+                     />
                      <span className="icon is-small is-right">
                         <MdOutlineKeyboardArrowDown style={{color:'#A0A3BD'}}/>
                      </span>

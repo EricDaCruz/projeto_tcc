@@ -21,10 +21,8 @@ export function FormStep2() {
    const { data, setData } = useForm();
    const [dateBorn, setDateBorn] = useState(data.dateBorn);
    const [phoneNumber, setPhoneNumber] = useState(data.phone);
-   const [formLocalization, setFormLocalization] = useState({
-      state: data.location.state,
-      city: data.location.city,
-   });
+   const [locationState, setLocationState] = useState(data.state);
+   const [locationCity, setLocationCity] = useState(data.city);
    const regExPhone = /[a-z]|[A-Z]|[/]|[|]|[@]|[#]|[!]|[$]|[%]|[¨]|[&]|[*]|[_]|[+]|[=]/g
 
    useEffect(() => {
@@ -34,8 +32,11 @@ export function FormStep2() {
       }
    }, []);
    
-   const handleFormLocalization = (name, value) => {
-      setFormLocalization({ ...formLocalization, [name]: value });
+   const handleLocationState = ( state) => {
+      setLocationState(state);
+   };
+   const handleLocationCity = (city) => {
+      setLocationCity(city);
    };
    const handlePhoneNumber = (phone) =>{
       setPhoneNumber(phone) 
@@ -46,7 +47,7 @@ export function FormStep2() {
       }
    }
    const handleNextStep = () => {
-      if (dateBorn === "" || phoneNumber === "" || formLocalization.state === "" || formLocalization.city === ""){
+      if (dateBorn === "" || phoneNumber === "" || locationState === "" || locationCity === ""){
          toast.error("Por favor, preencha todos os campos");
       } 
       else {
@@ -56,7 +57,8 @@ export function FormStep2() {
                   ...data,
                   dateBorn: dateBorn,
                   phone: phoneNumber,
-                  location: formLocalization,
+                  state: locationState,
+                  city: locationCity
                });
                navigate(`/sing-up/step${data.currentStep + 1}`);
             } else {
@@ -130,9 +132,8 @@ export function FormStep2() {
                   <Field className="column is-half mb-4 pr-3" label="Estados">
                      <div className="control has-icons-right">
                         <DropdownStates
-                           value={formLocalization.state}
-                           formLocalization={formLocalization}
-                           handleFormLocalization={handleFormLocalization}
+                           value={locationState}
+                           handleFormLocalization={handleLocationState}
                         />
                         <span className="icon is-small is-right">
                            <MdOutlineKeyboardArrowDown
@@ -144,10 +145,10 @@ export function FormStep2() {
                   <Field className="column is-half mb-4 pr-3" label="Cidades">
                      <div className="control has-icons-right">
                         <DropdownCities
-                           value={formLocalization.city}
-                           disabled={formLocalization.state ? false : true}
-                           formLocalization={formLocalization}
-                           handleFormLocalization={handleFormLocalization}
+                           value={locationCity}
+                           state={locationState}
+                           disabled={locationState ? false : true}
+                           handleFormLocalization={handleLocationCity}
                         />
                         <span className="icon is-small is-right">
                            <MdOutlineKeyboardArrowDown

@@ -10,7 +10,8 @@ export const FormProvider = ({children}) =>{
         email: "",
         dateBorn: "",
         phone: "",
-        location:{state:"", city:""},
+        state:"", 
+        city:"",
         interests: "",
         username: "",
         password: ""

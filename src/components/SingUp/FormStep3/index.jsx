@@ -20,7 +20,7 @@ export function FormStep3() {
 
    useEffect(() => {
       setData({ ...data, currentStep: 3 });
-      if (data.dateBorn, data.phone, data.location.state, data.location.city == "") {
+      if (data.dateBorn, data.phone, data.state, data.city == "") {
          navigate('/sing-up/step1')
       }
    }, []);
