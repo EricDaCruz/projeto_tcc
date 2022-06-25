@@ -1,22 +1,27 @@
 import { useState } from "react";
 /*Styles */
 import * as C from "./styles";
-
 import Img from '../../../assets/images/Bg.png'
-
 import { Link } from "react-router-dom";
-
-
 /* Icons */
 import { FiUser, FiLock } from "react-icons/fi";
 import { BsEyeSlash, BsEye, BsFacebook } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
+/*Services*/
+import { SignInUser } from '../../../services/signInUser'
 
 export function LoginArea() {
    const [viewPassword, setViewPassword] = useState(false);
+   const [email, setEmail] = useState("")
+   const [password, setPassword] = useState("");
+
    const handleViewPassword = () => {
       setViewPassword(!viewPassword);
    };
+   const handleSignInuser = async () => {
+      const user = await SignInUser(email, password);
+      console.log(user);
+   }
 
    return (
       <section className=" mt-4 columns">
@@ -38,13 +43,23 @@ export function LoginArea() {
                      <span>
                         <FiUser className="mr-2" size="23" style={{color: '#666666'}}/>
                      </span>
-                     <input type="email" className="is-size-5" placeholder="E-mail"/>
+                     <input 
+                        type="email" 
+                        className="is-size-5" 
+                        placeholder="E-mail"
+                        onChange={e => setEmail(e.target.value)}
+                     />
                   </div>
                   <div className="contentInput mb-2 px-4 is-flex is-align-items-center">
                      <span>
                         <FiLock className="mr-2" size="23" style={{color: '#666666'}}/>
                      </span>
-                     <input type={viewPassword? 'text' : 'password'}  className="is-size-5" placeholder="Senha"/>
+                     <input 
+                        type={viewPassword? 'text' : 'password'}  
+                        className="is-size-5" 
+                        placeholder="Senha"
+                        onChange={e => setPassword(e.target.value)}
+                     />
                      <span>
                         {
                            viewPassword
@@ -66,6 +81,7 @@ export function LoginArea() {
                <button 
                   className=" mt-5 py-3 px-6 has-text-white has-text-weight-semibold is-size-5"
                   style={{background:'#1DA87A', borderRadius:'10px', border:'none', cursor:'pointer'}}
+                  onClick={handleSignInuser}
                >
                      Login
                </button>

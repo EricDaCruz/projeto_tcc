@@ -2,8 +2,8 @@ import {Link} from './styles'
 
 export function FooterArea() {
    return (
-      <footer class="footer" style={{backgroundColor: '#188F67', paddingBottom: '0'}}>
-         <div class="columns">
+      <footer className="footer" style={{backgroundColor: '#188F67', paddingBottom: '0'}}>
+         <div className="columns">
             <div className="column is-two-fifths is-hidden-mobile">
                Logo ET
             </div>
