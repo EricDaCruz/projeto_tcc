@@ -16,24 +16,35 @@ export function LoginArea() {
    const [password, setPassword] = useState("");
 
    useEffect(() => {
+      //Verificar se tem um uid e levar pra /forum
       const userUid = GetItemLocalStorage('uid')
+      if(userUid) {
+         navigate('/forum')
+      }
    },[])
 
    const handleViewPassword = () => {
       setViewPassword(!viewPassword);
    };
-   const handleSignInuser = async () => {
-      const user = await SignInUser(email, password).catch(e => e.code);
-      if(email === "" || password === "" ){
-         toast.error("Por favor, preencha todos os campos")
+   const handleSignInUser = async () => {
+      if(email === '' || password === '') {
+         toast.error('Por favor, preencha todos os campos')
       }else{
-         if(user === 'auth/user-not-found'){
-            toast.error('Usuário não encontrado')
-         }else if(user === 'auth/wrong-password'){
-            toast.error('Senha incorreta')
-         }else{
-            SetItemLocalStorage('uid',user.uid)
-            navigate('/forum')
+         try{
+            const user = await SignInUser(email, password)
+            SetItemLocalStorage('uid', user.uid)
+            if(user.uid){
+               navigate('/forum')
+            }
+         }catch(error){
+            console.log(error.code);
+            if(error.code === 'auth/user-not-found'){
+               toast.error('Usuário não encontrado')
+            }else if(error.code === 'auth/wrong-password' || error.code === 'auth/invalid-email'){
+               toast.error('Senha ou usuário inválido')
+            }else if(error.code === 'auth/too-many-requests'){
+               toast.warning('Muitas tentativas inválidas. Tente novamente mais tarde!')
+            }
          }
       }
    }
@@ -96,7 +107,7 @@ export function LoginArea() {
                <button 
                   className=" mt-5 py-3 px-6 has-text-white has-text-weight-semibold is-size-5"
                   style={{background:'#1DA87A', borderRadius:'10px', border:'none', cursor:'pointer'}}
-                  onClick={handleSignInuser}
+                  onClick={handleSignInUser}
                >
                      Login
                </button>
