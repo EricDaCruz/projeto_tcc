@@ -1,26 +1,41 @@
-import { useState } from "react";
-/*Styles */
-import * as C from "./styles";
+import { useState, useEffect } from "react";
+import { SignInUser } from '../../../services/signInUser'
+import { SetItemLocalStorage, GetItemLocalStorage } from '../../../services/LocalStorage'
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import Img from '../../../assets/images/Bg.png'
-import { Link } from "react-router-dom";
-/* Icons */
 import { FiUser, FiLock } from "react-icons/fi";
 import { BsEyeSlash, BsEye, BsFacebook } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
-/*Services*/
-import { SignInUser } from '../../../services/signInUser'
+import * as C from "./styles";
 
 export function LoginArea() {
+   const navigate = useNavigate();
    const [viewPassword, setViewPassword] = useState(false);
    const [email, setEmail] = useState("")
    const [password, setPassword] = useState("");
+
+   useEffect(() => {
+      const userUid = GetItemLocalStorage('uid')
+   },[])
 
    const handleViewPassword = () => {
       setViewPassword(!viewPassword);
    };
    const handleSignInuser = async () => {
-      const user = await SignInUser(email, password);
-      console.log(user);
+      const user = await SignInUser(email, password).catch(e => e.code);
+      if(email === "" || password === "" ){
+         toast.error("Por favor, preencha todos os campos")
+      }else{
+         if(user === 'auth/user-not-found'){
+            toast.error('Usuário não encontrado')
+         }else if(user === 'auth/wrong-password'){
+            toast.error('Senha incorreta')
+         }else{
+            SetItemLocalStorage('uid',user.uid)
+            navigate('/forum')
+         }
+      }
    }
 
    return (
