@@ -35,6 +35,7 @@ export function LoginArea() {
             SetItemLocalStorage('uid', user.uid)
             if(user.uid){
                navigate('/forum')
+              
             }
          }catch(error){
             switch (error.code){
