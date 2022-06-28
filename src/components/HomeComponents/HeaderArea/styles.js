@@ -1,92 +1,65 @@
 import styled from 'styled-components'
-import { NavLink as Link } from 'react-router-dom'
-import { FaBars, FaTimes } from 'react-icons/fa'
-import { BiX } from 'react-icons/bi'
 
-export const Nav = styled.nav`
-    height: 10vh;
-    display: flex;
+export const Header = styled.header`
+    display:flex;
+    align-items: center;
     justify-content: space-between;
-    /* padding: 0.5rem 0; */
-    /* margin-top: 0.5rem; */
-    /* z-index: 10; */
-`
-export const NavLink = styled(Link)`
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    padding: 0 1rem;
-    height: 100%;
-    cursor: pointer;
+    height: 80px;
+    margin-top: 1rem;
 
-    img{
-        width: 4.5rem;
+    .contentImg{
+        width: 5rem;
     }
 `
-export const Bars = styled(FaBars)`
-    display: none;
-    color: #000;
-
-    @media screen and (max-width:768px) {
-        display: block;
-        font-size: 1.8rem;
-        cursor: pointer;
-        margin-right: 2rem;
+export const Nav = styled.nav`
+    a{
+        background-color: #1DA87A;
+        border-radius: 100px;
+        padding: 0.8rem 2rem;
+        color: #FFFFFF;
+        font-weight: bold;
+        letter-spacing: 0.2px
     }
-`
-export const CloseBars = styled(FaTimes)`
-    display: none;
-    color: #000;
 
-    @media screen and (max-width:768px) {
-        display: block;
-        position: absolute;
-        /* top: calc(8vh/2.5); */
-        right: 2rem;
-        /* transform: translate(-100%, 75%);     */
-        font-size: 1.8rem;
-        cursor: pointer;
+    @media screen and (max-width: 1024px) {
         z-index: 9999;
-    }
-`
-export const NavMenu = styled.div`
-    display: flex;
-    align-items: center;
-
-    @media screen and (max-width:768px) {
-        display: block;
-        position: absolute;
+        position: fixed;
+        background-color: #1DA87A;
         top: 0;
-        margin-top: ${props => props.active ? '0' : '-100vh'};
-        width: 100vw;
-        height: 100vh;
-        background-color: #00ff00;
-        z-index: 999;
-        transition: all 0.3s ease;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 1.5rem;
+        transition: 0.3s all ease;
+        transform: ${props => props.showNavbar ? '0' : 'translateY(-100vh)'};
     }
 `
-export const NavBtn = styled.nav`
-    display: flex;
-    align-items: center;
-    margin-right: 2rem;
-
-    @media screen and (max-width:768px) {
-        /* display: none; */
-    }
-`
-export const NavBtnLink = styled(Link)`
-    border-radius: 4px;
-    background-color: green;
-    padding: 10px 22px;
-    color: #000;
-    border: none;
-    outline: none;
+export const NavBtn = styled.button`
+    font-size: 1.5rem;
+    background-color: #1DA87A;
+    padding: 5px;
     cursor: pointer;
-    transition: all 0.2s ease-in-out;
-    text-decoration: none;
+    background:transparent;
+    border:none;
+    outline:none;
+    color: #000;
+    visibility:hidden;
+    opacity: 0;
+    display: none;
 
-    &:hover{
-        transition: all 0.2s ease-in-out;
-        background-color: green;
+    &.nav-close-btn{
+        position:absolute;
+        top: 2rem;
+        right: 0.3rem;
+    }
+
+    @media screen and (max-width: 1024px) {
+        visibility: visible;
+        opacity: 1;
+        display: block;
     }
 `
