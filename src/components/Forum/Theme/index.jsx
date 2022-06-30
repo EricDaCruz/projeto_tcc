@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { GetItemLocalStorage } from '../../../services/LocalStorage'
-import { Header } from '../Header'
+import { HeaderForum } from '../HeaderForum'
 import { Sidebar } from '../SideBar'
 
 export function Theme({children}){
@@ -16,7 +16,7 @@ export function Theme({children}){
 
     return(
         <div>
-            <Header />
+            <HeaderForum />
             <Sidebar />
             <div>
                 {children}
