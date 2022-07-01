@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Avatar } from './Avatar'
+import { Avatar } from '../Avatar'
 import {FaBars, FaTimes} from 'react-icons/fa'
 import { FiBell, FiPlusCircle } from 'react-icons/fi'
 import Icon from '../../../assets/images/icone.png'

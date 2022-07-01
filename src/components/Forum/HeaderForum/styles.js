@@ -6,7 +6,7 @@ export const Header = styled.header`
     border-bottom: 1px solid #EAEAEA;
 
     .contentImg{
-        max-width: 20rem;
+        max-width: 15rem;
         width: 100%;
         img{
             width: 4rem;
