@@ -1,13 +1,15 @@
-import { Link } from 'react-router-dom'
+import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { BiPurchaseTag, BiAward, BiSearch } from 'react-icons/bi'
-import { RiQuestionLine, RiChat3Line, RiStarLine } from 'react-icons/ri'
-import { Aside } from './styles'
+import { RiQuestionLine, RiChat3Line, RiStarLine, RiLogoutBoxLine } from 'react-icons/ri'
+import { Aside, SectionInput, Section, ContentItens } from './styles'
 
 export function Sidebar(){
+    const navigate = useNavigate()
     const sibebarMenuItens = [
         {
-            path:'/disciplinas',
-            name:'disciplinas',
+            path:'/subject',
+            name:'Disciplinas',
             icon: <BiPurchaseTag />
         },
         {
@@ -20,51 +22,80 @@ export function Sidebar(){
         {
             path: '/my-questions',
             name: 'Minhas Questões',
-            icon: <RiQuestionLine />
+            icon: <RiQuestionLine />,
+            function: 'navigateToMyQuestions'
         },
         {
             path: '/my-answer',
             name: 'Minhas Respostas',
-            icon: <RiChat3Line />
+            icon: <RiChat3Line />,
+            function: 'navigateToMyAnswer'
         },
         {
             path: '/favorite-questions',
             name: 'Dúvidas Favoritadas',
-            icon: <RiStarLine />
+            icon: <RiStarLine />,
+            function: 'navigateToFavoritesQuestions'
         },
         {
-            path: '/favorite-questions',
-            name: 'Dúvidas Favoritadas',
-            icon: <RiStarLine />
+            path: '',
+            name: 'Desconectar',
+            icon: <RiLogoutBoxLine />,
+            function: 'logout'
         },
     ]
+    const [selectItems, setSelectItems] = useState('')
+
+    const handleNavigateRoutes = (item) => {
+        setSelectItems(item)
+        switch (item) {
+            case '/subject':
+                // navigate(item)
+                break;
+            case '/ranking':
+                // navigate(item)
+                break;
+            case '/my-questions':
+                // navigate(item)
+                break;
+            case '/my-answer':
+                // navigate(item)
+                break;
+            case '/favorite-questions':
+                // navigate(item)
+                break;
+            default:
+                console.log('Deslogou');
+                break;
+        }
+    }
 
     return(
         <Aside>
-            <section>
+            <SectionInput>
                 <BiSearch />
-                <input type="text"/>
-            </section>
-            <section>
-               Menu
+                <input type="text" placeholder="Pesquisar"/>
+            </SectionInput>
+            <Section>
+               <p>Menu</p>
                 {sibebarMenuItens.map((item, key) =>(
-                    <div key={key}>
+                    <ContentItens onClick={()=>handleNavigateRoutes(item.path)} key={key} selected={selectItems === item.path ? true : false}>
                         {item.icon}
-                        <Link to={item.path}>{item.name}</Link>
-                    </div>
+                        <span>{item.name}</span>
+                    </ContentItens>
                 ))
                 }
-            </section>
-            <section>
-               Perfil
+            </Section>
+            <Section>
+                <p>Perfil</p>
                 {sidebarProfileItens.map((item, key) =>(
-                    <div key={key}>
+                    <ContentItens onClick={()=>handleNavigateRoutes(item.path)} key={key} selected={selectItems === item.path ? true : false}>
                         {item.icon}
-                        <Link to={item.path}>{item.name}</Link>
-                    </div>
+                        <span>{item.name}</span>
+                    </ContentItens>
                 ))
                 }
-            </section>
+            </Section>
         </Aside>
     )
 }

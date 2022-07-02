@@ -1,8 +1,10 @@
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { GetItemLocalStorage } from '../../../services/LocalStorage'
 import { HeaderForum } from '../HeaderForum'
 import { Sidebar } from '../Sidebar'
+import { CardNews } from '../CardNews'
+import { ContentAll, Content} from './styles'
 
 export function Theme({children}){
     const navigate = useNavigate()
@@ -15,17 +17,15 @@ export function Theme({children}){
     // },[])
 
     return(
-        <>
+        <ContentAll>
             <HeaderForum />
             <div className="is-flex is-justify-content-space-between">
                 <Sidebar />
-                <div>
+                <Content>
                     {children}
-                </div>
-                <div>
-                    Card...
-                </div>
+                </Content>
+                <CardNews />
             </div>
-        </>
+        </ContentAll>
     )
 }
