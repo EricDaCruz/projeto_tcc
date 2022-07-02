@@ -20,7 +20,7 @@ export function HeaderForum() {
             <Nav showNavbar={showNavbar}>
                   <h2>Minhas Questões</h2>
                <ContentLinks className="">
-                  <NavLinkBtn to="make-questions">
+                  <NavLinkBtn to="/make-questions">
                      <FiPlusCircle /> Faça uma pergunta
                   </NavLinkBtn>
                   <FiBell className="is-clickable" color="#808080" size='1.5rem'/>

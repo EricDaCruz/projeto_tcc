@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { BiPurchaseTag, BiAward, BiSearch } from 'react-icons/bi'
 import { RiQuestionLine, RiChat3Line, RiStarLine, RiLogoutBoxLine } from 'react-icons/ri'
 import { Aside, SectionInput, Section, ContentItens } from './styles'

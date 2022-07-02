@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { GetItemLocalStorage } from '../../../services/LocalStorage'
 import { HeaderForum } from '../HeaderForum'
 import { Sidebar } from '../Sidebar'
-import { CardNews } from '../CardNews'
+import { CardForum } from '../CardForum'
 import { ContentAll, Content} from './styles'
 
 export function Theme({children}){
@@ -24,7 +24,7 @@ export function Theme({children}){
                 <Content>
                     {children}
                 </Content>
-                <CardNews />
+                <CardForum />
             </div>
         </ContentAll>
     )
