@@ -9,6 +9,10 @@ export const Aside = styled.aside`
     display: flex;
     align-items: center;
     flex-direction: column;
+
+    @media screen and (max-width: 1024px){
+        max-width: 4rem;
+    }
 `
 export const SectionInput = styled.section`
     margin-top: 1.5rem;
@@ -39,6 +43,14 @@ export const SectionInput = styled.section`
             color: #000;
         }
     }
+    @media screen and (max-width: 1024px){
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        input{
+            display: none;
+        }
+    }
 `
 export const Section = styled.section`
     width: 100%;
@@ -50,6 +62,13 @@ export const Section = styled.section`
         color: #808080;
         margin-bottom: 0.625rem;
         font-weight: 500;
+    }
+
+    @media screen and (max-width: 1024px){
+        
+        p{
+            margin-left: 0.5rem;
+        }
     }
 `
 
@@ -70,5 +89,19 @@ export const ContentItens = styled.div`
         font-size: 1rem;
         font-weight: 700;
         color: #000;
+    }
+
+    @media screen and (max-width: 1024px){
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0;
+        svg{
+
+        }
+        span{
+            display: none;
+            overflow: hidden;
+        }
     }
 `

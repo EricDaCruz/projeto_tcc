@@ -10,4 +10,8 @@ export const Content = styled.main`
     margin-left: 20rem;
     margin-right: 1.5rem;
     flex: 1;
+
+    @media screen and (max-width: 1024px){
+        margin-left: 5rem; 
+    }
 `

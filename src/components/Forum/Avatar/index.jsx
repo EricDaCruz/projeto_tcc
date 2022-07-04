@@ -19,4 +19,5 @@ export const Avatar = ({ src }) => {
             
         </div>
     )
+    // O react 
 }

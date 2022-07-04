@@ -16,6 +16,10 @@ export const Header = styled.header`
             width: 4rem;
         }
     }
+
+    @media screen and (max-width: 1024px){
+        height: 50px;
+    }
 `
 export const ContentHeader = styled.div`
     height: 100%;
