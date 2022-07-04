@@ -4,7 +4,7 @@ import { HiLink } from 'react-icons/hi'
 
 export const CardForum = () => {
     return(
-      <Content>
+      <Content className="is-hidden-touch">
           <section>
             <div className="headerContent">
                 <HiLink />

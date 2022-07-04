@@ -5,6 +5,7 @@ import { HeaderForum } from '../HeaderForum'
 import { Sidebar } from '../Sidebar'
 import { CardForum } from '../CardForum'
 import { ContentAll, Content} from './styles'
+import { ContentQuestions } from '../ContentQuestions'
 
 export function Theme({children}){
     const navigate = useNavigate()
@@ -22,7 +23,7 @@ export function Theme({children}){
             <div className="is-flex is-justify-content-space-between">
                 <Sidebar />
                 <Content>
-                    {children}
+                    <ContentQuestions />
                 </Content>
                 <CardForum />
             </div>

@@ -6,8 +6,8 @@ export const ContentAll = styled.div`
 `
 
 export const Content = styled.main`
-    background-color: red;
-    margin-left: 20rem;
     margin-top: 2rem;
+    margin-left: 1rem;
+    margin-right: 1.5rem;
     flex: 1;
 `

@@ -2,11 +2,11 @@ import styled from 'styled-components'
 
 export const Content = styled.div`
     background-color: #fff;
-    margin: 2rem 1rem 0 1.5rem;
+    margin: 2rem 1rem 0 0;
     padding: 1.5rem 1.25rem;
     max-width: 16rem;
     width: 100%;
-    min-height: 300px;
+    max-height: 300px;
     border: 1px solid #EAEAEA;
     border-radius: 5px;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.05);
