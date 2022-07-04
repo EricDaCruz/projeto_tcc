@@ -24,6 +24,9 @@ export function Theme({children}){
                 <Sidebar />
                 <Content>
                     <ContentQuestions />
+                    <ContentQuestions />
+                    <ContentQuestions />
+                    <ContentQuestions />
                 </Content>
                 <CardForum />
             </div>
