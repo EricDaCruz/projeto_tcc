@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const Aside = styled.aside`
-    /* position: fixed; */
+    position: fixed;
     background: #fff;
     max-width: 19.25rem;
     width: 100%;
@@ -9,7 +9,6 @@ export const Aside = styled.aside`
     display: flex;
     align-items: center;
     flex-direction: column;
-    
 `
 export const SectionInput = styled.section`
     margin-top: 1.5rem;

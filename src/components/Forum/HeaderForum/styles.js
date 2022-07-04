@@ -2,10 +2,13 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
 export const Header = styled.header`
+    position:sticky;
+    top: 0;
+    z-index: 1;
     background-color: #fff;
+    min-width: 100vw;
     height: 80px;
     border-bottom: 1px solid #EAEAEA;
-
     .contentImg{
         max-width: 15rem;
         width: 100%;

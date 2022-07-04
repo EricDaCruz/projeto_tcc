@@ -3,7 +3,7 @@ import { FiMessageSquare, FiStar } from 'react-icons/fi'
 
 export const ContentQuestions = ({}) => {
     return(
-        <Section className="mt-5">
+        <Section className="mb-5">
             <div className="is-flex is-align-items-center">
                 <figure class="media-left">
                     <p class="image is-64x64">

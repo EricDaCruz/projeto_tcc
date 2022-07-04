@@ -7,7 +7,7 @@ export const ContentAll = styled.div`
 
 export const Content = styled.main`
     margin-top: 2rem;
-    margin-left: 1rem;
+    margin-left: 20rem;
     margin-right: 1.5rem;
     flex: 1;
 `
