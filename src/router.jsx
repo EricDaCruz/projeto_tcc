@@ -22,14 +22,16 @@ const Router = () =>{
     return(
         <BrowserRouter>
             <Routes>
-                <Route path="/" exact element={<Home />} />
-                <Route path="/forum" exact element={<Forum />} />
-                <Route path="/sing-up/step1" element={<SingUp > <FormStep1 /> </SingUp>} />
-                <Route path="/sing-up/step2" element={<SingUp > <FormStep2 /> </SingUp>} />
-                <Route path="/sing-up/step3" element={<SingUp > <FormStep3 /> </SingUp>} />
-                <Route path="/sing-up/step4" element={<SingUp > <FormStep4 /> </SingUp>} />
-                <Route path="/sing-up/step5" element={<SingUp > <FormStep5 /> </SingUp>} />
-                <Route path="/sing-up/step6" element={<SingUp > <FormStep6 /> </SingUp>} />
+                <Route path="/"  element={<Home />} />
+                <Route path="/forum" element={<Forum />} />
+                <Route path="/sing-up" element={<SingUp />}>
+                    <Route path="step1" element={ <FormStep1 />} />
+                    <Route path="step2" element={ <FormStep2 /> } />
+                    <Route path="step3" element={ <FormStep3 /> } />
+                    <Route path="step4" element={ <FormStep4 /> } />
+                    <Route path="step5" element={ <FormStep5 /> } />
+                    <Route path="step6" element={ <FormStep6 /> } />
+                </Route>
                 <Route path="*" element={<Error />} />
             </Routes>
         </BrowserRouter>
