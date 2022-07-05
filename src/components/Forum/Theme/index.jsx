@@ -23,10 +23,7 @@ export function Theme({children}){
             <div className="is-flex is-justify-content-space-between">
                 <Sidebar />
                 <Content>
-                    <ContentQuestions />
-                    <ContentQuestions />
-                    <ContentQuestions />
-                    <ContentQuestions />
+                    {children}
                 </Content>
                 <CardForum />
             </div>

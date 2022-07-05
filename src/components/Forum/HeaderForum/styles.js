@@ -7,18 +7,16 @@ export const Header = styled.header`
     z-index: 1;
     background-color: #fff;
     min-width: 100vw;
-    height: 80px;
     border-bottom: 1px solid #EAEAEA;
     .contentImg{
         max-width: 15rem;
         width: 100%;
         img{
-            width: 4rem;
+            max-width: 30%;
         }
     }
-
     @media screen and (max-width: 1024px){
-        height: 50px;
+        padding: 0 2rem 0 2rem;
     }
 `
 export const ContentHeader = styled.div`
@@ -89,7 +87,6 @@ export const NavLinkBtn = styled(Link)`
     padding: 0.6rem 1rem;
     border-radius: 0.25rem;
 `
-
 export const NavBtn = styled.button`
     font-size: 1.5rem;
     background-color: #1DA87A;
@@ -106,7 +103,7 @@ export const NavBtn = styled.button`
     &.nav-close-btn{
         position:absolute;
         top: 2rem;
-        right: 0.3rem;
+        right: 2rem;
     }
 
     @media screen and (max-width: 1024px) {

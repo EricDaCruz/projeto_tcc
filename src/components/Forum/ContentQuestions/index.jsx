@@ -1,17 +1,14 @@
 import { Section } from './styles'
+import { Avatar } from '../Avatar'
 import { FiMessageSquare, FiStar } from 'react-icons/fi'
 
 export const ContentQuestions = ({}) => {
     return(
         <Section className="mb-5">
-            <div className="is-flex is-align-items-center">
-                <figure class="media-left">
-                    <p class="image is-64x64">
-                        <img className="is-rounded" src="https://bulma.io/images/placeholders/128x128.png"/>
-                    </p>
-                </figure>
+            <div className="is-flex is-align-items-center" style={{gap:'1rem'}}>
+                <Avatar />
                 <div>
-                    <p>Eric Da Cruz</p>
+                    <p className="has-text-black" style={{color:'#808080'}}>Eric Da Cruz</p>
                     <span className="is-size-7	">04 de Julho de 2022 12:45</span>
                 </div>
             </div>
@@ -21,14 +18,14 @@ export const ContentQuestions = ({}) => {
             </div>
             <div className="is-flex is-justify-content-flex-end">
                 <div className="is-flex" style={{gap: '1.25rem'}}>
-                    <spam className="is-flex is-align-items-center" style={{gap: '0.25rem'}}>
+                    <span className="is-flex is-align-items-center" style={{gap: '0.25rem'}}>
                         <FiStar />
                         <p>9</p>
-                    </spam>
-                    <spam className="is-flex is-align-items-center" style={{gap: '0.25rem'}}>
+                    </span>
+                    <span className="is-flex is-align-items-center" style={{gap: '0.25rem'}}>
                         <FiMessageSquare />
                         <p>15</p>
-                    </spam>
+                    </span>
                 </div>
             </div>
         </Section>
