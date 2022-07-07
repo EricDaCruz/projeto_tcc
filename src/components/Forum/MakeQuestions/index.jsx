@@ -54,7 +54,7 @@ export const MakeQuestions = () => {
                 </Button>
                 <Button bgColor="24,143,103" opacity="0.5" onClick={handleSendQuestion}>
                     <IoPaperPlaneOutline />
-                    Publicar Rascunho
+                    Publicar Questão
                 </Button>
             </div>
          </ContentButtons>
