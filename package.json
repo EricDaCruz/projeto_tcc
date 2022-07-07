@@ -19,6 +19,7 @@
     "react-toastify": "^9.0.4",
     "styled-components": "^5.3.5",
     "telefone": "^1.2.2",
+    "uuid": "^8.3.2",
     "validar-telefone": "^0.1.0",
     "validator": "^13.7.0"
   },
