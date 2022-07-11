@@ -5,7 +5,6 @@ import { HeaderForum } from '../HeaderForum'
 import { Sidebar } from '../Sidebar'
 import { CardForum } from '../CardForum'
 import { ContentAll, Content} from './styles'
-import { ContentQuestions } from '../ContentQuestions'
 
 export function Theme({children}){
     const navigate = useNavigate()

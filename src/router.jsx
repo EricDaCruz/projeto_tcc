@@ -17,7 +17,7 @@ import { FormStep3 } from './components/SingUp/FormStep3'
 import { FormStep4 } from './components/SingUp/FormStep4'
 import { FormStep5 } from "./components/SingUp/FormStep5";
 import { FormStep6 } from "./components/SingUp/FormStep6";
-import { ContentQuestions } from "./components/Forum/ContentQuestions";
+import { Chats } from "./components/Forum/Chats";
 import { MakeQuestions } from "./components/Forum/MakeQuestions";
 
 const Router = () =>{
@@ -34,7 +34,7 @@ const Router = () =>{
                     <Route path="step6" element={ <FormStep6 /> } />
                 </Route>
                 <Route path="/forum" element={<Forum />} >
-                    <Route path="chat" element={<ContentQuestions />} />
+                    <Route path="chats" element={<Chats />} />
                     <Route path="make-questions" element={<MakeQuestions />} />
                 </Route> 
                 <Route path="*" element={<Error />} />

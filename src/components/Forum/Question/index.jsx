@@ -1,8 +1,8 @@
-import { Section } from "./styles";
-import { Avatar } from "../Avatar";
+import { Section } from './styles'
+import { Avatar } from '../Avatar'
 import { FiMessageSquare, FiStar } from "react-icons/fi";
 
-export const ContentQuestions = () => {
+export const Question = () => {
    return (
       <Section className="mb-5">
          <div className="is-flex is-align-items-center" style={{ gap: "1rem" }}>
