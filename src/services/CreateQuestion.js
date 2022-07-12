@@ -1,15 +1,22 @@
-import { ref, set } from "firebase/database";
-import { database } from '../firebase'
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "../firebase";
 
-
-export const RegisterQuestions = async (chatUid, category, title, question, postDate, userId) =>{
-    await set(ref(database, 'forumQuestions/' + chatUid ),{
-        category: category,
-        comments: [{userId:'',content:''}],
-        content: question,
-        postDate: postDate,
-        stars: 2,
-        title: title,
-        userId: 'userId'
-    })
-}
+export const RegisterQuestions = async (
+   chatUid,
+   category,
+   title,
+   question,
+   postDate,
+   userId
+) => {
+   const questionRef = doc(db, "forum-chats", chatUid);
+   await setDoc(questionRef, {
+      category: category,
+      comments: [{ userId: "", content: "" }],
+      content: question,
+      postDate: postDate,
+      stars: 2,
+      title: title,
+      userId: userId,
+   });
+};
