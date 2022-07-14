@@ -35,8 +35,15 @@ export const MakeQuestions = () => {
    const handleSendQuestion = (event) => {
       event.preventDefault();
       const chatUid = uuidv4();
-      const postDate = FormatDateForQuestion()
-      RegisterQuestions(chatUid, category, title, question, postDate, 'UxVedY22eIg5fr3U3gP3uVGV22G2');
+      const postDate = FormatDateForQuestion();
+      RegisterQuestions(
+         chatUid,
+         category,
+         title,
+         question,
+         postDate,
+         "gO5ouFBkhHRvE2954VioeCqD5hj1"
+      );
       setCategory("");
       seTitle("");
       setQuestion("");

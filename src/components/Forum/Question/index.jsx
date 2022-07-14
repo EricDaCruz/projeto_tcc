@@ -1,15 +1,24 @@
+import { useState, useEffect } from 'react';
+import { GetUser } from "../../../services/GetInfoUser";
 import { Section } from './styles'
 import { Avatar } from '../Avatar'
 import { FiMessageSquare, FiStar } from "react-icons/fi";
 
-export const Question = ({title, postDate, content, stars, comments, userSend}) => {
+export const Question = ({title, postDate, content, stars, comments, userId}) => {
+   const [userData, setUserData] = useState({})
+
+   useEffect(() => {
+      GetUser(userId).then(user => setUserData(user))
+
+   },[])
+
    return (
       <Section className="mb-5">
          <div className="is-flex is-align-items-center" style={{ gap: "1rem" }}>
             <Avatar />
             <div>
                <p className="has-text-black" style={{ color: "#808080" }}>
-                  {'eRC'}
+                  {userData.username}
                </p>
                <span className="is-size-7	">{postDate}</span>
             </div>

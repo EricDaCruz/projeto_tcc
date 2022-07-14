@@ -16,7 +16,6 @@ export const Avatar = ({ src }) => {
                     />)
             : ( <Img src={defaultProfile} alt='Foto de Perfil' /> )
             }
-            
         </div>
     )
     // O react 

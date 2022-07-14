@@ -6,7 +6,6 @@ export const GetUser = async (userId) => {
     const userSnap = await getDoc(userRef);
 
     if (userSnap.exists()) {
-        console.log(userSnap.data());
         return userSnap.data();
     } else {
         // doc.data() will be undefined in this case
