@@ -1,4 +1,4 @@
-import {Link} from './styles'
+import { Link } from './styles'
 
 export function FooterArea() {
    return (
@@ -15,11 +15,21 @@ export function FooterArea() {
                     <div>
                         <p className="has-text-weight-semibold has-text-white is-size-5 mb-4">Equipe</p>
                         <ul className="has-text-weight-semibold has-text-grey-lighter is-size-6" style={{lineHeight:'2rem'}}>
-                            <li>Álvaro Amaral</li>
-                            <li>Ana Carolina</li>
-                            <li>Emilly Correa</li>
-                            <li>Eric Rafael</li>
-                            <li>Fabricio Murata</li>
+                            <Link href="https://www.instagram.com/alvaroaamaral/" target="_blank">
+                                <li>Álvaro Amaral</li>
+                            </Link>
+                            <Link href="https://www.instagram.com/a.anaacarol/" target="_blank">
+                                <li>Ana Carolina</li>
+                            </Link>
+                            <Link href="https://www.instagram.com/opss._.emilly/" target="_blank">
+                                <li>Emilly Correa</li>
+                            </Link>
+                            <Link href="https://www.instagram.com/e_cruzx/" target="_blank">
+                                <li>Eric Rafael</li>
+                            </Link>
+                            <Link href="https://www.instagram.com/famurata_/" target="_blank">
+                                <li>Fabricio Murata</li>
+                            </Link>
                         </ul>
                     </div>
                     <div>

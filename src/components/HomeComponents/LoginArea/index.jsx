@@ -3,7 +3,7 @@ import { SignInUser } from '../../../services/signInUser'
 import { SetItemLocalStorage, GetItemLocalStorage } from '../../../services/LocalStorage'
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import Img from '../../../assets/images/Bg.png'
+import Img from '../../../assets/images/login.png'
 import { FiUser, FiLock } from "react-icons/fi";
 import { BsEyeSlash, BsEye, BsFacebook } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";

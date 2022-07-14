@@ -1,4 +1,9 @@
 import { FaQuoteLeft, FaStar } from "react-icons/fa";
+import Alvaro from '../../../assets/images/alvaro.png'
+import Ana from '../../../assets/images/ana.png'
+import Emilly from '../../../assets/images/emilly.png'
+import Eric from '../../../assets/images/eric.png'
+import Fabricio from '../../../assets/images/fa.png'
 
 export function RatingArea() {
    return (
@@ -54,7 +59,7 @@ export function RatingArea() {
                                  <figure className="image is-64x64 mr-4">
                                     <img
                                        className="is-rounded"
-                                       src="https://bulma.io/images/placeholders/128x128.png"
+                                       src={Eric}
                                     />
                                  </figure>
                                  <div>
@@ -111,12 +116,12 @@ export function RatingArea() {
                                  <figure className="image is-64x64 mr-4">
                                     <img
                                        className="is-rounded"
-                                       src="https://bulma.io/images/placeholders/128x128.png"
+                                       src={Alvaro}
                                     />
                                  </figure>
                                  <div>
                                     <p className="has-text-black has-text-weight-medium is-size-4">
-                                       Eric da Cruz
+                                      Alvaro Amaral
                                     </p>
                                     <p
                                        className="is-size-6"
@@ -124,7 +129,7 @@ export function RatingArea() {
                                           color: "#37444E",
                                        }}
                                     >
-                                       Programador
+                                       Testador
                                     </p>
                                  </div>
                               </div>
@@ -168,12 +173,12 @@ export function RatingArea() {
                                  <figure className="image is-64x64 mr-4">
                                     <img
                                        className="is-rounded"
-                                       src="https://bulma.io/images/placeholders/128x128.png"
+                                       src={Ana}
                                     />
                                  </figure>
                                  <div>
                                     <p className="has-text-black has-text-weight-medium is-size-4">
-                                       Eric da Cruz
+                                       Ana Carolina
                                     </p>
                                     <p
                                        className="is-size-6"
@@ -181,7 +186,7 @@ export function RatingArea() {
                                           color: "#37444E",
                                        }}
                                     >
-                                       Programador
+                                       Designer
                                     </p>
                                  </div>
                               </div>
@@ -228,12 +233,12 @@ export function RatingArea() {
                            <figure className="image is-64x64 mr-4">
                               <img
                                  className="is-rounded"
-                                 src="https://bulma.io/images/placeholders/128x128.png"
+                                 src={Fabricio}
                               />
                            </figure>
                            <div>
                               <p className="has-text-black has-text-weight-medium is-size-4">
-                                 Eric da Cruz
+                                 Fabricio Murata
                               </p>
                               <p
                                  className="is-size-6"
@@ -241,7 +246,7 @@ export function RatingArea() {
                                     color: "#37444E",
                                  }}
                               >
-                                 Programador
+                                 Programador de Kodular
                               </p>
                            </div>
                         </div>
@@ -284,12 +289,12 @@ export function RatingArea() {
                            <figure className="image is-64x64 mr-4">
                               <img
                                  className="is-rounded"
-                                 src="https://bulma.io/images/placeholders/128x128.png"
+                                 src={Emilly}
                               />
                            </figure>
                            <div>
                               <p className="has-text-black has-text-weight-medium is-size-4">
-                                 Eric da Cruz
+                                 Emilly Correa
                               </p>
                               <p
                                  className="is-size-6"
@@ -297,7 +302,7 @@ export function RatingArea() {
                                     color: "#37444E",
                                  }}
                               >
-                                 Programador
+                                 Redatora
                               </p>
                            </div>
                         </div>

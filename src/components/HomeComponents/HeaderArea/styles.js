@@ -9,6 +9,9 @@ export const Header = styled.header`
 
     .contentImg{
         width: 5rem;
+        @media screen and (max-width: 1200px){
+            margin-left: 3rem;
+        }
     }
 `
 export const Nav = styled.nav`
