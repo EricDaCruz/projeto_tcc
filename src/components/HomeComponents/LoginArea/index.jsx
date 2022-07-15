@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { SignInUser } from '../../../services/signInUser'
-import { SetItemLocalStorage, GetItemLocalStorage } from '../../../services/LocalStorage'
+import { SetItemSessionStorage, GetItemSessionStorage } from '../../../services/Storage'
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Img from '../../../assets/images/login.png'
@@ -17,9 +17,9 @@ export function LoginArea() {
 
    useEffect(() => {
       //Verificar se tem um uid e levar pra /forum
-      const userUid = GetItemLocalStorage('uid')
+      const userUid = GetItemSessionStorage('uid')
       if(userUid) {
-         navigate('/forum')
+         navigate('/forum/chats')
       }
    },[])
 
@@ -32,10 +32,9 @@ export function LoginArea() {
       }else{
          try{
             const user = await SignInUser(email, password)
-            SetItemLocalStorage('uid', user.uid)
+            SetItemSessionStorage('uid', user.uid)
             if(user.uid){
-               navigate('/forum')
-              
+               navigate('/forum/chats')
             }
          }catch(error){
             switch (error.code){

@@ -1,33 +1,23 @@
-import { Form, ContentButtons, Button } from "./styles";
-import { FiImage } from "react-icons/fi";
-import { IoPaperPlaneOutline } from "react-icons/io5";
 import { useState } from "react";
-
-/* */
-import { doc, setDoc } from "firebase/firestore";
-import { db } from "../../../firebase";
 import { RegisterQuestions } from "../../../services/CreateQuestion";
 import { v4 as uuidv4 } from "uuid";
 import { FormatDateForQuestion } from "../../../helpers/FormatDate";
+import { Categories } from "../../../assets/categories";
+import { GetItemSessionStorage } from '../../../services/Storage'
+import { toast } from "react-toastify";
+import { FiImage } from "react-icons/fi";
+import { IoPaperPlaneOutline } from "react-icons/io5";
+import { Form, ContentButtons, Button } from "./styles";
 
 export const MakeQuestions = () => {
-   const categories = [
-      "Matemática",
-      "Português",
-      "Geografia",
-      "Biologia",
-      "Física",
-      "Química",
-      "Desenvolvimento de Sistemas",
-      "Meio Ambiente",
-   ];
-
    const [category, setCategory] = useState("");
    const [title, seTitle] = useState("");
    const [question, setQuestion] = useState("");
 
+
    const handleAddImage = (event) => {
       event.preventDefault();
+      toast.error("Essa funcionalidade não está disponível no momento.");
    };
    const handleSaveDraft = (event) => {
       event.preventDefault();
@@ -36,26 +26,35 @@ export const MakeQuestions = () => {
       event.preventDefault();
       const chatUid = uuidv4();
       const postDate = FormatDateForQuestion();
-      RegisterQuestions(
-         chatUid,
-         category,
-         title,
-         question,
-         postDate,
-         "2M3sCXkHMwa2aMj06GelH7jP7GL2"
-      );
-      setCategory("");
-      seTitle("");
-      setQuestion("");
+      const userId = GetItemSessionStorage('uid')
+      if(category === "" || title === "" || question === ""){
+         toast.error('Preencha todos os campos');
+      }else{
+         if(userId){
+            RegisterQuestions(
+               chatUid,
+               category,
+               title,
+               question,
+               postDate,
+               userId
+            );
+            setCategory("");
+            seTitle("");
+            setQuestion("");
+         }else{
+            toast.error('Erro ao enviar pergunta');
+         }
+      }
    };
 
    return (
       <Form>
          <select onChange={(e) => setCategory(e.target.value)} value={category}>
             <option value="">Escolha uma categoria</option>
-            {categories.map((subject, key) => (
-               <option key={key} value={subject}>
-                  {subject}
+            {Categories.map((subject, key) => (
+               <option key={key} value={subject.value}>
+                  {subject.label}
                </option>
             ))}
          </select>

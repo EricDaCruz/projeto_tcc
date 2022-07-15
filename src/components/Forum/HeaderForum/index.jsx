@@ -24,11 +24,13 @@ export function HeaderForum() {
       }
    },[location])
 
+   
+
    return (
       <Header>
          <ContentHeader className="container ">
             <div className="contentImg">
-               <img src={Icon} alt="" />
+               <img src={Icon} alt="" width="80%"/>
             </div>
             <Nav showNavbar={showNavbar}>
                   <h2>{titleHeader}</h2>

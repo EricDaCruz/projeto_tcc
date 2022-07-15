@@ -11,7 +11,7 @@ export const HeaderArea = () => {
    return(
       <Header>
          <div className="contentImg">
-            <img src={Icon} alt="" />
+            <img src={Icon} alt="" width="80%"/>
          </div>
          <Nav showNavbar={showNavbar}>
             <Link to="/sing-up/step1">
