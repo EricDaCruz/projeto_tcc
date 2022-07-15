@@ -1,6 +1,5 @@
 import { createContext, useState, useContext }  from "react";
 
-
 export const FormContext = createContext({});
 
 export const FormProvider = ({children}) =>{
@@ -23,6 +22,5 @@ export const FormProvider = ({children}) =>{
         </FormContext.Provider>
     )
 }
-
 
 export const useForm = () => useContext(FormContext)

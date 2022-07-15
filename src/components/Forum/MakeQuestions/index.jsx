@@ -42,7 +42,7 @@ export const MakeQuestions = () => {
          title,
          question,
          postDate,
-         "gO5ouFBkhHRvE2954VioeCqD5hj1"
+         "2M3sCXkHMwa2aMj06GelH7jP7GL2"
       );
       setCategory("");
       seTitle("");
