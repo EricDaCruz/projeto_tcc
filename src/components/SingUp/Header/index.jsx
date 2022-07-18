@@ -1,43 +1,29 @@
-import { Button } from './styles'
+import { useState } from 'react'
+import { HeaderForum, Nav, NavBtn } from './styles'
+import { FaBars, FaTimes } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
+/* Images */
+import Icon from '../../../assets/images/icone.png'
 
-export function Header() {
-   return (
-      <header className="container is-widescreen">
-         <nav className="navbar" role="navigation" aria-label="main navigation">
-            <div className="navbar-brand">
-               <a className="navbar-item" href="https://bulma.io">
-                  <img
-                     src="https://bulma.io/images/bulma-logo.png"
-                     width="112"
-                     height="28"
-                  />
-               </a>
+export const Header = () => {
+   const [showNavbar, setShowNavbar] = useState(false)
 
-               <a
-                  role="button"
-                  className="navbar-burger"
-                  aria-label="menu"
-                  aria-expanded="false"
-                  data-target="navbarBasicExample"
-               >
-                  <span aria-hidden="true"></span>
-                  <span aria-hidden="true"></span>
-                  <span aria-hidden="true"></span>
-               </a>
-            </div>
-
-            <div id="navbarBasicExample" className="navbar-menu">
-               <div className="navbar-end">
-                  <div className="navbar-item">
-                     <Button className="buttons" >
-                        <a >
-                           Entrar
-                        </a>
-                     </Button>
-                  </div>
-               </div>
-            </div>
-         </nav>
-      </header>
-   );
+   return(
+      <HeaderForum className="container is-widescreen">
+         <div className="contentImg">
+            <img src={Icon} alt="" width="80%"/>
+         </div>
+         <Nav showNavbar={showNavbar}>
+            <Link to="/">
+               Entrar
+            </Link>
+            <NavBtn className="nav-close-btn" onClick={()=>setShowNavbar(false)}>
+               <FaTimes />
+            </NavBtn>
+         </Nav>
+         <NavBtn onClick={()=>setShowNavbar(true)}>
+            <FaBars />
+         </NavBtn>
+      </HeaderForum>
+   )
 }

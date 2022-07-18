@@ -69,7 +69,6 @@ export function FormStep3() {
                </p>
             </div>
             <ContentOptions className="mt-6">
-               <div className="is-flex is-justify-content-space-between">
                   <SelectOption
                      title="Desenvolvimento de Sistemas"
                      icon={Ds}
@@ -82,8 +81,6 @@ export function FormStep3() {
                      selected={interests === 1}
                      onClick={() => setInterests(1)}
                   />
-               </div>
-               <div className="is-flex is-justify-content-space-between mt-5">
                   <SelectOption
                      title="Marketing"
                      icon={Mk}
@@ -96,7 +93,6 @@ export function FormStep3() {
                      selected={interests === 3}
                      onClick={() => setInterests(3)}
                   />
-               </div>
             </ContentOptions>
          </ContentForm>
          <div className="is-flex is-justify-content-space-between mt-6">

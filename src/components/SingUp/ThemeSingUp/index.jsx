@@ -6,7 +6,7 @@ export function ThemeSingUp({ children }) {
    return (
       <div>
          <Header />
-         <section>
+         <section className="mx-5">
             {children}
          </section>
          <Footer />

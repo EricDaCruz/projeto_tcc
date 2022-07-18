@@ -11,6 +11,10 @@ export const ContentForm = styled.div`
     }
 `
 export const ContentOptions = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
     div{
         flex: 1;
     }
