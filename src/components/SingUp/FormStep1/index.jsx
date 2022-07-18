@@ -3,11 +3,12 @@ import { useForm } from "../../../contexts/FormContext";
 import { ContentForm, Inputs } from "./styles";
 import { BiUser } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
-import { toast } from 'react-toastify'
+import { toast } from "react-toastify";
 import { ProgressStepBar } from "../ProgressStepBar";
-import {Field} from '../Field'
+import { Field } from "../Field";
 import { NextStep } from "../Buttons/NextStep";
 import { PreviousStep } from "../Buttons/PreviousStep";
+import { FindExistUserName } from "../../../services/FindExistUserName";
 
 export function FormStep1() {
    const navigate = useNavigate();
@@ -15,6 +16,7 @@ export function FormStep1() {
 
    const [inputName, setInputName] = useState(data.name);
    const [inputUsername, setInptuUsername] = useState(data.username);
+   const [existUsernames, setExistUsernames] = useState([])
 
    useEffect(() => {
       setData({ ...data, currentStep: 1 });
@@ -22,20 +24,26 @@ export function FormStep1() {
 
    const handleNextStep = () => {
       if (inputName === "" || inputUsername === "") {
-         toast.error("Por favor, preencha todos os campo"); 
+         toast.error("Por favor, preencha todos os campo");
       } else {
-         setData({ ...data, name: inputName, username: inputUsername });
-         console.log(data.name);
-         navigate(`/sing-up/step${data.currentStep + 1}`);
+         FindExistUserName().then((usernames) => setExistUsernames(usernames))
+         if(existUsernames.length === 0){
+            toast.warning("Aguarde um instante e clique novamente no botão, verificando disponibilidade do nome de usuário");
+         }else if(existUsernames.includes(inputUsername)){
+            toast.error("O nome de usuário já existe");
+         }else{
+            setData({ ...data, name: inputName, username: inputUsername });
+            navigate("/sing-up/step2");
+         }
       }
    };
    const handlePreviousStep = () => {
-      if(data.currentStep === 1){
-         navigate('/')
-      }else{
+      if (data.currentStep === 1) {
+         navigate("/");
+      } else {
          navigate(`/sing-up/step${data.currentStep - 1}`);
       }
-   }
+   };
 
    return (
       <div className="mx-auto my-auto" style={{ maxWidth: "700px" }}>
@@ -77,25 +85,25 @@ export function FormStep1() {
                      </span>
                   </div>
                </Field>
-               <Field className="column is-full mb-4" label='Nome de usuário'>
+               <Field className="column is-full mb-4" label="Nome de usuário">
                   <div className="control has-icons-right">
                      <Inputs
-                           className="input is-medium is-rounded"
-                           type="text"
-                           placeholder="Seu nome de usuário"
-                           value={inputUsername}
-                           onChange={e => setInptuUsername(e.target.value)}
-                        />
-                        <span className="icon is-small is-right">
-                           <BiUser style={{color:'#A0A3BD'}}/>
-                        </span>
+                        className="input is-medium is-rounded"
+                        type="text"
+                        placeholder="Seu nome de usuário"
+                        value={inputUsername}
+                        onChange={(e) => setInptuUsername(e.target.value)}
+                     />
+                     <span className="icon is-small is-right">
+                        <BiUser style={{ color: "#A0A3BD" }} />
+                     </span>
                   </div>
                </Field>
             </form>
          </ContentForm>
          <div className="is-flex is-justify-content-space-between mt-6">
-            <PreviousStep onClick={handlePreviousStep}/>
-            <NextStep text="Próxima Etapa" onClick={handleNextStep}/>
+            <PreviousStep onClick={handlePreviousStep} />
+            <NextStep text="Próxima Etapa" onClick={handleNextStep} />
          </div>
       </div>
    );
