@@ -13,8 +13,9 @@ import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { NextStep } from "../Buttons/NextStep";
 import { PreviousStep } from "../Buttons/PreviousStep";
 /* Validações */
-import { validatePhoneNumber, validateDateBorn } from "../../../helpers/ValidFormRegister";
-import { format } from 'telefone'
+import moment from "moment";
+import { validatePhoneNumber } from "../../../helpers/ValidFormRegister";
+import { format } from "telefone";
 
 export function FormStep2() {
    const navigate = useNavigate();
@@ -23,51 +24,59 @@ export function FormStep2() {
    const [phoneNumber, setPhoneNumber] = useState(data.phone);
    const [locationState, setLocationState] = useState(data.state);
    const [locationCity, setLocationCity] = useState(data.city);
-   const regExPhone = /[a-z]|[A-Z]|[/]|[|]|[@]|[#]|[!]|[$]|[%]|[¨]|[&]|[*]|[_]|[+]|[=]/g
+   const regExPhone =
+      /[a-z]|[A-Z]|[/]|[|]|[@]|[#]|[!]|[$]|[%]|[¨]|[&]|[*]|[_]|[+]|[=]/g;
 
    useEffect(() => {
       setData({ ...data, currentStep: 2 });
       if ((data.name, data.username === "")) {
-         navigate('/sing-up/step1')
+         navigate("/sing-up/step1");
       }
    }, []);
-   
-   const handleLocationState = ( state) => {
+
+   const handleLocationState = (state) => {
       setLocationState(state);
    };
    const handleLocationCity = (city) => {
       setLocationCity(city);
    };
-   const handlePhoneNumber = (phone) =>{
-      setPhoneNumber(phone) 
-      const validPhone = validatePhoneNumber(phone)
-      if(validPhone !== null){
-         const formatPhone = format(validPhone).replace(/[-]/g," ")
-         setPhoneNumber(formatPhone) 
+   const handlePhoneNumber = (phone) => {
+      setPhoneNumber(phone);
+      const validPhone = validatePhoneNumber(phone);
+      if (validPhone !== null) {
+         const formatPhone = format(validPhone).replace(/[-]/g, " ");
+         setPhoneNumber(formatPhone);
       }
-   }
+   };
    const handleNextStep = () => {
-      if (dateBorn === "" || phoneNumber === "" || locationState === "" || locationCity === ""){
+      if (
+         dateBorn === "" ||
+         phoneNumber === "" ||
+         locationState === "" ||
+         locationCity === ""
+      ) {
          toast.error("Por favor, preencha todos os campos");
-      } 
-      else {
-         if(validateDateBorn(dateBorn)){
-            if (validatePhoneNumber(phoneNumber) !== null) {
-               setData({
-                  ...data,
-                  dateBorn: dateBorn,
-                  phone: phoneNumber,
-                  state: locationState,
-                  city: locationCity
-               });
-               navigate(`/sing-up/step${data.currentStep + 1}`);
-            } else {
-               toast.error("Por favor, insira um número de celular válido");
+      } else {
+         if (moment(dateBorn).isValid()) {
+            if(moment(dateBorn).isAfter(moment().subtract(10,'years'))){
+               toast.error("Você não pode ser menor de 10 anos");
+            }else{
+               if (validatePhoneNumber(phoneNumber) !== null) {
+                  setData({
+                     ...data,
+                     dateBorn: dateBorn,
+                     phone: phoneNumber,
+                     state: locationState,
+                     city: locationCity,
+                  });
+                  navigate(`/sing-up/step${data.currentStep + 1}`);
+               } else {
+                  toast.error("Por favor, insira um número de celular válido");
+               }
             }
-         }else{
-            toast.error("Insira uma data válida")
+         } else {
+            toast.error("Insira uma data válida");
          }
-         
       }
    };
    const handlePreviousStep = () => {
@@ -119,7 +128,11 @@ export function FormStep2() {
                            className="input is-rounded is-medium"
                            type="text"
                            placeholder="(00) 00000 0000"
-                           onChange={(e) => handlePhoneNumber(e.target.value.replace(regExPhone, ""))}
+                           onChange={(e) =>
+                              handlePhoneNumber(
+                                 e.target.value.replace(regExPhone, "")
+                              )
+                           }
                            value={phoneNumber}
                         />
                         <span className="icon is-small is-right">

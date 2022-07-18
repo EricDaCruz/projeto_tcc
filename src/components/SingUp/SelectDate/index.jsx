@@ -1,5 +1,5 @@
 import { useState } from 'react'
-/* DatePicker */
+import moment from 'moment'
 import { Container } from './styles'
 
 export function SelectDate({value, setDateBorn}){
@@ -7,7 +7,7 @@ export function SelectDate({value, setDateBorn}){
 
     const handleSetData = (value) => {
         setSelectDate(value)
-        setDateBorn(value)
+        setDateBorn(moment(value).format('YYYY-MM-DD'))
     }
     return(
             <Container className="control">
@@ -17,7 +17,6 @@ export function SelectDate({value, setDateBorn}){
                     onChange={(e) => handleSetData(e.target.value)}
                     value={selectDate} 
                     min="1942-01-01"
-                    max="2012-12-31"
                 />
             </Container>
     )
