@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { RegisterQuestions } from "../../../services/CreateQuestion";
 import { v4 as uuidv4 } from "uuid";
-import { FormatDateForQuestion } from "../../../helpers/FormatDate";
+import moment from "moment";
 import { Categories } from "../../../assets/categories";
 import { GetItemSessionStorage } from '../../../services/Storage'
 import { toast } from "react-toastify";
@@ -25,7 +25,7 @@ export const MakeQuestions = () => {
    const handleSendQuestion = (event) => {
       event.preventDefault();
       const chatUid = uuidv4();
-      const postDate = FormatDateForQuestion();
+      const postDate = moment().format("YYYY-MM-DD HH:mm");
       const userId = GetItemSessionStorage('uid')
       if(category === "" || title === "" || question === ""){
          toast.error('Preencha todos os campos');

@@ -11,11 +11,6 @@ export const Chats = () => {
       GetAllChats().then((chat) => setDataChats(chat));
    }, []);
 
-   if(dataChats.length > 0){
-      console.log(dataChats);
-   }
-
-
    return (
       <>
         {dataChats.length > 0 &&(
