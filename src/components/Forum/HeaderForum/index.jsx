@@ -13,11 +13,22 @@ export function HeaderForum() {
    const [titleHeader, setTitleHeader] = useState('')
 
    useEffect(() => {
-      switch (location.pathname) {
-         case '/forum/make-questions':
+      const pathName = location.pathname
+      const pathNameSplit = pathName.split('/')
+      const lastPath = pathNameSplit[pathNameSplit.length - 1]
+      switch (lastPath) {
+         case 'make-questions':
             setTitleHeader('Nova Questão')
             break;
-      
+         case 'chats':
+            setTitleHeader('Questões já feitas')
+            break;
+         case 'subjects':
+            setTitleHeader('Disciplinas')
+            break;
+            case lastPath:
+               setTitleHeader(`Disciplina - ${lastPath}`)
+               break;
          default:
             setTitleHeader('Minha Questão')
             break;

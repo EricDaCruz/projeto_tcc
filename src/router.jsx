@@ -40,6 +40,9 @@ const Router = () =>{
                     <Route path="make-questions" element={<MakeQuestions />} />
                     <Route path="subjects" element={<Subjects />} /> 
                     <Route path='subjects/:category' element={<Subject />}/>
+                    <Route path='subjects/ds' element={<h1>Ds</h1>}/>
+                    <Route path='subjects/tma' element={<h1>Tma</h1>}/>
+                    <Route path='subjects/tdi' element={<h1>Tdi</h1>}/>
                 </Route> 
                 <Route path="*" element={<Error />} />
             </Routes>

@@ -1,3 +1,4 @@
+
 export const Categories = [
    {
       label: "Sociologia",

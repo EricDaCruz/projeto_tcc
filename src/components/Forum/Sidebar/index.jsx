@@ -54,20 +54,25 @@ export function Sidebar() {
    const [selectItems, setSelectItems] = useState("");
 
    useEffect(() => {
-      switch (location.pathname) {
-         case "/forum/subject":
-            setSelectItems("subject");
+      const pathName = location.pathname;
+      const pathNameSplit = pathName.split("/");
+      const lastPath = pathNameSplit[pathNameSplit.length - 1];
+    
+      switch (lastPath) {
+         case "subjects":
+         case pathNameSplit.includes('subjects') ? lastPath : "":
+            setSelectItems("subjects");
             break;
-         case "/forum/ranking":
+         case "ranking":
             setSelectItems("ranking");
             break;
-         case "/forum/my-questions":
+         case "my-questions":
             setSelectItems("my-questions");
             break;
-         case "/forum/my-answer":
+         case "my-answer":
             setSelectItems("my-answer");
             break;
-         case "/forum/favorite-questions":
+         case "favorite-questions":
             setSelectItems("favorite-questions");
             break;
          default:
