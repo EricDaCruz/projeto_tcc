@@ -20,6 +20,7 @@ import { FormStep6 } from "./components/SingUp/FormStep6";
 import { Chats } from "./components/Forum/Chats";
 import { MakeQuestions } from "./components/Forum/MakeQuestions";
 import { Subjects } from "./components/Subjects";
+import { Subject } from "./components/Subjects/Subject";
 
 const Router = () =>{
     return(
@@ -37,9 +38,8 @@ const Router = () =>{
                 <Route path="/forum" element={<Forum />} >
                     <Route path="chats" element={<Chats />} />
                     <Route path="make-questions" element={<MakeQuestions />} />
-                    <Route path="subjects" element={<Subjects />}> 
-                        <Route path='math' element={<h1>Matemátia</h1>}/>
-                    </Route>
+                    <Route path="subjects" element={<Subjects />} /> 
+                    <Route path='subjects/:category' element={<Subject />}/>
                 </Route> 
                 <Route path="*" element={<Error />} />
             </Routes>

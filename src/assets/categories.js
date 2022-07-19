@@ -1,42 +1,42 @@
 export const Categories = [
    {
       label: "Sociologia",
-      value: "sociologia",
+      value: "sociology",
       src: "soc.png",
    },
    {
       label: "Química",
-      value: "quimica",
+      value: "chemistry",
       src: "qui.png",
    },
    {
       label: "Português",
-      value: "portugues",
+      value: "portuguese",
       src: "port.png",
    },
    {
       label: "Matemática",
-      value: "matematica",
+      value: "math",
       src: "mat.png",
    },
    {
       label: "Inglês",
-      value: "ingles",
+      value: "english",
       src: "ing.png",
    },
    {
       label: "História",
-      value: "historia",
+      value: "history",
       src: "his.png",
    },
    {
       label: "Geografia",
-      value: "geografia",
+      value: "geography",
       src: "geo.png",
    },
    {
       label: "Física",
-      value: "fisica",
+      value: "physics",
       src: "fis.png",
    },
    {
@@ -46,12 +46,12 @@ export const Categories = [
    },
    {
       label: "Educação Física",
-      value: "educacao-fisica",
+      value: "physical-education",
       src: "edf.png",
    },
    {
       label: "Biologia",
-      value: "biologia",
+      value: "biology",
       src: "bio.png",
    },
    {

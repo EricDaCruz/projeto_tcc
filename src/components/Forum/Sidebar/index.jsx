@@ -15,7 +15,7 @@ export function Sidebar() {
    const location = useLocation();
    const sibebarMenuItens = [
       {
-         path: "subject",
+         path: "subjects",
          name: "Disciplinas",
          icon: <BiPurchaseTag />,
       },
@@ -78,7 +78,7 @@ export function Sidebar() {
 
    const handleNavigateRoutes = (item) => {
       switch (item) {
-         case "subject":
+         case "subjects":
             navigate(item);
             break;
          case "ranking":
