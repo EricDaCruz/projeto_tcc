@@ -2,6 +2,8 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
 export const Header = styled.header`
+    padding-top: 0.5rem;
+    height: 80px;
     position:sticky;
     top: 0;
     z-index: 1;
@@ -9,10 +11,11 @@ export const Header = styled.header`
     min-width: 100vw;
     border-bottom: 1px solid #EAEAEA;
     .contentImg{
+        display: flex;
         max-width: 15rem;
         width: 100%;
         img{
-            max-width: 30%;
+            max-width: 25%;
         }
     }
     @media screen and (max-width: 1024px){

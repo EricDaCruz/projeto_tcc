@@ -7,7 +7,7 @@ export const Avatar = ({ src }) => {
     }
 
     return (
-        <div className="is-clickable">
+        <div className="is-clickable is-flex is-align-items">
             {src 
             ? (  <Img 
                     src={src} 

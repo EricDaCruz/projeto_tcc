@@ -1,3 +1,49 @@
+export const CategoriesSelect = [
+   {
+      label: "Sociologia",
+      value: "sociology",
+   },
+   {
+      label: "Química",
+      value: "chemistry",
+   },
+   {
+      label: "Português",
+      value: "portuguese",
+   },
+   {
+      label: "Matemática",
+      value: "math",
+   },
+   {
+      label: "Inglês",
+      value: "english",
+   },
+   {
+      label: "História",
+      value: "history",
+   },
+   {
+      label: "Geografia",
+      value: "geography",
+   },
+   {
+      label: "Física",
+      value: "physics",
+   },
+   {
+      label: "Filosofia",
+      value: "philosophy",
+   },
+   {
+      label: "Educação Física",
+      value: "physical-education",
+   },
+   {
+      label: "Biologia",
+      value: "biology",
+   },
+];
 
 export const Categories = [
    {
@@ -42,7 +88,7 @@ export const Categories = [
    },
    {
       label: "Filosofia",
-      value: "filosofia",
+      value: "philosophy",
       src: "fil.png",
    },
    {
@@ -72,4 +118,8 @@ export const Categories = [
    },
 ];
 
-export const CategoriesBySubject = [];
+export const CategoriesBySubject = {
+   ds: [],
+   tdi: [],
+   tma: [],
+};
