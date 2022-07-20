@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { GetUser } from "../../../services/GetInfoUser";
-import moment from "moment";
-import "moment/locale/pt-br";
+
 import { Section } from "./styles";
 import { Avatar } from "../Avatar";
 import { FiMessageSquare, FiStar } from "react-icons/fi";
@@ -15,8 +14,9 @@ export const Question = ({
    userId,
 }) => {
    const [userData, setUserData] = useState({});
-   const dateFormat = moment(postDate).format("LLL");
+   const dateFormat = new Date(postDate).toLocaleString("pt-BR", {day: '2-digit', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit'});
    useEffect(() => {
+
       GetUser(userId).then((user) => setUserData(user));
    }, []);
 

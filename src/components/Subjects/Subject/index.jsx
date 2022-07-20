@@ -29,6 +29,7 @@ export const Subject = () => {
                      content={question.content}
                      postDate={question.postDate}
                      stars={question.stars}
+                     userId={question.userId}
                      comments={12}
                   />
                );

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { RegisterQuestions } from "../../../services/CreateQuestion";
 import { v4 as uuidv4 } from "uuid";
 import moment from "moment";
-import { Categories } from "../../../assets/categories";
+import { CategoriesSelect } from "../../../assets/categories";
 import { GetItemSessionStorage } from '../../../services/Storage'
 import { toast } from "react-toastify";
 import { FiImage } from "react-icons/fi";
@@ -52,7 +52,7 @@ export const MakeQuestions = () => {
       <Form>
          <select onChange={(e) => setCategory(e.target.value)} value={category}>
             <option value="">Escolha uma categoria</option>
-            {Categories.map((subject, key) => (
+            {CategoriesSelect.map((subject, key) => (
                <option key={key} value={subject.value}>
                   {subject.label}
                </option>

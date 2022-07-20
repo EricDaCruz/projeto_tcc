@@ -21,6 +21,7 @@ import { Chats } from "./components/Forum/Chats";
 import { MakeQuestions } from "./components/Forum/MakeQuestions";
 import { Subjects } from "./components/Subjects";
 import { Subject } from "./components/Subjects/Subject";
+import { SubjectsTec } from "./components/Subjects/SubjectsTec";
 
 const Router = () =>{
     return(
@@ -40,9 +41,12 @@ const Router = () =>{
                     <Route path="make-questions" element={<MakeQuestions />} />
                     <Route path="subjects" element={<Subjects />} /> 
                     <Route path='subjects/:category' element={<Subject />}/>
-                    <Route path='subjects/ds' element={<h1>Ds</h1>}/>
-                    <Route path='subjects/tma' element={<h1>Tma</h1>}/>
-                    <Route path='subjects/tdi' element={<h1>Tdi</h1>}/>
+                    <Route path='subjects/ds' element={<SubjectsTec />}/>
+                    <Route path='subjects/ds/:category' element={<Subject />}/>
+                    <Route path='subjects/tma' element={<SubjectsTec />}/>
+                    <Route path='subjects/tma/:category' element={<Subject />}/>
+                    <Route path='subjects/tdi' element={<SubjectsTec />}/>
+                    <Route path='subjects/tdi/:category' element={<Subject />}/>
                 </Route> 
                 <Route path="*" element={<Error />} />
             </Routes>
