@@ -76,7 +76,7 @@ export const Question = ({
                   onClick={() => handleFavorite(chatUid)}
                >
                   {isFavorite ? (
-                     <BsStarFill style={{ color: "#ff0" }} />
+                     <BsStarFill style={{ color: "#FFD400"}} />
                   ) : (
                      <FiStar />
                   )}
