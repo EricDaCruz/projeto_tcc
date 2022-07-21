@@ -44,31 +44,31 @@ export const CategoriesSelect = [
       value: "biology",
    },
    {
-      label: "TDI - rtm",
+      label: "TDI - RTM",
       value: "tdi-rtm",
    },
    {
-      label: "TDI - rlpa",
+      label: "TDI - RLPA",
       value: "tdi-rlpa",
    },
    {
-      label: "TDI - rdpi",
+      label: "TDI - RDPI",
       value: "tdi-rdpi",
    },
    {
-      label: "TDI - pir",
+      label: "TDI - PIR",
       value: "tdi-pir",
    },
    {
-      label: "TDI - pic",
+      label: "TDI - PIC",
       value: "tdi-pic",
    },
    {
-      label: "TDI - pee",
+      label: "TDI - PEE",
       value: "tdi-pee",
    },
    {
-      label: "TDI - ipi",
+      label: "TDI - IPI",
       value: "tdi-ipi",
    },
    {
@@ -76,7 +76,7 @@ export const CategoriesSelect = [
       value: "tdi-history-do-mob",
    },
    {
-      label: "TDI - evadi",
+      label: "TDI - EVADI",
       value: "tdi-evadi",
    },
    {
@@ -84,119 +84,119 @@ export const CategoriesSelect = [
       value: "tdi-ergonomia",
    },
    {
-      label: "TDI - cpdi",
+      label: "TDI - CPDI",
       value: "tdi-cpdi",
    },
    {
-      label: "TDI - caapi",
+      label: "TDI - CAAPI",
       value: "tdi-caapi",
    },
    {
-      label: "TDI - eamrdi",
+      label: "TDI - EAMRDI",
       value: "tdi-eamrdi",
    },
    {
-      label: "TMA - uos",
+      label: "TMA - UOS",
       value: "tma-uos",
    },
    {
-      label: "TMA - star",
+      label: "TMA - STAR",
       value: "tma-star",
    },
    {
-      label: "TMA - pqa",
+      label: "TMA - PQA",
       value: "tma-pqa",
    },
    {
-      label: "TMA - pea",
+      label: "TMA - PEA",
       value: "tma-pea",
    },
    {
-      label: "TMA - tp",
+      label: "TMA - TP",
       value: "tma-tp",
    },
    {
-      label: "TMA - pct",
+      label: "TMA - PCT",
       value: "tma-pct",
    },
    {
-      label: "TMA - pasp",
+      label: "TMA - PASP",
       value: "tma-pasp",
    },
    {
-      label: "TMA - pamc",
+      label: "TMA - PAMC",
       value: "tma-pamc",
    },
    {
-      label: "TMA - mrv",
+      label: "TMA - MRV",
       value: "tma-mrv",
    },
    {
-      label: "TMA - lei",
+      label: "TMA - LEI",
       value: "tma-lei",
    },
    {
-      label: "TMA - gqia",
+      label: "TMA - GQIA",
       value: "tma-gqia",
    },
    {
-      label: "TMA - ema",
+      label: "TMA - EMA",
       value: "tma-ema",
    },
    {
-      label: "TMA - ds",
+      label: "TMA - DS",
       value: "tma-ds",
    },
    {
-      label: "TMA - amaas",
+      label: "TMA - AMAAS",
       value: "tma-amaas",
    },
    {
-      label: "TMA - afqae",
+      label: "TMA - AFQAE",
       value: "tma-afqae",
    },
    {
-      label: "DS - tpa",
+      label: "DS - TPA",
       value: "ds-tpa",
    },
    {
-      label: "DS - se",
+      label: "DS - SE",
       value: "ds-se",
    },
    {
-      label: "DS - qts",
+      label: "DS - QTS",
       value: "ds-qts",
    },
    {
-      label: "DS - pw",
+      label: "DS - PW",
       value: "ds-pw",
    },
    {
-      label: "DS - pam",
+      label: "DS - PAM",
       value: "ds-pam",
    },
    {
-      label: "DS - ipssi",
+      label: "DS - IPSSI",
       value: "ds-ipssi",
    },
    {
-      label: "DS - fi",
+      label: "DS - FI",
       value: "ds-fi",
    },
    {
-      label: "DS - ds",
+      label: "DS - DS",
       value: "ds-ds",
    },
    {
-      label: "DS - dd",
+      label: "DS - DD",
       value: "ds-dd",
    },
    {
-      label: "DS - bd",
+      label: "DS - BD",
       value: "ds-bd",
    },
    {
-      label: "DS - aps",
+      label: "DS - APS",
       value: "ds-aps",
    },
 ];
