@@ -15,16 +15,16 @@ export const Chats = () => {
       <>
         {dataChats.length > 0 &&(
          dataChats.map((chat) =>{
-            const { title, postDate, content,stars, comments, userId } = chat;
-            
+            const { title, postDate, content,stars, comments, userId, chatUid } = chat;           
                   return (
-                     <Question key={chat.chatUid}
+                     <Question key={chatUid}
                         title={title}
                         postDate={postDate}
                         content={content}
                         stars={stars}
                         comments={12}
                         userId={userId}
+                        chatUid={chatUid}
                      />
                   );
          })

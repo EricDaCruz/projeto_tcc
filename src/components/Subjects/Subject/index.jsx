@@ -21,16 +21,17 @@ export const Subject = () => {
    return (
       <>
          {subject.length !== 0 ? (
-            subject.map((question, key) => {
+            subject.map((question) => {
                return (
                   <Question
-                     key={key}
+                     key={question.chatUid}
                      title={question.title}
                      content={question.content}
                      postDate={question.postDate}
                      stars={question.stars}
                      userId={question.userId}
                      comments={12}
+                     chatUid={question.chatUid}
                   />
                );
             })
