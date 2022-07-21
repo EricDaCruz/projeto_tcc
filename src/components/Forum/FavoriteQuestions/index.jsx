@@ -2,19 +2,30 @@ import {useEffect, useState} from 'react';
 import { GetFavoriteQuestions } from '../../../services/FavoriteQuestion'
 import { GetItemSessionStorage } from '../../../services/Storage';
 import { Question } from '../Question';
-
+import { LoaderQuestion } from '../../LoaderQuestion'
 
 export const FavoriteQuestions = () => {
   const userUid = GetItemSessionStorage('uid')
   const[questions, setQuestions] = useState([])
+  const[loading, setLoading] = useState(true)
+
   useEffect(() => {
-    GetFavoriteQuestions(userUid).then((question) => setQuestions(question))
+    setLoading(true)
+    GetFavoriteQuestions(userUid)
+    .then((question) => {
+      setQuestions(question)
+      setLoading(false)
+    })
   },[])
 
   return(
     <>
-      {
-        questions.length > 0 && (
+      {loading 
+      ?(
+        <LoaderQuestion />
+      ) 
+      :(
+        questions.length > 0 ? (
           questions.map((question) => {
             const {title, postDate, content, stars, comments, userId, chatUid} = question
             return (
@@ -30,7 +41,16 @@ export const FavoriteQuestions = () => {
               />
             )
           }
-        ))
+        )):(
+          <div>
+               <p className="has-text-centered is-size-4">
+                  Ainda não há questões favoritadas
+               </p>
+            </div>
+        )
+      )
+      
+       
       }
     </>
   )

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { SingOutUser } from '../../../services/SingOutUser'
 import { RemoveItemSessionStorage } from '../../../services/Storage'
 import { BiPurchaseTag, BiAward, BiSearch } from "react-icons/bi";
 import {
@@ -99,6 +100,7 @@ export function Sidebar() {
             navigate(item);
             break;
          default:
+            SingOutUser()
             RemoveItemSessionStorage("uid");
             navigate("/");
             break;

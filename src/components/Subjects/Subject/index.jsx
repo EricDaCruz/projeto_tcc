@@ -2,16 +2,20 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getQuestionsByCategory } from "../../../services/GetQuestionsByCategory";
 import { Question } from "../../Forum/Question";
+import { LoaderQuestion } from "../../LoaderQuestion";
 
 export const Subject = () => {
    const { category } = useParams();
 
    const [subject, setSubject] = useState([]);
+   const [loading, setLoading] = useState(true);
 
    useEffect(() => {
-      getQuestionsByCategory(category).then((questions) =>
-         setSubject(questions)
-      );
+      setLoading(true);
+      getQuestionsByCategory(category).then((questions) => {
+         setSubject(questions);
+         setLoading(false);
+      });
    }, []);
 
    if (subject.length !== 0) {
@@ -20,7 +24,9 @@ export const Subject = () => {
 
    return (
       <>
-         {subject.length !== 0 ? (
+         {loading ? (
+            <LoaderQuestion />
+         ) : subject.length !== 0 ? (
             subject.map((question) => {
                return (
                   <Question
@@ -37,7 +43,9 @@ export const Subject = () => {
             })
          ) : (
             <div>
-                <p className="has-text-centered is-size-4">Ainda não foram feitas questões nessa categoria 😭</p>
+               <p className="has-text-centered is-size-4">
+                  Ainda não foram feitas questões nessa categoria 😭
+               </p>
             </div>
          )}
       </>

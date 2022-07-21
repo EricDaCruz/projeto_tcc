@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { Avatar } from '../Avatar'
 import {FaBars, FaTimes} from 'react-icons/fa'
 import { FiBell, FiPlusCircle } from 'react-icons/fi'
@@ -46,9 +46,11 @@ export function HeaderForum() {
    return (
       <Header>
          <ContentHeader className="container ">
-            <div className="contentImg">
-               <img src={Icon} alt="" width="80%"/>
-            </div>
+            <Link to="chats">
+               <div className="contentImg">
+                  <img src={Icon} alt="" width="80%"/>
+               </div>
+            </Link>
             <Nav showNavbar={showNavbar}>
                   <h2>{titleHeader}</h2>
                <ContentLinks className="">
