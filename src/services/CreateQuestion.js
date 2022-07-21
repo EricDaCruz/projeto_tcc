@@ -15,7 +15,7 @@ export const RegisterQuestions = async (
       comments: [{ userId: "", content: "" }],
       content: question,
       postDate: postDate,
-      stars: 2,
+      stars: [],
       title: title,
       userId: userId,
    });
