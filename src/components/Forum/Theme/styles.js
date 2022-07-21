@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const ContentAll = styled.div`
-    height: 100vh;
+    min-height: 100vh;
     background-color: #FAFAFA;
 `
 

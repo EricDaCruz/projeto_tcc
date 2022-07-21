@@ -39,6 +39,8 @@ const Router = () =>{
                 <Route path="/forum" element={<Forum />} >
                     <Route path="chats" element={<Chats />} />
                     <Route path="make-questions" element={<MakeQuestions />} />
+                    <Route path="favorite-questions" element={<Subjects />} />
+                    {/* Disciplinas */}
                     <Route path="subjects" element={<Subjects />} /> 
                     <Route path='subjects/:category' element={<Subject />}/>
                     <Route path='subjects/ds' element={<SubjectsTec />}/>
