@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { getQuestionsByCategory } from "../../../services/GetQuestionsByCategory";
 import { Question } from "../../Forum/Question";
 import { LoaderQuestion } from "../../LoaderQuestion";
+import { sortQuestionsByDate } from "../../../helpers/SortQuestionsByDate"
 
 export const Subject = () => {
    const { category } = useParams();
@@ -13,7 +14,8 @@ export const Subject = () => {
    useEffect(() => {
       setLoading(true);
       getQuestionsByCategory(category).then((questions) => {
-         setSubject(questions);
+         const sortQuestions = sortQuestionsByDate(questions)
+         setSubject(sortQuestions);
          setLoading(false);
       });
    }, []);

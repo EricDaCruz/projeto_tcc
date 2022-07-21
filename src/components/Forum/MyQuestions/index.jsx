@@ -3,6 +3,7 @@ import { Question } from "../Question";
 import { getMyQuestions } from "../../../services/GetMyQuestions";
 import { GetItemSessionStorage } from "../../../services/Storage";
 import { LoaderQuestion } from "../../LoaderQuestion";
+import { sortQuestionsByDate } from "../../../helpers/SortQuestionsByDate";
 
 export const MyQuestions = () => {
    const [myQuestions, setMyQuestions] = useState([]);
@@ -12,7 +13,8 @@ export const MyQuestions = () => {
       setLoading(true);
       const userUid = GetItemSessionStorage("uid");
       getMyQuestions(userUid).then((questions) => {
-         setMyQuestions(questions);
+         const sortQuestions = sortQuestionsByDate(questions);
+         setMyQuestions(sortQuestions);
          setLoading(false);
       });
    }, []);

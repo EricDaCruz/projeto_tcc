@@ -3,6 +3,7 @@ import { GetFavoriteQuestions } from '../../../services/FavoriteQuestion'
 import { GetItemSessionStorage } from '../../../services/Storage';
 import { Question } from '../Question';
 import { LoaderQuestion } from '../../LoaderQuestion'
+import { sortQuestionsByDate } from '../../../helpers/SortQuestionsByDate';
 
 export const FavoriteQuestions = () => {
   const userUid = GetItemSessionStorage('uid')
@@ -13,7 +14,8 @@ export const FavoriteQuestions = () => {
     setLoading(true)
     GetFavoriteQuestions(userUid)
     .then((question) => {
-      setQuestions(question)
+      const sortQuestions = sortQuestionsByDate(question)
+      setQuestions(sortQuestions)
       setLoading(false)
     })
   },[])
