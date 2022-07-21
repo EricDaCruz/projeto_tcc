@@ -23,6 +23,7 @@ import { Subjects } from "./components/Subjects";
 import { Subject } from "./components/Subjects/Subject";
 import { SubjectsTec } from "./components/Subjects/SubjectsTec";
 import { FavoriteQuestions } from "./components/Forum/FavoriteQuestions";
+import { MyQuestions } from "./components/Forum/MyQuestions";
 
 const Router = () =>{
     return(
@@ -41,6 +42,7 @@ const Router = () =>{
                     <Route path="chats" element={<Chats />} />
                     <Route path="make-questions" element={<MakeQuestions />} />
                     <Route path="favorite-questions" element={<FavoriteQuestions />} />
+                    <Route path="my-questions" element={<MyQuestions />} />
                     {/* Disciplinas */}
                     <Route path="subjects" element={<Subjects />} /> 
                     <Route path='subjects/:category' element={<Subject />}/>

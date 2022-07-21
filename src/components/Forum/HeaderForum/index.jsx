@@ -26,9 +26,15 @@ export function HeaderForum() {
          case 'subjects':
             setTitleHeader('Disciplinas')
             break;
-            case lastPath:
-               setTitleHeader(`Disciplina - ${lastPath}`)
-               break;
+         case 'favorite-questions':
+            setTitleHeader('Questões Favoritadas')
+            break;
+         case 'my-questions':
+            setTitleHeader('Minhas Questões')
+            break;
+         case lastPath:
+            setTitleHeader(`Disciplina - ${lastPath}`)
+            break;
          default:
             setTitleHeader('Minha Questão')
             break;
