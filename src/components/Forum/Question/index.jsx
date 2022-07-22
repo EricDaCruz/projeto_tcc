@@ -4,22 +4,26 @@ import {
    GetQuestion,
    FavoriteQuestion,
 } from "../../../services/FavoriteQuestion";
+import { useNavigate } from "react-router-dom";
 import { GetItemSessionStorage } from "../../../services/Storage";
 import { Section } from "./styles";
 import { Avatar } from "../Avatar";
 import { FiMessageSquare, FiStar } from "react-icons/fi";
 import { BsStarFill } from "react-icons/bs";
+import { GetComments } from "../../../services/GetComments";
 
 export const Question = ({
    title,
    postDate,
    content,
    stars,
-   comments,
    userId,
    chatUid,
+   isInQuestion,
 }) => {
+   const navigate = useNavigate();
    const [userData, setUserData] = useState({});
+   const [comments, setComments] = useState([]);
    const [starsFavorite, setStarsFavorite] = useState(stars);
    const [isFavorite, setIsFavorite] = useState(false);
    const dateFormat = new Date(postDate).toLocaleString("pt-BR", {
@@ -35,61 +39,68 @@ export const Question = ({
          ? setIsFavorite(true)
          : setIsFavorite(false);
    }, []);
+   useEffect(() => {
+      GetComments(chatUid).then((comments) => setComments(comments));
+   }, []);
 
    const handleFavorite = async (uid) => {
       const dataChat = await GetQuestion(uid);
       const userFavorite = GetItemSessionStorage("uid");
-      if(isFavorite){
-         const newStars = dataChat.stars.filter((star) => star !== userFavorite);
+      if (isFavorite) {
+         const newStars = dataChat.stars.filter(
+            (star) => star !== userFavorite
+         );
          setStarsFavorite(newStars);
-         await FavoriteQuestion(uid, newStars, dataChat)
+         await FavoriteQuestion(uid, newStars, dataChat);
          setIsFavorite(false);
-      }else{
+      } else {
          const newStars = [...dataChat.stars, userFavorite];
          setStarsFavorite(newStars);
-         await FavoriteQuestion(uid, newStars, dataChat)
+         await FavoriteQuestion(uid, newStars, dataChat);
          setIsFavorite(true);
       }
    };
 
    return (
-         <Section className="mb-5">
-            <div className="is-flex is-align-items-center" style={{ gap: "1rem" }}>
-               <Avatar />
-               <div>
-                  <p className="has-text-black" style={{ color: "#808080" }}>
-                     {userData.username}
-                  </p>
-                  <span className="is-size-7	">{dateFormat}</span>
-               </div>
+      <Section className="mb-5" isInQuestion={isInQuestion}>
+         <div className="is-flex is-align-items-center" style={{ gap: "1rem" }}>
+            <Avatar />
+            <div>
+               <p className="has-text-black" style={{ color: "#808080" }}>
+                  {userData.username}
+               </p>
+               <span className="is-size-7	">{dateFormat}</span>
             </div>
-            <div className="my-4 ">
-               <h2 className="mb-1 is-size-5 has-text-weight-bold">{title}</h2>
-               <p>{content}</p>
+         </div>
+         <div className="my-4 ">
+            <h2 className="mb-1 is-size-5 has-text-weight-bold">{title}</h2>
+            <p>{content}</p>
+         </div>
+         <div className="is-flex is-justify-content-flex-end">
+            <div className="is-flex" style={{ gap: "1.25rem" }}>
+               <span
+                  className="is-flex is-clickable is-align-items-center"
+                  style={{ gap: "0.25rem" }}
+                  onClick={() => handleFavorite(chatUid)}
+               >
+                  {isFavorite ? (
+                     <BsStarFill style={{ color: "#FFD400" }} />
+                  ) : (
+                     <FiStar />
+                  )}
+                  <p>{starsFavorite.length}</p>
+               </span>
+
+               <span
+                  className="is-flex is-clickable is-align-items-center"
+                  style={{ gap: "0.25rem" }}
+                  onClick={!isInQuestion ? () => navigate(`/forum/question/${chatUid}`) : null}
+               >
+                  <FiMessageSquare />
+                  <p>{comments.length}</p>
+               </span>
             </div>
-            <div className="is-flex is-justify-content-flex-end">
-               <div className="is-flex" style={{ gap: "1.25rem" }}>
-                  <span
-                     className="is-flex is-clickable is-align-items-center"
-                     style={{ gap: "0.25rem" }}
-                     onClick={() => handleFavorite(chatUid)}
-                  >
-                     {isFavorite ? (
-                        <BsStarFill style={{ color: "#FFD400"}} />
-                     ) : (
-                        <FiStar />
-                     )}
-                     <p>{starsFavorite.length}</p>
-                  </span>
-                  <span
-                     className="is-flex is-clickable is-align-items-center"
-                     style={{ gap: "0.25rem" }}
-                  >
-                     <FiMessageSquare />
-                     <p>{comments}</p>
-                  </span>
-               </div>
-            </div>
-         </Section>
-      );
-   }
+         </div>
+      </Section>
+   );
+};

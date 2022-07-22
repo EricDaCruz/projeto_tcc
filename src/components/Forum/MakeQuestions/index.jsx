@@ -4,7 +4,6 @@ import { v4 as uuidv4 } from "uuid";
 import moment from "moment";
 import { CategoriesSelect } from "../../../assets/categories";
 import { GetItemSessionStorage } from '../../../services/Storage'
-import { Editor } from './Editor'
 import { toast } from "react-toastify";
 import { FiImage } from "react-icons/fi";
 import { IoPaperPlaneOutline } from "react-icons/io5";

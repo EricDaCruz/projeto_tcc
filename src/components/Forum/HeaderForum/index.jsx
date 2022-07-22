@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { validate as uuidValidate } from 'uuid';
 import { Avatar } from '../Avatar'
 import {FaBars, FaTimes} from 'react-icons/fa'
 import { FiBell, FiPlusCircle } from 'react-icons/fi'
@@ -146,8 +147,12 @@ export function HeaderForum() {
             setTitleHeader('Minhas Questões')
             break;
          case lastPath:
-            let title = titleSubject(lastPath)
-            setTitleHeader(`Disciplina - ${title}`)
+            if(uuidValidate(lastPath)){
+               setTitleHeader('Questão')
+            }else{
+               let title = titleSubject(lastPath)
+               setTitleHeader(`Disciplina - ${title}`)
+            }
             break;
          default:
             setTitleHeader('Minha Questão')
