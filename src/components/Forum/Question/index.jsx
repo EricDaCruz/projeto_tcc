@@ -6,10 +6,11 @@ import {
 } from "../../../services/FavoriteQuestion";
 import { useNavigate } from "react-router-dom";
 import { GetItemSessionStorage } from "../../../services/Storage";
+import { Tooltip } from "../Tooltip";
 import { Section } from "./styles";
 import { Avatar } from "../Avatar";
 import { FiMessageSquare, FiStar } from "react-icons/fi";
-import { BsStarFill, BsThreeDotsVertical } from "react-icons/bs";
+import { BsStarFill } from "react-icons/bs";
 import { GetComments } from "../../../services/GetComments";
 
 export const Question = ({
@@ -75,7 +76,7 @@ export const Question = ({
                </div>
             </div>
             <span className="is-clickable">
-               <BsThreeDotsVertical />
+               <Tooltip userIdSend={userId} chatUid={chatUid}/>
             </span>
          </div>
          <div className="my-4 ">
