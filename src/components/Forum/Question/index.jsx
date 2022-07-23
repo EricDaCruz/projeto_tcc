@@ -9,7 +9,7 @@ import { GetItemSessionStorage } from "../../../services/Storage";
 import { Section } from "./styles";
 import { Avatar } from "../Avatar";
 import { FiMessageSquare, FiStar } from "react-icons/fi";
-import { BsStarFill } from "react-icons/bs";
+import { BsStarFill, BsThreeDotsVertical } from "react-icons/bs";
 import { GetComments } from "../../../services/GetComments";
 
 export const Question = ({
@@ -41,6 +41,7 @@ export const Question = ({
    }, []);
    useEffect(() => {
       GetComments(chatUid).then((comments) => setComments(comments));
+      console.log(comments);
    }, []);
 
    const handleFavorite = async (uid) => {
@@ -63,14 +64,19 @@ export const Question = ({
 
    return (
       <Section className="mb-5" isInQuestion={isInQuestion}>
-         <div className="is-flex is-align-items-center" style={{ gap: "1rem" }}>
-            <Avatar />
-            <div>
-               <p className="has-text-black" style={{ color: "#808080" }}>
-                  {userData.username}
-               </p>
-               <span className="is-size-7	">{dateFormat}</span>
+         <div className="is-flex is-align-items-center is-justify-content-space-between">
+            <div className="is-flex is-align-items-center" style={{ gap: "1rem" }}>
+               <Avatar />
+               <div>
+                  <p className="has-text-black" style={{ color: "#808080" }}>
+                     {userData.username}
+                  </p>
+                  <span className="is-size-7	">{dateFormat}</span>
+               </div>
             </div>
+            <span className="is-clickable">
+               <BsThreeDotsVertical />
+            </span>
          </div>
          <div className="my-4 ">
             <h2 className="mb-1 is-size-5 has-text-weight-bold">{title}</h2>

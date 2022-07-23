@@ -7,7 +7,7 @@ import {
 } from "../../../../services/FavoriteQuestion";
 import { Avatar } from "../../Avatar";
 import { FiStar } from "react-icons/fi";
-import { BsStarFill } from "react-icons/bs";
+import { BsStarFill, BsThreeDotsVertical } from "react-icons/bs";
 
 export const Comments = ({
    content,
@@ -56,10 +56,8 @@ export const Comments = ({
    return (
       <>
          <div>
-            <div
-               className="is-flex is-align-items-center"
-               style={{ gap: "1rem" }}
-            >
+         <div className="is-flex is-align-items-center is-justify-content-space-between">
+            <div className="is-flex is-align-items-center" style={{ gap: "1rem" }}>
                <Avatar />
                <div>
                   <p className="has-text-black" style={{ color: "#808080" }}>
@@ -68,6 +66,10 @@ export const Comments = ({
                   <span className="is-size-7	">{dateFormat}</span>
                </div>
             </div>
+            <span className="is-clickable">
+               <BsThreeDotsVertical />
+            </span>
+         </div>
             <div className="mt-5 mb-4">
                <p>{content}</p>
             </div>
