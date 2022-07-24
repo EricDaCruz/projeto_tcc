@@ -6,6 +6,7 @@ import {
    FavoriteQuestion,
 } from "../../../../services/FavoriteQuestion";
 import { Avatar } from "../../Avatar";
+import { Tooltip } from "../../Tooltip"; 
 import { FiStar } from "react-icons/fi";
 import { BsStarFill, BsThreeDotsVertical } from "react-icons/bs";
 
@@ -67,7 +68,7 @@ export const Comments = ({
                </div>
             </div>
             <span className="is-clickable">
-               <BsThreeDotsVertical />
+               <Tooltip userIdSend={userId} commentUid={commentUid}/>
             </span>
          </div>
             <div className="mt-5 mb-4">
