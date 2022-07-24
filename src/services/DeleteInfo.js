@@ -2,9 +2,8 @@ import { doc, deleteDoc, deleteField, updateDoc } from "firebase/firestore";
 import { db } from "../firebase";
 
 export const DeleteQuestion = async (chatUid) => {
-    const forumRef = doc(db, "forum-chats", chatUid)
+    const forumRef = doc(db, "forum-chats", chatUid)    
 
-    await deleteDoc(forumRef);
     await updateDoc(forumRef, {
         category: deleteField(),
         comments: deleteField(),
@@ -14,6 +13,7 @@ export const DeleteQuestion = async (chatUid) => {
         title: deleteField(),
         userId: deleteField(),
     });
+    await deleteDoc(forumRef);
 
-    document.location.reload(true);
+    window.location.reload()
 }
