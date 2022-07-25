@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { GetItemSessionStorage } from "../../../../services/Storage";
 import { GetUser } from "../../../../services/GetInfoUser";
+import { FavoriteComment, GetComment } from "../../../../services/FavoriteComment";
 import {
    GetQuestion,
    FavoriteQuestion,
@@ -38,19 +39,19 @@ export const Comments = ({
    }, []);
 
    const handleFavorite = async (uid) => {
-      const dataChat = await GetQuestion(uid);
+      const dataComment = await GetComment(uid);
       const userFavorite = GetItemSessionStorage("uid");
       if (isFavorite) {
-         const newStars = dataChat.stars.filter(
+         const newStars = dataComment.stars.filter(
             (star) => star !== userFavorite
          );
          setStarsFavorite(newStars);
-         await FavoriteQuestion(uid, newStars, dataChat);
+         await FavoriteComment(uid, newStars);
          setIsFavorite(false);
       } else {
-         const newStars = [...dataChat.stars, userFavorite];
+         const newStars = [...dataComment.stars, userFavorite];
          setStarsFavorite(newStars);
-         await FavoriteQuestion(uid, newStars, dataChat);
+         await FavoriteComment(uid, newStars);
          setIsFavorite(true);
       }
    };
@@ -89,7 +90,7 @@ export const Comments = ({
                   <span
                      className="is-flex is-clickable is-align-items-center"
                      style={{ gap: "0.25rem" }}
-                     onClick={() => handleFavorite(chatUid)}
+                     onClick={() => handleFavorite(commentUid)}
                   >
                      {isFavorite ? (
                         <BsStarFill style={{ color: "#FFD400" }} />

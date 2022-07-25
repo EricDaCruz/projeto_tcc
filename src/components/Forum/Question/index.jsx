@@ -53,12 +53,12 @@ export const Question = ({
             (star) => star !== userFavorite
          );
          setStarsFavorite(newStars);
-         await FavoriteQuestion(uid, newStars, dataChat);
+         await FavoriteQuestion(uid, newStars);
          setIsFavorite(false);
       } else {
          const newStars = [...dataChat.stars, userFavorite];
          setStarsFavorite(newStars);
-         await FavoriteQuestion(uid, newStars, dataChat);
+         await FavoriteQuestion(uid, newStars);
          setIsFavorite(true);
       }
    };

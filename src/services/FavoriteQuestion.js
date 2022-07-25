@@ -1,4 +1,4 @@
-import { doc, collection, getDocs, getDoc, setDoc, query, where } from "firebase/firestore";
+import { doc, collection, getDocs, getDoc, updateDoc, query, where } from "firebase/firestore";
 import { db } from "../firebase";
 
 export const GetQuestion = async (chatUid) => {
@@ -12,9 +12,8 @@ export const GetQuestion = async (chatUid) => {
       console.log("No such document!");
    }
 };
-export const FavoriteQuestion = async (chatUid, newStars, dataChat) => {
-   await setDoc(doc(db, "forum-chats", chatUid), {
-      ...dataChat,
+export const FavoriteQuestion = async (chatUid, newStars) => {
+   await updateDoc(doc(db, "forum-chats", chatUid), {
       stars: newStars,
    });
 };
