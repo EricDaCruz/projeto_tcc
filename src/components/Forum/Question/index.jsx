@@ -42,7 +42,6 @@ export const Question = ({
    }, []);
    useEffect(() => {
       GetComments(chatUid).then((comments) => setComments(comments));
-      console.log(comments);
    }, []);
 
    const handleFavorite = async (uid) => {
