@@ -6,7 +6,7 @@ import {
    FavoriteQuestion,
 } from "../../../../services/FavoriteQuestion";
 import { Avatar } from "../../Avatar";
-import { Tooltip } from "../../Tooltip"; 
+import { Tooltip } from "../../Tooltip";
 import { FiStar } from "react-icons/fi";
 import { BsStarFill, BsThreeDotsVertical } from "react-icons/bs";
 
@@ -57,20 +57,29 @@ export const Comments = ({
    return (
       <>
          <div>
-         <div className="is-flex is-align-items-center is-justify-content-space-between">
-            <div className="is-flex is-align-items-center" style={{ gap: "1rem" }}>
-               <Avatar />
-               <div>
-                  <p className="has-text-black" style={{ color: "#808080" }}>
-                     {userData.username}
-                  </p>
-                  <span className="is-size-7	">{dateFormat}</span>
+            <div className="is-flex is-align-items-center is-justify-content-space-between">
+               <div
+                  className="is-flex is-align-items-center"
+                  style={{ gap: "1rem" }}
+               >
+                  <Avatar />
+                  <div>
+                     <p className="has-text-black" style={{ color: "#808080" }}>
+                        {userData.username}
+                     </p>
+                     <span className="is-size-7	">{dateFormat}</span>
+                  </div>
                </div>
+               <span className="is-clickable">
+                  <Tooltip
+                     userIdSend={userId}
+                     usernameSend={userData.username}
+                     commentUid={commentUid}
+                     content={content}
+                     postDate={dateFormat}
+                  />
+               </span>
             </div>
-            <span className="is-clickable">
-               <Tooltip userIdSend={userId} commentUid={commentUid}/>
-            </span>
-         </div>
             <div className="mt-5 mb-4">
                <p>{content}</p>
             </div>
@@ -91,7 +100,7 @@ export const Comments = ({
                </div>
             </div>
          </div>
-         <hr style={{backgroundColor:"#eaeaea"}} />
+         <hr style={{ backgroundColor: "#eaeaea" }} />
       </>
    );
 };

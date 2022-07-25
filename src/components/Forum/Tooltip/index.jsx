@@ -1,4 +1,5 @@
 import { DeleteQuestions, DeleteComments } from "../../../services/DeleteInfo";
+import { GetUser } from "../../../services/GetInfoUser";
 import { GetItemSessionStorage } from "../../../services/Storage";
 import { toast } from "react-toastify";
 import Popup from "reactjs-popup";
@@ -11,7 +12,7 @@ import { Container, Button } from "./styles";
 
 import emailjs from "@emailjs/browser";
 
-export const Tooltip = ({ userIdSend, chatUid, commentUid }) => {
+export const Tooltip = ({ usernameSend, chatUid, commentUid, content, postDate, userIdSend }) => {
    const userId = GetItemSessionStorage("uid");
 
    const deleteQuestion = () => {
@@ -28,11 +29,16 @@ export const Tooltip = ({ userIdSend, chatUid, commentUid }) => {
          toast.success("Comentário deletado com sucesso!")
       );
    };
-   const denounceComment = () => {
+   const denounceComment = async () => {
+      const userDenounce = await GetUser(userId);
+
       emailjs.init(import.meta.env.VITE_APP_USER_ID);
       const template_params = {
-         commentUid: "teste123456",
-         username: "erc",
+         commentUid: commentUid,
+         usernameSend: usernameSend,
+         date: postDate,
+         content: content,
+         username: userDenounce.username,
       };
 
       emailjs
@@ -41,7 +47,7 @@ export const Tooltip = ({ userIdSend, chatUid, commentUid }) => {
             import.meta.env.VITE_APP_COMMENT_TEMPLATE_ID,
             template_params
          )
-         .then((result) => console.log(result));
+         .then((result) => toast.info("Comentário denunciado, logo mais nossos administradores iram verificar!"));
    };
 
    return (
