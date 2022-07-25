@@ -10,9 +10,9 @@ import {
 } from "react-icons/bs";
 import { Container, Button } from "./styles";
 
-import emailjs from "@emailjs/browser";
+import { Denounce } from '../../../services/Denounce';
 
-export const Tooltip = ({ usernameSend, chatUid, commentUid, content, postDate, userIdSend }) => {
+export const Tooltip = ({ usernameSend, chatUid, commentUid, content, postDate, userIdSend, title }) => {
    const userId = GetItemSessionStorage("uid");
 
    const deleteQuestion = () => {
@@ -20,8 +20,10 @@ export const Tooltip = ({ usernameSend, chatUid, commentUid, content, postDate, 
          toast.success("Pergunta deletada com sucesso!")
       );
    };
-   const denounceQuestion = () => {
-      console.log("Denunciar Pergunta");
+   const denounceQuestion = async () => {
+      const denounce = new Denounce(userId, chatUid, "", title, content, postDate, usernameSend);
+
+      denounce.question()
    };
 
    const deleteComment = () => {
@@ -30,24 +32,9 @@ export const Tooltip = ({ usernameSend, chatUid, commentUid, content, postDate, 
       );
    };
    const denounceComment = async () => {
-      const userDenounce = await GetUser(userId);
+      const denounce = new Denounce(userId, "", commentUid, "", content, postDate, usernameSend);
 
-      emailjs.init(import.meta.env.VITE_APP_USER_ID);
-      const template_params = {
-         commentUid: commentUid,
-         usernameSend: usernameSend,
-         date: postDate,
-         content: content,
-         username: userDenounce.username,
-      };
-
-      emailjs
-         .send(
-            import.meta.env.VITE_APP_SERVICE_ID,
-            import.meta.env.VITE_APP_COMMENT_TEMPLATE_ID,
-            template_params
-         )
-         .then((result) => toast.info("Comentário denunciado, logo mais nossos administradores iram verificar!"));
+      denounce.comment()
    };
 
    return (

@@ -76,7 +76,14 @@ export const Question = ({
                </div>
             </div>
             <span className="is-clickable">
-               <Tooltip userIdSend={userId} chatUid={chatUid}/>
+               <Tooltip 
+                  userIdSend={userId} 
+                  chatUid={chatUid}
+                  usernameSend={userData.username}
+                  content={content}
+                  postDate={dateFormat}
+                  title={title}
+               />
             </span>
          </div>
          <div className="my-4 ">

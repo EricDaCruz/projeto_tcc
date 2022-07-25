@@ -11,6 +11,7 @@ import { FiStar } from "react-icons/fi";
 import { BsStarFill, BsThreeDotsVertical } from "react-icons/bs";
 
 export const Comments = ({
+   key,
    content,
    stars,
    postDate,
@@ -56,7 +57,7 @@ export const Comments = ({
 
    return (
       <>
-         <div>
+         <div id={key}>
             <div className="is-flex is-align-items-center is-justify-content-space-between">
                <div
                   className="is-flex is-align-items-center"
