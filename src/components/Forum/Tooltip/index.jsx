@@ -1,6 +1,6 @@
 import { DeleteQuestions, DeleteComments } from "../../../services/DeleteInfo";
-import { GetUser } from "../../../services/GetInfoUser";
 import { GetItemSessionStorage } from "../../../services/Storage";
+import { useNavigate, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import Popup from "reactjs-popup";
 import {
@@ -12,8 +12,10 @@ import { Container, Button } from "./styles";
 
 import { Denounce } from '../../../services/Denounce';
 
-export const Tooltip = ({ usernameSend, chatUid, commentUid, content, postDate, userIdSend, title }) => {
+export const Tooltip = ({ usernameSend, chatUid, commentUid, content, postDate, userIdSend, title}) => {
    const userId = GetItemSessionStorage("uid");
+   const navigate = useNavigate()
+   const location = useLocation()
 
    const deleteQuestion = () => {
       DeleteQuestions(chatUid).then(
@@ -46,6 +48,7 @@ export const Tooltip = ({ usernameSend, chatUid, commentUid, content, postDate, 
          )}
          position="left top"
          closeOnDocumentClick
+   
       >
          <Container>
             {userIdSend === userId && (
@@ -63,6 +66,15 @@ export const Tooltip = ({ usernameSend, chatUid, commentUid, content, postDate, 
                <BsExclamationTriangleFill /> Denunciar{" "}
                {chatUid ? "Questão" : "Comentário"}
             </Button>
+            { location.pathname === "/forum/my-answer" && (
+               <Button
+               action="true"
+               onClick={() => navigate(`/forum/question/${chatUid}`)}
+            >
+               <BsExclamationTriangleFill /> Ir para a questão
+            </Button>
+            )
+            }
          </Container>
       </Popup>
    );

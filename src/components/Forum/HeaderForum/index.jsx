@@ -146,6 +146,9 @@ export function HeaderForum() {
          case 'my-questions':
             setTitleHeader('Minhas Questões')
             break;
+         case 'my-answer':
+            setTitleHeader('Minhas Respostas')
+            break;
          case lastPath:
             if(uuidValidate(lastPath)){
                setTitleHeader('Questão')

@@ -2,10 +2,6 @@ import { useState, useEffect } from "react";
 import { GetItemSessionStorage } from "../../../../services/Storage";
 import { GetUser } from "../../../../services/GetInfoUser";
 import { FavoriteComment, GetComment } from "../../../../services/FavoriteComment";
-import {
-   GetQuestion,
-   FavoriteQuestion,
-} from "../../../../services/FavoriteQuestion";
 import { Avatar } from "../../Avatar";
 import { Tooltip } from "../../Tooltip";
 import { FiStar } from "react-icons/fi";
@@ -78,6 +74,7 @@ export const Comments = ({
                      commentUid={commentUid}
                      content={content}
                      postDate={dateFormat}
+                     chatUid={chatUid}
                   />
                </span>
             </div>

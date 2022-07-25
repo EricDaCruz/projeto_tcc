@@ -8,6 +8,8 @@ export const Container = styled.div`
     padding: 1rem 0.5rem;
     gap: 0.5rem;
     border: 1px solid #eaeaea;
+
+    background-color: #fff;
 `
 
 export const Button = styled.button`
