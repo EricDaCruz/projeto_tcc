@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Question } from "../Question";
 import { GetAllChats } from "../../../services/GetChats";
 import { LoaderQuestion } from "../../LoaderQuestion";
-import { sortQuestionsByDate } from "../../../helpers/SortQuestionsByDate";
+import { sortByDate } from "../../../helpers/SortQuestionsByDate";
 
 export const Chats = () => {
    const [dataChats, setDataChats] = useState([]);
@@ -11,7 +11,7 @@ export const Chats = () => {
    useEffect(() => {
       setLoading(true);
       GetAllChats().then((questions) => {
-         const sortQuestions = sortQuestionsByDate(questions);
+         const sortQuestions = sortByDate(questions);
          setDataChats(sortQuestions);
          setLoading(false);
       });

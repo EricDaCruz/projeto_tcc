@@ -2,12 +2,11 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { GetQuestion } from "../../../services/GetQuestion";
 import { GetComments } from "../../../services/GetComments";
+import { sortByDate, sortByStars } from "../../../helpers/SortQuestionsByDate";
 import { Question } from "../Question";
 import { Comments } from "./Comments";
 import { MakeComments } from "./MakeComments";
 import { Container, ContentComments } from "./styles";
-import { FiStar } from "react-icons/fi";
-import { BsStarFill } from "react-icons/bs";
 
 export const QuestionWithComments = () => {
    const { questionUid } = useParams();
@@ -19,7 +18,12 @@ export const QuestionWithComments = () => {
    }, []);
 
    useEffect(() => {
-      GetComments(questionUid).then((comments) => setComments(comments));
+      GetComments(questionUid).then((comments) => {
+         const sortComments = sortByDate(comments)
+         const sortCommentsByStars = sortByStars(sortComments)
+         setComments(sortCommentsByStars);
+         console.log(sortComments);
+      });
    }, []);
 
    return (
