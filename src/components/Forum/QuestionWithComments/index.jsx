@@ -45,6 +45,7 @@ export const QuestionWithComments = () => {
                         stars={question.stars}
                         userId={question.userId}
                         chatUid={question.chatUid}
+                        commentsLength={comments.length}
                         isInQuestion={true}
                      />
                   ) : (

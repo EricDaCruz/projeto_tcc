@@ -20,6 +20,7 @@ export const Question = ({
    stars,
    userId,
    chatUid,
+   commentsLength,
    isInQuestion,
 }) => {
    const navigate = useNavigate();
@@ -111,7 +112,9 @@ export const Question = ({
                   onClick={!isInQuestion ? () => navigate(`/forum/question/${chatUid}`) : null}
                >
                   <FiMessageSquare />
-                  <p>{comments.length}</p>
+                  <p>{
+                     commentsLength > 0 ? commentsLength : comments.length
+                  }</p>
                </span>
             </div>
          </div>
