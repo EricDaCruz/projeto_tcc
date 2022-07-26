@@ -16,7 +16,7 @@ export const FavoriteQuestions = () => {
     .then((question) => {
       const sortQuestions = sortByDate(question)
       const sortQuestionByStars = sortByStars(sortQuestions)
-      setQuestions(sortQuestions)
+      setQuestions(sortQuestionByStars)
       setLoading(false)
     })
   },[])
