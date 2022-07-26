@@ -113,7 +113,7 @@ export const Question = ({
                >
                   <FiMessageSquare />
                   <p>{
-                     commentsLength > 0 ? commentsLength : comments.length
+                     commentsLength ? commentsLength : comments.length
                   }</p>
                </span>
             </div>
