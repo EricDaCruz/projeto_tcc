@@ -4,7 +4,7 @@ import { GetItemSessionStorage } from "../../../services/Storage";
 import { sortByDate, sortByStars } from "../../../helpers/SortQuestionsByDate";
 import { Comments } from "../QuestionWithComments/Comments";
 
-export const MyAnswer = (params) => {
+export const MyAnswer = () => {
    const userId = GetItemSessionStorage("uid");
    const [answerData, setAnswerData] = useState([]);
 
@@ -18,7 +18,7 @@ export const MyAnswer = (params) => {
 
    return (
       <div>
-         {answerData ? (
+         {answerData.length > 0 ? (
             answerData.map((answer) => {
                 const {commentUid, content, stars, postDate, chatUid} = answer;
 

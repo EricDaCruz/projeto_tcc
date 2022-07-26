@@ -10,12 +10,21 @@ import {
 } from "react-icons/bs";
 import { Container, Button } from "./styles";
 
-import { Denounce } from '../../../services/Denounce';
+import { Denounce } from "../../../services/Denounce";
 
-export const Tooltip = ({ usernameSend, chatUid, commentUid, content, postDate, userIdSend, title}) => {
+export const Tooltip = ({
+   usernameSend,
+   chatUid,
+   commentUid,
+   content,
+   postDate,
+   userIdSend,
+   title,
+   isQuestion,
+}) => {
    const userId = GetItemSessionStorage("uid");
-   const navigate = useNavigate()
-   const location = useLocation()
+   const navigate = useNavigate();
+   const location = useLocation();
 
    const deleteQuestion = () => {
       DeleteQuestions(chatUid).then(
@@ -23,9 +32,17 @@ export const Tooltip = ({ usernameSend, chatUid, commentUid, content, postDate, 
       );
    };
    const denounceQuestion = async () => {
-      const denounce = new Denounce(userId, chatUid, "", title, content, postDate, usernameSend);
+      const denounce = new Denounce(
+         userId,
+         chatUid,
+         "",
+         title,
+         content,
+         postDate,
+         usernameSend
+      );
 
-      denounce.question()
+      denounce.question();
    };
 
    const deleteComment = () => {
@@ -34,9 +51,17 @@ export const Tooltip = ({ usernameSend, chatUid, commentUid, content, postDate, 
       );
    };
    const denounceComment = async () => {
-      const denounce = new Denounce(userId, "", commentUid, "", content, postDate, usernameSend);
+      const denounce = new Denounce(
+         userId,
+         "",
+         commentUid,
+         "",
+         content,
+         postDate,
+         usernameSend
+      );
 
-      denounce.comment()
+      denounce.comment();
    };
 
    return (
@@ -48,33 +73,32 @@ export const Tooltip = ({ usernameSend, chatUid, commentUid, content, postDate, 
          )}
          position="left top"
          closeOnDocumentClick
-   
       >
          <Container>
             {userIdSend === userId && (
                <Button
                   action="true"
-                  onClick={chatUid ? deleteQuestion : deleteComment}
+                  onClick={isQuestion ? deleteQuestion : deleteComment}
                >
-                  <BsTrashFill /> Deletar {chatUid ? "Questão" : "Comentário"}
+                  <BsTrashFill /> Deletar{" "}
+                  {isQuestion ? "Questão" : "Comentário"}
                </Button>
             )}
             <Button
                action="true"
-               onClick={chatUid ? denounceQuestion : denounceComment}
+               onClick={isQuestion ? denounceQuestion : denounceComment}
             >
                <BsExclamationTriangleFill /> Denunciar{" "}
-               {chatUid ? "Questão" : "Comentário"}
+               {isQuestion ? "Questão" : "Comentário"}
             </Button>
-            { location.pathname === "/forum/my-answer" && (
+            {location.pathname === "/forum/my-answer" && (
                <Button
-               action="true"
-               onClick={() => navigate(`/forum/question/${chatUid}`)}
-            >
-               <BsExclamationTriangleFill /> Ir para a questão
-            </Button>
-            )
-            }
+                  action="true"
+                  onClick={() => navigate(`/forum/question/${chatUid}`)}
+               >
+                  <BsExclamationTriangleFill /> Ir para a questão
+               </Button>
+            )}
          </Container>
       </Popup>
    );

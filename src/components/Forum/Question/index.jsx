@@ -82,6 +82,7 @@ export const Question = ({
                   content={content}
                   postDate={dateFormat}
                   title={title}
+                  isQuestion={true}
                />
             </span>
          </div>
