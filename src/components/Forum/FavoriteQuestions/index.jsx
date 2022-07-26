@@ -29,7 +29,7 @@ export const FavoriteQuestions = () => {
       :(
         questions.length > 0 ? (
           questions.map((question) => {
-            const {title, postDate, content, stars, comments, userId, chatUid} = question
+            const {title, postDate, content, stars, userId, chatUid} = question
             return (
               <Question  
                 key={chatUid}

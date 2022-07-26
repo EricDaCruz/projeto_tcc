@@ -10,9 +10,9 @@ export const MyAnswer = () => {
 
    useEffect(() => {
       GetMyAnswer(userId).then((answers) => {
-        const sortComments = sortByDate(answers)
-        const sortCommentsByStars = sortByStars(sortComments)
-        setAnswerData(sortCommentsByStars)
+         const sortComments = sortByDate(answers);
+         const sortCommentsByStars = sortByStars(sortComments);
+         setAnswerData(sortCommentsByStars);
       });
    }, []);
 
@@ -20,8 +20,7 @@ export const MyAnswer = () => {
       <div>
          {answerData.length > 0 ? (
             answerData.map((answer) => {
-                const {commentUid, content, stars, postDate, chatUid} = answer;
-
+               const { commentUid, content, stars, postDate, chatUid } = answer;
                return (
                   <Comments
                      key={commentUid}

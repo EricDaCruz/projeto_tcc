@@ -37,20 +37,18 @@ export const QuestionWithComments = () => {
          <div>
             {
                isLoadingQuestion ? (
-                  Object.keys(question).length > 0 ? (
-                     <Question
-                        title={question.title}
-                        postDate={question.postDate}
-                        content={question.content}
-                        stars={question.stars}
-                        userId={question.userId}
-                        chatUid={question.chatUid}
-                        commentsLength={comments.length}
-                        isInQuestion={true}
-                     />
-                  ) : (
-                     ""
-                  )
+                  Object.keys(question).length > 0 && (
+                        <Question
+                           title={question.title}
+                           postDate={question.postDate}
+                           content={question.content}
+                           stars={question.stars}
+                           userId={question.userId}
+                           chatUid={question.chatUid}
+                           commentsLength={comments.length}
+                           isInQuestion={true}
+                        />
+                     )
                ):(
                   <LoaderQuestion />
                )

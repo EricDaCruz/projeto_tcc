@@ -30,11 +30,12 @@ export const Subject = () => {
             <LoaderQuestion />
          ) : subject.length !== 0 ? (
             subject.map((question) => {
+               const formatContent = question.content.split('\n\n')
                return (
                   <Question
                      key={question.chatUid}
                      title={question.title}
-                     content={question.content}
+                     content={formatContent}
                      postDate={question.postDate}
                      stars={question.stars}
                      userId={question.userId}

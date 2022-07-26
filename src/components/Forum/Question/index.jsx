@@ -62,11 +62,14 @@ export const Question = ({
          setIsFavorite(true);
       }
    };
-
+   
    return (
       <Section className="mb-5" isInQuestion={isInQuestion}>
          <div className="is-flex is-align-items-center is-justify-content-space-between">
-            <div className="is-flex is-align-items-center" style={{ gap: "1rem" }}>
+            <div
+               className="is-flex is-align-items-center"
+               style={{ gap: "1rem" }}
+            >
                <Avatar />
                <div>
                   <p className="has-text-black" style={{ color: "#808080" }}>
@@ -76,8 +79,8 @@ export const Question = ({
                </div>
             </div>
             <span className="is-clickable">
-               <Tooltip 
-                  userIdSend={userId} 
+               <Tooltip
+                  userIdSend={userId}
                   chatUid={chatUid}
                   usernameSend={userData.username}
                   content={content}
@@ -89,6 +92,7 @@ export const Question = ({
          </div>
          <div className="my-4 ">
             <h2 className="mb-1 is-size-5 has-text-weight-bold">{title}</h2>
+
             <p>{content}</p>
          </div>
          <div className="is-flex is-justify-content-flex-end">
@@ -109,12 +113,14 @@ export const Question = ({
                <span
                   className="is-flex is-clickable is-align-items-center"
                   style={{ gap: "0.25rem" }}
-                  onClick={!isInQuestion ? () => navigate(`/forum/question/${chatUid}`) : null}
+                  onClick={
+                     !isInQuestion
+                        ? () => navigate(`/forum/question/${chatUid}`)
+                        : null
+                  }
                >
                   <FiMessageSquare />
-                  <p>{
-                     commentsLength ? commentsLength : comments.length
-                  }</p>
+                  <p>{commentsLength ? commentsLength : comments.length}</p>
                </span>
             </div>
          </div>

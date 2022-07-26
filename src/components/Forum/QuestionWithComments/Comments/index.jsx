@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
 import { GetItemSessionStorage } from "../../../../services/Storage";
 import { GetUser } from "../../../../services/GetInfoUser";
-import { FavoriteComment, GetComment } from "../../../../services/FavoriteComment";
+import {
+   FavoriteComment,
+   GetComment,
+} from "../../../../services/FavoriteComment";
 import { Avatar } from "../../Avatar";
 import { Tooltip } from "../../Tooltip";
 import { FiStar } from "react-icons/fi";

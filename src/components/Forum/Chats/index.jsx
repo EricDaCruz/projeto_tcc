@@ -28,7 +28,6 @@ export const Chats = () => {
                   postDate,
                   content,
                   stars,
-                  comments,
                   userId,
                   chatUid,
                } = chat;
