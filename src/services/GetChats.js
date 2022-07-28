@@ -1,5 +1,6 @@
 import { collection, getDocs } from "firebase/firestore";
 import { db } from '../firebase'
+import { sortByDate } from "../helpers/Sort";
 
 export const GetAllChats = async () => {
    const forumChatsRef = collection(db, 'forum-chats')

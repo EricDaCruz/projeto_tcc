@@ -13,7 +13,7 @@ import { FiMessageSquare, FiStar } from "react-icons/fi";
 import { BsStarFill } from "react-icons/bs";
 import { GetComments } from "../../../services/GetComments";
 
-export const Question = ({
+export const Questions = ({
    title,
    postDate,
    content,
