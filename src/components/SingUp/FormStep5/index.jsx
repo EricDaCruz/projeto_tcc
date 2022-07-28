@@ -18,6 +18,8 @@ import validator from 'validator'
 import { format } from "telefone";
 /* Registrar usuarios */
 import { CreateAuthEmail, RegisterUser } from "../../../services/CreateUser";
+/*Classes*/
+import { User } from '../../../services/User'
 
 export function FormStep5() {
    const navigate = useNavigate();
@@ -30,6 +32,8 @@ export function FormStep5() {
    const [locationCity, setLocationCity] = useState(data.city);
    const [interests, setInterests] = useState(data.interests);
    const [inputEmail, setInputEmail] = useState(data.email);
+
+   
 
    useEffect(() => {
       setData({ ...data, currentStep: 5 });
@@ -79,7 +83,9 @@ export function FormStep5() {
    };
 
    const handleRegisterUser = async () => {
-      const user = await CreateAuthEmail(data);
+      const user = new User(data)
+      const userAuth = await user.CreateAuthEmail(data)
+      
       if (
          inputName === "" ||
          inputUsername === "" ||
@@ -98,20 +104,10 @@ export function FormStep5() {
             if(!validator.isEmail(inputEmail)) {
                toast.error("Insira um email válido")
             }else{
-               if (user === "auth/email-already-in-use") {
+               if (userAuth === "auth/email-already-in-use") {
                   toast.warning("Usuário já cadastrado");
                } else {
-                  const uid = user.user.uid;
-                  const dataUser = {
-                     dateBorn: data.dateBorn,
-                     email: data.email,
-                     interests: data.interests,
-                     location: { state: data.state, city: data.city },
-                     name: data.name,
-                     phone: data.phone,
-                     username: data.username,
-                  };
-                  await RegisterUser(dataUser, uid);
+                  await user.RegisterUser(userAuth.user.uid);
                   navigate("/sing-up/step6");
                }
             }
