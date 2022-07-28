@@ -14,7 +14,7 @@ import { Denounce } from "../../../services/Denounce";
 
 export const Tooltip = ({
    usernameSend,
-   chatUid,
+   questionUid,
    commentUid,
    content,
    postDate,
@@ -28,14 +28,14 @@ export const Tooltip = ({
    const location = useLocation();
 
    const deleteQuestion = () => {
-      DeleteQuestions(chatUid).then(
+      DeleteQuestions(questionUid).then(
          toast.success("Pergunta deletada com sucesso!")
       );
    };
    const denounceQuestion = async () => {
       const denounce = new Denounce(
          userId,
-         chatUid,
+         questionUid,
          "",
          title,
          content,
@@ -95,7 +95,7 @@ export const Tooltip = ({
             {location.pathname === "/forum/my-answer" && (
                <Button
                   action="true"
-                  onClick={() => navigate(`/forum/question/${chatUid}`)}
+                  onClick={() => navigate(`/forum/question/${questionUid}`)}
                >
                   <BsExclamationTriangleFill /> Ir para a questão
                </Button>

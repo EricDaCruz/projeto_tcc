@@ -1,9 +1,9 @@
 import {useEffect, useState} from 'react';
 import { GetFavoriteQuestions } from '../../../services/FavoriteQuestion'
 import { Storage } from '../../../services/Storage';
-import { Question } from '../Question';
+import { Questions } from '../Questions';
 import { LoaderQuestion } from '../../LoaderQuestion'
-import { sortByDate, sortByStars} from '../../../helpers/SortQuestionsByDate';
+import { sortByDate, sortByStars} from '../../../helpers/Sort';
 
 export const FavoriteQuestions = () => {
   const storage = new Storage('uid');
@@ -33,7 +33,7 @@ export const FavoriteQuestions = () => {
           questions.map((question) => {
             const {title, postDate, content, stars, userLogged, chatUid} = question
             return (
-              <Question  
+              <Questions  
                 key={chatUid}
                 title={title}
                 postDate={postDate}

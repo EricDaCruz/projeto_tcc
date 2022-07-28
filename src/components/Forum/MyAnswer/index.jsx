@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { GetMyAnswer } from "../../../services/GetMyAnswer";
 import { Storage } from "../../../services/Storage";
-import { sortByDate, sortByStars } from "../../../helpers/SortQuestionsByDate";
+import { sortByDate, sortByStars } from "../../../helpers/Sort";
 import { Comments } from "../QuestionWithComments/Comments";
 
 export const MyAnswer = () => {

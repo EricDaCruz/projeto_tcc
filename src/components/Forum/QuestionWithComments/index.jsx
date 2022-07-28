@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { GetQuestion } from "../../../services/GetQuestion";
 import { GetComments } from "../../../services/GetComments";
-import { sortByDate, sortByStars } from "../../../helpers/SortQuestionsByDate";
-import { Question } from "../Question";
+import { sortByDate, sortByStars } from "../../../helpers/Sort";
+import { Questions } from "../Questions";
 import { Comments } from "./Comments";
 import { MakeComments } from "./MakeComments";
 import { LoaderQuestion } from '../../LoaderQuestion'
@@ -38,7 +38,7 @@ export const QuestionWithComments = () => {
             {
                isLoadingQuestion ? (
                   Object.keys(question).length > 0 && (
-                        <Question
+                        <Questions
                            title={question.title}
                            postDate={question.postDate}
                            content={question.content}

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getQuestionsByCategory } from "../../../services/GetQuestionsByCategory";
-import { Question } from "../../Forum/Question";
-import { LoaderQuestion } from "../../LoaderQuestion";
-import { sortByDate } from "../../../helpers/SortQuestionsByDate"
+import { getQuestionsByCategory } from "../../../../services/GetQuestionsByCategory";
+import { Questions } from "../../Questions";
+import { LoaderQuestion } from "../../../LoaderQuestion";
+import { sortByDate } from "../../../../helpers/Sort";
 
 export const Subject = () => {
    const { category } = useParams();
@@ -32,7 +32,7 @@ export const Subject = () => {
             subject.map((question) => {
                const formatContent = question.content.split('\n\n')
                return (
-                  <Question
+                  <Questions
                      key={question.chatUid}
                      title={question.title}
                      content={formatContent}

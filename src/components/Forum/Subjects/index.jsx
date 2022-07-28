@@ -1,4 +1,4 @@
-import { Categories } from "../../assets/categories";
+import { Categories } from "../../../assets/categories";
 import { SubjectsCards } from "./SubjectsCards";
 import { Container } from "./styles";
 

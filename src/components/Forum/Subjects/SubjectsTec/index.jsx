@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom';
-import { CategoriesBySubject } from '../../../assets/categories';
+import { CategoriesBySubject } from '../../../../assets/categories';
 import { SubjectsCards } from '../SubjectsCards'
 import { Container } from './styles';
 

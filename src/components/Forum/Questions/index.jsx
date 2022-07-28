@@ -12,6 +12,8 @@ import { Avatar } from "../Avatar";
 import { FiMessageSquare, FiStar } from "react-icons/fi";
 import { BsStarFill } from "react-icons/bs";
 import { GetComments } from "../../../services/GetComments";
+/* Classes */
+import { User } from "../../../services/User";
 
 export const Questions = ({
    title,
@@ -19,7 +21,7 @@ export const Questions = ({
    content,
    stars,
    userId,
-   chatUid,
+   questionUid,
    commentsLength,
    isInQuestion,
 }) => {
@@ -37,14 +39,15 @@ export const Questions = ({
    });
    useEffect(() => {
       const storage = new Storage("uid");
+      const user = new User('', userId);
       const userLogged = storage.GetItemSessionStorage();
-      GetUser(userId).then((user) => setUserData(user));
+      user.GetInfoUser().then(userInfo => setUserData(userInfo));
       starsFavorite.includes(userLogged)
          ? setIsFavorite(true)
          : setIsFavorite(false);
    }, []);
    useEffect(() => {
-      GetComments(chatUid).then((comments) => setComments(comments));
+      GetComments(questionUid).then((comments) => setComments(comments));
    }, []);
 
    const handleFavorite = async (uid) => {
@@ -83,7 +86,7 @@ export const Questions = ({
             <span className="is-clickable">
                <Tooltip
                   userIdSend={userId}
-                  chatUid={chatUid}
+                  questionUid={questionUid}
                   usernameSend={userData.username}
                   content={content}
                   postDate={dateFormat}
@@ -102,7 +105,7 @@ export const Questions = ({
                <span
                   className="is-flex is-clickable is-align-items-center"
                   style={{ gap: "0.25rem" }}
-                  onClick={() => handleFavorite(chatUid)}
+                  onClick={() => handleFavorite(questionUid)}
                >
                   {isFavorite ? (
                      <BsStarFill style={{ color: "#FFD400" }} />
@@ -117,7 +120,7 @@ export const Questions = ({
                   style={{ gap: "0.25rem" }}
                   onClick={
                      !isInQuestion
-                        ? () => navigate(`/forum/question/${chatUid}`)
+                        ? () => navigate(`/forum/question/${questionUid}`)
                         : null
                   }
                >

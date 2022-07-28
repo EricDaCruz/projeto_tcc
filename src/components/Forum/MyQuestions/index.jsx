@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { Question } from "../Question";
+import { Questions } from "../Questions";
 import { getMyQuestions } from "../../../services/GetMyQuestions";
 import { Storage } from "../../../services/Storage";
 import { LoaderQuestion } from "../../LoaderQuestion";
-import { sortByDate } from "../../../helpers/SortQuestionsByDate";
+import { sortByDate } from "../../../helpers/Sort";
 
 export const MyQuestions = () => {
    const [myQuestions, setMyQuestions] = useState([]);
@@ -36,7 +36,7 @@ export const MyQuestions = () => {
                   chatUid,
                } = question;
                return (
-                  <Question
+                  <Questions
                      key={chatUid}
                      title={title}
                      postDate={postDate}

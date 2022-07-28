@@ -2,17 +2,16 @@ import {
    createUserWithEmailAndPassword,
    signInWithEmailAndPassword,
 } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, getDoc } from "firebase/firestore";
 import { db, auth } from "../firebase";
 import { toast } from "react-toastify";
 /* Classes */
 import { Storage } from "./Storage";
 
-export class Users {
+export class User {
    constructor(data, uid) {
       this.data = data;
       this.uid = uid;
-
    }
 
    // Create Account with Email and Password
@@ -44,6 +43,20 @@ export class Users {
 
       await setDoc(userRef, data);
    }
+
+   // Get Info User
+   async GetInfoUser() {
+      const userRef = doc(db, "users", this.uid);
+      const userSnap = await getDoc(userRef);
+
+      if (userSnap.exists()) {
+         return userSnap.data();
+      } else {
+         // doc.data() will be undefined in this case
+         console.log("No such document!");
+      }
+   }
+
    // SingIn and SingOut
    async SignInUser() {
       try {

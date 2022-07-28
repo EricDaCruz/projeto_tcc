@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { Question } from "../Question";
-import { GetAllChats } from "../../../services/GetChats";
+import { Questions } from "../Questions";
 import { LoaderQuestion } from "../../LoaderQuestion";
-import { sortByDate } from "../../../helpers/SortQuestionsByDate";
+/* Classes */
+import { Question } from "../../../services/Question";
 
 export const Chats = () => {
    const [dataChats, setDataChats] = useState([]);
@@ -10,11 +10,9 @@ export const Chats = () => {
 
    useEffect(() => {
       setLoading(true);
-      GetAllChats().then((questions) => {
-         const sortQuestions = sortByDate(questions);
-         setDataChats(sortQuestions);
-         setLoading(false);
-      });
+      const question = new Question();
+      question.GetAllQuestions().then(quest => setDataChats(quest));
+      setLoading(false);
    }, []);
 
    return (
@@ -29,17 +27,17 @@ export const Chats = () => {
                   content,
                   stars,
                   userId,
-                  chatUid,
+                  questionUid,
                } = chat;
                return (
-                  <Question
-                     key={chatUid}
+                  <Questions
+                     key={questionUid}
                      title={title}
                      postDate={postDate}
                      content={content}
                      stars={stars}
                      userId={userId}
-                     chatUid={chatUid}
+                     questionUid={questionUid}
                      isInQuestion={false}
                   />
                );
