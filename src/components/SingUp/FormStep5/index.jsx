@@ -16,8 +16,6 @@ import { NextStep } from "../Buttons/NextStep";
 import { validatePhoneNumber } from "../../../helpers/ValidFormRegister";
 import validator from 'validator'
 import { format } from "telefone";
-/* Registrar usuarios */
-import { CreateAuthEmail, RegisterUser } from "../../../services/CreateUser";
 /*Classes*/
 import { User } from '../../../services/User'
 
