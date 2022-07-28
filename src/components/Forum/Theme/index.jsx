@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { GetItemSessionStorage } from '../../../services/Storage'
+import { Storage } from '../../../services/Storage'
 import { HeaderForum } from '../HeaderForum'
 import { Sidebar } from '../Sidebar'
 import { CardForum } from '../CardForum'
@@ -10,7 +10,8 @@ export function Theme({children}){
     const navigate = useNavigate()
 
     useEffect(() =>{
-        const userUid = GetItemSessionStorage('uid')
+        const storage = new Storage("uid")
+        const userUid = storage.GetItemSessionStorage()
         if(userUid === 'undefined' || userUid === null){
             navigate('/')
         }

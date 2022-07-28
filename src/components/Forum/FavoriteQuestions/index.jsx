@@ -1,18 +1,19 @@
 import {useEffect, useState} from 'react';
 import { GetFavoriteQuestions } from '../../../services/FavoriteQuestion'
-import { GetItemSessionStorage } from '../../../services/Storage';
+import { Storage } from '../../../services/Storage';
 import { Question } from '../Question';
 import { LoaderQuestion } from '../../LoaderQuestion'
 import { sortByDate, sortByStars} from '../../../helpers/SortQuestionsByDate';
 
 export const FavoriteQuestions = () => {
-  const userUid = GetItemSessionStorage('uid')
+  const storage = new Storage('uid');
+  const userLogged= storage.GetItemSessionStorage()
   const[questions, setQuestions] = useState([])
   const[loading, setLoading] = useState(true)
 
   useEffect(() => {
     setLoading(true)
-    GetFavoriteQuestions(userUid)
+    GetFavoriteQuestions(userLogged)
     .then((question) => {
       const sortQuestions = sortByDate(question)
       const sortQuestionByStars = sortByStars(sortQuestions)
@@ -30,7 +31,7 @@ export const FavoriteQuestions = () => {
       :(
         questions.length > 0 ? (
           questions.map((question) => {
-            const {title, postDate, content, stars, userId, chatUid} = question
+            const {title, postDate, content, stars, userLogged, chatUid} = question
             return (
               <Question  
                 key={chatUid}
@@ -39,7 +40,7 @@ export const FavoriteQuestions = () => {
                 content={content}
                 stars={stars}
                 comments={12}
-                userId={userId}
+                userId={userLogged}
                 chatUid={chatUid}
               />
             )

@@ -1,19 +1,28 @@
-export const SetItemLocalStorage = (key, value) => {
-    localStorage.setItem(key, value)
-}
-export const GetItemLocalStorage = (key)=> {
-    return localStorage.getItem(key)
-}
-export const RemoveItemLocalStorage = (key) => {
-    localStorage.removeItem(key)
-}
-// Session Storage
-export const SetItemSessionStorage = (key, value) => {
-    sessionStorage.setItem(key, value)
-}
-export const GetItemSessionStorage = (key)=> {
-    return sessionStorage.getItem(key)
-}
-export const RemoveItemSessionStorage = (key) => {
-    sessionStorage.removeItem(key)
+export class Storage{
+    constructor(key, value){
+        this.key = key;
+        this.value = value;
+    }
+
+    // LocalStorage
+    SetItemLocalStorage(){
+        localStorage.setItem(this.key, this.value);
+    }
+    GetItemLocalStorage(){
+        return localStorage.getItem(this.key);
+    }
+    RemoveItemLocalStorage(){
+        localStorage.removeItem(this.key);
+    }
+    
+    // SessionStorage
+    SetItemSessionStorage(){
+        sessionStorage.setItem(this.key, this.value);
+    }
+    GetItemSessionStorage(){
+        return sessionStorage.getItem(this.key);
+    }
+    RemoveItemSessionStorage(){
+        sessionStorage.removeItem(this.key);
+    }
 }

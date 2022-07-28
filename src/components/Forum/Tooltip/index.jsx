@@ -1,5 +1,5 @@
 import { DeleteQuestions, DeleteComments } from "../../../services/DeleteInfo";
-import { GetItemSessionStorage } from "../../../services/Storage";
+import { Storage } from "../../../services/Storage";
 import { useNavigate, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import Popup from "reactjs-popup";
@@ -22,7 +22,8 @@ export const Tooltip = ({
    title,
    isQuestion,
 }) => {
-   const userId = GetItemSessionStorage("uid");
+   const storage = new Storage("uid")
+   const userId = storage.GetItemSessionStorage();
    const navigate = useNavigate();
    const location = useLocation();
 

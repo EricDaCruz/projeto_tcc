@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { GetItemSessionStorage } from "../../../../services/Storage";
+import { Storage } from "../../../../services/Storage";
 import { GetUser } from "../../../../services/GetInfoUser";
 import {
    FavoriteComment,
@@ -8,7 +8,7 @@ import {
 import { Avatar } from "../../Avatar";
 import { Tooltip } from "../../Tooltip";
 import { FiStar } from "react-icons/fi";
-import { BsStarFill, BsThreeDotsVertical } from "react-icons/bs";
+import { BsStarFill } from "react-icons/bs";
 
 export const Comments = ({
    content,
@@ -30,8 +30,10 @@ export const Comments = ({
    });
 
    useEffect(() => {
+      const storage = new Storage("uid");
+      const userLogged = storage.GetItemSessionStorage();
       GetUser(userId).then((user) => setUserData(user));
-      starsFavorite.includes(GetItemSessionStorage("uid"))
+      starsFavorite.includes(userLogged)
          ? setIsFavorite(true)
          : setIsFavorite(false);
    }, []);

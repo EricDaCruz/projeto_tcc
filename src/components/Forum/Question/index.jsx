@@ -5,7 +5,7 @@ import {
    FavoriteQuestion,
 } from "../../../services/FavoriteQuestion";
 import { useNavigate } from "react-router-dom";
-import { GetItemSessionStorage } from "../../../services/Storage";
+import { Storage } from "../../../services/Storage";
 import { Tooltip } from "../Tooltip";
 import { Section } from "./styles";
 import { Avatar } from "../Avatar";
@@ -36,8 +36,10 @@ export const Question = ({
       minute: "2-digit",
    });
    useEffect(() => {
+      const storage = new Storage("uid");
+      const userLogged = storage.GetItemSessionStorage();
       GetUser(userId).then((user) => setUserData(user));
-      starsFavorite.includes(GetItemSessionStorage("uid"))
+      starsFavorite.includes(userLogged)
          ? setIsFavorite(true)
          : setIsFavorite(false);
    }, []);

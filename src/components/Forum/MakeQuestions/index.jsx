@@ -3,7 +3,7 @@ import { RegisterQuestions } from "../../../services/CreateQuestion";
 import { v4 as uuidv4 } from "uuid";
 import moment from "moment";
 import { CategoriesSelect } from "../../../assets/categories";
-import { GetItemSessionStorage } from '../../../services/Storage'
+import { Storage } from '../../../services/Storage'
 import { toast } from "react-toastify";
 import { FiImage } from "react-icons/fi";
 import { IoPaperPlaneOutline } from "react-icons/io5";
@@ -24,9 +24,10 @@ export const MakeQuestions = () => {
    };
    const handleSendQuestion = (event) => {
       event.preventDefault();
+      const storage = new Storage("uid")
       const chatUid = uuidv4();
       const postDate = moment().format("YYYY-MM-DD HH:mm");
-      const userId = GetItemSessionStorage('uid')
+      const userLogged = storage.GetItemSessionStorage()
       if(category === "" || title === "" || question === ""){
          toast.error('Preencha todos os campos');
       }else{
@@ -37,7 +38,7 @@ export const MakeQuestions = () => {
                title,
                question,
                postDate,
-               userId
+               userLogged
             );
             setCategory("");
             seTitle("");

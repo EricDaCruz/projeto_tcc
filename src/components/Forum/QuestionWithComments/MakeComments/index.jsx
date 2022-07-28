@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { CreateComments } from "../../../../services/CreateComments";
 import moment from "moment";
-import { GetItemSessionStorage } from "../../../../services/Storage";
+import { Storage } from "../../../../services/Storage";
 import { toast } from "react-toastify";
 import { ContentMakeComments } from "./styles";
 
@@ -10,10 +10,11 @@ export const MakeComments = ({ comments, setComments, data }) => {
 
    const handleSendAnswer = async (e) => {
       e.preventDefault();
-      const userId = GetItemSessionStorage("uid");
+      const storage = new Storage("uid");
+      const userLogged = storage.GetItemSessionStorage();
       if (answer) {
          const { chatUid } = data;
-         await CreateComments(chatUid, userId, answer);
+         await CreateComments(chatUid, userLogged, answer);
          setAnswer("");
          const comment = [
             {
@@ -21,7 +22,7 @@ export const MakeComments = ({ comments, setComments, data }) => {
                stars: [],
                postDate: moment().format("YYYY-MM-DD HH:mm"),
                chatUid,
-               userId,
+               userLogged,
             },...comments
          ];
          setComments(comment);

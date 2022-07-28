@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { GetMyAnswer } from "../../../services/GetMyAnswer";
-import { GetItemSessionStorage } from "../../../services/Storage";
+import { Storage } from "../../../services/Storage";
 import { sortByDate, sortByStars } from "../../../helpers/SortQuestionsByDate";
 import { Comments } from "../QuestionWithComments/Comments";
 
 export const MyAnswer = () => {
-   const userId = GetItemSessionStorage("uid");
+   const storage = new Storage("uid");
+   const userLogged = storage.GetItemSessionStorage();
    const [answerData, setAnswerData] = useState([]);
 
    useEffect(() => {
@@ -29,7 +30,7 @@ export const MyAnswer = () => {
                      postDate={postDate}
                      chatUid={chatUid}
                      commentUid={commentUid}
-                     userId={userId}
+                     userId={userLogged}
                   />
                );
             })

@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { SingOutUser } from '../../../services/SingOutUser'
-import { RemoveItemSessionStorage } from '../../../services/Storage'
+
 import { BiPurchaseTag, BiAward, BiSearch } from "react-icons/bi";
 import {
    RiQuestionLine,
@@ -10,6 +9,9 @@ import {
    RiLogoutBoxLine,
 } from "react-icons/ri";
 import { Aside, SectionInput, Section, ContentItens } from "./styles";
+/* Classes */
+import { Storage } from '../../../services/Storage'
+import { User } from '../../../services/User'
 
 export function Sidebar() {
    const navigate = useNavigate();

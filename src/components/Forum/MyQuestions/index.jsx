@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Question } from "../Question";
 import { getMyQuestions } from "../../../services/GetMyQuestions";
-import { GetItemSessionStorage } from "../../../services/Storage";
+import { Storage } from "../../../services/Storage";
 import { LoaderQuestion } from "../../LoaderQuestion";
 import { sortByDate } from "../../../helpers/SortQuestionsByDate";
 
@@ -11,8 +11,9 @@ export const MyQuestions = () => {
 
    useEffect(() => {
       setLoading(true);
-      const userUid = GetItemSessionStorage("uid");
-      getMyQuestions(userUid).then((questions) => {
+      const storage = new Storage("uid");
+      const userLogged = storage.GetItemSessionStorage();
+      getMyQuestions(userLogged).then((questions) => {
          const sortQuestions = sortByDate(questions);
          setMyQuestions(sortQuestions);
          setLoading(false);

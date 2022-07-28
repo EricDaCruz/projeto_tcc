@@ -1,9 +1,5 @@
 import { useState, useEffect } from "react";
 import { SignInUser } from "../../../services/signInUser";
-import {
-   SetItemSessionStorage,
-   GetItemSessionStorage,
-} from "../../../services/Storage";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Img from "../../../assets/images/login.png";
@@ -12,7 +8,8 @@ import { BsEyeSlash, BsEye, BsFacebook } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 import * as C from "./styles";
 /*Class*/
-import { Profile } from '../../../services/Profile';
+import { User } from '../../../services/User';
+import { Storage } from "../../../services/Storage";
 
 
 export function LoginArea() {
@@ -23,7 +20,8 @@ export function LoginArea() {
 
    useEffect(() => {
       //Verificar se tem um uid e levar pra /forum
-      const userUid = GetItemSessionStorage("uid");
+      const storage = new Storage("uid");
+      const userUid = storage.GetItemSessionStorage()
       if (userUid) {
          navigate("/forum/chats");
       }
@@ -36,31 +34,35 @@ export function LoginArea() {
       if (email === "" || password === "") {
          toast.error("Por favor, preencha todos os campos");
       } else {
-         try {
-            const user = await SignInUser(email, password);
-            SetItemSessionStorage("uid", user.uid);
-            if (user.uid) {
-               navigate("/forum/chats");
-            }
-         } catch (error) {
-            switch (error.code) {
-               case "auth/user-not-found":
-                  toast.error("Usuário não encontrado");
-                  break;
-               case "auth/wrong-password":
-               case "auth/invalid-email":
-                  toast.error("Senha ou usuário inválido");
-                  break;
-               case "auth/too-many-requests":
-                  toast.warning(
-                     "Muitas tentativas inválidas. Tente novamente mais tarde!"
-                  );
-                  break;
-               case "auth/network-request-failed":
-                  toast.warning("Verifique a conexão com a internet");
-                  break;
-            }
-         }
+         const data = {email, password}
+         const user = new User(data);
+         await user.SignInUser().then(() => navigate('/forum/chats'))
+
+         // try {
+         //    const user = await SignInUser(email, password);
+         //    SetItemSessionStorage("uid", user.uid);
+         //    if (user.uid) {
+         //       navigate("/forum/chats");
+         //    }
+         // } catch (error) {
+         //    switch (error.code) {
+         //       case "auth/user-not-found":
+         //          toast.error("Usuário não encontrado");
+         //          break;
+         //       case "auth/wrong-password":
+         //       case "auth/invalid-email":
+         //          toast.error("Senha ou usuário inválido");
+         //          break;
+         //       case "auth/too-many-requests":
+         //          toast.warning(
+         //             "Muitas tentativas inválidas. Tente novamente mais tarde!"
+         //          );
+         //          break;
+         //       case "auth/network-request-failed":
+         //          toast.warning("Verifique a conexão com a internet");
+         //          break;
+         //    }
+         // }
       }
    };
    const handleForgotPassword = () => {
