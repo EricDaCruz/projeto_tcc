@@ -17,7 +17,7 @@ import { validatePhoneNumber } from "../../../helpers/ValidFormRegister";
 import validator from 'validator'
 import { format } from "telefone";
 /*Classes*/
-import { User } from '../../../services/User'
+import { Users } from '../../../services/Users'
 
 export function FormStep5() {
    const navigate = useNavigate();
@@ -81,7 +81,7 @@ export function FormStep5() {
    };
 
    const handleRegisterUser = async () => {
-      const user = new User(data)
+      const user = new Users(data)
       const userAuth = await user.CreateAuthEmail(data)
       
       if (
