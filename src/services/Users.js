@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 /* Classes */
 import { Storage } from "./Storage";
 
-export class User {
+export class Users {
    constructor(data, uid) {
       this.data = data;
       this.uid = uid;
