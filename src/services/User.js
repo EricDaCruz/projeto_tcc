@@ -1,6 +1,7 @@
 import {
    createUserWithEmailAndPassword,
    signInWithEmailAndPassword,
+   signOut
 } from "firebase/auth";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import { db, auth } from "../firebase";
@@ -87,16 +88,9 @@ export class User {
          //    }
       }
    }
-   SignOutUser() {
-      const storage = new Storage("uid", "");
-      signOut(auth)
-         .then(() => {
-            // Sign-out successful.
-            toast.success("Usuário Deslogado");
-            storage.RemoveItemSessionStorage();
-         })
-         .catch((error) => {
-            toast.error("Error: ", error.message);
-         });
+   async SignOutUser() {
+      const storage = new Storage("uid");
+      await signOut(auth)
+      storage.RemoveItemSessionStorage()
    }
 }

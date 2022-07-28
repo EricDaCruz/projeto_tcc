@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-
+import { toast } from "react-toastify";
 import { BiPurchaseTag, BiAward, BiSearch } from "react-icons/bi";
 import {
    RiQuestionLine,
@@ -10,7 +10,6 @@ import {
 } from "react-icons/ri";
 import { Aside, SectionInput, Section, ContentItens } from "./styles";
 /* Classes */
-import { Storage } from '../../../services/Storage'
 import { User } from '../../../services/User'
 
 export function Sidebar() {
@@ -84,7 +83,7 @@ export function Sidebar() {
       }
    }, [location]);
 
-   const handleNavigateRoutes = (item) => {
+   const handleNavigateRoutes = async (item) => {
       switch (item) {
          case "subjects":
             navigate(item);
@@ -102,9 +101,11 @@ export function Sidebar() {
             navigate(item);
             break;
          default:
-            SingOutUser()
-            RemoveItemSessionStorage("uid");
-            navigate("/");
+            const user = new User("",)
+            user.SignOutUser().then(() => {
+               toast.success('Usuário Deslogado')
+               navigate("/")
+            })
             break;
       }
    };
