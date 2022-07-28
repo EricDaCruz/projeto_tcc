@@ -4,20 +4,22 @@ import { getMyQuestions } from "../../../services/GetMyQuestions";
 import { Storage } from "../../../services/Storage";
 import { LoaderQuestion } from "../../LoaderQuestion";
 import { sortByDate } from "../../../helpers/Sort";
+/* Classes */
+import { Question } from "../../../services/Question";
 
 export const MyQuestions = () => {
    const [myQuestions, setMyQuestions] = useState([]);
    const [loading, setLoading] = useState(true);
+   const storage = new Storage("uid");
+   const userLogged = storage.GetItemSessionStorage();
 
    useEffect(() => {
       setLoading(true);
-      const storage = new Storage("uid");
-      const userLogged = storage.GetItemSessionStorage();
-      getMyQuestions(userLogged).then((questions) => {
-         const sortQuestions = sortByDate(questions);
-         setMyQuestions(sortQuestions);
+      const question = new Question()
+      question.GetMyQuestions(userLogged).then(questions => {
+         setMyQuestions(questions);
          setLoading(false);
-      });
+      })
    }, []);
 
    return (
@@ -31,20 +33,18 @@ export const MyQuestions = () => {
                   postDate,
                   content,
                   stars,
-                  comments,
                   userId,
-                  chatUid,
+                  questionUid,
                } = question;
                return (
                   <Questions
-                     key={chatUid}
+                     key={questionUid}
                      title={title}
                      postDate={postDate}
                      content={content}
                      stars={stars}
-                     comments={12}
                      userId={userId}
-                     chatUid={chatUid}
+                     questionUid={questionUid}
                   />
                );
             })

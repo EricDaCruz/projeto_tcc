@@ -43,7 +43,6 @@ export class User {
 
       await setDoc(userRef, data);
    }
-
    // Get Info User
    async GetInfoUser() {
       const userRef = doc(db, "users", this.uid);
@@ -56,7 +55,6 @@ export class User {
          console.log("No such document!");
       }
    }
-
    // SingIn and SingOut
    async SignInUser() {
       try {

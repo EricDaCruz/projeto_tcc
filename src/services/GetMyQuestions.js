@@ -8,9 +8,10 @@ export const getMyQuestions = async (userId) => {
    const listMyQuestions = [];
 
    chatQuerySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
-    listMyQuestions.push({...doc.data(), chatUid: doc.id});
+    listMyQuestions.push({...doc.data(), questionUid: doc.id});
    });
+
+   
 
    return listMyQuestions
 };

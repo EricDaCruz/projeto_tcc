@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { GetQuestion } from "../../../services/GetQuestion";
 import { GetComments } from "../../../services/GetComments";
 import { sortByDate, sortByStars } from "../../../helpers/Sort";
 import { Questions } from "../Questions";
@@ -8,17 +7,20 @@ import { Comments } from "./Comments";
 import { MakeComments } from "./MakeComments";
 import { LoaderQuestion } from '../../LoaderQuestion'
 import { Container, ContentComments } from "./styles";
+/* Classes */
+import { Question } from "../../../services/Question";
 
 export const QuestionWithComments = () => {
    const { questionUid } = useParams();
-   const [question, setQuestion] = useState({});
+   const [questionData, setQuestionData] = useState({});
    const [comments, setComments] = useState([]);
    const [isLoadingQuestion, setIsLoadingQuestion] = useState(false)
    const [isLoadingComments, setIsLoadingComments] = useState(false)
 
    useEffect(() => {
-      GetQuestion(questionUid).then((question) => setQuestion(question));
-      question && setIsLoadingQuestion(true)
+      const question = new Question(questionUid);
+      question.GetQuestionByUid().then((quest) => {setQuestionData(quest)})
+      questionData && setIsLoadingQuestion(true)
    }, []);
 
    useEffect(() => {
@@ -37,14 +39,14 @@ export const QuestionWithComments = () => {
          <div>
             {
                isLoadingQuestion ? (
-                  Object.keys(question).length > 0 && (
+                  Object.keys(questionData).length > 0 && (
                         <Questions
-                           title={question.title}
-                           postDate={question.postDate}
-                           content={question.content}
-                           stars={question.stars}
-                           userId={question.userId}
-                           chatUid={question.chatUid}
+                           title={questionData.title}
+                           postDate={questionData.postDate}
+                           content={questionData.content}
+                           stars={questionData.stars}
+                           userId={questionData.userId}
+                           questionUid={questionData.questionUid}
                            commentsLength={comments.length}
                            isInQuestion={true}
                         />
@@ -55,7 +57,7 @@ export const QuestionWithComments = () => {
             }
          </div>
          <hr style={{ backgroundColor: "#eaeaea" }} />
-         <MakeComments data={question} comments={comments} setComments={setComments}/>
+         <MakeComments data={questionData} comments={comments} setComments={setComments}/>
          <ContentComments>
             {
                isLoadingComments ? (
@@ -65,7 +67,7 @@ export const QuestionWithComments = () => {
                            content,
                            stars,
                            postDate,
-                           chatUid,
+                           questionUid,
                            commentUid,
                            userId,
                         } = comment;
@@ -75,7 +77,7 @@ export const QuestionWithComments = () => {
                               content={content}
                               stars={stars}
                               postDate={postDate}
-                              chatUid={chatUid}
+                              questionUid={questionUid}
                               commentUid={commentUid}
                               userId={userId}
                            />

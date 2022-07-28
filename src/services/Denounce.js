@@ -1,6 +1,7 @@
 import emailjs from "@emailjs/browser";
-import { GetUser } from "./GetInfoUser";
 import { toast } from "react-toastify";
+/* Classes */
+import { User } from './User'
 
 export class Denounce {
    constructor(
@@ -22,7 +23,8 @@ export class Denounce {
    }
 
    async comment() {
-      const userDenounce = await GetUser(this.userId);
+      const user = new User("",this.userId);
+      const userDenounce = await user.GetInfoUser();
 
       emailjs.init(import.meta.env.VITE_APP_USER_ID);
       const template_params = {
@@ -39,16 +41,16 @@ export class Denounce {
             import.meta.env.VITE_APP_COMMENT_TEMPLATE_ID,
             template_params
          )
-         .then((result) =>
+         .then(() =>
             toast.info(
                "Comentário denunciado, logo mais nossos administradores irão verificar!"
             )
          );
    }
-
    async question() {
-      const userDenounce = await GetUser(this.userId);
-
+      const user = new User("",this.userId);
+      const userDenounce = await user.GetInfoUser();
+    
       emailjs.init(import.meta.env.VITE_APP_USER_ID);
       const template_params = {
          questionUid: this.chatUid,
@@ -69,6 +71,6 @@ export class Denounce {
             toast.info(
                "Questão denunciado, logo mais nossos administradores irão verificar!"
             )
-         );
+        );
    }
 }

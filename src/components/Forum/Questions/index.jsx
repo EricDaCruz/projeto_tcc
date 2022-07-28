@@ -1,9 +1,4 @@
 import { useState, useEffect } from "react";
-import { GetUser } from "../../../services/GetInfoUser";
-import {
-   GetQuestion,
-   FavoriteQuestion,
-} from "../../../services/FavoriteQuestion";
 import { useNavigate } from "react-router-dom";
 import { Storage } from "../../../services/Storage";
 import { Tooltip } from "../Tooltip";
@@ -14,6 +9,7 @@ import { BsStarFill } from "react-icons/bs";
 import { GetComments } from "../../../services/GetComments";
 /* Classes */
 import { User } from "../../../services/User";
+import { Question } from "../../../services/Question";
 
 export const Questions = ({
    title,
@@ -37,10 +33,11 @@ export const Questions = ({
       hour: "2-digit",
       minute: "2-digit",
    });
+   const storage = new Storage("uid");
+   const userLogged = storage.GetItemSessionStorage();// Pegando o usuário logado
+
    useEffect(() => {
-      const storage = new Storage("uid");
       const user = new User('', userId);
-      const userLogged = storage.GetItemSessionStorage();
       user.GetInfoUser().then(userInfo => setUserData(userInfo));
       starsFavorite.includes(userLogged)
          ? setIsFavorite(true)
@@ -50,20 +47,20 @@ export const Questions = ({
       GetComments(questionUid).then((comments) => setComments(comments));
    }, []);
 
-   const handleFavorite = async (uid) => {
-      const dataChat = await GetQuestion(uid);
-      const userFavorite = GetItemSessionStorage("uid");
+   const handleFavorite = async () => {
+      const question = new Question(questionUid);
+      const questionData = await question.GetQuestionByUid();
       if (isFavorite) {
-         const newStars = dataChat.stars.filter(
-            (star) => star !== userFavorite
+         const newStars = questionData.stars.filter(
+            (star) => star !== userLogged
          );
          setStarsFavorite(newStars);
-         await FavoriteQuestion(uid, newStars);
+         await question.FavoriteQuestion(newStars);
          setIsFavorite(false);
       } else {
-         const newStars = [...dataChat.stars, userFavorite];
+         const newStars = [...questionData.stars, userLogged];
          setStarsFavorite(newStars);
-         await FavoriteQuestion(uid, newStars);
+         await question.FavoriteQuestion(newStars);
          setIsFavorite(true);
       }
    };
@@ -105,7 +102,7 @@ export const Questions = ({
                <span
                   className="is-flex is-clickable is-align-items-center"
                   style={{ gap: "0.25rem" }}
-                  onClick={() => handleFavorite(questionUid)}
+                  onClick={() => handleFavorite()}
                >
                   {isFavorite ? (
                      <BsStarFill style={{ color: "#FFD400" }} />

@@ -23,7 +23,7 @@ export const Tooltip = ({
    isQuestion,
 }) => {
    const storage = new Storage("uid")
-   const userId = storage.GetItemSessionStorage();
+   const userLogged = storage.GetItemSessionStorage();
    const navigate = useNavigate();
    const location = useLocation();
 
@@ -34,7 +34,7 @@ export const Tooltip = ({
    };
    const denounceQuestion = async () => {
       const denounce = new Denounce(
-         userId,
+         userLogged,
          questionUid,
          "",
          title,
@@ -53,7 +53,7 @@ export const Tooltip = ({
    };
    const denounceComment = async () => {
       const denounce = new Denounce(
-         userId,
+         userLogged,
          "",
          commentUid,
          "",
@@ -76,7 +76,7 @@ export const Tooltip = ({
          closeOnDocumentClick
       >
          <Container>
-            {userIdSend === userId && (
+            {userIdSend === userLogged && (
                <Button
                   action="true"
                   onClick={isQuestion ? deleteQuestion : deleteComment}

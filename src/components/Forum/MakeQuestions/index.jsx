@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { RegisterQuestions } from "../../../services/CreateQuestion";
 import { v4 as uuidv4 } from "uuid";
 import moment from "moment";
 import { CategoriesSelect } from "../../../assets/categories";
@@ -8,12 +7,13 @@ import { toast } from "react-toastify";
 import { FiImage } from "react-icons/fi";
 import { IoPaperPlaneOutline } from "react-icons/io5";
 import { Form, ContentButtons, Button } from "./styles";
+/* Classes */
+import { Question } from '../../../services/Question'
 
 export const MakeQuestions = () => {
    const [category, setCategory] = useState("");
    const [title, seTitle] = useState("");
-   const [question, setQuestion] = useState("");
-
+   const [content, setContent] = useState("");
 
    const handleAddImage = (event) => {
       event.preventDefault();
@@ -22,27 +22,21 @@ export const MakeQuestions = () => {
    const handleSaveDraft = (event) => {
       event.preventDefault();
    };
-   const handleSendQuestion = (event) => {
+   const handleSendQuestion = async (event) => {
       event.preventDefault();
       const storage = new Storage("uid")
-      const chatUid = uuidv4();
-      const postDate = moment().format("YYYY-MM-DD HH:mm");
       const userLogged = storage.GetItemSessionStorage()
-      if(category === "" || title === "" || question === ""){
+      const questionUid = uuidv4();
+      const postDate = moment().format("YYYY-MM-DD HH:mm");
+      if(category === "" || title === "" || content === ""){
          toast.error('Preencha todos os campos');
       }else{
-         if(userId){
-            RegisterQuestions(
-               chatUid,
-               category,
-               title,
-               question,
-               postDate,
-               userLogged
-            );
+         if(questionUid){
+            const question = new Question(questionUid, category, title, content, postDate, userLogged)
+            await question.RegisterQuestions()
             setCategory("");
             seTitle("");
-            setQuestion("");
+            setContent("");
          }else{
             toast.error('Erro ao enviar pergunta');
          }
@@ -68,8 +62,8 @@ export const MakeQuestions = () => {
          <textarea
             placeholder="Digite sua pergunta"
             rows="20"
-            onChange={(e) => setQuestion(e.target.value)}
-            value={question}
+            onChange={(e) => setContent(e.target.value)}
+            value={content}
          />
          <ContentButtons>
             <Button bgColor="23,131,255" opacity="0.8" onClick={handleAddImage}>

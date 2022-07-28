@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Storage } from "../../../../services/Storage";
-import { GetUser } from "../../../../services/GetInfoUser";
 import {
    FavoriteComment,
    GetComment,
@@ -15,7 +14,7 @@ export const Comments = ({
    stars,
    postDate,
    userId,
-   chatUid,
+   questionUid,
    commentUid,
 }) => {
    const [userData, setUserData] = useState({});
@@ -32,10 +31,6 @@ export const Comments = ({
    useEffect(() => {
       const storage = new Storage("uid");
       const userLogged = storage.GetItemSessionStorage();
-      GetUser(userId).then((user) => setUserData(user));
-      starsFavorite.includes(userLogged)
-         ? setIsFavorite(true)
-         : setIsFavorite(false);
    }, []);
 
    const handleFavorite = async (uid) => {
@@ -79,7 +74,7 @@ export const Comments = ({
                      commentUid={commentUid}
                      content={content}
                      postDate={dateFormat}
-                     chatUid={chatUid}
+                     questionUid={questionUid}
                   />
                </span>
             </div>

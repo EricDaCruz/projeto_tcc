@@ -1,23 +1,22 @@
 import {useEffect, useState} from 'react';
-import { GetFavoriteQuestions } from '../../../services/FavoriteQuestion'
 import { Storage } from '../../../services/Storage';
 import { Questions } from '../Questions';
 import { LoaderQuestion } from '../../LoaderQuestion'
-import { sortByDate, sortByStars} from '../../../helpers/Sort';
+/* Classes */
+import { Question } from '../../../services/Question';
 
 export const FavoriteQuestions = () => {
   const storage = new Storage('uid');
-  const userLogged= storage.GetItemSessionStorage()
-  const[questions, setQuestions] = useState([])
+  const userLogged = storage.GetItemSessionStorage()
+  const[questionsData, setQuestionsData] = useState([])
   const[loading, setLoading] = useState(true)
 
   useEffect(() => {
     setLoading(true)
-    GetFavoriteQuestions(userLogged)
-    .then((question) => {
-      const sortQuestions = sortByDate(question)
-      const sortQuestionByStars = sortByStars(sortQuestions)
-      setQuestions(sortQuestionByStars)
+    const question = new Question()
+    question.GetFavoriteQuestions(userLogged)
+    .then((questions) => {
+      setQuestionsData(questions)
       setLoading(false)
     })
   },[])
@@ -29,19 +28,18 @@ export const FavoriteQuestions = () => {
         <LoaderQuestion />
       ) 
       :(
-        questions.length > 0 ? (
-          questions.map((question) => {
-            const {title, postDate, content, stars, userLogged, chatUid} = question
+        questionsData.length > 0 ? (
+          questionsData.map((quest) => {
+            const {title, postDate, content, stars, userLogged, questionUid} = quest
             return (
               <Questions  
-                key={chatUid}
+                key={questionUid}
                 title={title}
                 postDate={postDate}
                 content={content}
                 stars={stars}
-                comments={12}
                 userId={userLogged}
-                chatUid={chatUid}
+                questionUid={questionUid}
               />
             )
           }
