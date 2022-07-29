@@ -67,25 +67,25 @@ export class User {
          const storage = new Storage("uid", userCredential.user.uid);
          storage.SetItemSessionStorage();
          toast.success("Usuário Logado com sucesso");
+         return true
       } catch (error) {
-         console.log(error);
-         //   switch (error.code) {
-         //       case "auth/user-not-found":
-         //          toast.error("Usuário não encontrado");
-         //          break;
-         //       case "auth/wrong-password":
-         //       case "auth/invalid-email":
-         //          toast.error("Senha ou usuário inválido");
-         //          break;
-         //       case "auth/too-many-requests":
-         //          toast.warning(
-         //             "Muitas tentativas inválidas. Tente novamente mais tarde!"
-         //          );
-         //          break;
-         //       case "auth/network-request-failed":
-         //          toast.warning("Verifique a conexão com a internet");
-         //          break;
-         //    }
+           switch (error.code) {
+               case "auth/user-not-found":
+                  toast.error("Usuário não encontrado");
+                  break;
+               case "auth/wrong-password":
+               case "auth/invalid-email":
+                  toast.error("Senha ou usuário inválido");
+                  break;
+               case "auth/too-many-requests":
+                  toast.warning(
+                     "Muitas tentativas inválidas. Tente novamente mais tarde!"
+                  );
+                  break;
+               case "auth/network-request-failed":
+                  toast.warning("Verifique a conexão com a internet");
+                  break;
+            }
       }
    }
    async SignOutUser() {

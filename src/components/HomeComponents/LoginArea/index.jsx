@@ -36,33 +36,8 @@ export function LoginArea() {
       } else {
          const data = {email, password}
          const user = new User(data);
-         await user.SignInUser().then(() => navigate('/forum/chats'))
-
-         // try {
-         //    const user = await SignInUser(email, password);
-         //    SetItemSessionStorage("uid", user.uid);
-         //    if (user.uid) {
-         //       navigate("/forum/chats");
-         //    }
-         // } catch (error) {
-         //    switch (error.code) {
-         //       case "auth/user-not-found":
-         //          toast.error("Usuário não encontrado");
-         //          break;
-         //       case "auth/wrong-password":
-         //       case "auth/invalid-email":
-         //          toast.error("Senha ou usuário inválido");
-         //          break;
-         //       case "auth/too-many-requests":
-         //          toast.warning(
-         //             "Muitas tentativas inválidas. Tente novamente mais tarde!"
-         //          );
-         //          break;
-         //       case "auth/network-request-failed":
-         //          toast.warning("Verifique a conexão com a internet");
-         //          break;
-         //    }
-         // }
+         const isLogged = await user.SignInUser()
+         isLogged && navigate('/forum/chats')
       }
    };
    const handleForgotPassword = () => {
