@@ -1,31 +1,33 @@
 import { useState } from "react";
-import { CreateComments } from "../../../../services/CreateComments";
 import moment from "moment";
 import { Storage } from "../../../../services/Storage";
 import { toast } from "react-toastify";
 import { ContentMakeComments } from "./styles";
+/* Classes */
+import { Comment } from '../../../../services/Comment'
 
 export const MakeComments = ({ comments, setComments, data }) => {
    const [answer, setAnswer] = useState("");
+   const storage = new Storage("uid");
+   const userLogged = storage.GetItemSessionStorage();
 
    const handleSendAnswer = async (e) => {
       e.preventDefault();
-      const storage = new Storage("uid");
-      const userLogged = storage.GetItemSessionStorage();
+      const { questionUid } = data;
       if (answer) {
-         const { chatUid } = data;
-         await CreateComments(chatUid, userLogged, answer);
+         const comment = new Comment("",questionUid, userLogged, answer);
+         await comment.RegisterComments()
          setAnswer("");
-         const comment = [
+         const commentSend = [
             {
                content: answer,
                stars: [],
                postDate: moment().format("YYYY-MM-DD HH:mm"),
-               chatUid,
-               userLogged,
+               questionUid,
+               userId: userLogged,
             },...comments
          ];
-         setComments(comment);
+         setComments(commentSend);
       } else {
          toast.error("Por favor, preencha o campo de comentário.");
       }

@@ -1,34 +1,31 @@
 import { useState, useEffect } from "react";
-import { GetMyAnswer } from "../../../services/GetMyAnswer";
-import { Storage } from "../../../services/Storage";
-import { sortByDate, sortByStars } from "../../../helpers/Sort";
 import { Comments } from "../QuestionWithComments/Comments";
+/* Classes */
+import { Storage } from "../../../services/Storage";
+import { Comment } from "../../../services/Comment";
 
 export const MyAnswer = () => {
    const storage = new Storage("uid");
    const userLogged = storage.GetItemSessionStorage();
-   const [answerData, setAnswerData] = useState([]);
+   const [commentData, setCommentData] = useState([]);
 
    useEffect(() => {
-      GetMyAnswer(userId).then((answers) => {
-         const sortComments = sortByDate(answers);
-         const sortCommentsByStars = sortByStars(sortComments);
-         setAnswerData(sortCommentsByStars);
-      });
+      const comment = new Comment("","",userLogged)
+      comment.GetMyComments().then((comments) => setCommentData(comments))
    }, []);
 
    return (
       <div>
-         {answerData.length > 0 ? (
-            answerData.map((answer) => {
-               const { commentUid, content, stars, postDate, chatUid } = answer;
+         {commentData.length > 0 ? (
+            commentData.map((comment) => {
+               const { commentUid, content, stars, postDate, questionUid } = comment;
                return (
                   <Comments
                      key={commentUid}
                      content={content}
                      stars={stars}
                      postDate={postDate}
-                     chatUid={chatUid}
+                     questionUid={questionUid}
                      commentUid={commentUid}
                      userId={userLogged}
                   />

@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
 import { Questions } from "../Questions";
-import { getMyQuestions } from "../../../services/GetMyQuestions";
 import { Storage } from "../../../services/Storage";
 import { LoaderQuestion } from "../../LoaderQuestion";
-import { sortByDate } from "../../../helpers/Sort";
 /* Classes */
 import { Question } from "../../../services/Question";
 

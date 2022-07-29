@@ -6,7 +6,6 @@ import { Section } from "./styles";
 import { Avatar } from "../Avatar";
 import { FiMessageSquare, FiStar } from "react-icons/fi";
 import { BsStarFill } from "react-icons/bs";
-import { GetComments } from "../../../services/GetComments";
 /* Classes */
 import { User } from "../../../services/User";
 import { Question } from "../../../services/Question";
@@ -44,7 +43,8 @@ export const Questions = ({
          : setIsFavorite(false);
    }, []);
    useEffect(() => {
-      GetComments(questionUid).then((comments) => setComments(comments));
+      const comment = new Comment("", questionUid);
+      comment.GetComments().then((comments) => setComments(comments));
    }, []);
 
    const handleFavorite = async () => {

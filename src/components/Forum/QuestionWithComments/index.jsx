@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { GetComments } from "../../../services/GetComments";
-import { sortByDate, sortByStars } from "../../../helpers/Sort";
 import { Questions } from "../Questions";
 import { Comments } from "./Comments";
 import { MakeComments } from "./MakeComments";
@@ -9,6 +7,7 @@ import { LoaderQuestion } from '../../LoaderQuestion'
 import { Container, ContentComments } from "./styles";
 /* Classes */
 import { Question } from "../../../services/Question";
+import { Comment } from "../../../services/Comment";
 
 export const QuestionWithComments = () => {
    const { questionUid } = useParams();
@@ -22,15 +21,10 @@ export const QuestionWithComments = () => {
       question.GetQuestionByUid().then((quest) => {setQuestionData(quest)})
       questionData && setIsLoadingQuestion(true)
    }, []);
-
+   
    useEffect(() => {
-      GetComments(questionUid).then((comments) => {
-         const sortComments = sortByDate(comments)
-         const sortCommentsByStars = sortByStars(sortComments)
-         setComments(sortCommentsByStars);
-         console.log(sortComments);
-      });
-
+      const comment = new Comment("",questionUid);
+      comment.GetComments().then((comments) => {setComments(comments)})
       comments && setIsLoadingComments(true)
    }, []);
 
@@ -41,6 +35,7 @@ export const QuestionWithComments = () => {
                isLoadingQuestion ? (
                   Object.keys(questionData).length > 0 && (
                         <Questions
+                           key={questionData.questionUid}
                            title={questionData.title}
                            postDate={questionData.postDate}
                            content={questionData.content}

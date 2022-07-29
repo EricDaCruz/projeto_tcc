@@ -1,6 +1,6 @@
 import { doc, deleteDoc, deleteField, updateDoc } from "firebase/firestore";
 import { db } from "../firebase";
-import { GetComments } from "./GetComments";
+import { Comment } from "./Comment";
 
 export const DeleteComments = async (commentUid) => {
     const commentsRef = doc(db, "comments-forum-chats", commentUid)    
@@ -17,9 +17,10 @@ export const DeleteComments = async (commentUid) => {
     window.location.reload()
 }
 
-export const DeleteQuestions = async (chatUid) => {
-    const forumRef = doc(db, "forum-chats", chatUid)    
-    const comments = await GetComments(chatUid)
+export const DeleteQuestions = async (questionUid) => {
+    const forumRef = doc(db, "forum-chats", questionUid)   
+    const comment = new Comment('',questionUid) 
+    const comments = await comment.GetComments()
 
     comments.forEach(comment => {
         DeleteComments(comment.commentUid)

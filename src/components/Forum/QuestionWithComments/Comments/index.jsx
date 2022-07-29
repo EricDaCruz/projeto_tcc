@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
-import { Storage } from "../../../../services/Storage";
-import {
-   FavoriteComment,
-   GetComment,
-} from "../../../../services/FavoriteComment";
 import { Avatar } from "../../Avatar";
 import { Tooltip } from "../../Tooltip";
 import { FiStar } from "react-icons/fi";
 import { BsStarFill } from "react-icons/bs";
+/* Classes */
+import { Storage } from "../../../../services/Storage";
+import { User } from "../../../../services/User";
+import { Comment } from "../../../../services/Comment";
 
 export const Comments = ({
    content,
@@ -27,26 +26,31 @@ export const Comments = ({
       hour: "2-digit",
       minute: "2-digit",
    });
+   const storage = new Storage("uid");
+   const userLogged = storage.GetItemSessionStorage();
 
    useEffect(() => {
-      const storage = new Storage("uid");
-      const userLogged = storage.GetItemSessionStorage();
+      const user = new User("", userId);
+      user.GetInfoUser()
+      .then(userData => setUserData(userData))
+      starsFavorite.includes(userLogged) ? setIsFavorite(true) : setIsFavorite(false);
+ 
    }, []);
 
    const handleFavorite = async (uid) => {
-      const dataComment = await GetComment(uid);
-      const userFavorite = GetItemSessionStorage("uid");
+      const comment = new Comment(commentUid, questionUid)
+      const dataComment = await comment.GetCommentByUid();
       if (isFavorite) {
          const newStars = dataComment.stars.filter(
-            (star) => star !== userFavorite
+            (star) => star !== userLogged
          );
          setStarsFavorite(newStars);
-         await FavoriteComment(uid, newStars);
+         await comment.FavoriteComment(newStars);
          setIsFavorite(false);
       } else {
-         const newStars = [...dataComment.stars, userFavorite];
+         const newStars = [...dataComment.stars, userLogged];
          setStarsFavorite(newStars);
-         await FavoriteComment(uid, newStars);
+         await comment.FavoriteComment(newStars);
          setIsFavorite(true);
       }
    };
