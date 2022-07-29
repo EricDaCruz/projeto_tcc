@@ -9,6 +9,7 @@ import { BsStarFill } from "react-icons/bs";
 /* Classes */
 import { User } from "../../../services/User";
 import { Question } from "../../../services/Question";
+import { Comment } from "../../../services/Comment";
 
 export const Questions = ({
    title,
