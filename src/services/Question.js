@@ -11,6 +11,9 @@ import {
 import { db } from "../firebase";
 import { sortByDate, sortByStars } from "../helpers/Sort";
 import { toast } from "react-toastify";
+import emailjs from "@emailjs/browser";
+/* Classes */
+import { User } from "./User";
 
 export class Question {
    constructor(questionUid, category, title, content, postDate, userId) {
@@ -95,5 +98,33 @@ export class Question {
       await updateDoc(doc(db, "forum-chats", this.questionUid), {
          stars: newStars,
       });
+   }
+   // Denounce Question
+   async DenounceQuestion(usernameSendQuestion) {
+      const user = new User("",this.userId);
+      const userDenounce = await user.GetInfoUser();
+      console.log(usernameSendQuestion);
+    
+      emailjs.init(import.meta.env.VITE_APP_USER_ID);
+      const template_params = {
+         questionUid: this.questionUid,
+         usernameSendQuestion: usernameSendQuestion,
+         date: this.postDate,
+         title: this.title,
+         content: this.content,
+         usernameSendDenounce: userDenounce.username,
+      };
+
+      emailjs
+         .send(
+            import.meta.env.VITE_APP_SERVICE_ID,
+            import.meta.env.VITE_APP_QUESTION_TEMPLATE_ID,
+            template_params
+         )
+         .then((result) =>
+            toast.info(
+               "Questão denunciado, logo mais nossos administradores irão verificar!"
+            )
+        );
    }
 }

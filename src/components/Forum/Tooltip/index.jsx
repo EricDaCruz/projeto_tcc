@@ -9,11 +9,12 @@ import {
    BsExclamationTriangleFill,
 } from "react-icons/bs";
 import { Container, Button } from "./styles";
-
+/* Classes */
+import { Question } from "../../../services/Question";
 import { Denounce } from "../../../services/Denounce";
 
 export const Tooltip = ({
-   usernameSend,
+   usernameSendQuestion,
    questionUid,
    commentUid,
    content,
@@ -33,17 +34,19 @@ export const Tooltip = ({
       );
    };
    const denounceQuestion = async () => {
-      const denounce = new Denounce(
-         userLogged,
-         questionUid,
-         "",
-         title,
-         content,
-         postDate,
-         usernameSend
-      );
+      const question = new Question(questionUid,"",title,content,postDate,userIdSend);
+      await question.DenounceQuestion(usernameSendQuestion)
+      // const denounce = new Denounce(
+      //    userLogged,
+      //    questionUid,
+      //    "",
+      //    title,
+      //    content,
+      //    postDate,
+      //    usernameSendQuestion
+      // );
 
-      denounce.question();
+      // denounce.question();
    };
 
    const deleteComment = () => {

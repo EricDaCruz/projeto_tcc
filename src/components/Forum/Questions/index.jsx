@@ -85,7 +85,7 @@ export const Questions = ({
                <Tooltip
                   userIdSend={userId}
                   questionUid={questionUid}
-                  usernameSend={userData.username}
+                  usernameSendQuestion={userData.username}
                   content={content}
                   postDate={dateFormat}
                   title={title}
