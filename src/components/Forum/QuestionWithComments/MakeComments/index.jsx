@@ -15,7 +15,7 @@ export const MakeComments = ({ comments, setComments, data }) => {
       e.preventDefault();
       const { questionUid } = data;
       if (answer) {
-         const comment = new Comment("",questionUid, userLogged, answer);
+         const comment = new Comment("",questionUid, userLogged, {answer});
          await comment.RegisterComments()
          setAnswer("");
          const commentSend = [

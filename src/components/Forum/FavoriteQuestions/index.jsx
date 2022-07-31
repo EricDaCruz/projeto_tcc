@@ -30,7 +30,7 @@ export const FavoriteQuestions = () => {
       :(
         questionsData.length > 0 ? (
           questionsData.map((quest) => {
-            const {title, postDate, content, stars, userLogged, questionUid} = quest
+            const {title, postDate, content, stars, userId, questionUid} = quest
             return (
               <Questions  
                 key={questionUid}
@@ -38,7 +38,7 @@ export const FavoriteQuestions = () => {
                 postDate={postDate}
                 content={content}
                 stars={stars}
-                userId={userLogged}
+                userId={userId}
                 questionUid={questionUid}
               />
             )

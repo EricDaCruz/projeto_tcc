@@ -7,6 +7,8 @@ import {
    updateDoc,
    where,
    query,
+   deleteDoc,
+   deleteField,
 } from "firebase/firestore";
 import { db } from "../firebase";
 import { sortByDate, sortByStars } from "../helpers/Sort";
@@ -14,6 +16,7 @@ import { toast } from "react-toastify";
 import emailjs from "@emailjs/browser";
 /* Classes */
 import { User } from "./User";
+import { Comment } from "./Comment";
 
 export class Question {
    constructor(questionUid, category, title, content, postDate, userId) {
@@ -101,10 +104,9 @@ export class Question {
    }
    // Denounce Question
    async DenounceQuestion(usernameSendQuestion) {
-      const user = new User("",this.userId);
+      const user = new User("", this.userId);
       const userDenounce = await user.GetInfoUser();
-      console.log(usernameSendQuestion);
-    
+
       emailjs.init(import.meta.env.VITE_APP_USER_ID);
       const template_params = {
          questionUid: this.questionUid,
@@ -125,6 +127,29 @@ export class Question {
             toast.info(
                "Questão denunciado, logo mais nossos administradores irão verificar!"
             )
-        );
+         );
+   }
+   // Delete Question
+   async DeleteQuestion(commentUid) {
+      const forumRef = doc(db, "forum-chats", this.questionUid);
+      const comment = new Comment("", commentUid);
+      const comments = await comment.GetComments();
+
+      comments.forEach((com) => {
+         DeleteComments(com.commentUid);
+      });
+
+      await updateDoc(forumRef, {
+         category: deleteField(),
+         comments: deleteField(),
+         content: deleteField(),
+         postDate: deleteField(),
+         stars: deleteField(),
+         title: deleteField(),
+         userId: deleteField(),
+      });
+      await deleteDoc(forumRef);
+
+      window.location.reload();
    }
 }

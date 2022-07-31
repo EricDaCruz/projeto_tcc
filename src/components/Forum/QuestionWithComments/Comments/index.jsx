@@ -74,7 +74,7 @@ export const Comments = ({
                <span className="is-clickable">
                   <Tooltip
                      userIdSend={userId}
-                     usernameSend={userData.username}
+                     usernameSendComment={userData.username}
                      commentUid={commentUid}
                      content={content}
                      postDate={dateFormat}

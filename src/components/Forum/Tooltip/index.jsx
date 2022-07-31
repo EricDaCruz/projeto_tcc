@@ -1,4 +1,3 @@
-import { DeleteQuestions, DeleteComments } from "../../../services/DeleteInfo";
 import { Storage } from "../../../services/Storage";
 import { useNavigate, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -11,10 +10,11 @@ import {
 import { Container, Button } from "./styles";
 /* Classes */
 import { Question } from "../../../services/Question";
-import { Denounce } from "../../../services/Denounce";
+import { Comment } from "../../../services/Comment";
 
 export const Tooltip = ({
    usernameSendQuestion,
+   usernameSendComment,
    questionUid,
    commentUid,
    content,
@@ -29,43 +29,30 @@ export const Tooltip = ({
    const location = useLocation();
 
    const deleteQuestion = () => {
-      DeleteQuestions(questionUid).then(
-         toast.success("Pergunta deletada com sucesso!")
-      );
+      const question = new Question(questionUid)
+      question.DeleteQuestion(questionUid).then(() => {
+         toast.success("Pergunta deletada com sucesso!");
+      })
    };
    const denounceQuestion = async () => {
       const question = new Question(questionUid,"",title,content,postDate,userIdSend);
       await question.DenounceQuestion(usernameSendQuestion)
-      // const denounce = new Denounce(
-      //    userLogged,
-      //    questionUid,
-      //    "",
-      //    title,
-      //    content,
-      //    postDate,
-      //    usernameSendQuestion
-      // );
-
-      // denounce.question();
    };
 
    const deleteComment = () => {
-      DeleteComments(commentUid).then(
+      const comment = new Comment(commentUid)
+      comment.DeleteComment().then(
          toast.success("Comentário deletado com sucesso!")
       );
+      // DeleteComments(commentUid)
    };
-   const denounceComment = async () => {
-      const denounce = new Denounce(
-         userLogged,
-         "",
-         commentUid,
-         "",
-         content,
-         postDate,
-         usernameSend
-      );
-
-      denounce.comment();
+   const denounceComment = async () => {  
+      const dataComment ={
+         content: content,
+         postDate: postDate,
+      }
+      const comment = new Comment(commentUid,"",userLogged,dataComment);
+      await comment.DenounceComment(usernameSendComment)
    };
 
    return (
