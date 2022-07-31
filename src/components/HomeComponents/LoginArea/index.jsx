@@ -40,8 +40,8 @@ export function LoginArea() {
       }
    };
    const handleForgotPassword = () => {
-      const profile = new Profile(email);
-      profile.forgotPassword();
+      const user = new User({email})
+      user.ForgotPassword()
    };
 
    return (

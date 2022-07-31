@@ -8,8 +8,9 @@ export class Profile {
     }
     
     forgotPassword(){
-        this.email ? (
-            sendPasswordResetEmail(auth, this.email).then(() => {
+        const { email } = this.data;
+        email ? (
+            sendPasswordResetEmail(auth, email).then(() => {
               toast.success("Email de redefinição de senha enviado com sucesso, caso não encontre o email, verifique a caixa de spam!");
             })
             .catch((error) => {
