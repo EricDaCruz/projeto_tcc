@@ -11,7 +11,6 @@ import {
    deleteField,
 } from "firebase/firestore";
 import { db } from "../firebase";
-import { v4 as uuidv4 } from "uuid";
 import moment from "moment";
 import { sortByDate, sortByStars } from "../helpers/Sort";
 import emailjs from "@emailjs/browser";
@@ -27,8 +26,8 @@ export class Comment {
    }
 
    // Create a new comment
-   async RegisterComments() {
-      await setDoc(doc(db, "comments-forum-chats", uuidv4()), {
+   async RegisterComments(uid) {
+      await setDoc(doc(db, "comments-forum-chats", uid), {
          questionUid: this.questionUid,
          content: this.data.answer,
          postDate: moment().format("YYYY-MM-DD HH:mm"),
