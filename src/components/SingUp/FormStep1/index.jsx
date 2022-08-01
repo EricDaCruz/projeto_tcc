@@ -22,7 +22,7 @@ export function FormStep1() {
       setData({ ...data, currentStep: 1 });
    }, []);
 
-   const handleNextStep = () => {
+   const handleNextStep = (e) => {
       if (inputName === "" || inputUsername === "") {
          toast.error("Por favor, preencha todos os campo");
       } else {

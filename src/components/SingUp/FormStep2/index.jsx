@@ -41,6 +41,7 @@ export function FormStep2() {
       setLocationCity(city);
    };
    const handlePhoneNumber = (phone) => {
+   
       setPhoneNumber(phone);
       const validPhone = validatePhoneNumber(phone);
       if (validPhone !== null) {
@@ -48,7 +49,7 @@ export function FormStep2() {
          setPhoneNumber(formatPhone);
       }
    };
-   const handleNextStep = () => {
+   const handleNextStep = (e) => {
       if (
          dateBorn === "" ||
          phoneNumber === "" ||

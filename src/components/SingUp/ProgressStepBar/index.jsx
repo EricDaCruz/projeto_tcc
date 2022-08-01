@@ -3,7 +3,7 @@ import "react-step-progress-bar/styles.css";
 import { CircleProgressBar } from "./styles";
 
 export const ProgressStepBar = ({currentStep}) => {
-    const step =  currentStep * 20
+    const step =  currentStep * (100/6);
 
    return (
       <div className="mb-6">
@@ -54,6 +54,15 @@ export const ProgressStepBar = ({currentStep}) => {
                     style={{ background: `${accomplished ? "#188F67" : "#E5E5E5   "}`}}
                     >
                         5
+                    </CircleProgressBar>
+               )}
+            </Step>
+            <Step transition="scale">
+               {({ accomplished }) => (
+                    <CircleProgressBar
+                    style={{ background: `${accomplished ? "#188F67" : "#E5E5E5   "}`}}
+                    >
+                        6
                     </CircleProgressBar>
                )}
             </Step>
