@@ -1,5 +1,6 @@
 import { useState } from "react";
 import moment from "moment";
+import { v4 as uuidv4 } from "uuid";
 import { Storage } from "../../../../services/Storage";
 import { toast } from "react-toastify";
 import { ContentMakeComments } from "./styles";
@@ -13,13 +14,15 @@ export const MakeComments = ({ comments, setComments, data }) => {
 
    const handleSendAnswer = async (e) => {
       e.preventDefault();
+      const uid = uuidv4();
       const { questionUid } = data;
       if (answer) {
          const comment = new Comment("",questionUid, userLogged, {answer});
-         await comment.RegisterComments()
+         await comment.RegisterComments(uid)
          setAnswer("");
          const commentSend = [
             {
+               commentUid: uid,
                content: answer,
                stars: [],
                postDate: moment().format("YYYY-MM-DD HH:mm"),

@@ -37,7 +37,8 @@ export const Comments = ({
  
    }, []);
 
-   const handleFavorite = async (uid) => {
+   const handleFavorite = async () => {
+      console.log(commentUid);
       const comment = new Comment(commentUid, questionUid)
       const dataComment = await comment.GetCommentByUid();
       if (isFavorite) {
@@ -90,7 +91,7 @@ export const Comments = ({
                   <span
                      className="is-flex is-clickable is-align-items-center"
                      style={{ gap: "0.25rem" }}
-                     onClick={() => handleFavorite(commentUid)}
+                     onClick={() => handleFavorite()}
                   >
                      {isFavorite ? (
                         <BsStarFill style={{ color: "#FFD400" }} />

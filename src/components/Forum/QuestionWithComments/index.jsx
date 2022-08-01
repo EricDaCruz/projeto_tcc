@@ -21,7 +21,7 @@ export const QuestionWithComments = () => {
       question.GetQuestionByUid().then((quest) => {setQuestionData(quest)})
       questionData && setIsLoadingQuestion(true)
    }, []);
-   
+
    useEffect(() => {
       const comment = new Comment("",questionUid);
       comment.GetComments().then((comments) => {setComments(comments)})
@@ -66,6 +66,8 @@ export const QuestionWithComments = () => {
                            commentUid,
                            userId,
                         } = comment;
+                        console.log("Comment", commentUid);
+
                         return (
                            <Comments
                               key={commentUid}
