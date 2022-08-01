@@ -57,7 +57,7 @@ export const Comments = ({
    };
 
    return (
-      <>
+      <div className="has-background-white">
          <div>
             <div className="is-flex is-align-items-center is-justify-content-space-between">
                <div
@@ -104,6 +104,6 @@ export const Comments = ({
             </div>
          </div>
          <hr style={{ backgroundColor: "#eaeaea" }} />
-      </>
+      </div>
    );
 };
