@@ -52,7 +52,7 @@ export function WriteUsArea() {
                             cursor: 'pointer'
                         }}
                       >
-                        <FaArrowRight />
+                        <FaArrowRight color="white"/>
                       </span>
                   </div>
                </div>

@@ -1,9 +1,9 @@
 import { FaQuoteLeft, FaStar } from "react-icons/fa";
-import Alvaro from '../../../assets/images/alvaro.png'
-import Ana from '../../../assets/images/ana.png'
-import Emilly from '../../../assets/images/emilly.png'
-import Eric from '../../../assets/images/eric.png'
-import Fabricio from '../../../assets/images/fa.png'
+import Alvaro from "../../../assets/images/alvaro.png";
+import Ana from "../../../assets/images/ana.png";
+import Emilly from "../../../assets/images/emilly.png";
+import Eric from "../../../assets/images/eric.png";
+import Fabricio from "../../../assets/images/fa.png";
 
 export function RatingArea() {
    return (
@@ -13,18 +13,22 @@ export function RatingArea() {
       >
          <div className="container is-flex is-flex-direction-column has-text-centered">
             <h2
-                className="mt-6 is-size-5 has-text-weight-semibold"
-                style={{
-                    color:"#188F67",
-                    letterSpacing:'2px'
-                }}
-            >Avaliações</h2>
+               className="mt-6 is-size-5 has-text-weight-semibold"
+               style={{
+                  color: "#188F67",
+                  letterSpacing: "2px",
+               }}
+            >
+               Avaliações
+            </h2>
             <h3
-                className="is-size-5 has-text-weight-semibold mt-3 mb-5"
-                style={{
-                    color:'#2B3742',
-                }}
-            >Hmm... E o que dizem sobre o Hetec?</h3>
+               className="is-size-5 has-text-weight-semibold mt-3 mb-5"
+               style={{
+                  color: "#2B3742",
+               }}
+            >
+               Hmm... E o que dizem sobre o Hetec?
+            </h3>
          </div>
          <div className="container">
             <div className="tile is-ancestor p-2">
@@ -48,19 +52,15 @@ export function RatingArea() {
                                  }}
                               />
                               <p className="my-3">
-                                 Lorem ipsum dolor sit amet, consectetur
-                                 adipiscing elit, sed do eiusmod tempor
-                                 incididunt ut labore et dolore magna aliqua. Ut
-                                 enim ad minim.
+                                 Adorei. muito bom o site, dá para tirar todas
+                                 as dúvidas nele. O programador deve ser muito
+                                 bom kkkkkkkk!
                               </p>
                            </div>
                            <div>
                               <div className="is-flex is-align-items-center mb-3">
                                  <figure className="image is-64x64 mr-4">
-                                    <img
-                                       className="is-rounded"
-                                       src={Eric}
-                                    />
+                                    <img className="is-rounded" src={Eric} />
                                  </figure>
                                  <div>
                                     <p className="has-text-black has-text-weight-medium is-size-4">
@@ -76,16 +76,27 @@ export function RatingArea() {
                                     </p>
                                  </div>
                               </div>
-                              {[1, 2, 3, 4, 5].map((key) => (
-                                 <FaStar
-                                    key={key}
-                                    className="mr-2"
-                                    style={{
-                                       color: "#FDB600",
-                                       fontSize: "22px",
-                                    }}
-                                 />
-                              ))}
+                              {[true, true, true, true, true].map((item, key) =>
+                                 item ? (
+                                    <FaStar
+                                       key={key}
+                                       className="mr-2"
+                                       style={{
+                                          color: "#FDB600",
+                                          fontSize: "22px",
+                                       }}
+                                    />
+                                 ) : (
+                                    <FaStar
+                                       key={key}
+                                       className="mr-2"
+                                       style={{
+                                          color: "#ddd",
+                                          fontSize: "22px",
+                                       }}
+                                    />
+                                 )
+                              )}
                            </div>
                         </article>
                         <article
@@ -105,23 +116,20 @@ export function RatingArea() {
                                  }}
                               />
                               <p className="my-3">
-                                 Lorem ipsum dolor sit amet, consectetur
-                                 adipiscing elit, sed do eiusmod tempor
-                                 incididunt ut labore et dolore magna aliqua. Ut
-                                 enim ad minim.
+                                 Excelente! Notei que não há nenhum erro em sua
+                                 programação, e todos os seus recursos realmente
+                                 funcionam. O testador deve ser realmente um
+                                 grande profissional.
                               </p>
                            </div>
                            <div>
                               <div className="is-flex is-align-items-center mb-3">
                                  <figure className="image is-64x64 mr-4">
-                                    <img
-                                       className="is-rounded"
-                                       src={Alvaro}
-                                    />
+                                    <img className="is-rounded" src={Alvaro} />
                                  </figure>
                                  <div>
                                     <p className="has-text-black has-text-weight-medium is-size-4">
-                                      Alvaro Amaral
+                                       Alvaro Amaral
                                     </p>
                                     <p
                                        className="is-size-6"
@@ -133,16 +141,27 @@ export function RatingArea() {
                                     </p>
                                  </div>
                               </div>
-                              {[1, 2, 3, 4, 5].map((key) => (
-                                 <FaStar
-                                    key={key}
-                                    className="mr-2"
-                                    style={{
-                                       color: "#FDB600",
-                                       fontSize: "22px",
-                                    }}
-                                 />
-                              ))}
+                              {[true, true, true, true, true].map((item, key) =>
+                                 item ? (
+                                    <FaStar
+                                       key={key}
+                                       className="mr-2"
+                                       style={{
+                                          color: "#FDB600",
+                                          fontSize: "22px",
+                                       }}
+                                    />
+                                 ) : (
+                                    <FaStar
+                                       key={key}
+                                       className="mr-2"
+                                       style={{
+                                          color: "#ddd",
+                                          fontSize: "22px",
+                                       }}
+                                    />
+                                 )
+                              )}
                            </div>
                         </article>
                         <article
@@ -162,19 +181,15 @@ export function RatingArea() {
                                  }}
                               />
                               <p className="my-3">
-                                 Lorem ipsum dolor sit amet, consectetur
-                                 adipiscing elit, sed do eiusmod tempor
-                                 incididunt ut labore et dolore magna aliqua. Ut
-                                 enim ad minim.
+                                 Além da importância que esse site tem, o design
+                                 é lindo, um trabalho excelente! Certeza que
+                                 quem o fez é muito linda também kakakakak.
                               </p>
                            </div>
                            <div>
                               <div className="is-flex is-align-items-center mb-3">
                                  <figure className="image is-64x64 mr-4">
-                                    <img
-                                       className="is-rounded"
-                                       src={Ana}
-                                    />
+                                    <img className="is-rounded" src={Ana} />
                                  </figure>
                                  <div>
                                     <p className="has-text-black has-text-weight-medium is-size-4">
@@ -190,16 +205,27 @@ export function RatingArea() {
                                     </p>
                                  </div>
                               </div>
-                              {[1, 2, 3, 4, 5].map((key) => (
-                                 <FaStar
-                                    key={key}
-                                    className="mr-2"
-                                    style={{
-                                       color: "#FDB600",
-                                       fontSize: "22px",
-                                    }}
-                                 />
-                              ))}
+                              {[true, true, true, true, true].map((item, key) =>
+                                 item ? (
+                                    <FaStar
+                                       key={key}
+                                       className="mr-2"
+                                       style={{
+                                          color: "#FDB600",
+                                          fontSize: "22px",
+                                       }}
+                                    />
+                                 ) : (
+                                    <FaStar
+                                       key={key}
+                                       className="mr-2"
+                                       style={{
+                                          color: "#ddd",
+                                          fontSize: "22px",
+                                       }}
+                                    />
+                                 )
+                              )}
                            </div>
                         </article>
                      </div>
@@ -223,18 +249,14 @@ export function RatingArea() {
                            }}
                         />
                         <p className="my-3">
-                           Lorem ipsum dolor sit amet, consectetur adipiscing
-                           elit, sed do eiusmod tempor incididunt ut labore et
-                           dolore magna aliqua. Ut enim ad minim.
+                           O único defeito desse site é não ter sido criado
+                           antes, por isso 4 estrelas.
                         </p>
                      </div>
                      <div>
                         <div className="is-flex is-align-items-center mb-3">
                            <figure className="image is-64x64 mr-4">
-                              <img
-                                 className="is-rounded"
-                                 src={Fabricio}
-                              />
+                              <img className="is-rounded" src={Fabricio} />
                            </figure>
                            <div>
                               <p className="has-text-black has-text-weight-medium is-size-4">
@@ -250,16 +272,27 @@ export function RatingArea() {
                               </p>
                            </div>
                         </div>
-                        {[1, 2, 3, 4, 5].map((key) => (
-                                 <FaStar
-                                    key={key}
-                                    className="mr-2"
-                                    style={{
-                                       color: "#FDB600",
-                                       fontSize: "22px",
-                                    }}
-                                 />
-                              ))}
+                        {[true, true, true, true, false].map((item, key) =>
+                           item ? (
+                              <FaStar
+                                 key={key}
+                                 className="mr-2"
+                                 style={{
+                                    color: "#FDB600",
+                                    fontSize: "22px",
+                                 }}
+                              />
+                           ) : (
+                              <FaStar
+                                 key={key}
+                                 className="mr-2"
+                                 style={{
+                                    color: "#ddd",
+                                    fontSize: "22px",
+                                 }}
+                              />
+                           )
+                        )}
                      </div>
                   </article>
                   <article
@@ -279,18 +312,18 @@ export function RatingArea() {
                            }}
                         />
                         <p className="my-3">
-                           Lorem ipsum dolor sit amet, consectetur adipiscing
-                           elit, sed do eiusmod tempor incididunt ut labore et
-                           dolore magna aliqua. Ut enim ad minim.
+                           Uma ferramenta incrível! Tenho utilizado
+                           frequentemente e estou conseguindo tirar todas as
+                           minhas dúvidas. A parte textual do site é bem
+                           intuitiva, levando a movimentação dentro do site ser
+                           bem fácil. Quem organizou essa parte, está de
+                           parabéns!
                         </p>
                      </div>
                      <div>
                         <div className="is-flex is-align-items-center mb-3">
                            <figure className="image is-64x64 mr-4">
-                              <img
-                                 className="is-rounded"
-                                 src={Emilly}
-                              />
+                              <img className="is-rounded" src={Emilly} />
                            </figure>
                            <div>
                               <p className="has-text-black has-text-weight-medium is-size-4">
@@ -306,16 +339,27 @@ export function RatingArea() {
                               </p>
                            </div>
                         </div>
-                        {[1, 2, 3, 4, 5].map((key) => (
-                                 <FaStar
-                                    key={key}
-                                    className="mr-2"
-                                    style={{
-                                       color: "#FDB600",
-                                       fontSize: "22px",
-                                    }}
-                                 />
-                              ))}
+                        {[true, true, true, true, true].map((item, key) =>
+                           item ? (
+                              <FaStar
+                                 key={key}
+                                 className="mr-2"
+                                 style={{
+                                    color: "#FDB600",
+                                    fontSize: "22px",
+                                 }}
+                              />
+                           ) : (
+                              <FaStar
+                                 key={key}
+                                 className="mr-2"
+                                 style={{
+                                    color: "#ddd",
+                                    fontSize: "22px",
+                                 }}
+                              />
+                           )
+                        )}
                      </div>
                   </article>
                </div>
