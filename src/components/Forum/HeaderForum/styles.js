@@ -37,6 +37,7 @@ export const Nav = styled.nav`
     align-items: center;
     width: 100%;
     h2{
+        max-width: 600px;
         font-family: 'Roboto';
         font-style: normal;
         font-weight: 900;
