@@ -163,6 +163,7 @@ export function HeaderForum() {
             setTitleHeader('Minha Questão')
             break;
       }
+      pathNameSplit[2] === 'user' && setTitleHeader('Perfil')
    },[location])
    useEffect(() => {
       const user = new User("",userLogged)
@@ -186,7 +187,9 @@ export function HeaderForum() {
                      <FiPlusCircle /> Faça uma pergunta
                   </NavLinkBtn>
                   <FiBell className="is-clickable" color="#808080" size='1.5rem'/>
-                  <Avatar src={avatar}/>
+                  <Link to={`/forum/user/${userLogged}`}>
+                     <Avatar src={avatar}/>
+                  </Link>
                </ContentLinks>
                <NavBtn className="nav-close-btn" onClick={()=>setShowNavbar(false)}>
                   <FaTimes />

@@ -27,6 +27,7 @@ import { FavoriteQuestions } from "./components/Forum/FavoriteQuestions";
 import { MyQuestions } from "./components/Forum/MyQuestions";
 import { MyAnswer } from "./components/Forum/MyAnswer";
 import { QuestionWithComments } from "./components/Forum/QuestionWithComments";
+import { Profile } from "./components/Forum/Profile";
 
 const Router = () =>{
     return(
@@ -49,6 +50,7 @@ const Router = () =>{
                     <Route path="my-questions" element={<MyQuestions />} />
                     <Route path="my-answer" element={<MyAnswer />} />
                     <Route path="question/:questionUid" element={<QuestionWithComments />} />
+                    <Route path="user/:userId" element={<Profile />} />
                     {/* Disciplinas */}
                     <Route path="subjects" element={<Subjects />} /> 
                     <Route path='subjects/:category' element={<Subject />}/>
