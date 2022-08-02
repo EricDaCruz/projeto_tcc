@@ -2,16 +2,21 @@ import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { validate as uuidValidate } from 'uuid';
 import { Avatar } from '../Avatar'
-import {FaBars, FaTimes} from 'react-icons/fa'
+import { FaBars, FaTimes } from 'react-icons/fa'
 import { FiBell, FiPlusCircle } from 'react-icons/fi'
 import Icon from '../../../assets/images/icone.png'
 /*Styles*/
 import { Header, ContentHeader, Nav, ContentLinks, NavLinkBtn, NavBtn } from "./styles";
+/* Classes */
+import { Storage } from '../../../services/Storage';
+import { User } from '../../../services/User';
 
 export function HeaderForum() {
    const location = useLocation()
    const [showNavbar, setShowNavbar] = useState(false)
    const [titleHeader, setTitleHeader] = useState('')
+   const [avatar, setAvatar] = useState('')
+   const userLogged = new Storage('uid').GetItemSessionStorage()
 
    const titleSubject = (lastPath) => {
      switch (lastPath){
@@ -123,7 +128,6 @@ export function HeaderForum() {
             return 'Técnico em Design de Interiores | Estudo e Aplicação dos Materiais e Revestimentos no Design de Interiores'
      }
    }
-
    useEffect(() => {
       const pathName = location.pathname
       const pathNameSplit = pathName.split('/')
@@ -160,6 +164,10 @@ export function HeaderForum() {
             break;
       }
    },[location])
+   useEffect(() => {
+      const user = new User("",userLogged)
+      user.GetInfoUser().then(res => setAvatar(res.photoUrl)) 
+   },[])
 
    
 
@@ -178,7 +186,7 @@ export function HeaderForum() {
                      <FiPlusCircle /> Faça uma pergunta
                   </NavLinkBtn>
                   <FiBell className="is-clickable" color="#808080" size='1.5rem'/>
-                  <Avatar src=''/>
+                  <Avatar src={avatar}/>
                </ContentLinks>
                <NavBtn className="nav-close-btn" onClick={()=>setShowNavbar(false)}>
                   <FaTimes />

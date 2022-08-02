@@ -64,7 +64,7 @@ export const Comments = ({
                   className="is-flex is-align-items-center"
                   style={{ gap: "1rem" }}
                >
-                  <Avatar />
+                  <Avatar src={userData.photoUrl}/>
                   <div>
                      <p className="has-text-black" style={{ color: "#808080" }}>
                         {userData.username}
