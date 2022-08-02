@@ -1,8 +1,12 @@
 import { Content } from "./styles";
 
-export const SelectPhoto = ({src}) => {
+export const SelectPhoto = ({src, onClick, photoSelect}) => {
     return(
-        <Content src={src}>
+        <Content 
+            src={src}
+            onClick={()=>onClick(src)}
+            photoSelect={photoSelect}
+        >
             
         </Content>
     )

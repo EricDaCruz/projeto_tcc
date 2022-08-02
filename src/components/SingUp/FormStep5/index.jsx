@@ -17,13 +17,12 @@ export function FormStep5() {
       "https://i.pinimg.com/736x/c2/30/d8/c230d88708195607ccd60d0b696d94f3.jpg",
       "https://static.vecteezy.com/system/resources/previews/005/056/035/original/design-of-cute-alien-wearing-black-glasses-vector.jpg",
       "https://i.pinimg.com/736x/e6/4c/69/e64c69da1aeb437150db1100767a052b.jpg",
-      "https://cdn3.vectorstock.com/i/1000x1000/00/97/design-cute-alien-king-hug-moon-vector-36660097.jpg",
-      "https://cdn3.vectorstock.com/i/1000x1000/00/97/design-cute-alien-king-hug-moon-vector-36660097.jpg"
+      "https://i1.sndcdn.com/artworks-000603856831-mayney-t500x500.jpg",
+      "http://wallpaperstock.net/mad-alien_wallpapers_11647_852x480.jpg"
    ]
 
-   const [photoSelect, setphotoSlect] = useState()
+   const [photoSelect, setPhotoSelect] = useState("")
    
-
    useEffect(() => {
       setData({ ...data, currentStep: 5 });
       if(data.email === ""){
@@ -32,7 +31,12 @@ export function FormStep5() {
    }, []);
 
    const handleNextStep = () => {
-      navigate(`/sing-up/step${data.currentStep + 1}`)
+      if(photoSelect){
+         setData({ ...data, photoUrl: photoSelect });
+         navigate(`/sing-up/step${data.currentStep + 1}`);
+      }else{
+         toast.error("Por favor, selecione uma foto")
+      }
    }
    const handlePreviousStep = () => {
       if (data.currentStep === 1) {
@@ -71,7 +75,7 @@ export function FormStep5() {
             <div className="is-flex is-flex-wrap-wrap is-justify-content-center" style={{gap:'2rem'}}>
                {
                   profiles.map((profile, key)=>(
-                     <SelectPhoto key={key} src={profile} />
+                     <SelectPhoto key={key} src={profile} onClick={setPhotoSelect} photoSelect={photoSelect}/>
                   ))
                }
             </div>

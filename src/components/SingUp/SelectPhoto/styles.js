@@ -6,7 +6,8 @@ export const Content = styled.div`
     border-radius: 50%;
     margin-bottom: 2rem;
     cursor: pointer;
-    border: 2px solid black;
+    border: ${props => props.photoSelect === props.src && "3px solid #1DA87A"};
+    box-shadow: ${props => props.photoSelect !== props.src && "3px 4px 6px 2px rgba(0, 0, 0,0.3)"};
 
     background-image: url(${props => props.src });
     background-size: cover;

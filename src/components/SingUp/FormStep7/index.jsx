@@ -20,6 +20,7 @@ export function FormStep7() {
    const handleLoginUser = async () => {
       const user = new User(data);
       await user.SignInUser();
+      navigate("/forum/chats");
    };
 
    return (

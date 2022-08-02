@@ -40,7 +40,7 @@ export class User {
          },
          interests: this.data.interests,
          username: this.data.username,
-         photoUrl: "",
+         photoUrl: this.data.photoUrl,
       };
 
       await setDoc(userRef, data);
