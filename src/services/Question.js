@@ -136,7 +136,8 @@ export class Question {
       const comments = await comment.GetComments();
 
       comments.forEach((com) => {
-         DeleteComments(com.commentUid);
+         const comment = new Comment(com.commentUid)
+         comment.DeleteComment();
       });
 
       await updateDoc(forumRef, {
