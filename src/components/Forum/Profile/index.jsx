@@ -11,6 +11,7 @@ import { User } from "../../../services/User";
 
 export const Profile = (params) => {
    const { userId } = useParams();
+   const [haveUserData, setHaveUserData] = useState(false);
    const [dateBorn, setDateBorn] = useState("");
    const [name, setName] = useState("");
    const [email, setEmail] = useState("");
@@ -23,7 +24,7 @@ export const Profile = (params) => {
    useEffect(() => {
       const user = new User("", userId);
       user.GetInfoUser().then((data) => {
-         console.log(data);
+         console.log(data.dateBorn);
          setDateBorn(data.dateBorn);
          setName(data.name);
          setEmail(data.email);
@@ -33,36 +34,64 @@ export const Profile = (params) => {
          setState(data.location.state);
          setPhone(data.phone);
       });
+      setHaveUserData(true);
    }, []);
 
    return (
       <Container>
-         <ContentProfile>
-            <img src={photoUrl} alt="" />
-         </ContentProfile>
-         <ContentInputs>
-            <Field label="Nome">
-               <Inputs type="text" value={name} />
-            </Field>
-            <Field label="Email">
-               <Inputs type="email" value={email} />
-            </Field>
-            <Field label="Celular">
-               <Inputs type="text" value={phone} />
-            </Field>
-            <Field label="username">
-               <Inputs type="text" value={username} />
-            </Field>
-            <Field label="Data de Nascimento">
-               <SelectDate value={dateBorn} setDateBorn={setDateBorn} />
-            </Field>
-            <Field label="Estado">
-               
-            </Field>
-            <Field label="Cidade">
-               
-            </Field>
-         </ContentInputs>
+         {haveUserData ? (
+            <>
+               <ContentProfile>
+                  <img src={photoUrl} alt="" />
+               </ContentProfile>
+               <ContentInputs>
+                  <Field label="Nome">
+                     <Inputs type="text" value={name} />
+                  </Field>
+                  <Field label="Email">
+                     <Inputs type="email" value={email} />
+                  </Field>
+                  <Field label="Celular">
+                     <Inputs type="text" value={phone} />
+                  </Field>
+                  <Field label="username">
+                     <Inputs type="text" value={username} />
+                  </Field>
+                  <Field label="Data de Nascimento">
+                     <SelectDate value={dateBorn} setDateBorn={setDateBorn} />
+                  </Field>
+                  <Field label="Estado">
+                  <div className="control has-icons-right">
+                        <DropdownStates
+                           value={state}
+                           handleFormLocalization={setState}
+                        />
+                        <span className="icon is-small is-right">
+                           <MdOutlineKeyboardArrowDown
+                              style={{ color: "#A0A3BD" }}
+                           />
+                        </span>
+                     </div>
+                  </Field>
+                  <Field label="Cidade">
+                  <div className="control has-icons-right">
+                        <DropdownCities
+                           value={city}
+                           state={state}
+                           handleFormLocalization={setCity}
+                        />
+                        <span className="icon is-small is-right">
+                           <MdOutlineKeyboardArrowDown
+                              style={{ color: "#A0A3BD" }}
+                           />
+                        </span>
+                     </div>
+                  </Field>
+               </ContentInputs>
+            </>
+         ) : (
+            <div> Loading... </div>
+         )}
       </Container>
    );
 };
