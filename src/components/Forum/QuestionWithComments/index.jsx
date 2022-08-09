@@ -65,9 +65,7 @@ export const QuestionWithComments = () => {
                            questionUid,
                            commentUid,
                            userId,
-                        } = comment;
-                        console.log("Comment", commentUid);
-
+                        } = comment
                         return (
                            <Comments
                               key={commentUid}

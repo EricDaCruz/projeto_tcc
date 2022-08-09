@@ -20,13 +20,13 @@ export const ContentProfile = styled.div`
     
     label{
         cursor: pointer;
-        
-        img{
         width: 150px;
         height: 150px;
         border-radius: 50%;
-        cursor: pointer;
     }
+    img{
+        object-fit: cover;
+        border-radius: 50%;
     }
     input{
         display: none;

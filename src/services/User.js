@@ -4,7 +4,7 @@ import {
    signOut,
    sendPasswordResetEmail
 } from "firebase/auth";
-import { doc, setDoc, getDoc } from "firebase/firestore";
+import { doc, setDoc, getDoc, updateDoc } from "firebase/firestore";
 import { db, auth } from "../firebase";
 import { toast } from "react-toastify";
 /* Classes */
@@ -115,5 +115,12 @@ export class User {
         ) : (
           toast.error("Por favor, preencha o campo de email")
         )
+  }
+  async UpdateProfile(){
+     const userRef = doc(db, "users", this.uid);
+     await updateDoc(userRef, this.data)
+   }
+   async DeleteProfile(){
+     const userRef = doc(db, "users", this.uid);
   }
 }
