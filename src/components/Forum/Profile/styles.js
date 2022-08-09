@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
     padding: 0.5rem 1rem;
-    background-color: red;
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
@@ -12,12 +11,10 @@ export const ContentInputs = styled.div`
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    background-color: blue;
     flex: 1;
 `
 export const ContentProfile = styled.div`
     min-width: 200px;
-    background-color: green;
     display: flex;
     justify-content: center;
 
@@ -35,9 +32,30 @@ export const Inputs = styled.input`
     border: 1px solid #EFF0F7;
     outline: none;
     padding: 0.75rem 0.5rem ;
+    font-size: 1rem;
     
     &:focus{
        border: 1px solid #1da87a;
        box-shadow: none;    
     }
+`
+
+export const ContentButton = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+` 
+
+export const Button = styled.button`
+    padding: 0.25rem 1rem; 
+    margin-top: 1rem;
+    max-width: 200px;
+    height: 2rem;
+    background-color: ${props => props.delete ? 'red' : 'green'};
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1.125rem;
+    color: #fff;
 `

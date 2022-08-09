@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Container, ContentInputs, ContentProfile, Inputs } from "./styles";
+import { Container, ContentInputs, ContentProfile, Inputs, ContentButton, Button } from "./styles";
 import { Field } from "../../SingUp/Field";
 import { SelectDate } from "../../SingUp/SelectDate";
 import { DropdownStates } from "../../SingUp/Dropdowns/DropdownStates";
@@ -20,6 +20,7 @@ export const Profile = (params) => {
    const [city, setCity] = useState("");
    const [state, setState] = useState("");
    const [phone, setPhone] = useState("");
+   const [changedData, setChangeData] = useState(false)
 
    useEffect(() => {
       const user = new User("", userId);
@@ -37,6 +38,28 @@ export const Profile = (params) => {
       setHaveUserData(true);
    }, []);
 
+
+   const handleChangeData = (value, input) =>{
+      setChangeData(true)
+      switch (input) {
+         case 'name':
+            setName(value)
+            break;
+         case 'email':
+            setEmail(value)
+            break;
+         case 'phone':
+            setPhone(value)
+            break;
+         case 'username':
+            setUsername(value)
+            break;
+         case 'date':
+            setDateBorn(value)
+            break;
+      }
+   }
+
    return (
       <Container>
          {haveUserData ? (
@@ -46,19 +69,19 @@ export const Profile = (params) => {
                </ContentProfile>
                <ContentInputs>
                   <Field label="Nome">
-                     <Inputs type="text" value={name} />
+                     <Inputs  className="input is-medium pl-4" type="text" value={name} onChange={e => handleChangeData(e.target.value,'name')} />
                   </Field>
                   <Field label="Email">
-                     <Inputs type="email" value={email} />
+                     <Inputs   className="input is-medium pl-4" type="email" value={email} onChange={e => handleChangeData(e.target.value,'email')}/>
                   </Field>
                   <Field label="Celular">
-                     <Inputs type="text" value={phone} />
+                     <Inputs  className="input is-medium pl-4" type="text" value={phone} onChange={e => handleChangeData(e.target.value,'phone')}/>
                   </Field>
                   <Field label="username">
-                     <Inputs type="text" value={username} />
+                     <Inputs className="input is-medium pl-4" type="text" value={username} onChange={e => handleChangeData(e.target.value,'username')}/>
                   </Field>
                   <Field label="Data de Nascimento">
-                     <SelectDate value={dateBorn} setDateBorn={setDateBorn} />
+                     <SelectDate value={dateBorn} setDateBorn={setDateBorn} onChange={e => handleChangeData(e.target.value,'date')}/>
                   </Field>
                   <Field label="Estado">
                   <div className="control has-icons-right">
@@ -87,6 +110,14 @@ export const Profile = (params) => {
                         </span>
                      </div>
                   </Field>
+                  <ContentButton>
+                     {
+                     changedData && (
+                        <Button >Atualizar Perfil</Button>
+                        )
+                     }
+                    <Button delete={true}>Deletar Perfil</Button>
+                  </ContentButton>
                </ContentInputs>
             </>
          ) : (

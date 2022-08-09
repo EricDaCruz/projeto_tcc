@@ -13,7 +13,7 @@ export function SelectDate({value, setDateBorn}){
             <Container className="control">
                 <input 
                     type="date" 
-                    className="input is-rounded is-medium"
+                    className="input is-medium"
                     onChange={(e) => handleSetData(e.target.value)}
                     value={selectDate} 
                     min="1942-01-01"
