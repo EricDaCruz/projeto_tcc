@@ -37,6 +37,10 @@ export const Profile = (params) => {
       });
       setHaveUserData(true);
    }, []);
+   useEffect(() => {
+      console.log(photoUrl);
+      
+   }, [photoUrl]);
 
 
    const handleChangeData = (value, input) =>{
@@ -64,8 +68,12 @@ export const Profile = (params) => {
       <Container>
          {haveUserData ? (
             <>
-               <ContentProfile>
-                  <img src={photoUrl} alt="" />
+               <ContentProfile img={photoUrl}>
+                 
+                  <label htmlFor="inputFile">
+                     <img src={photoUrl} alt="" />
+                  </label>
+                  <input id="inputFile" type="file" onChange={e => setPhotoUrl(e.target)}/>
                </ContentProfile>
                <ContentInputs>
                   <Field label="Nome">

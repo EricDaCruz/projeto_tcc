@@ -17,12 +17,20 @@ export const ContentProfile = styled.div`
     min-width: 200px;
     display: flex;
     justify-content: center;
-
-    img{
+    
+    label{
+        cursor: pointer;
+        
+        img{
         width: 150px;
         height: 150px;
         border-radius: 50%;
         cursor: pointer;
+    }
+    }
+    input{
+        display: none;
+        opacity: 0;
     }
 `
 
