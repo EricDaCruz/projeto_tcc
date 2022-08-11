@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import moment from 'moment'
 import { Container } from './styles'
 
@@ -16,7 +16,7 @@ export function SelectDate({value, setDateBorn,setChangeData}){
                     type="date" 
                     className="input is-medium"
                     onChange={(e) => handleSetData(e.target.value)}
-                    value={selectDate} 
+                    value={selectDate ? selectDate  : value} 
                     min="1942-01-01"
                 />
             </Container>
