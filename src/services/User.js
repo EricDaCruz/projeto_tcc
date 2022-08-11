@@ -121,7 +121,7 @@ export class User {
     const userRef = doc(db, "users", this.uid);
     const updateUserEmail = (email) => {
       updateEmail(auth.currentUser, email)
-        .then(() => {
+        .then(async () => {
           await updateDoc(userRef, this.data);
           toast.success("Perfil atualizado com sucesso!");
         })
