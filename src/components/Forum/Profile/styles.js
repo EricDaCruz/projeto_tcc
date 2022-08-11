@@ -27,6 +27,8 @@ export const ContentProfile = styled.div`
     img{
         object-fit: cover;
         border-radius: 50%;
+        min-width: 100%;
+        min-height: 100%;
     }
     input{
         display: none;
