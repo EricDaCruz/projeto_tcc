@@ -4,12 +4,15 @@ import {
   signOut,
   sendPasswordResetEmail,
   updateEmail,
+  deleteUser,
 } from "firebase/auth";
 import { doc, setDoc, getDoc, updateDoc } from "firebase/firestore";
 import { db, auth } from "../firebase";
 import { toast } from "react-toastify";
 /* Classes */
 import { Storage } from "./Storage";
+import { Question } from "./Question";
+import { Comment } from "./Comment";
 
 export class User {
   constructor(data, uid) {
@@ -126,12 +129,33 @@ export class User {
           toast.success("Perfil atualizado com sucesso!");
         })
         .catch((error) => {
-          console.log('User ->', error);
+          console.log('User ->', error.code);
+          switch (error.code) {
+            case "auth/email-already-in-use":
+              toast.error("Email já em uso");
+              break;
+            case "auth/invalid-email":
+              toast.error("Email inválido");
+          }
         });
     }
     updateUserEmail(this.data.email)
   }
   async DeleteProfile() {
     const userRef = doc(db, "users", this.uid);
+    deleteUser(auth.currentUser).then(() => {
+      // Deletar questão feita pelo usuário
+
+      // Deletar comentários feitos pelo usuário
+
+      // Tirar curtidas feitas pelo usuário - não é certeza
+
+      // Deletar usuário do banco
+
+      // toast de sucesso
+
+    }).catch((error) => {
+      // toast de error.
+    });
   }
 }
