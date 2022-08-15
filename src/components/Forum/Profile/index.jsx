@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import {
   Container,
@@ -18,6 +18,7 @@ import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { User } from "../../../services/User";
 
 export const Profile = (params) => {
+  const navigate = useNavigate();
   const { userId } = useParams();
   const [haveUserData, setHaveUserData] = useState(false);
   const [dateBorn, setDateBorn] = useState("");
@@ -73,7 +74,6 @@ export const Profile = (params) => {
         break;
     }
   };
-
   const updateProfile = async () => {
     const data = {
       name,
@@ -104,6 +104,10 @@ export const Profile = (params) => {
       setChangeData(false);
     }
   };
+  const deleteProfile = async () =>{
+    const user = new User("", userId);
+    user.DeleteProfile().then(()=>navigate("/"))
+  }
 
   return (
     <Container>
@@ -186,7 +190,7 @@ export const Profile = (params) => {
               {changedData && (
                 <Button onClick={updateProfile}>Atualizar Perfil</Button>
               )}
-              <Button delete={true}>Deletar Perfil</Button>
+              <Button delete={true} onClick={deleteProfile}>Deletar Perfil</Button>
             </ContentButton>
           </ContentInputs>
         </>
