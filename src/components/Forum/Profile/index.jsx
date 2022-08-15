@@ -16,6 +16,7 @@ import { DropdownCities } from "../../SingUp/Dropdowns/DropdownCities";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 /* Classes */
 import { User } from "../../../services/User";
+import { Modal } from "../Modal";
 
 export const Profile = (params) => {
   const navigate = useNavigate();
@@ -190,7 +191,8 @@ export const Profile = (params) => {
               {changedData && (
                 <Button onClick={updateProfile}>Atualizar Perfil</Button>
               )}
-              <Button delete={true} onClick={deleteProfile}>Deletar Perfil</Button>
+              {/* <Button delete={true} onClick={deleteProfile}>Deletar Perfil</Button> */}
+              <Modal onClick={deleteProfile} button={<Button delete={true} >Deletar Perfil</Button>}/>
             </ContentButton>
           </ContentInputs>
         </>
