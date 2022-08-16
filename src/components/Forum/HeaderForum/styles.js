@@ -12,10 +12,11 @@ export const Header = styled.header`
     border-bottom: 1px solid #EAEAEA;
     .contentImg{
         display: flex;
+        align-items: center;
         max-width: 15rem;
         width: 100%;
         img{
-            max-width: 25%;
+            max-width: 70%;
         }
     }
     @media screen and (max-width: 1024px){
