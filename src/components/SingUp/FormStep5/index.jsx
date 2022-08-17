@@ -11,14 +11,15 @@ import { SelectPhoto } from '../SelectPhoto'
 
 export function FormStep5() {
    const navigate = useNavigate();
+   const urlPhoto = "https://github.com/EricDaCruz/projeto_tcc/blob/main/src/assets/images/profile-pictures/"
    const { data, setData } = useForm();
    const profiles = [
-      "https://t3.ftcdn.net/jpg/04/07/34/84/360_F_407348423_b6vEXZoW4nmoLvrtc0tJ0TrSTO7jChSd.jpg",
-      "https://i.pinimg.com/736x/c2/30/d8/c230d88708195607ccd60d0b696d94f3.jpg",
-      "https://static.vecteezy.com/system/resources/previews/005/056/035/original/design-of-cute-alien-wearing-black-glasses-vector.jpg",
-      "https://i.pinimg.com/736x/e6/4c/69/e64c69da1aeb437150db1100767a052b.jpg",
-      "https://i1.sndcdn.com/artworks-000603856831-mayney-t500x500.jpg",
-      "http://wallpaperstock.net/mad-alien_wallpapers_11647_852x480.jpg"
+      "https://github.com/EricDaCruz/projeto_tcc/blob/main/src/assets/images/profile-pictures/perfil-amarelo.png?raw=true",
+      urlPhoto + "perfil-azul.png?raw=true",
+      urlPhoto + "perfil-laranja.png?raw=true",
+      urlPhoto + "perfil-rosa_escuro.png?raw=true",
+      urlPhoto + "perfil-rosa.png?raw=true",
+      urlPhoto + "perfil-roxo.png?raw=true",
    ]
 
    const [photoSelect, setPhotoSelect] = useState("")

@@ -107,7 +107,7 @@ export const Profile = (params) => {
   };
   const deleteProfile = async () =>{
     const user = new User("", userId);
-    user.DeleteProfile().then(()=>navigate("/"))
+    user.DeleteProfile().then(/*()=>navigate("/")*/)
   }
 
   return (
@@ -192,7 +192,7 @@ export const Profile = (params) => {
                 <Button onClick={updateProfile}>Atualizar Perfil</Button>
               )}
               {/* <Button delete={true} onClick={deleteProfile}>Deletar Perfil</Button> */}
-              <Modal onClick={deleteProfile} button={<Button delete={true} >Deletar Perfil</Button>}/>
+              <Modal deleteProfile={deleteProfile}/>
             </ContentButton>
           </ContentInputs>
         </>

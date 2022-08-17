@@ -12,4 +12,10 @@ export const Content = styled.div`
     background-image: url(${props => props.src });
     background-size: cover;
     background-position: center center;
+
+    transition: all 0.1s ease;
+
+    &:hover{
+        transform: translateY(-10px);
+    }
 `
