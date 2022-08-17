@@ -1,11 +1,16 @@
+import { Link } from 'react-router-dom';
+import { Container  } from "./styles";
+import img404 from '../../assets/images/404.png'
 
 
 export function Error (){
     return(
-        <div>
-            <h1>Error 4040</h1>
-            <p>Página não encontrada</p>
-        </div>
+        <Container>
+            <img src={img404} alt="Error 404" />
+            <Link to="/"> 
+                Voltar para navegação
+            </Link>
+        </Container>
     )
 
 }
