@@ -151,7 +151,7 @@ export class User {
    async DeleteProfile() {
       const userRef = doc(db, "users", this.uid);
       console.log(auth.currentUser);
-      /*const question = new Question();
+      const question = new Question();
       const comment = new Comment("", "", this.uid);
       // Deletar questões feitas pelo usuário
       //Pegar todas as questões feitas pelo usuário
@@ -187,33 +187,36 @@ export class User {
             });
          });
       }
-      
-      ;*/
+      // Deletar usuário do banco
+      updateDoc(userRef, {
+         dateBorn: deleteField(),
+         email: deleteField(),
+         interests: deleteField(),
+         location: deleteField(),
+         name: deleteField(),
+         phone: deleteField(),
+         photoUrl: deleteField(),
+         username: deleteField(),
+      })
+         .then(async () => await deleteDoc(userRef))
+         .catch((error) => {
+            toast.error("Erro ao deletar usuário no banco");
+         });
+      //Deslogar usuário
+       new Storage("uid").RemoveItemSessionStorage();
 
       deleteUser(auth.currentUser)
-         .then(() => {
-            // Deletar usuário do banco
-            updateDoc(userRef, {
-               dateBorn: deleteField(),
-               email: deleteField(),
-               interests: deleteField(),
-               location: deleteField(),
-               name: deleteField(),
-               phone: deleteField(),
-               photoUrl: deleteField(),
-               username: deleteField(),
-            })
-               .then(async () => await deleteDoc(userRef))
-               .catch((error) => {
-                  toast.error("Erro ao deletar usuário");
-               });
-            // Deslogar usuário
-            new Storage("uid").RemoveItemSessionStorage();
+         .then(async () => {
             toast.success("Perfil deletado com sucesso!");
          })
          .catch((error) => {
-            // toast de error.
-            toast.error("eeeeeeErro ao deletar usuário");
+            switch (error.code) {
+               case "auth/requires-recent-login":
+                  toast.error("É necessário fazer o login novamente");
+                  break;
+               default:
+                  toast.error("Erro ao deletar usuário");
+            }
          });
    }
 }

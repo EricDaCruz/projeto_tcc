@@ -107,7 +107,7 @@ export const Profile = (params) => {
   };
   const deleteProfile = async () =>{
     const user = new User("", userId);
-    user.DeleteProfile().then(/*()=>navigate("/")*/)
+    user.DeleteProfile().then(()=>navigate("/"))
   }
 
   return (
