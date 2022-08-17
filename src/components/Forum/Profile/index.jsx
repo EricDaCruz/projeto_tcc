@@ -114,10 +114,12 @@ export const Profile = (params) => {
          city === "" ||
          state === ""
       ) {
-        toast.error("Não deixe nenhum campo em branco");
+         toast.error("Não deixe nenhum campo em branco");
       } else {
-        const user = new User("", userId);
-        user.DeleteProfile().then(() => navigate("/"));
+         const user = new User("", userId);
+         await user.DeleteProfile();
+         await navigate("/");
+         toast.success("Perfil deletado com sucesso!");
       }
    };
 

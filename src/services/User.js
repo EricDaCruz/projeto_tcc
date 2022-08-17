@@ -150,7 +150,6 @@ export class User {
    }
    async DeleteProfile() {
       const userRef = doc(db, "users", this.uid);
-      console.log(auth.currentUser);
       const question = new Question();
       const comment = new Comment("", "", this.uid);
       // Deletar questões feitas pelo usuário
@@ -160,7 +159,7 @@ export class User {
       if (questions.length > 0) {
          questions.forEach(async (question) => {
             const quest = new Question(question.questionUid);
-            await quest.DeleteQuestion(question.questionUid);
+            await quest.DeleteQuestion(question.questionUid, true);
          });
       }
       // Deletar comentários feitos pelo usuário
@@ -170,7 +169,7 @@ export class User {
       if (comments.length > 0) {
          comments.forEach(async (comment) => {
             const com = new Comment(comment.commentUid);
-            await com.DeleteComment(comment.commentUid);
+            await com.DeleteComment(true);
          });
       }
       // Tirar curtidas feitas pelo usuário - não é certeza
@@ -187,6 +186,8 @@ export class User {
             });
          });
       }
+      //Deslogar usuário
+      new Storage("uid").RemoveItemSessionStorage();
       // Deletar usuário do banco
       updateDoc(userRef, {
          dateBorn: deleteField(),
@@ -198,18 +199,13 @@ export class User {
          photoUrl: deleteField(),
          username: deleteField(),
       })
-         .then(async () => await deleteDoc(userRef))
+         .then(async () => {
+            await deleteDoc(userRef);
+         })
          .catch((error) => {
             toast.error("Erro ao deletar usuário no banco");
          });
-      //Deslogar usuário
-      //  new Storage("uid").RemoveItemSessionStorage();
-      this.SignOutUser();
-
       deleteUser(auth.currentUser)
-         .then(async () => {
-            toast.success("Perfil deletado com sucesso!");
-         })
          .catch((error) => {
             switch (error.code) {
                case "auth/requires-recent-login":

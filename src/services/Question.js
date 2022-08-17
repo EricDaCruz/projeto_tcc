@@ -150,7 +150,5 @@ export class Question {
          userId: deleteField(),
       });
       await deleteDoc(forumRef);
-
-      window.location.reload();
    }
 }

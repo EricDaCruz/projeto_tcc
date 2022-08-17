@@ -124,7 +124,5 @@ export class Comment {
          userId: deleteField(),
       });
       await deleteDoc(commentsRef);
-
-      window.location.reload();
    }
 }
