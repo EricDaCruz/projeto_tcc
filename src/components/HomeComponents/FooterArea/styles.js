@@ -7,3 +7,6 @@ export const Link = styled.a`
         color: rgba(240, 175, 185, 0.5);
     }
 `
+export const Img = styled.img`
+   max-width: 300px;
+`

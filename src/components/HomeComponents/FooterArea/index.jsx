@@ -1,11 +1,12 @@
-import { Link } from './styles'
+import { Link, Img } from './styles'
+import AcrosticoVert from '../../../assets/images/acrostico-vertical.png'
 
 export function FooterArea() {
    return (
       <footer className="footer" style={{backgroundColor: '#188F67', paddingBottom: '0'}}>
          <div className="columns">
             <div className="column is-two-fifths is-hidden-mobile">
-               Logo ET
+               <Img src={AcrosticoVert} alt="Acrostico Vertical" />
             </div>
             <div className="column is-flex is-flex-direction-column is-align-items-center">
                 <div className="mb-4">
