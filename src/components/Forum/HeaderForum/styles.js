@@ -16,7 +16,7 @@ export const Header = styled.header`
         max-width: 15rem;
         width: 100%;
         img{
-            max-width: 70%;
+            max-width: 25%;
         }
     }
     @media screen and (max-width: 1024px){

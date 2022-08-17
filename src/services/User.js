@@ -203,7 +203,8 @@ export class User {
             toast.error("Erro ao deletar usuário no banco");
          });
       //Deslogar usuário
-       new Storage("uid").RemoveItemSessionStorage();
+      //  new Storage("uid").RemoveItemSessionStorage();
+      this.SignOutUser();
 
       deleteUser(auth.currentUser)
          .then(async () => {

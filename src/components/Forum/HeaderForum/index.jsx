@@ -4,7 +4,7 @@ import { validate as uuidValidate } from 'uuid';
 import { Avatar } from '../Avatar'
 import { FaBars, FaTimes } from 'react-icons/fa'
 import { FiBell, FiPlusCircle } from 'react-icons/fi'
-import Icon from '../../../assets/images/icone-nome.png'
+import Icon from '../../../assets/images/icone.png'
 /*Styles*/
 import { Header, ContentHeader, Nav, ContentLinks, NavLinkBtn, NavBtn } from "./styles";
 /* Classes */
