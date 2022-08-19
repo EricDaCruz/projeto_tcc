@@ -221,12 +221,9 @@ export const Profile = (params) => {
                      </div>
                   </Field>
                   <ContentButton>
-                     {changedData && (
-                        <Button onClick={updateProfile}>
+                        <Button onClick={changedData ? updateProfile : undefined} color={changedData ? 'green' : '#ccc'}>
                            Atualizar Perfil
                         </Button>
-                     )}
-                     {/* <Button delete={true} onClick={deleteProfile}>Deletar Perfil</Button> */}
                      <Modal deleteProfile={deleteProfile} />
                   </ContentButton>
                </ContentInputs>

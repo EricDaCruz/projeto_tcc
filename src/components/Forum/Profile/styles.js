@@ -61,7 +61,7 @@ export const Button = styled.button`
     margin-top: 1rem;
     max-width: 200px;
     height: 2rem;
-    background-color: ${props => props.delete ? 'red' : 'green'};
+    background-color: ${props => props.delete ? 'red' : props.color};
     border-radius: 5px;
     border: none;
     outline: none;
