@@ -16,7 +16,9 @@ export const MakeComments = ({ comments, setComments, data }) => {
       e.preventDefault();
       const uid = uuidv4();
       const { questionUid } = data;
-      if (answer) {
+      if (answer === "" || answer === " " ) {
+         toast.error("Por favor, preencha o campo de comentário.");
+      } else {
          const comment = new Comment("",questionUid, userLogged, {answer});
          await comment.RegisterComments(uid)
          setAnswer("");
@@ -31,8 +33,6 @@ export const MakeComments = ({ comments, setComments, data }) => {
             },...comments
          ];
          setComments(commentSend);
-      } else {
-         toast.error("Por favor, preencha o campo de comentário.");
       }
    };
 
