@@ -14,6 +14,7 @@ import { SelectDate } from "../../SingUp/SelectDate";
 import { DropdownStates } from "../../SingUp/Dropdowns/DropdownStates";
 import { DropdownCities } from "../../SingUp/Dropdowns/DropdownCities";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
+import { BsFillCameraFill } from "react-icons/bs";
 /* Classes */
 import { User } from "../../../services/User";
 import { Modal } from "../Modal";
@@ -135,7 +136,13 @@ export const Profile = (params) => {
             <>
                <ContentProfile img={photoUrl}>
                   <label htmlFor="inputFile">
-                     <img src={photoUrl} alt="" />
+                    <div>
+                     <p>
+                     <BsFillCameraFill />
+                           Mudar foto de perfil
+                        </p>
+                    </div>
+                     {/* <img src={photoUrl} alt="" /> */}
                   </label>
                   <input
                      id="inputFile"
