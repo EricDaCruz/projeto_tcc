@@ -140,22 +140,10 @@ export const Profile = (params) => {
       }
    };
    const deleteProfile = async () => {
-      if (
-         dateBorn === "" ||
-         name === "" ||
-         email === "" ||
-         username === "" ||
-         phone === "" ||
-         city === "" ||
-         state === ""
-      ) {
-         toast.error("Não deixe nenhum campo em branco");
-      } else {
          const user = new User("", userId);
          await user.DeleteProfile();
          await navigate("/");
          toast.success("Perfil deletado com sucesso!");
-      }
    };
 
    return (
