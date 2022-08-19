@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getQuestionsByCategory } from "../../../../services/GetQuestionsByCategory";
 import { Questions } from "../../Questions";
 import { LoaderQuestion } from "../../../LoaderQuestion";
-import { sortByDate } from "../../../../helpers/Sort";
 /* Classes */
 import { Question } from "../../../../services/Question";
 
