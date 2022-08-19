@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getStates, parseState } from "../../../../services/IbgeApi";
 import {Dropdown} from '../Dropdown';
 
-export function DropdownStates({ value, handleFormLocalization}) {
+export function DropdownStates({ value, handleFormLocalization, handleChangeData}) {
   const[states, setStates] = useState([])
 
   useEffect(()=>{
@@ -10,6 +10,6 @@ export function DropdownStates({ value, handleFormLocalization}) {
   },[])
 
    return (
-    <Dropdown value={value} name="state" handleForm={handleFormLocalization} data={states}/>
+    <Dropdown value={value} handleChangeData={handleChangeData} name="state" handleForm={handleFormLocalization} data={states}/>
    );
 }

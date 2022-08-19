@@ -72,6 +72,12 @@ export const Profile = (params) => {
          case "date":
             setDateBorn(value);
             break;
+         case "city":
+            setCity(value);
+            break;
+         case "state":
+            setState(value);
+            break;
       }
    };
    const updateProfile = async () => {
@@ -190,6 +196,7 @@ export const Profile = (params) => {
                         <DropdownStates
                            value={state}
                            handleFormLocalization={setState}
+                           handleChangeData={handleChangeData}
                         />
                         <span className="icon is-small is-right">
                            <MdOutlineKeyboardArrowDown
@@ -204,6 +211,7 @@ export const Profile = (params) => {
                            value={city}
                            state={state}
                            handleFormLocalization={setCity}
+                           handleChangeData={handleChangeData}
                         />
                         <span className="icon is-small is-right">
                            <MdOutlineKeyboardArrowDown
