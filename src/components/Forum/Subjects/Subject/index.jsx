@@ -4,43 +4,44 @@ import { getQuestionsByCategory } from "../../../../services/GetQuestionsByCateg
 import { Questions } from "../../Questions";
 import { LoaderQuestion } from "../../../LoaderQuestion";
 import { sortByDate } from "../../../../helpers/Sort";
+/* Classes */
+import { Question } from "../../../../services/Question";
 
 export const Subject = () => {
    const { category } = useParams();
 
-   const [subject, setSubject] = useState([]);
+   const [subjects, setSubjects] = useState([]);
    const [loading, setLoading] = useState(true);
 
    useEffect(() => {
       setLoading(true);
-      getQuestionsByCategory(category).then((questions) => {
-         const sortQuestions = sortByDate(questions)
-         setSubject(sortQuestions);
+      const question = new Question();
+      question.GetQuestionsByCategory(category).then((data) => {
+         setSubjects(data);
          setLoading(false);
-      });
+      })
    }, []);
 
-   if (subject.length !== 0) {
-      console.log(subject);
+   if (subjects.length !== 0) {
+      console.log(subjects);
    }
 
    return (
       <>
          {loading ? (
             <LoaderQuestion />
-         ) : subject.length !== 0 ? (
-            subject.map((question) => {
-               const formatContent = question.content.split('\n\n')
+         ) : subjects.length !== 0 ? (
+            subjects.map((question) => {
+               // const formatContent = question.content.split('\n\n')
                return (
                   <Questions
-                     key={question.chatUid}
+                     key={question.questionUid}
                      title={question.title}
-                     content={formatContent}
+                     content={question.content}
                      postDate={question.postDate}
                      stars={question.stars}
                      userId={question.userId}
-                     comments={12}
-                     chatUid={question.chatUid}
+                     questionUid={question.questionUid}
                   />
                );
             })

@@ -14,7 +14,7 @@ export const getQuestionsByCategory = async (category) => {
       // doc.data() is never undefined for query doc snapshots
       //   console.log(doc.data());
 
-    listQuestions.push({...doc.data(), chatUid: doc.id});
+    listQuestions.push({...doc.data(), q: doc.id});
    });
 
    return listQuestions;

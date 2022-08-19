@@ -78,6 +78,22 @@ export class Question {
 
       return sortQuestionsByDate;
    }
+   async GetQuestionsByCategory(category) {
+      const questionQuery = query(
+         collection(db, "forum-chats"),
+         where("category", "==", category)
+      );
+
+      const listQuestions = [];
+
+      const questionSnapshot = await getDocs(questionQuery);
+      questionSnapshot.forEach((doc) => {
+         listQuestions.push({ ...doc.data(), questionUid: doc.id });
+      });
+      const sortQuestionsByDate = sortByDate(listQuestions);
+      const sortQuestionsByStars = sortByStars(sortQuestionsByDate);
+      return sortQuestionsByStars;
+   }
    async GetFavoriteQuestions(userId) {
       const questionsRef = collection(db, "forum-chats");
       const questionsQuery = query(
@@ -136,7 +152,7 @@ export class Question {
       const comments = await comment.GetComments();
 
       comments.forEach((com) => {
-         const comment = new Comment(com.commentUid)
+         const comment = new Comment(com.commentUid);
          comment.DeleteComment();
       });
 
