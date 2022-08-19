@@ -15,9 +15,15 @@ import { DropdownStates } from "../../SingUp/Dropdowns/DropdownStates";
 import { DropdownCities } from "../../SingUp/Dropdowns/DropdownCities";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { BsFillCameraFill } from "react-icons/bs";
+/* Validações */
+import { format } from "telefone";
+import { validatePhoneNumber } from "../../../helpers/ValidFormRegister";
+import validator from "validator";
+import { FindExistUserName } from "../../../services/FindExistUserName";
 /* Classes */
 import { User } from "../../../services/User";
 import { Modal } from "../Modal";
+import moment from "moment";
 
 export const Profile = (params) => {
    const navigate = useNavigate();
@@ -66,6 +72,11 @@ export const Profile = (params) => {
             break;
          case "phone":
             setPhone(value);
+            const validPhone = validatePhoneNumber(value);
+            if (validPhone !== null) {
+               const formatPhone = format(validPhone).replace(/[-]/g, " ");
+               setPhone(formatPhone);
+            }
             break;
          case "username":
             setUsername(value);
@@ -106,9 +117,26 @@ export const Profile = (params) => {
       ) {
          toast.error("Preencha todos os campos");
       } else {
-         const user = new User(data, userId);
-         await user.UpdateProfile();
-         setChangeData(false);
+         if (moment(dateBorn).isValid()) {
+            if (moment(dateBorn).isAfter(moment().subtract(10, "years"))) {
+               toast.error("Você não pode ser menor de 10 anos");
+            } else {
+               if (validator.isEmail(email)) {
+                  const existUsernames = await FindExistUserName();
+                  if (existUsernames.includes(username)) {
+                     toast.error("Este nome de usuário já existe");
+                  } else {
+                     const user = new User(data, userId);
+                     await user.UpdateProfile();
+                     setChangeData(false);
+                  }
+               } else {
+                  toast.error("Insira um email válido");
+               }
+            }
+         } else {
+            toast.error("Data de nascimento inválida");
+         }
       }
    };
    const deleteProfile = async () => {
@@ -136,12 +164,12 @@ export const Profile = (params) => {
             <>
                <ContentProfile img={photoUrl}>
                   <label htmlFor="inputFile">
-                    <div>
-                     <p>
-                     <BsFillCameraFill />
+                     <div>
+                        <p>
+                           <BsFillCameraFill />
                            Mudar foto de perfil
                         </p>
-                    </div>
+                     </div>
                      {/* <img src={photoUrl} alt="" /> */}
                   </label>
                   <input
@@ -228,9 +256,12 @@ export const Profile = (params) => {
                      </div>
                   </Field>
                   <ContentButton>
-                        <Button onClick={changedData ? updateProfile : undefined} color={changedData ? 'green' : '#ccc'}>
-                           Atualizar Perfil
-                        </Button>
+                     <Button
+                        onClick={changedData ? updateProfile : undefined}
+                        color={changedData ? "green" : "#ccc"}
+                     >
+                        Atualizar Perfil
+                     </Button>
                      <Modal deleteProfile={deleteProfile} />
                   </ContentButton>
                </ContentInputs>

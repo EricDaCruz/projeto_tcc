@@ -137,6 +137,7 @@ export class User {
             })
             .catch((error) => {
                console.log("User ->", error.code);
+               /*  auth/requires-recent-login */
                switch (error.code) {
                   case "auth/email-already-in-use":
                      toast.error("Email já em uso");

@@ -24,8 +24,7 @@ export function FormStep2() {
    const [phoneNumber, setPhoneNumber] = useState(data.phone);
    const [locationState, setLocationState] = useState(data.state);
    const [locationCity, setLocationCity] = useState(data.city);
-   const regExPhone =
-      /[a-z]|[A-Z]|[/]|[|]|[@]|[#]|[!]|[$]|[%]|[¨]|[&]|[*]|[_]|[+]|[=]/g;
+   const regExPhone = /[a-z]|[A-Z]|[/]|[|]|[@]|[#]|[!]|[$]|[%]|[¨]|[&]|[*]|[_]|[+]|[=]/g;
 
    useEffect(() => {
       setData({ ...data, currentStep: 2 });
@@ -41,7 +40,6 @@ export function FormStep2() {
       setLocationCity(city);
    };
    const handlePhoneNumber = (phone) => {
-   
       setPhoneNumber(phone);
       const validPhone = validatePhoneNumber(phone);
       if (validPhone !== null) {
