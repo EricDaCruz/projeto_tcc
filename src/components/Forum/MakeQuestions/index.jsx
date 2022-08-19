@@ -28,7 +28,7 @@ export const MakeQuestions = () => {
       const userLogged = storage.GetItemSessionStorage()
       const questionUid = uuidv4();
       const postDate = moment().format("YYYY-MM-DD HH:mm");
-      if(category === "" || title === "" || content === ""){
+      if(category === "" || title === "" || content === "" || title === " " || content === " "){
          toast.error('Preencha todos os campos');
       }else{
          if(questionUid){
