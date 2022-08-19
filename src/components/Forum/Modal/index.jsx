@@ -27,7 +27,7 @@ export const Modal = ({ deleteProfile }) => {
                   </div>
                   <div className="actions">
                      <Button delete={true} onClick={openAndCloseModal}>Cancelar</Button>
-                     <Button onClick={()=>{deleteProfile();openAndCloseModal()}}>
+                     <Button onClick={()=>{deleteProfile();openAndCloseModal()}} color="green">
                         Excluir Perfil
                      </Button>
                   </div>
