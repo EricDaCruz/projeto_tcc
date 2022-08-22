@@ -1,5 +1,5 @@
 import { Content } from './styles'
-import { RiStarLine } from 'react-icons/ri'
+import { Link } from 'react-router-dom'
 import { HiLink } from 'react-icons/hi'
 
 export const CardForum = () => {
@@ -13,13 +13,13 @@ export const CardForum = () => {
             <div className="content">
               <ul>
                 <li>
-                  <a href="#">Física</a>
+                  <Link to="/forum/subjects/ds">Desenvolvimento de Sistema</Link>
                 </li>
                 <li>
-                  <a href="#">Química</a>
+                  <Link to="/forum/subjects/tma">Meio Ambiente</Link>
                 </li>
                 <li>
-                  <a href="#">Geografia</a>
+                  <Link to="/forum/subjects/tdi">Design de Interiores</Link>
                 </li>
               </ul>
             </div>

@@ -129,6 +129,7 @@ export function HeaderForum() {
      }
    }
    useEffect(() => {
+      setShowNavbar(false);
       const pathName = location.pathname
       const pathNameSplit = pathName.split('/')
       const lastPath = pathNameSplit[pathNameSplit.length - 1]

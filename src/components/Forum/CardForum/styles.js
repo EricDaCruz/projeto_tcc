@@ -11,6 +11,12 @@ export const Content = styled.div`
     border-radius: 5px;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.05);
 
+    @media screen and (max-width: 1200px) {
+        display: none;
+        opacity: 0;
+        visibility: hidden;
+    }
+
     section{
 
         div.headerContent{
