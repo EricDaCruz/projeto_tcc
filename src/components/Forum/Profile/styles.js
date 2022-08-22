@@ -5,6 +5,11 @@ export const Container = styled.div`
    display: flex;
    flex-direction: row-reverse;
    justify-content: space-between;
+   flex-wrap: wrap;
+
+   @media (max-width: 700px) {
+      flex-direction: column;
+   }
 `;
 
 export const ContentInputs = styled.div`
@@ -88,7 +93,7 @@ export const Button = styled.button`
    margin-top: 1rem;
    max-width: 200px;
    height: 2rem;
-   background-color: ${(props) => (props.delete ? "red" : props.color)};
+   background-color: ${(props) => (props.delete ? "#ed2939" : props.color)};
    border-radius: 5px;
    border: none;
    outline: none;

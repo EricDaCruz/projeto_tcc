@@ -246,7 +246,7 @@ export const Profile = (params) => {
                   <ContentButton>
                      <Button
                         onClick={changedData ? updateProfile : undefined}
-                        color={changedData ? "green" : "#ccc"}
+                        color={changedData ? "#059142" : "#ccc"}
                      >
                         Atualizar Perfil
                      </Button>
