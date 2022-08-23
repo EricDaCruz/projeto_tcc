@@ -16,6 +16,12 @@ import {
 } from "firebase/firestore";
 import { db, auth } from "../firebase";
 import { toast } from "react-toastify";
+/* Validações */
+import { format } from "telefone";
+import { validatePhoneNumber } from "../helpers/ValidFormRegister";
+import validator from "validator";
+import { FindExistUserName } from "../services/FindExistUserName";
+import moment from "moment";
 /* Classes */
 import { Storage } from "./Storage";
 import { Question } from "./Question";
@@ -129,14 +135,47 @@ export class User {
    }
    async UpdateProfile() {
       const userRef = doc(db, "users", this.uid);
-      const updateUserEmail = (email) => {
+      let isDataValid = true;
+      let dataUpdate = {};
+      const updateUserEmail = async (email) => {
          updateEmail(auth.currentUser, email)
             .then(async () => {
-               await updateDoc(userRef, this.data);
-               toast.success("Perfil atualizado com sucesso!");
+               if (this.data.dateBorn) {
+                  if (moment(this.data.dateBorn).isValid()) {
+                     if (
+                        moment(this.data.dateBorn).isAfter(
+                           moment().subtract(10, "years")
+                        )
+                     ) {
+                        isDataValid = false;
+                        toast.error("Você não pode ser menor de 10 anos");
+                     }
+                  } else {
+                     isDataValid = false;
+                     toast.error("Data de nascimento inválida");
+                  }
+               }
+               if (this.data.email) {
+                  if (!validator.isEmail(this.data.email)) {
+                     isDataValid = false;
+                     toast.error("Email inválido");
+                  } 
+               }
+               if (this.data.username) {
+                  const existUsernames = await FindExistUserName();
+                  if (existUsernames.includes(this.data.username)) {
+                     isDataValid = false;
+                     toast.error("Este nome de usuário já existe");
+                  } 
+               }
+
+               if (isDataValid) {
+                  await updateDoc(userRef, this.data);
+                  toast.success("Perfil atualizado com sucesso!");
+               }
             })
             .catch((error) => {
-               console.log("User ->", error.code);
+               console.log("User ->", error);
                /*  auth/requires-recent-login */
                switch (error.code) {
                   case "auth/email-already-in-use":
@@ -206,15 +245,14 @@ export class User {
          .catch((error) => {
             toast.error("Erro ao deletar usuário no banco");
          });
-      deleteUser(auth.currentUser)
-         .catch((error) => {
-            switch (error.code) {
-               case "auth/requires-recent-login":
-                  toast.error("É necessário fazer o login novamente");
-                  break;
-               default:
-                  toast.error("Erro ao deletar usuário");
-            }
-         });
+      deleteUser(auth.currentUser).catch((error) => {
+         switch (error.code) {
+            case "auth/requires-recent-login":
+               toast.error("É necessário fazer o login novamente");
+               break;
+            default:
+               toast.error("Erro ao deletar usuário");
+         }
+      });
    }
 }

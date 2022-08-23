@@ -2,13 +2,13 @@ import { useState, useEffect } from 'react'
 import moment from 'moment'
 import { Container } from './styles'
 
-export function SelectDate({value, setDateBorn,setChangeData}){
+export function SelectDate({value, setDateBorn,handleChangeData}){
     const[selectDate, setSelectDate] = useState(value)
 
     const handleSetData = (value) => {
         setSelectDate(value)
         setDateBorn(moment(value).format('YYYY-MM-DD'))
-        setChangeData && setChangeData(true)
+        handleChangeData ? handleChangeData(moment(value).format('YYYY-MM-DD'), 'date') : undefined
     }
     return(
             <Container className="control">

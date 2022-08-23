@@ -28,6 +28,7 @@ import moment from "moment";
 export const Profile = (params) => {
    const navigate = useNavigate();
    const { userId } = useParams();
+   const [data, setData] = useState([]);
    const [dateBorn, setDateBorn] = useState("");
    const [name, setName] = useState("");
    const [email, setEmail] = useState("");
@@ -58,6 +59,7 @@ export const Profile = (params) => {
       reader.onload = async () => {
          const base64String = await reader.result;
          setPhotoUrl(base64String);
+         setData({ ...data, photoUrl: base64String });
       };
       reader.readAsDataURL(dataImage);
    };
@@ -66,9 +68,11 @@ export const Profile = (params) => {
       switch (input) {
          case "name":
             setName(value);
+            setData({ ...data, name: value });
             break;
          case "email":
             setEmail(value);
+            setData({ ...data, email: value });
             break;
          case "phone":
             setPhone(value);
@@ -76,35 +80,28 @@ export const Profile = (params) => {
             if (validPhone !== null) {
                const formatPhone = format(validPhone).replace(/[-]/g, " ");
                setPhone(formatPhone);
+               setData({ ...data, phone: formatPhone });
             }
             break;
          case "username":
             setUsername(value);
+            setData({ ...data, username: value });
             break;
          case "date":
             setDateBorn(value);
+            setData({ ...data, dateBorn: value });
             break;
          case "city":
             setCity(value);
+            setData({ ...data, location: { city: value } });
             break;
          case "state":
             setState(value);
+            setData({ ...data, location: { state: value } });
             break;
       }
    };
    const updateProfile = async () => {
-      const data = {
-         name,
-         email,
-         username,
-         dateBorn,
-         phone,
-         photoUrl,
-         location: {
-            city,
-            state,
-         },
-      };
       if (
          name === "" ||
          email === "" ||
@@ -117,33 +114,16 @@ export const Profile = (params) => {
       ) {
          toast.error("Preencha todos os campos");
       } else {
-         if (moment(dateBorn).isValid()) {
-            if (moment(dateBorn).isAfter(moment().subtract(10, "years"))) {
-               toast.error("Você não pode ser menor de 10 anos");
-            } else {
-               if (validator.isEmail(email)) {
-                  const existUsernames = await FindExistUserName();
-                  if (existUsernames.includes(username)) {
-                     toast.error("Este nome de usuário já existe");
-                  } else {
-                     const user = new User(data, userId);
-                     await user.UpdateProfile();
-                     setChangeData(false);
-                  }
-               } else {
-                  toast.error("Insira um email válido");
-               }
-            }
-         } else {
-            toast.error("Data de nascimento inválida");
-         }
+         const user = new User(data, userId);
+         await user.UpdateProfile();
+         setChangeData(false);
       }
    };
    const deleteProfile = async () => {
-         const user = new User("", userId);
-         await user.DeleteProfile();
-         await navigate("/");
-         toast.success("Perfil deletado com sucesso!");
+      const user = new User("", userId);
+      await user.DeleteProfile();
+      await navigate("/");
+      toast.success("Perfil deletado com sucesso!");
    };
 
    return (
@@ -211,7 +191,7 @@ export const Profile = (params) => {
                      <SelectDate
                         value={dateBorn}
                         setDateBorn={setDateBorn}
-                        setChangeData={setChangeData}
+                        handleChangeData={handleChangeData}
                      />
                   </Field>
                   <Field className="mt-3" label="Estado">
