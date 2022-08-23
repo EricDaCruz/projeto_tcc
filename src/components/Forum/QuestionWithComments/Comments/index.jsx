@@ -28,18 +28,19 @@ export const Comments = ({
    });
    const storage = new Storage("uid");
    const userLogged = storage.GetItemSessionStorage();
+   const splitContent = content.split("\n");
 
    useEffect(() => {
       const user = new User("", userId);
-      user.GetInfoUser()
-      .then(userData => setUserData(userData))
-      starsFavorite.includes(userLogged) ? setIsFavorite(true) : setIsFavorite(false);
- 
+      user.GetInfoUser().then((userData) => setUserData(userData));
+      starsFavorite.includes(userLogged)
+         ? setIsFavorite(true)
+         : setIsFavorite(false);
    }, []);
 
    const handleFavorite = async () => {
       console.log(commentUid);
-      const comment = new Comment(commentUid, questionUid)
+      const comment = new Comment(commentUid, questionUid);
       const dataComment = await comment.GetCommentByUid();
       if (isFavorite) {
          const newStars = dataComment.stars.filter(
@@ -64,7 +65,7 @@ export const Comments = ({
                   className="is-flex is-align-items-center"
                   style={{ gap: "1rem" }}
                >
-                  <Avatar src={userData.photoUrl}/>
+                  <Avatar src={userData.photoUrl} />
                   <div>
                      <p className="has-text-black" style={{ color: "#808080" }}>
                         {userData.username}
@@ -84,7 +85,13 @@ export const Comments = ({
                </span>
             </div>
             <div className="mt-5 mb-4">
-               <p>{content}</p>
+               {splitContent ? (
+                  splitContent.map((content, index) => {
+                     return <p key={index}>{content}</p>;
+                  })
+               ) : (
+                  <p>content</p>
+               )}
             </div>
             <div className="is-flex is-justify-content-flex-end">
                <div className="is-flex" style={{ gap: "1.25rem" }}>

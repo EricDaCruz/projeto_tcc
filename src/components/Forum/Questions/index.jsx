@@ -34,11 +34,12 @@ export const Questions = ({
       minute: "2-digit",
    });
    const storage = new Storage("uid");
-   const userLogged = storage.GetItemSessionStorage();// Pegando o usuário logado
+   const userLogged = storage.GetItemSessionStorage(); // Pegando o usuário logado
+   const splitContent = content.split("\n");
 
    useEffect(() => {
-      const user = new User('', userId);
-      user.GetInfoUser().then(userInfo => setUserData(userInfo));
+      const user = new User("", userId);
+      user.GetInfoUser().then((userInfo) => setUserData(userInfo));
       starsFavorite.includes(userLogged)
          ? setIsFavorite(true)
          : setIsFavorite(false);
@@ -65,7 +66,7 @@ export const Questions = ({
          setIsFavorite(true);
       }
    };
-   
+
    return (
       <Section className="mb-5" isInQuestion={isInQuestion}>
          <div className="is-flex is-align-items-center is-justify-content-space-between">
@@ -73,7 +74,7 @@ export const Questions = ({
                className="is-flex is-align-items-center"
                style={{ gap: "1rem" }}
             >
-               <Avatar src={userData.photoUrl}/>
+               <Avatar src={userData.photoUrl} />
                <div>
                   <p className="has-text-black" style={{ color: "#808080" }}>
                      {userData.username}
@@ -96,7 +97,13 @@ export const Questions = ({
          <div className="my-4 ">
             <h2 className="mb-1 is-size-5 has-text-weight-bold">{title}</h2>
 
-            <p>{content}</p>
+            {splitContent ? (
+               splitContent.map((content, index) => {
+                  return <p key={index}>{content}</p>;
+               })
+            ) : (
+               <p>content</p>
+            )}
          </div>
          <div className="is-flex is-justify-content-flex-end">
             <div className="is-flex" style={{ gap: "1.25rem" }}>
