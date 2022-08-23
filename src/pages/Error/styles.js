@@ -7,8 +7,13 @@ export const Container = styled.div`
    flex-direction: column;
    align-items: center;
 
+   @media screen and (max-width: 768px) {
+      justify-content: center;
+   }
+
    img {
       max-width: 600px;
+      width: 70%;
       margin-bottom: 1rem;
    }
 
