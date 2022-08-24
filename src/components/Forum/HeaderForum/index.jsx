@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { validate as uuidValidate } from 'uuid';
 import { Avatar } from '../Avatar'
+import { Notifications } from '../Notifications';
 import { FaBars, FaTimes } from 'react-icons/fa'
 import { FiBell, FiPlusCircle } from 'react-icons/fi'
 import Icon from '../../../assets/images/icone.png'
@@ -14,6 +15,7 @@ import { User } from '../../../services/User';
 export function HeaderForum() {
    const location = useLocation()
    const [showNavbar, setShowNavbar] = useState(false)
+   const [showNotifications, setShowNotifications] = useState(false)
    const [titleHeader, setTitleHeader] = useState('')
    const [avatar, setAvatar] = useState('')
    const userLogged = new Storage('uid').GetItemSessionStorage()
@@ -170,15 +172,16 @@ export function HeaderForum() {
       const user = new User("",userLogged)
       user.GetInfoUser().then(res => setAvatar(res.photoUrl)) 
    },[])
-
-   
+   const openNotifications = () =>{
+      setShowNotifications(!showNotifications)
+   }
 
    return (
       <Header>
          <ContentHeader className="container ">
             <Link to="chats">
                <div className="contentImg">
-                  <img src={Icon} alt="" width="80%"/>
+                  <img src={Icon} alt="Icone Alien"/>
                </div>
             </Link>
             <Nav showNavbar={showNavbar}>
@@ -187,7 +190,9 @@ export function HeaderForum() {
                   <NavLinkBtn to="/forum/make-questions">
                      <FiPlusCircle /> Faça uma pergunta
                   </NavLinkBtn>
-                  <FiBell className="is-clickable" color="#808080" size='1.5rem'/>
+                  <div onClick={openNotifications} className="is-flex is-justify-content-space-between">
+                     <FiBell className="is-clickable" color="#808080" size='1.5rem'/>
+                  </div>
                   <Link to={`/forum/user/${userLogged}`}>
                      <Avatar src={avatar}/>
                   </Link>
@@ -200,6 +205,7 @@ export function HeaderForum() {
                <FaBars />
             </NavBtn>
          </ContentHeader>
+         {showNotifications && <Notifications setShowNotifications={setShowNotifications}/>}
       </Header>
    );
 }
