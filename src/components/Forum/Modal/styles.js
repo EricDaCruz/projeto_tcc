@@ -1,17 +1,22 @@
 import styled from "styled-components";
 
 export const ContentAll = styled.div`
+   background-color: rgba(0, 0, 0, 0.5);
    position: absolute;
    top: 0;
    left: 0;
    min-width: 100vw;
-   min-height: 100vh;
+   min-height: ${props => props.height}px;
+   height: 100%;
    display: flex;
    align-items: center;
    justify-content: center;
+   z-index: 99;
+   overflow: hidden;
 `;
 
 export const StyledModal = styled.div`
+   z-index: 999;
    max-width: 550px;
    min-height: 350px;
    border-radius: 1rem;
@@ -20,7 +25,6 @@ export const StyledModal = styled.div`
    display: flex;
    flex-direction: column;
    justify-content: space-between;
-   border: 2px solid #1DA87A;
    box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.3);
 
    .header {

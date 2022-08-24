@@ -26,6 +26,7 @@ import { Modal } from "../Modal";
 import moment from "moment";
 
 export const Profile = (params) => {
+   const heightScreen = window.screen.height;
    const navigate = useNavigate();
    const { userId } = useParams();
    const [data, setData] = useState([]);
@@ -230,7 +231,7 @@ export const Profile = (params) => {
                      >
                         Atualizar Perfil
                      </Button>
-                     <Modal deleteProfile={deleteProfile} />
+                     <Modal deleteProfile={deleteProfile} height={heightScreen}/>
                   </ContentButton>
                </ContentInputs>
             </>

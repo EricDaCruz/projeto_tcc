@@ -3,7 +3,7 @@ import { StyledModal, ContentAll } from "./styles";
 import { Button } from "../Profile/styles";
 import { IoClose } from 'react-icons/io5';
 
-export const Modal = ({ deleteProfile }) => {
+export const Modal = ({ deleteProfile, height }) => {
    const [modalIsOpen, setIsOpen] = useState(false);
 
    function openAndCloseModal() {
@@ -16,7 +16,7 @@ export const Modal = ({ deleteProfile }) => {
             Deletar Perfil
          </Button>
          {modalIsOpen && (
-            <ContentAll >
+            <ContentAll height={height}>
                <StyledModal>
                   <div className="header">
                      <IoClose onClick={openAndCloseModal}/>
@@ -27,7 +27,7 @@ export const Modal = ({ deleteProfile }) => {
                   </div>
                   <div className="actions">
                      <Button delete={true} onClick={openAndCloseModal}>Cancelar</Button>
-                     <Button onClick={()=>{deleteProfile();openAndCloseModal()}} color="green">
+                     <Button onClick={()=>{deleteProfile();openAndCloseModal()}} color="#059142">
                         Excluir Perfil
                      </Button>
                   </div>
