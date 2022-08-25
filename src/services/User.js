@@ -158,24 +158,24 @@ export class User {
                   if (!validator.isEmail(this.data.email)) {
                      isDataValid = false;
                      toast.error("Email inválido");
-                  } 
+                  }
                }
                if (this.data.username) {
                   const existUsernames = await FindExistUserName();
                   if (existUsernames.includes(this.data.username)) {
                      isDataValid = false;
                      toast.error("Este nome de usuário já existe");
-                  } 
+                  }
                }
-               if(this.data.phone){
-                  if(!validatePhoneNumber(this.data.phone)){
+               if (this.data.phone) {
+                  if (!validatePhoneNumber(this.data.phone)) {
                      isDataValid = false;
                      toast.error("Celular inválido");
                   }
                }
 
                if (isDataValid) {
-                 await updateDoc(userRef, this.data);
+                  await updateDoc(userRef, this.data);
                   toast.success("Perfil atualizado com sucesso!");
                }
             })
