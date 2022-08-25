@@ -10,9 +10,11 @@ export const Header = () => {
 
    return(
       <HeaderForum className="container is-widescreen">
-         <div className="contentImg">
-            <img src={Icon} alt="" width="80%"/>
-         </div>
+          <Link to="/">
+               <div className="contentImg">
+                  <img src={Icon} alt="Icone Alien" width="80%"/>
+               </div>
+            </Link>
          <Nav showNavbar={showNavbar}>
             <Link to="/">
                Entrar
