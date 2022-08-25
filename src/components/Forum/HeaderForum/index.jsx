@@ -205,7 +205,7 @@ export function HeaderForum() {
                <FaBars />
             </NavBtn>
          </ContentHeader>
-         {showNotifications && <Notifications setShowNotifications={setShowNotifications}/>}
+         {showNotifications && <Notifications setShowNotifications={setShowNotifications} userId={userLogged}/>}
       </Header>
    );
 }
