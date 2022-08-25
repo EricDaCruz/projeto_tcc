@@ -136,7 +136,6 @@ export class User {
    async UpdateProfile() {
       const userRef = doc(db, "users", this.uid);
       let isDataValid = true;
-      let dataUpdate = {};
       const updateUserEmail = async (email) => {
          updateEmail(auth.currentUser, email)
             .then(async () => {
@@ -168,9 +167,15 @@ export class User {
                      toast.error("Este nome de usuário já existe");
                   } 
                }
+               if(this.data.phone){
+                  if(!validatePhoneNumber(this.data.phone)){
+                     isDataValid = false;
+                     toast.error("Celular inválido");
+                  }
+               }
 
                if (isDataValid) {
-                  await updateDoc(userRef, this.data);
+                 await updateDoc(userRef, this.data);
                   toast.success("Perfil atualizado com sucesso!");
                }
             })

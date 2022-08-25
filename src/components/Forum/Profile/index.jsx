@@ -78,10 +78,13 @@ export const Profile = (params) => {
          case "phone":
             setPhone(value);
             const validPhone = validatePhoneNumber(value);
+            console.log(validPhone);
             if (validPhone !== null) {
                const formatPhone = format(validPhone).replace(/[-]/g, " ");
                setPhone(formatPhone);
                setData({ ...data, phone: formatPhone });
+            }else{
+               setData({ ...data, phone: value });
             }
             break;
          case "username":
