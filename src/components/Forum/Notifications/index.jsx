@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import {
    Container,
    ContentNotifications,
@@ -41,18 +42,22 @@ export const Notifications = ({ setShowNotifications, notifications, setNotifica
                      notification: message,
                   } = notification;
                   return (
-                     <Notification key={id}>
-                        <div>
-                           <h3>{message}</h3>
-                           <p>{type}</p>
-                           <p>{createdAt}</p>
-                        </div>
-                        <ContentTrash>
-                           <BsFillTrashFill
-                              onClick={() => deleteNotification(id)}
-                           />
-                        </ContentTrash>
-                     </Notification>
+
+                        <Notification key={id}>
+                           <Link to={`/forum/question/f66357df-81c1-4303-af3c-8a4ac8668149`}>
+                              <div>
+                                 <h3>{message}</h3>
+                                 <p>Ir para a questão</p>
+                                 <p>{createdAt}</p>
+                              </div>
+                           </Link>
+                           <ContentTrash>
+                              <BsFillTrashFill
+                                 onClick={() => deleteNotification(id)}
+                              />
+                           </ContentTrash>
+                        </Notification>
+           
                   );
                })
             ) : (

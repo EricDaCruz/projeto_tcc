@@ -17,6 +17,7 @@ import emailjs from "@emailjs/browser";
 /* Classes */
 import { User } from "./User";
 import { Comment } from "./Comment";
+import { Notification } from "./Notification";
 
 export class Question {
    constructor(questionUid, category, title, content, postDate, userId) {
@@ -30,7 +31,7 @@ export class Question {
 
    //Create Question
    async RegisterQuestions() {
-      const questionRef = doc(db, "forum-chats", this.questionUid);
+      const questionRef = doc(db, "forum-chats", this.questionUid)
       await setDoc(questionRef, {
          category: this.category,
          content: this.content,
@@ -114,8 +115,23 @@ export class Question {
    }
    // Favorite Question
    async FavoriteQuestion(newStars) {
-      await updateDoc(doc(db, "forum-chats", this.questionUid), {
+      const user = new User("", this.userId);
+      const {username} = await user.GetInfoUser();
+
+      updateDoc(doc(db, "forum-chats", this.questionUid), {
          stars: newStars,
+      }).then(() => {
+         const notification = new Notification(
+            "",
+            "",
+            {
+               username,
+               type: "favorite-question",
+               userId: this.userId,
+               questionUid: this.questionUid,
+            },
+         );
+         notification.SendNotification();
       });
    }
    // Denounce Question
