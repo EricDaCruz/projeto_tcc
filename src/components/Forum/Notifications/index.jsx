@@ -10,16 +10,8 @@ import { BsFillTrashFill } from "react-icons/bs";
 /* Classes */
 import { Notification as NotificationClass } from "../../../services/Notification";
 
-export const Notifications = ({ setShowNotifications, userId }) => {
-   const [notifications, setNotifications] = useState([]);
-
-   useEffect(() => {
-      const notification = new NotificationClass("", userId);
-      notification.GetNotifications().then((result) => {
-         setNotifications(result);
-      });
-   }, []);
-
+export const Notifications = ({ setShowNotifications, notifications, setNotifications }) => {
+ 
    const deleteNotification = async (id) => {
       const notification = new NotificationClass(id);
       notification.DeleteNotifications().then(() => {
