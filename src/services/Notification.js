@@ -23,14 +23,12 @@ export class Notification {
    }
 
    async SendNotification() {
-      const notificationRef = doc(db, "notifications", uuidv4());
+      const uid =  uuidv4()
       const data = {
-         createdAt: moment().format('AAAA-MM-dd'),
-         notification: "eRC curtiu sua questão",
-         userId: this.data.userId,
-         type: this.data.type,
+         ...this.data,
+         createdAt: moment().format('yyyy-MM-DD'),
       };
-      await setDoc(notificationRef, data);
+      await setDoc(doc(db, "notifications", uid), data);
    }
    async GetNotifications() {
       const notificationsRef = collection(db, "notifications");

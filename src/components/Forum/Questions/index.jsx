@@ -50,7 +50,7 @@ export const Questions = ({
    }, []);
 
    const handleFavorite = async () => {
-      const question = new Question(questionUid);
+      const question = new Question(questionUid,"","","","",userId);
       const questionData = await question.GetQuestionByUid();
       if (isFavorite) {
          const newStars = questionData.stars.filter(

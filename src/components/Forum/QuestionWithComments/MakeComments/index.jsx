@@ -15,12 +15,13 @@ export const MakeComments = ({ comments, setComments, data }) => {
    const handleSendAnswer = async (e) => {
       e.preventDefault();
       const uid = uuidv4();
-      const { questionUid } = data;
-      if (answer === "" || answer === " " ) {
+      const { questionUid, userId: userIdSendQuestion} = data;
+      
+      if (answer === "" || answer === "" ) {
          toast.error("Por favor, preencha o campo de comentário.");
       } else {
          const comment = new Comment("",questionUid, userLogged, {answer});
-         await comment.RegisterComments(uid)
+         await comment.RegisterComments(uid,userIdSendQuestion)
          setAnswer("");
          const commentSend = [
             {

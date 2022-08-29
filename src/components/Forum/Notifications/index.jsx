@@ -11,8 +11,11 @@ import { BsFillTrashFill } from "react-icons/bs";
 /* Classes */
 import { Notification as NotificationClass } from "../../../services/Notification";
 
-export const Notifications = ({ setShowNotifications, notifications, setNotifications }) => {
- 
+export const Notifications = ({
+   setShowNotifications,
+   notifications,
+   setNotifications,
+}) => {
    const deleteNotification = async (id) => {
       const notification = new NotificationClass(id);
       notification.DeleteNotifications().then(() => {
@@ -39,25 +42,24 @@ export const Notifications = ({ setShowNotifications, notifications, setNotifica
                      id,
                      createdAt,
                      type,
+                     questionUid,
                      notification: message,
                   } = notification;
                   return (
-
-                        <Notification key={id}>
-                           <Link to={`/forum/question/f66357df-81c1-4303-af3c-8a4ac8668149`}>
-                              <div>
-                                 <h3>{message}</h3>
-                                 <p>Ir para a questão</p>
-                                 <p>{createdAt}</p>
-                              </div>
-                           </Link>
-                           <ContentTrash>
-                              <BsFillTrashFill
-                                 onClick={() => deleteNotification(id)}
-                              />
-                           </ContentTrash>
-                        </Notification>
-           
+                     <Notification key={id}>
+                        <Link to={`/forum/question/${questionUid}`}>
+                           <div>
+                              <h3>{message}</h3>
+                              <p>Ir para a questão</p>
+                              <p>{createdAt}</p>
+                           </div>
+                        </Link>
+                        <ContentTrash>
+                           <BsFillTrashFill
+                              onClick={() => deleteNotification(id)}
+                           />
+                        </ContentTrash>
+                     </Notification>
                   );
                })
             ) : (

@@ -18,6 +18,7 @@ import emailjs from "@emailjs/browser";
 import { User } from "./User";
 import { Comment } from "./Comment";
 import { Notification } from "./Notification";
+import { Storage } from "./Storage";
 
 export class Question {
    constructor(questionUid, category, title, content, postDate, userId) {
@@ -31,7 +32,7 @@ export class Question {
 
    //Create Question
    async RegisterQuestions() {
-      const questionRef = doc(db, "forum-chats", this.questionUid)
+      const questionRef = doc(db, "forum-chats", this.questionUid);
       await setDoc(questionRef, {
          category: this.category,
          content: this.content,
@@ -115,29 +116,27 @@ export class Question {
    }
    // Favorite Question
    async FavoriteQuestion(newStars) {
-      const user = new User("", this.userId);
-      const {username} = await user.GetInfoUser();
+      const storage = new Storage("uid");
+      const userLogged = storage.GetItemSessionStorage();
+      const user = new User("", userLogged);
+      const { username } = await user.GetInfoUser();
 
       updateDoc(doc(db, "forum-chats", this.questionUid), {
          stars: newStars,
       }).then(() => {
-         const notification = new Notification(
-            "",
-            "",
-            {
-               username,
-               type: "favorite-question",
-               userId: this.userId,
-               questionUid: this.questionUid,
-            },
-         );
+         const notification = new Notification("", this.userId, {
+            type: "favorite-question",
+            userId: this.userId,
+            notification: `${username} favoritou sua questão!`,
+            questionUid: this.questionUid,
+         });
          notification.SendNotification();
       });
    }
    // Denounce Question
    async DenounceQuestion(usernameSendQuestion) {
       const user = new User("", this.userId);
-      const userDenounce = await user.GetInfoUser();
+      const { username } = await user.GetInfoUser();
 
       emailjs.init(import.meta.env.VITE_APP_USER_ID);
       const template_params = {
@@ -146,7 +145,7 @@ export class Question {
          date: this.postDate,
          title: this.title,
          content: this.content,
-         usernameSendDenounce: userDenounce.username,
+         usernameSendDenounce: username,
       };
 
       emailjs
@@ -155,11 +154,18 @@ export class Question {
             import.meta.env.VITE_APP_QUESTION_TEMPLATE_ID,
             template_params
          )
-         .then((result) =>
+         .then((result) => {
             toast.info(
                "Questão denunciado, logo mais nossos administradores irão verificar!"
-            )
-         );
+            );
+            const notification = new Notification("", this.userId, {
+               type: "denounce-question",
+               userId: this.userId,
+               notification: `${username} denunciou sua questão!`,
+               questionUid: this.questionUid,
+            });
+            notification.SendNotification();
+         });
    }
    // Delete Question
    async DeleteQuestion(commentUid) {

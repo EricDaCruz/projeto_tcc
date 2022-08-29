@@ -17,6 +17,8 @@ import emailjs from "@emailjs/browser";
 import { toast } from "react-toastify";
 /* Classes */
 import { User } from "./User";
+import { Notification } from "./Notification";
+import { Storage } from "./Storage";
 export class Comment {
    constructor(commentUid, questionUid, userId, data) {
       this.commentUid = commentUid;
@@ -26,13 +28,28 @@ export class Comment {
    }
 
    // Create a new comment
-   async RegisterComments(uid) {
-      await setDoc(doc(db, "comments-forum-chats", uid), {
+   async RegisterComments(uid, userIdSendQuestion) {
+      //Pegando o username de quem comentou
+      const storage = new Storage('uid')
+      const userLogged = storage.GetItemSessionStorage()
+      const user = new User("", userLogged);
+      const { username } = await user.GetInfoUser();
+      //Salvando no banco de dados
+      setDoc(doc(db, "comments-forum-chats", uid), {
          questionUid: this.questionUid,
          content: this.data.answer,
          postDate: moment().format("YYYY-MM-DD HH:mm"),
          stars: [],
          userId: this.userId,
+      }).then(() => {
+         //Enviando notificação para o usuário que fez a resposta
+         const notification = new Notification("", this.userId, {
+            type: "favorite-question",
+            userId: userIdSendQuestion,
+            notification: `${username} respondeu sua questão!`,
+            questionUid: this.questionUid
+         });
+         notification.SendNotification();
       });
    }
    // Get Comment

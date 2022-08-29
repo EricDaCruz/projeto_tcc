@@ -31,6 +31,10 @@ export const Notification = styled.div`
    justify-content: space-around;
    align-items: center;
 
+   a{
+      color: #000;
+   }
+
    div {
       h3 {
          font-size: 1.2rem;
