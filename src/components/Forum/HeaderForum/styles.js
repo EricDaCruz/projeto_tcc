@@ -117,3 +117,15 @@ export const NavBtn = styled.button`
         display: block;
     }
 `
+export const ContentBell = styled.div`
+    .point{
+        position: absolute;
+        top:5;
+        background: red;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        margin: 0;
+        padding: 0;
+    }
+`

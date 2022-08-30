@@ -14,6 +14,7 @@ import {
    ContentLinks,
    NavLinkBtn,
    NavBtn,
+   ContentBell
 } from "./styles";
 /* Classes */
 import { Storage } from "../../../services/Storage";
@@ -205,16 +206,18 @@ export function HeaderForum() {
                   <NavLinkBtn to="/forum/make-questions">
                      <FiPlusCircle /> Faça uma pergunta
                   </NavLinkBtn>
-                  <div
+                  <ContentBell
                      onClick={openNotifications}
                      className="is-flex is-justify-content-space-between"
                   >
+                     
                      <FiBell
                         className="is-clickable"
                         color="#808080"
                         size="1.5rem"
                      />
-                  </div>
+                     {notifications.length > 0 && (<div className="point"></div>)}
+                  </ContentBell>
                   <Link to={`/forum/user/${userLogged}`}>
                      <Avatar src={avatar} />
                   </Link>
