@@ -135,8 +135,10 @@ export class Question {
    }
    // Denounce Question
    async DenounceQuestion(usernameSendQuestion) {
-      const user = new User("", this.userId);
+      const userLogged = new Storage('uid').GetItemSessionStorage()
+      const user = new User("", userLogged);
       const { username } = await user.GetInfoUser();
+   
 
       emailjs.init(import.meta.env.VITE_APP_USER_ID);
       const template_params = {
