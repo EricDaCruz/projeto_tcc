@@ -19,6 +19,7 @@ import { toast } from "react-toastify";
 import { User } from "./User";
 import { Notification } from "./Notification";
 import { Storage } from "./Storage";
+
 export class Comment {
    constructor(commentUid, questionUid, userId, data) {
       this.commentUid = commentUid;
@@ -99,14 +100,28 @@ export class Comment {
    }
    // Favorite a comment
    async FavoriteComment(newStars) {
-      await updateDoc(doc(db, "comments-forum-chats", this.commentUid), {
+      const userLogged = new Storage("uid").GetItemSessionStorage();
+      const user = new User("", userLogged);
+      const { username } = await user.GetInfoUser();
+
+      updateDoc(doc(db, "comments-forum-chats", this.commentUid), {
          stars: newStars,
-      });
+      }).then(()=>{
+         const notification = new Notification("", this.userId, {
+            type: "favorite-comments",
+            userId: this.userId,
+            notification: `${username} favoritou seu comentário!`,
+            questionUid: this.questionUid,
+         });
+         notification.SendNotification();
+      })
    }
    // Denounce Comment
    async DenounceComment(usernameSendComment) {
-      const user = new User("", this.userId);
-      const userDenounce = await user.GetInfoUser();
+      const userLogged = new Storage('uid').GetItemSessionStorage()
+      const user = new User("", userLogged);
+      const {username} = await user.GetInfoUser();
+   
 
       emailjs.init(import.meta.env.VITE_APP_USER_ID);
       const template_params = {
@@ -114,7 +129,7 @@ export class Comment {
          usernameSendComment: usernameSendComment,
          date: this.data.postDate,
          content: this.data.content,
-         usernameSendDenounce: userDenounce.username,
+         usernameSendDenounce: username,
       };
 
       emailjs
@@ -123,10 +138,18 @@ export class Comment {
             import.meta.env.VITE_APP_COMMENT_TEMPLATE_ID,
             template_params
          )
-         .then(() =>
+         .then(() =>{
             toast.info(
                "Comentário denunciado, logo mais nossos administradores irão verificar!"
             )
+            const notification = new Notification("", this.userId, {
+               type: "denounce-comments",
+               userId: this.userId,
+               notification: `${username} denunciou seu comentário!`,
+               questionUid: this.questionUid,
+            });
+            notification.SendNotification();
+         }
          );
    }
    //Delete comment

@@ -116,8 +116,7 @@ export class Question {
    }
    // Favorite Question
    async FavoriteQuestion(newStars) {
-      const storage = new Storage("uid");
-      const userLogged = storage.GetItemSessionStorage();
+      const userLogged = new Storage("uid").GetItemSessionStorage();
       const user = new User("", userLogged);
       const { username } = await user.GetInfoUser();
 

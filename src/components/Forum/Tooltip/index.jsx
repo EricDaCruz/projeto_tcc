@@ -51,7 +51,7 @@ export const Tooltip = ({
          content: content,
          postDate: postDate,
       }
-      const comment = new Comment(commentUid,"",userLogged,dataComment);
+      const comment = new Comment(commentUid,"",userIdSend,dataComment);
       await comment.DenounceComment(usernameSendComment)
    };
 

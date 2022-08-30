@@ -39,8 +39,7 @@ export const Comments = ({
    }, []);
 
    const handleFavorite = async () => {
-      console.log(commentUid);
-      const comment = new Comment(commentUid, questionUid);
+      const comment = new Comment(commentUid, questionUid, userId);
       const dataComment = await comment.GetCommentByUid();
       if (isFavorite) {
          const newStars = dataComment.stars.filter(
