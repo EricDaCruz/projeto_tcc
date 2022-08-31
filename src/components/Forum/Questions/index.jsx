@@ -99,10 +99,10 @@ export const Questions = ({
 
             {splitContent ? (
                splitContent.map((content, index) => {
-                  return <p key={index}>{content}</p>;
+                  return <p style={{wordBreaK:"break-word" }} key={index}>{content}</p>;
                })
             ) : (
-               <p>content</p>
+               <p style={{wordBreaK:"break-word" }}>content</p>
             )}
          </div>
          <div className="is-flex is-justify-content-flex-end">

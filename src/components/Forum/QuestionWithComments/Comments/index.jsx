@@ -58,7 +58,7 @@ export const Comments = ({
 
    return (
       <div className="has-background-white">
-         <div>
+         <div style={{ maxWidth: "700px"}}>
             <div className="is-flex is-align-items-center is-justify-content-space-between">
                <div
                   className="is-flex is-align-items-center"
@@ -83,13 +83,20 @@ export const Comments = ({
                   />
                </span>
             </div>
-            <div className="mt-5 mb-4">
+            <div className="mt-5 mb-4" >
                {splitContent ? (
                   splitContent.map((content, index) => {
-                     return <p key={index}>{content}</p>;
+                     return (
+                        <p
+                           style={{wordBreaK:"break-word" }}
+                           key={index}
+                        >
+                           {content}
+                        </p>
+                     );
                   })
                ) : (
-                  <p>content</p>
+                  <p style={{wordBreaK:"break-word" }}>content</p>
                )}
             </div>
             <div className="is-flex is-justify-content-flex-end">
