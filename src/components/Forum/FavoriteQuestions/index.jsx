@@ -2,12 +2,14 @@ import {useEffect, useState} from 'react';
 import { Storage } from '../../../services/Storage';
 import { Questions } from '../Questions';
 import { LoaderQuestion } from '../../LoaderQuestion'
+import { useQuestions } from '../../../contexts/QuestionsContext'
 /* Classes */
 import { Question } from '../../../services/Question';
 
 export const FavoriteQuestions = () => {
   const storage = new Storage('uid');
   const userLogged = storage.GetItemSessionStorage()
+  const {questions, setQuestions} = useQuestions()
   const[questionsData, setQuestionsData] = useState([])
   const[loading, setLoading] = useState(true)
 
@@ -16,7 +18,7 @@ export const FavoriteQuestions = () => {
     const question = new Question()
     question.GetFavoriteQuestions(userLogged)
     .then((questions) => {
-      setQuestionsData(questions)
+      setQuestions(questions)
       setLoading(false)
     })
   },[])
@@ -25,11 +27,13 @@ export const FavoriteQuestions = () => {
     <>
       {loading 
       ?(
+        <>
         <LoaderQuestion />
+        </>
       ) 
       :(
-        questionsData.length > 0 ? (
-          questionsData.map((quest) => {
+        questions.length > 0 ? (
+          questions.map((quest) => {
             const {title, postDate, content, stars, userId, questionUid} = quest
             return (
               <Questions  

@@ -6,6 +6,7 @@ import { Section } from "./styles";
 import { Avatar } from "../Avatar";
 import { FiMessageSquare, FiStar } from "react-icons/fi";
 import { BsStarFill } from "react-icons/bs";
+import {useComments} from '../../../contexts/CommentsContext'
 /* Classes */
 import { User } from "../../../services/User";
 import { Question } from "../../../services/Question";
@@ -23,7 +24,8 @@ export const Questions = ({
 }) => {
    const navigate = useNavigate();
    const [userData, setUserData] = useState({});
-   const [comments, setComments] = useState([]);
+   // const [comments, setComments] = useState([]);
+   const {comments, setComments} = useComments();
    const [starsFavorite, setStarsFavorite] = useState(stars);
    const [isFavorite, setIsFavorite] = useState(false);
    const dateFormat = new Date(postDate).toLocaleString("pt-BR", {

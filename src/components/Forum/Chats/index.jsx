@@ -1,17 +1,19 @@
 import { useState, useEffect } from "react";
 import { Questions } from "../Questions";
 import { LoaderQuestion } from "../../LoaderQuestion";
+import { useQuestions } from "../../../contexts/QuestionsContext";
 /* Classes */
 import { Question } from "../../../services/Question";
 
 export const Chats = () => {
-   const [dataChats, setDataChats] = useState([]);
+   const {questions, setQuestions} = useQuestions()
+   // const [dataChats, setDataChats] = useState([]);
    const [loading, setLoading] = useState(true);
 
    useEffect(() => {
       setLoading(true);
       const question = new Question();
-      question.GetAllQuestions().then(quest => setDataChats(quest));
+      question.GetAllQuestions().then(quest => {setQuestions(quest);});
       setLoading(false);
    }, []);
 
@@ -19,8 +21,8 @@ export const Chats = () => {
       <>
          {loading ? (
             <LoaderQuestion />
-         ) : dataChats.length > 0 ? (
-            dataChats.map((chat) => {
+         ) : questions.length > 0 ? (
+            questions.map((chat) => {
                const {
                   title,
                   postDate,

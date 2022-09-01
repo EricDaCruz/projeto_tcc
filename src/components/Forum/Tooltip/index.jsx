@@ -8,6 +8,7 @@ import {
    BsExclamationTriangleFill,
 } from "react-icons/bs";
 import { Container, Button } from "./styles";
+import {useComments} from '../../../contexts/CommentsContext'
 /* Classes */
 import { Question } from "../../../services/Question";
 import { Comment } from "../../../services/Comment";
@@ -27,6 +28,7 @@ export const Tooltip = ({
    const userLogged = storage.GetItemSessionStorage();
    const navigate = useNavigate();
    const location = useLocation();
+   const {comments, setComments} = useComments()
 
    const deleteQuestion = () => {
       const question = new Question(questionUid)
@@ -40,10 +42,13 @@ export const Tooltip = ({
    };
 
    const deleteComment = () => {
-      const comment = new Comment(commentUid)
-      comment.DeleteComment().then(
-         toast.success("Comentário deletado com sucesso!")
-      );
+      console.log(comments);
+      const newComments = comments.filter((comment) => comment.uid !== commentUid);
+      console.log(newComments);
+      // const comment = new Comment(commentUid)
+      // comment.DeleteComment().then(
+      //    toast.success("Comentário deletado com sucesso!")
+      // );
       // DeleteComments(commentUid)
    };
    const denounceComment = async () => {  

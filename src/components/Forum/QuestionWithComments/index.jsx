@@ -5,6 +5,7 @@ import { Comments } from "./Comments";
 import { MakeComments } from "./MakeComments";
 import { LoaderQuestion } from '../../LoaderQuestion'
 import { Container, ContentComments } from "./styles";
+import { useComments } from "../../../contexts/CommentsContext";
 /* Classes */
 import { Question } from "../../../services/Question";
 import { Comment } from "../../../services/Comment";
@@ -12,7 +13,7 @@ import { Comment } from "../../../services/Comment";
 export const QuestionWithComments = () => {
    const { questionUid } = useParams();
    const [questionData, setQuestionData] = useState({});
-   const [comments, setComments] = useState([]);
+   const {comments, setComments }= useComments();
    const [isLoadingQuestion, setIsLoadingQuestion] = useState(false)
    const [isLoadingComments, setIsLoadingComments] = useState(false)
 

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Comments } from "../QuestionWithComments/Comments";
+import { useComments } from '../../../contexts/CommentsContext'
 /* Classes */
 import { Storage } from "../../../services/Storage";
 import { Comment } from "../../../services/Comment";
@@ -7,17 +8,17 @@ import { Comment } from "../../../services/Comment";
 export const MyAnswer = () => {
    const storage = new Storage("uid");
    const userLogged = storage.GetItemSessionStorage();
-   const [commentData, setCommentData] = useState([]);
+   const {comments, setComments} = useComments();
 
    useEffect(() => {
       const comment = new Comment("","",userLogged)
-      comment.GetMyComments().then((comments) => setCommentData(comments))
+      comment.GetMyComments().then((comments) => setComments(comments))
    }, []);
 
    return (
       <div>
-         {commentData.length > 0 ? (
-            commentData.map((comment) => {
+         {comments.length > 0 ? (
+            comments.map((comment) => {
                const { commentUid, content, stars, postDate, questionUid } = comment;
                return (
                   <Comments

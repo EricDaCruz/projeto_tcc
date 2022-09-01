@@ -2,11 +2,12 @@ import { useState, useEffect } from "react";
 import { Questions } from "../Questions";
 import { Storage } from "../../../services/Storage";
 import { LoaderQuestion } from "../../LoaderQuestion";
+import {useQuestions} from '../../../contexts/QuestionsContext'
 /* Classes */
 import { Question } from "../../../services/Question";
 
 export const MyQuestions = () => {
-   const [myQuestions, setMyQuestions] = useState([]);
+   const {questions, setQuestions} = useQuestions()
    const [loading, setLoading] = useState(true);
    const storage = new Storage("uid");
    const userLogged = storage.GetItemSessionStorage();
@@ -14,8 +15,8 @@ export const MyQuestions = () => {
    useEffect(() => {
       setLoading(true);
       const question = new Question()
-      question.GetMyQuestions(userLogged).then(questions => {
-         setMyQuestions(questions);
+      question.GetMyQuestions(userLogged).then(quests => {
+         setQuestions(quests)
          setLoading(false);
       })
    }, []);
@@ -24,8 +25,8 @@ export const MyQuestions = () => {
       <>
          {loading ? (
             <LoaderQuestion />
-         ) : myQuestions.length > 0 ? (
-            myQuestions.map((question) => {
+         ) : questions.length > 0 ? (
+            questions.map((question) => {
                const {
                   title,
                   postDate,
