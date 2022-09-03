@@ -2,18 +2,20 @@ import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import moment from "moment";
 import { CategoriesSelect } from "../../../assets/categories";
-import { Storage } from '../../../services/Storage'
+import { Storage } from "../../../services/Storage";
 import { toast } from "react-toastify";
 import { FiImage } from "react-icons/fi";
 import { IoPaperPlaneOutline } from "react-icons/io5";
-import { Form, ContentButtons, Button } from "./styles";
+import { Form, ContentButtons, Button, ContentImages } from "./styles";
 /* Classes */
-import { Question } from '../../../services/Question'
+import { Question } from "../../../services/Question";
 
 export const MakeQuestions = () => {
    const [category, setCategory] = useState("");
    const [title, seTitle] = useState("");
    const [content, setContent] = useState("");
+   const [image, setImage] = useState("");
+   const [images, setImages] = useState([]);
 
    const handleAddImage = (event) => {
       event.preventDefault();
@@ -24,21 +26,34 @@ export const MakeQuestions = () => {
    };
    const handleSendQuestion = async (event) => {
       event.preventDefault();
-      const storage = new Storage("uid")
-      const userLogged = storage.GetItemSessionStorage()
+      const storage = new Storage("uid");
+      const userLogged = storage.GetItemSessionStorage();
       const questionUid = uuidv4();
       const postDate = moment().format("YYYY-MM-DD HH:mm");
-      if(category === "" || title === "" || content === "" || title === " " || content === " "){
-         toast.error('Preencha todos os campos');
-      }else{
-         if(questionUid){
-            const question = new Question(questionUid, category, title, content, postDate, userLogged)
-            await question.RegisterQuestions()
+      if (
+         category === "" ||
+         title === "" ||
+         content === "" ||
+         title === " " ||
+         content === " "
+      ) {
+         toast.error("Preencha todos os campos");
+      } else {
+         if (questionUid) {
+            const question = new Question(
+               questionUid,
+               category,
+               title,
+               content,
+               postDate,
+               userLogged
+            );
+            await question.RegisterQuestions();
             setCategory("");
             seTitle("");
             setContent("");
-         }else{
-            toast.error('Erro ao enviar pergunta');
+         } else {
+            toast.error("Erro ao enviar pergunta");
          }
       }
    };
@@ -65,7 +80,16 @@ export const MakeQuestions = () => {
             onChange={(e) => setContent(e.target.value)}
             value={content}
          />
+
+         {images.length > 0 && (
+            <ContentImages>
+               {images.map((image, key) => (
+                  <img src={image} key={key} alt="Imagem de uma pergunta" />
+               ))}
+            </ContentImages>
+         )}
          <ContentButtons>
+            <input type="file" />
             <Button bgColor="23,131,255" opacity="0.8" onClick={handleAddImage}>
                <FiImage />
                Adicionar Imagem

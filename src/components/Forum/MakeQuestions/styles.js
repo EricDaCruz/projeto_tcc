@@ -32,10 +32,41 @@ export const Form = styled.form`
       background: url(${arrowSelect}) 98.5% 50% no-repeat #fff;
    }
 `;
+export const ContentImages = styled.div`
+   display: flex;
+   flex-wrap: wrap;
+   align-items: start;
+   justify-content: space-around;
+
+   img{
+      max-width: 300px;
+   }
+`
 export const ContentButtons = styled.div`
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+`
+export const Label = styled.label`
+ cursor: pointer;
+   padding: 0.75rem 1rem;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 0.75rem;
+   border-radius: 5px;
+   border: none;
+   outline: none;
+   background: rgba(${(props) => props.bgColor});
+   color: ${(props) => (props.color === "#808080" ? "#808080" : "#FFF")};
+   font-weight: ${(props) => (props.color === "#808080" ? "400" : "900")};
+   transition: .3s all ease;
+   svg{
+    font-size: 1rem;
+   }
+   &:hover{
+    opacity: 0.6;
+   }
 `
 export const Button = styled.button`
    cursor: pointer;
