@@ -8,7 +8,8 @@ import {
    BsExclamationTriangleFill,
 } from "react-icons/bs";
 import { Container, Button } from "./styles";
-import {useComments} from '../../../contexts/CommentsContext'
+import { useComments } from '../../../contexts/CommentsContext'
+import { useQuestions } from '../../../contexts/QuestionsContext'
 /* Classes */
 import { Question } from "../../../services/Question";
 import { Comment } from "../../../services/Comment";
@@ -29,8 +30,13 @@ export const Tooltip = ({
    const navigate = useNavigate();
    const location = useLocation();
    const {comments, setComments} = useComments()
+   const {questions, setQuestions} = useQuestions()
 
    const deleteQuestion = () => {
+      //Deletando da tela
+      const newQuestions = questions.filter((question) => question.questionUid !== questionUid)
+      setQuestions(newQuestions)
+      //Deletando do banco
       const question = new Question(questionUid)
       question.DeleteQuestion(questionUid).then(() => {
          toast.success("Pergunta deletada com sucesso!");
@@ -42,14 +48,14 @@ export const Tooltip = ({
    };
 
    const deleteComment = () => {
-      console.log(comments);
-      const newComments = comments.filter((comment) => comment.uid !== commentUid);
-      console.log(newComments);
-      // const comment = new Comment(commentUid)
-      // comment.DeleteComment().then(
-      //    toast.success("Comentário deletado com sucesso!")
-      // );
-      // DeleteComments(commentUid)
+      //Deletando da tela
+      const newComments = comments.filter((comment) => commentUid !== comment.commentUid );
+      setComments(newComments);
+      //Deletando do banco
+      const comment = new Comment(commentUid)
+      comment.DeleteComment().then(
+         toast.success("Comentário deletado com sucesso!")
+      );
    };
    const denounceComment = async () => {  
       const dataComment ={
