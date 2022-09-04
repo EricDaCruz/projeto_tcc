@@ -7,3 +7,14 @@ export const Section = styled.section`
    box-shadow: ${props => props.isInQuestion ? "" :"2px 1px 5px rgba(0, 0, 0, 0.15)"};
    border-radius: ${props => props.isInQuestion ? "" : "5px"};
 `;
+
+export const ContentImages = styled.div`
+   display: flex;
+   flex-wrap: wrap;
+   align-items: start;
+   justify-content: space-between;
+
+   img{
+      max-width: 300px;
+   }
+`

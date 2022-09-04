@@ -7,7 +7,6 @@ import { Question } from "../../../services/Question";
 
 export const Chats = () => {
    const {questions, setQuestions} = useQuestions()
-   // const [dataChats, setDataChats] = useState([]);
    const [loading, setLoading] = useState(true);
 
    useEffect(() => {
@@ -30,6 +29,7 @@ export const Chats = () => {
                   stars,
                   userId,
                   questionUid,
+                  images
                } = chat;
                return (
                   <Questions
@@ -41,6 +41,7 @@ export const Chats = () => {
                      userId={userId}
                      questionUid={questionUid}
                      isInQuestion={false}
+                     images={images}
                   />
                );
             })

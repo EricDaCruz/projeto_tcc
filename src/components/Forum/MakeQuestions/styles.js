@@ -36,7 +36,7 @@ export const ContentImages = styled.div`
    display: flex;
    flex-wrap: wrap;
    align-items: start;
-   justify-content: space-around;
+   justify-content: space-between;
 
    img{
       max-width: 300px;

@@ -14,7 +14,7 @@ export const MakeQuestions = () => {
    const [category, setCategory] = useState("");
    const [title, seTitle] = useState("");
    const [content, setContent] = useState("");
-   const [images, setImages] = useState([]);
+   const [image, setImage] = useState("");
 
    const handleAddImage = (dataImage) => {
       event.preventDefault();
@@ -26,10 +26,10 @@ export const MakeQuestions = () => {
          const reader = new FileReader();
          reader.onload = async () => {
             const base64String = await reader.result;
-            setImages([...images, base64String]);
+            setImage([...image, base64String]);
          };
          reader.readAsDataURL(dataImage);
-      }else{
+      } else {
          toast.error("Formato de imagem inválido");
       }
    };
@@ -58,12 +58,14 @@ export const MakeQuestions = () => {
                title,
                content,
                postDate,
-               userLogged
+               userLogged,
+               image
             );
             await question.RegisterQuestions();
             setCategory("");
             seTitle("");
             setContent("");
+            setImage("");
          } else {
             toast.error("Erro ao enviar pergunta");
          }
@@ -93,23 +95,35 @@ export const MakeQuestions = () => {
             value={content}
          />
 
-         {images.length > 0 && (
+         {image && (
             <ContentImages>
-               {images.map((image, key) => (
-                  <img src={image} key={key} alt="Imagem de uma pergunta" />
-               ))}
+               <div>
+                  <img src={image} alt="Imagem de uma pergunta" />
+                  <span onClick={()=>setImage("")}>Apagar Imagen</span>
+               </div>
             </ContentImages>
          )}
          <ContentButtons>
             <input
                id="inputFile"
                type="file"
-               onChange={(e) => handleAddImage(e.target.files[0])}
+               onChange={(e) => {
+                  setImage("");
+                  handleAddImage(e.target.files[0]);
+               }}
             />
-            <Label htmlFor="inputFile" bgColor="23,131,255" opacity="0.8">
-               <FiImage />
-               Adicionar Imagem
-            </Label>
+            {image ? (
+               <Label bgColor="23,131,255" opacity="0.8" onClick={() => setImage("")}>
+                  <FiImage />
+                 Alterar imagem
+               </Label>
+            ) : (
+               <Label htmlFor="inputFile" bgColor="23,131,255" opacity="0.8">
+                  <FiImage />
+                 Adicionar imagem
+               </Label>
+            )}
+
             <div className="is-flex" style={{ gap: "1.25rem" }}>
                <Button
                   bgColor="234,234,234"

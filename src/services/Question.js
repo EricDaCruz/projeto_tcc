@@ -21,13 +21,14 @@ import { Notification } from "./Notification";
 import { Storage } from "./Storage";
 
 export class Question {
-   constructor(questionUid, category, title, content, postDate, userId) {
+   constructor(questionUid, category, title, content, postDate, userId, image) {
       this.questionUid = questionUid;
       this.category = category;
       this.title = title;
       this.content = content;
       this.postDate = postDate;
       this.userId = userId;
+      this.image = image;
    }
 
    //Create Question
@@ -40,6 +41,7 @@ export class Question {
          stars: [],
          title: this.title,
          userId: this.userId,
+         image: this.image
       });
       toast.success("Questão registrada com sucesso!");
    }

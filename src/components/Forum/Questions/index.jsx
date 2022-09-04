@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Storage } from "../../../services/Storage";
 import { Tooltip } from "../Tooltip";
-import { Section } from "./styles";
+import { Section, ContentImages } from "./styles";
 import { Avatar } from "../Avatar";
 import { FiMessageSquare, FiStar } from "react-icons/fi";
 import { BsStarFill } from "react-icons/bs";
@@ -21,10 +21,10 @@ export const Questions = ({
    questionUid,
    commentsLength,
    isInQuestion,
+   images
 }) => {
    const navigate = useNavigate();
    const [userData, setUserData] = useState({});
-   // const [comments, setComments] = useState([]);
    const {comments, setComments} = useComments();
    const [starsFavorite, setStarsFavorite] = useState(stars);
    const [isFavorite, setIsFavorite] = useState(false);
@@ -107,6 +107,21 @@ export const Questions = ({
                <p style={{wordBreaK:"break-word" }}>content</p>
             )}
          </div>
+         {
+            images.length > 0 && (
+               <ContentImages >
+                  {images.map((image, index) => {
+                     return (
+                        <img
+                           key={index}
+                           src={image}
+                           alt="Imagem da pergunta"
+                        />
+                     );
+                  })}
+               </ContentImages>
+            )
+         }
          <div className="is-flex is-justify-content-flex-end">
             <div className="is-flex" style={{ gap: "1.25rem" }}>
                <span
