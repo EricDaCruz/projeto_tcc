@@ -46,6 +46,11 @@ export const ContentButtons = styled.div`
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+
+    input[type="file"] {
+         display: none;
+         visibility: hidden;
+    }
 `
 export const Label = styled.label`
  cursor: pointer;

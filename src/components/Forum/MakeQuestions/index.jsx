@@ -6,7 +6,7 @@ import { Storage } from "../../../services/Storage";
 import { toast } from "react-toastify";
 import { FiImage } from "react-icons/fi";
 import { IoPaperPlaneOutline } from "react-icons/io5";
-import { Form, ContentButtons, Button, ContentImages } from "./styles";
+import { Form, ContentButtons, Button, ContentImages, Label } from "./styles";
 /* Classes */
 import { Question } from "../../../services/Question";
 
@@ -14,12 +14,24 @@ export const MakeQuestions = () => {
    const [category, setCategory] = useState("");
    const [title, seTitle] = useState("");
    const [content, setContent] = useState("");
-   const [image, setImage] = useState("");
    const [images, setImages] = useState([]);
 
-   const handleAddImage = (event) => {
+   const handleAddImage = (dataImage) => {
       event.preventDefault();
-      toast.error("Essa funcionalidade não está disponível no momento.");
+      if (
+         dataImage.type === "image/jpeg" ||
+         dataImage.type === "image/png" ||
+         dataImage.type === "image/jpg"
+      ) {
+         const reader = new FileReader();
+         reader.onload = async () => {
+            const base64String = await reader.result;
+            setImages([...images, base64String]);
+         };
+         reader.readAsDataURL(dataImage);
+      }else{
+         toast.error("Formato de imagem inválido");
+      }
    };
    const handleSaveDraft = (event) => {
       event.preventDefault();
@@ -89,11 +101,15 @@ export const MakeQuestions = () => {
             </ContentImages>
          )}
          <ContentButtons>
-            <input type="file" />
-            <Button bgColor="23,131,255" opacity="0.8" onClick={handleAddImage}>
+            <input
+               id="inputFile"
+               type="file"
+               onChange={(e) => handleAddImage(e.target.files[0])}
+            />
+            <Label htmlFor="inputFile" bgColor="23,131,255" opacity="0.8">
                <FiImage />
                Adicionar Imagem
-            </Button>
+            </Label>
             <div className="is-flex" style={{ gap: "1.25rem" }}>
                <Button
                   bgColor="234,234,234"
