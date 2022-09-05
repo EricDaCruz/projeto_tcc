@@ -108,7 +108,7 @@ export const Questions = ({
             )}
          </div>
          {
-            images.length > 0 && (
+            images && (
                <ContentImages >
                   {images.map((image, index) => {
                      return (
