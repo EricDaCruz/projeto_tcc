@@ -6,7 +6,7 @@ import { Section, ContentImages } from "./styles";
 import { Avatar } from "../Avatar";
 import { FiMessageSquare, FiStar } from "react-icons/fi";
 import { BsStarFill } from "react-icons/bs";
-import {useComments} from '../../../contexts/CommentsContext'
+import { useComments } from "../../../contexts/CommentsContext";
 /* Classes */
 import { User } from "../../../services/User";
 import { Question } from "../../../services/Question";
@@ -21,11 +21,11 @@ export const Questions = ({
    questionUid,
    commentsLength,
    isInQuestion,
-   images
+   image,
 }) => {
    const navigate = useNavigate();
    const [userData, setUserData] = useState({});
-   const {comments, setComments} = useComments();
+   const { comments, setComments } = useComments();
    const [starsFavorite, setStarsFavorite] = useState(stars);
    const [isFavorite, setIsFavorite] = useState(false);
    const dateFormat = new Date(postDate).toLocaleString("pt-BR", {
@@ -52,7 +52,7 @@ export const Questions = ({
    }, []);
 
    const handleFavorite = async () => {
-      const question = new Question(questionUid,"","","","",userId);
+      const question = new Question(questionUid, "", "", "", "", userId);
       const questionData = await question.GetQuestionByUid();
       if (isFavorite) {
          const newStars = questionData.stars.filter(
@@ -101,27 +101,21 @@ export const Questions = ({
 
             {splitContent ? (
                splitContent.map((content, index) => {
-                  return <p style={{wordBreaK:"break-word" }} key={index}>{content}</p>;
+                  return (
+                     <p style={{ wordBreaK: "break-word" }} key={index}>
+                        {content}
+                     </p>
+                  );
                })
             ) : (
-               <p style={{wordBreaK:"break-word" }}>content</p>
+               <p style={{ wordBreaK: "break-word" }}>content</p>
             )}
          </div>
-         {
-            images && (
-               <ContentImages >
-                  {images.map((image, index) => {
-                     return (
-                        <img
-                           key={index}
-                           src={image}
-                           alt="Imagem da pergunta"
-                        />
-                     );
-                  })}
-               </ContentImages>
-            )
-         }
+         {image && (
+            <ContentImages>
+               <img src={image} alt="Imagem da pergunta" />
+            </ContentImages>
+         )}
          <div className="is-flex is-justify-content-flex-end">
             <div className="is-flex" style={{ gap: "1.25rem" }}>
                <span

@@ -15,6 +15,6 @@ export const ContentImages = styled.div`
    justify-content: space-between;
 
    img{
-      max-width: 300px;
+      max-width: 350px;
    }
 `

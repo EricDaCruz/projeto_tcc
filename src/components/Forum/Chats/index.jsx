@@ -29,7 +29,7 @@ export const Chats = () => {
                   stars,
                   userId,
                   questionUid,
-                  images
+                  image
                } = chat;
                return (
                   <Questions
@@ -41,7 +41,7 @@ export const Chats = () => {
                      userId={userId}
                      questionUid={questionUid}
                      isInQuestion={false}
-                     images={images}
+                     image={image}
                   />
                );
             })

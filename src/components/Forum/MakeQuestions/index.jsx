@@ -26,7 +26,7 @@ export const MakeQuestions = () => {
          const reader = new FileReader();
          reader.onload = async () => {
             const base64String = await reader.result;
-            setImage([...image, base64String]);
+            setImage(base64String);
          };
          reader.readAsDataURL(dataImage);
       } else {
