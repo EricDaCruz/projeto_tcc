@@ -31,8 +31,8 @@ export class Comment {
    // Create a new comment
    async RegisterComments(uid, userIdSendQuestion) {
       //Pegando o username de quem comentou
-      const storage = new Storage('uid')
-      const userLogged = storage.GetItemSessionStorage()
+      const storage = new Storage("uid");
+      const userLogged = storage.GetItemSessionStorage();
       const user = new User("", userLogged);
       const { username } = await user.GetInfoUser();
       //Salvando no banco de dados
@@ -43,14 +43,16 @@ export class Comment {
          stars: [],
          userId: this.userId,
       }).then(() => {
-         //Enviando notificação para o usuário que fez a resposta
-         const notification = new Notification("", this.userId, {
-            type: "favorite-question",
-            userId: userIdSendQuestion,
-            notification: `${username} respondeu sua questão!`,
-            questionUid: this.questionUid
-         });
-         notification.SendNotification();
+         //Enviando notificação para o usuário que fez a pergunta
+         if (userLogged !== userIdSendQuestion) {
+            const notification = new Notification("", this.userId, {
+               type: "favorite-question",
+               userId: userIdSendQuestion,
+               notification: `${username} respondeu sua questão!`,
+               questionUid: this.questionUid,
+            });
+            notification.SendNotification();
+         }
       });
    }
    // Get Comment
@@ -101,27 +103,28 @@ export class Comment {
    // Favorite a comment
    async FavoriteComment(newStars) {
       const userLogged = new Storage("uid").GetItemSessionStorage();
-      const user = new User("", userLogged);
+      const user = new User("", userLogged); // Quem foi o gatilho da notificação
       const { username } = await user.GetInfoUser();
 
       updateDoc(doc(db, "comments-forum-chats", this.commentUid), {
          stars: newStars,
-      }).then(()=>{
-         const notification = new Notification("", this.userId, {
-            type: "favorite-comments",
-            userId: this.userId,
-            notification: `${username} favoritou seu comentário!`,
-            questionUid: this.questionUid,
-         });
-         notification.SendNotification();
-      })
+      }).then(() => {
+         if (this.userId !== userLogged && newStars.includes(userLogged)) {
+            const notification = new Notification("", this.userId, {
+               type: "favorite-comment",
+               userId: this.userId,
+               notification: `${username} favoritou seu comentário!`,
+               questionUid: this.questionUid,
+            });
+            notification.SendNotification();
+         }
+      });
    }
    // Denounce Comment
    async DenounceComment(usernameSendComment) {
-      const userLogged = new Storage('uid').GetItemSessionStorage()
-      const user = new User("", userLogged);
-      const {username} = await user.GetInfoUser();
-   
+      const userLogged = new Storage("uid").GetItemSessionStorage();
+      const user = new User("", userLogged); // Quem foi o gatilho da notificação
+      const { username } = await user.GetInfoUser();
 
       emailjs.init(import.meta.env.VITE_APP_USER_ID);
       const template_params = {
@@ -138,19 +141,20 @@ export class Comment {
             import.meta.env.VITE_APP_COMMENT_TEMPLATE_ID,
             template_params
          )
-         .then(() =>{
+         .then(() => {
             toast.info(
                "Comentário denunciado, logo mais nossos administradores irão verificar!"
-            )
-            const notification = new Notification("", this.userId, {
-               type: "denounce-comments",
-               userId: this.userId,
-               notification: `${username} denunciou seu comentário!`,
-               questionUid: this.questionUid,
-            });
-            notification.SendNotification();
-         }
-         );
+            );
+            if (this.userId !== userLogged) {
+               const notification = new Notification("", this.userId, {
+                  type: "denounce-comment",
+                  userId: this.userId, // Para quem vai a notificação
+                  notification: `${username} denunciou seu comentário!`,
+                  questionUid: this.questionUid,
+               });
+               notification.SendNotification();
+            }
+         });
    }
    //Delete comment
    async DeleteComment() {

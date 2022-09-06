@@ -43,6 +43,7 @@ export const QuestionWithComments = () => {
                            stars={questionData.stars}
                            userId={questionData.userId}
                            questionUid={questionData.questionUid}
+                           image={questionData.image}
                            commentsLength={comments.length}
                            isInQuestion={true}
                         />

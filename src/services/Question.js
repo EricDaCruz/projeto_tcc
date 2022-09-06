@@ -119,25 +119,27 @@ export class Question {
    // Favorite Question
    async FavoriteQuestion(newStars) {
       const userLogged = new Storage("uid").GetItemSessionStorage();
-      const user = new User("", userLogged);
+      const user = new User("", userLogged);// Quem foi o gatilho da notificação
       const { username } = await user.GetInfoUser();
 
       updateDoc(doc(db, "forum-chats", this.questionUid), {
          stars: newStars,
       }).then(() => {
+        if(userLogged !== this.userId && newStars.includes(userLogged)){
          const notification = new Notification("", this.userId, {
             type: "favorite-question",
-            userId: this.userId,
+            userId: this.userId,// Para quem vai a notificação
             notification: `${username} favoritou sua questão!`,
             questionUid: this.questionUid,
          });
          notification.SendNotification();
+        }
       });
    }
    // Denounce Question
    async DenounceQuestion(usernameSendQuestion) {
       const userLogged = new Storage('uid').GetItemSessionStorage()
-      const user = new User("", userLogged);
+      const user = new User("", userLogged);// Quem foi o gatilho da notificação
       const { username } = await user.GetInfoUser();
    
 
@@ -161,13 +163,15 @@ export class Question {
             toast.info(
                "Questão denunciado, logo mais nossos administradores irão verificar!"
             );
-            const notification = new Notification("", this.userId, {
-               type: "denounce-question",
-               userId: this.userId,
-               notification: `${username} denunciou sua questão!`,
-               questionUid: this.questionUid,
-            });
-            notification.SendNotification();
+            if(userLogged !== this.userId){
+               const notification = new Notification("", this.userId, {
+                  type: "denounce-question",
+                  userId: this.userId,// Para quem vai a notificação
+                  notification: `${username} denunciou sua questão!`,
+                  questionUid: this.questionUid,
+               });
+               notification.SendNotification();
+            }
          });
    }
    // Delete Question
