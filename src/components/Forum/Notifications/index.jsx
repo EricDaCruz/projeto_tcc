@@ -40,8 +40,6 @@ export const Notifications = ({
                notifications.map((notification) => {
                   const {
                      id,
-                     createdAt,
-                     type,
                      questionUid,
                      notification: message,
                   } = notification;
@@ -51,7 +49,6 @@ export const Notifications = ({
                            <div>
                               <h3>{message}</h3>
                               <p>Ir para a questão</p>
-                              <p>{createdAt}</p>
                            </div>
                         </Link>
                         <ContentTrash>
