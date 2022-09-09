@@ -55,14 +55,20 @@ export const Profile = (params) => {
       //  setHaveUserData(true);
    }, []);
    const handlePhotoUrl = async (dataImage) => {
-      setChangeData(true);
-      const reader = new FileReader();
-      reader.onload = async () => {
-         const base64String = await reader.result;
-         setPhotoUrl(base64String);
-         setData({ ...data, photoUrl: base64String });
-      };
-      reader.readAsDataURL(dataImage);
+    if (
+       dataImage.type === "image/jpeg" ||
+       dataImage.type === "image/png" ||
+       dataImage.type === "image/jpg"
+    ) {
+       const reader = new FileReader();
+       reader.onload = async () => {
+          const base64String = await reader.result;
+          setPhotoUrl(base64String);
+       };
+       reader.readAsDataURL(dataImage);
+    } else {
+       toast.error("Formato de imagem inválido");
+    }
    };
    const handleChangeData = (value, input) => {
       setChangeData(true);
