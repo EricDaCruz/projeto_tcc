@@ -35,12 +35,21 @@ export const Form = styled.form`
 export const ContentImages = styled.div`
    display: flex;
    flex-wrap: wrap;
-   align-items: start;
    justify-content: space-between;
 
-   img{
-      max-width: 300px;
+   div{
+      display: flex;
+
+      svg{
+         font-size: 1.5rem;
+         cursor: pointer;
+      }
+      
+      img{
+         max-width: 300px;
+      }
    }
+
 `
 export const ContentButtons = styled.div`
     display: flex;

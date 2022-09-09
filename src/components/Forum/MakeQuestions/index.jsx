@@ -5,7 +5,7 @@ import { CategoriesSelect } from "../../../assets/categories";
 import { Storage } from "../../../services/Storage";
 import { toast } from "react-toastify";
 import { FiImage } from "react-icons/fi";
-import { IoPaperPlaneOutline } from "react-icons/io5";
+import { IoPaperPlaneOutline, IoClose } from "react-icons/io5";
 import { Form, ContentButtons, Button, ContentImages, Label } from "./styles";
 /* Classes */
 import { Question } from "../../../services/Question";
@@ -99,7 +99,9 @@ export const MakeQuestions = () => {
             <ContentImages>
                <div>
                   <img src={image} alt="Imagem de uma pergunta" />
-                  <span onClick={()=>setImage("")}>Apagar Imagen</span>
+                  <span onClick={()=>setImage("")}>
+                     <IoClose />
+                  </span>
                </div>
             </ContentImages>
          )}
