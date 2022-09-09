@@ -34,6 +34,7 @@ export const MyQuestions = () => {
                   stars,
                   userId,
                   questionUid,
+                  image
                } = question;
                return (
                   <Questions
@@ -44,6 +45,7 @@ export const MyQuestions = () => {
                      stars={stars}
                      userId={userId}
                      questionUid={questionUid}
+                     image={image}
                   />
                );
             })
