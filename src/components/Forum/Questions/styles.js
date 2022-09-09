@@ -15,6 +15,11 @@ export const ContentImages = styled.div`
    justify-content: space-between;
 
    img{
+      transition: all 0.5s ease;
       max-width: 350px;
+      cursor: pointer;
+      &:hover{
+         transform: scale(1.3);
+      }
    }
 `
