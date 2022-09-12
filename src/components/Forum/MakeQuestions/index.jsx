@@ -1,20 +1,32 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import moment from "moment";
 import { CategoriesSelect } from "../../../assets/categories";
-import { Storage } from "../../../services/Storage";
 import { toast } from "react-toastify";
 import { FiImage } from "react-icons/fi";
 import { IoPaperPlaneOutline, IoClose } from "react-icons/io5";
 import { Form, ContentButtons, Button, ContentImages, Label } from "./styles";
 /* Classes */
 import { Question } from "../../../services/Question";
+import { Storage } from "../../../services/Storage";
 
 export const MakeQuestions = () => {
    const [category, setCategory] = useState("");
    const [title, seTitle] = useState("");
    const [content, setContent] = useState("");
    const [image, setImage] = useState("");
+
+   useEffect(() => {
+      const storage = new Storage("draft");
+      const data = JSON.parse(storage.GetItemLocalStorage());
+    
+      if (data) {
+         seTitle(data.title);
+         setContent(data.content);
+         setCategory(data.category);
+         setImage(data.image);
+      }
+   }, []);
 
    const handleAddImage = (dataImage) => {
       event.preventDefault();
@@ -33,12 +45,34 @@ export const MakeQuestions = () => {
          toast.error("Formato de imagem inválido");
       }
    };
-   const handleSaveDraft = (event) => {
+   const handleSaveDraft = async (event) => {
       event.preventDefault();
+      const storage = new Storage("draft");
+      const draft = await storage.GetItemSessionStorage();
+
+      if (category !== "" || title !== "" || content !== "") {
+         const draft = new Storage("draft").GetItemLocalStorage();
+         const data = { category, title, content, image };
+         const json = JSON.stringify(data);
+         const storage = new Storage("draft", json);
+         await storage.SetItemLocalStorage();
+         if (
+            category !== draft.category &&
+            content !== draft.content &&
+            image !== draft.image
+         ) {
+            toast.success("Rascunho salvo com sucesso");
+         } else {
+            toast.success("Rascunho alterado com sucesso");
+         }
+      } else {
+         toast.error("Preencha todos os campos");
+      }
    };
    const handleSendQuestion = async (event) => {
       event.preventDefault();
       const storage = new Storage("uid");
+      const draft = new Storage("draft");
       const userLogged = storage.GetItemSessionStorage();
       const questionUid = uuidv4();
       const postDate = moment().format("YYYY-MM-DD HH:mm");
@@ -62,6 +96,7 @@ export const MakeQuestions = () => {
                image
             );
             await question.RegisterQuestions();
+            await draft.RemoveItemLocalStorage();
             setCategory("");
             seTitle("");
             setContent("");
@@ -99,7 +134,7 @@ export const MakeQuestions = () => {
             <ContentImages>
                <div>
                   <img src={image} alt="Imagem de uma pergunta" />
-                  <span onClick={()=>setImage("")}>
+                  <span onClick={() => setImage("")}>
                      <IoClose />
                   </span>
                </div>
@@ -115,14 +150,18 @@ export const MakeQuestions = () => {
                }}
             />
             {image ? (
-               <Label bgColor="23,131,255" opacity="0.8" onClick={() => setImage("")}>
+               <Label
+                  bgColor="23,131,255"
+                  opacity="0.8"
+                  onClick={() => setImage("")}
+               >
                   <FiImage />
-                 Alterar imagem
+                  Alterar imagem
                </Label>
             ) : (
                <Label htmlFor="inputFile" bgColor="23,131,255" opacity="0.8">
                   <FiImage />
-                 Adicionar imagem
+                  Adicionar imagem
                </Label>
             )}
 
