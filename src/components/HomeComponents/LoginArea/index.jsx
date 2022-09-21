@@ -134,10 +134,12 @@ export function LoginArea() {
                         className="mr-6"
                         size="45"
                         style={{ cursor: "pointer" }}
+                        onClick={() => toast.warning("Funcionalidade dispovinível em breve")}
                      />
                      <BsFacebook
                         size="45"
                         style={{ color: "#3B5998", cursor: "pointer" }}
+                        onClick={() => toast.warning("Funcionalidade dispovinível em breve")}
                      />
                   </div>
                   <p className="is-size-6">
