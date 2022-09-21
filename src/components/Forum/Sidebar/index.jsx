@@ -112,10 +112,6 @@ export function Sidebar() {
 
    return (
       <Aside>
-         <SectionInput>
-            <BiSearch />
-            <input type="text" placeholder="Pesquisar" />
-         </SectionInput>
          <Section>
             <p>Menu</p>
             {sibebarMenuItens.map((item, key) => (
