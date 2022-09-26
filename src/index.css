@@ -24,3 +24,9 @@ body {
 ::-webkit-scrollbar-thumb{
   background-color: #1DA87A;
 }
+
+@media screen and (max-width: 600px) {
+  :root {
+    font-size: 75%; /* 10px */
+  }
+}
