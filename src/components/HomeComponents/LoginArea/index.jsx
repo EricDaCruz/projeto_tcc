@@ -45,7 +45,7 @@ export function LoginArea() {
    };
 
    return (
-      <section className=" mt-4 columns">
+      <section className=" mt-4 mr-0 columns">
          <C.Container className="column is-narrow-mobile is-half">
             <div className="contentText">
                <h2

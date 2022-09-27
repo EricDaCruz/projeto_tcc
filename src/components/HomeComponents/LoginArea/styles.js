@@ -8,9 +8,13 @@ export const Container = styled.div`
       align-items:center;
       text-align: center;
       margin:0;
+      padding:0;
+      /* background: red; */
+      width: 100%;
    }
-   @media screen and (max-width: 1200px){
+   @media screen and (max-width: 1200px) and (min-width: 769px){
       margin-left: 3rem;
+
    }
 `
 

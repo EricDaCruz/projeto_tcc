@@ -27,6 +27,6 @@ body {
 
 @media screen and (max-width: 600px) {
   :root {
-    font-size: 75%; /* 10px */
+    font-size: 65%;
   }
 }

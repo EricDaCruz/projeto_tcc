@@ -13,13 +13,15 @@ export const ContentImages = styled.div`
    flex-wrap: wrap;
    align-items: start;
    justify-content: space-between;
+   margin-bottom: 1rem;
 
    img{
       transition: all 0.5s ease;
       max-width: 350px;
+      width: 100%;
       cursor: pointer;
       &:hover{
-         transform: scale(1.3);
+         transform: scale(1.2);
       }
    }
 `
