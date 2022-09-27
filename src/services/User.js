@@ -188,6 +188,10 @@ export class User {
                      break;
                   case "auth/invalid-email":
                      toast.error("Email inválido");
+                     break; 
+                  case "auth/requires-recent-login":
+                     toast.error("Estamos com dificuldades para validar seu usuário, tente logar novamente.");
+                     break;
                }
             });
       };

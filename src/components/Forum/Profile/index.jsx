@@ -64,50 +64,51 @@ export const Profile = (params) => {
        reader.onload = async () => {
           const base64String = await reader.result;
           setPhotoUrl(base64String);
+          setChangeData(true);
+          setData({ ...data, photoUrl: base64String });
        };
        reader.readAsDataURL(dataImage);
     } else {
        toast.error("Formato de imagem inválido");
     }
    };
-   const handleChangeData = (value, input) => {
+   const handleChangeData = async (value, input) => {
       setChangeData(true);
       switch (input) {
          case "name":
             setName(value);
-            setData({ ...data, name: value });
+            await setData({ ...data, name: value });
             break;
          case "email":
             setEmail(value);
-            setData({ ...data, email: value });
+            await setData({ ...data, email: value });
             break;
          case "phone":
             setPhone(value);
             const validPhone = validatePhoneNumber(value);
-            console.log(validPhone);
             if (validPhone !== null) {
                const formatPhone = format(validPhone).replace(/[-]/g, " ");
                setPhone(formatPhone);
-               setData({ ...data, phone: formatPhone });
+               await setData({ ...data, phone: formatPhone });
             }else{
-               setData({ ...data, phone: value });
+               await setData({ ...data, phone: value });
             }
             break;
          case "username":
             setUsername(value);
-            setData({ ...data, username: value });
+            await setData({ ...data, username: value });
             break;
          case "date":
             setDateBorn(value);
-            setData({ ...data, dateBorn: value });
+            await setData({ ...data, dateBorn: value });
             break;
          case "city":
             setCity(value);
-            setData({ ...data, location: { city: value } });
+            await setData({ ...data, location: {state, city: value } });
             break;
          case "state":
             setState(value);
-            setData({ ...data, location: { state: value } });
+            await setData({ ...data, location: { state: value,city } });
             break;
       }
    };
@@ -148,7 +149,6 @@ export const Profile = (params) => {
                            Mudar foto de perfil
                         </p>
                      </div>
-                     {/* <img src={photoUrl} alt="" /> */}
                   </label>
                   <input
                      id="inputFile"
@@ -235,7 +235,7 @@ export const Profile = (params) => {
                   </Field>
                   <ContentButton>
                      <Button
-                        onClick={changedData ? updateProfile : undefined}
+                        onClick={updateProfile}
                         color={changedData ? "#059142" : "#ccc"}
                      >
                         Atualizar Perfil
