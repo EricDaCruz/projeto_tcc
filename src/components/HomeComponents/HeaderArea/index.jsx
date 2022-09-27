@@ -3,7 +3,7 @@ import {Header, Nav, NavBtn} from './styles'
 import {FaBars, FaTimes} from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 /* Images */
-import Icon from '../../../assets/images/icone.png'
+import Icon from '../../../assets/images/icone-nome2.png'
 
 export const HeaderArea = () => {
    const [showNavbar, setShowNavbar] = useState(false)

@@ -8,9 +8,13 @@ export const Header = styled.header`
     margin-top: 1rem;
 
     .contentImg{
-        width: 5rem;
+        width: 10rem;
         @media screen and (max-width: 1200px){
             margin-left: 3rem;
+        }
+        img{
+            width: 100%;
+
         }
     }
 `
