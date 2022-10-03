@@ -19,13 +19,12 @@ export const Questions = ({
    stars,
    userId,
    questionUid,
-   commentsLength,
    isInQuestion,
    image,
 }) => {
    const navigate = useNavigate();
    const [userData, setUserData] = useState({});
-   const { comments, setComments } = useComments();
+   const [ comments, setComments ] = useState([]);
    const [starsFavorite, setStarsFavorite] = useState(stars);
    const [isFavorite, setIsFavorite] = useState(false);
    const dateFormat = new Date(postDate).toLocaleString("pt-BR", {
@@ -46,9 +45,14 @@ export const Questions = ({
          ? setIsFavorite(true)
          : setIsFavorite(false);
    }, []);
+
    useEffect(() => {
       const comment = new Comment("", questionUid);
-      comment.GetComments().then((comments) => setComments(comments));
+      async function getComments () {
+         const comments = await comment.GetComments()
+         setComments(comments)
+      }
+      getComments()
    }, []);
 
    const handleFavorite = async () => {
@@ -141,7 +145,7 @@ export const Questions = ({
                   }
                >
                   <FiMessageSquare />
-                  <p>{commentsLength ? commentsLength : comments.length}</p>
+                  <p>{comments.length}</p>
                </span>
             </div>
          </div>
