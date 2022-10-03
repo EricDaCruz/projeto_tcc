@@ -62,11 +62,11 @@ export class Question {
       const questionRef = doc(db, "forum-chats", this.questionUid);
       const questionSnap = await getDoc(questionRef);
 
-      if (questionSnap.exists) {
+      if (questionSnap.exists()) {
          return { ...questionSnap.data(), questionUid: questionSnap.id };
-      } else {
-         toast.error("Questão não encontrada!");
-      }
+      } 
+      return null;
+      
    }
    async GetMyQuestions(userId) {
       const questionsRef = collection(db, "forum-chats");
