@@ -43,6 +43,13 @@ export class Question {
          userId: this.userId,
          image: this.image
       });
+
+      const userQuestions = await new Question().GetMyQuestions(this.userId)
+
+      updateDoc(doc(db, "users", this.userId), {
+         questionsAsked: userQuestions.length
+      })
+
       toast.success("Questão registrada com sucesso!");
    }
    // Get Question
@@ -195,5 +202,11 @@ export class Question {
          userId: deleteField(),
       });
       await deleteDoc(forumRef);
+      
+      const userQuestions = await new Question().GetMyQuestions(this.userId)
+
+      updateDoc(doc(db, "users", this.userId), {
+         questionsAsked: userQuestions.length
+      })
    }
 }

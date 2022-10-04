@@ -37,7 +37,7 @@ export const Tooltip = ({
       const newQuestions = questions.filter((question) => question.questionUid !== questionUid)
       setQuestions(newQuestions)
       //Deletando do banco
-      const question = new Question(questionUid)
+      const question = new Question(questionUid,"","","","",userIdSend)
       question.DeleteQuestion(questionUid).then(() => {
          toast.success("Pergunta deletada com sucesso!");
       })
