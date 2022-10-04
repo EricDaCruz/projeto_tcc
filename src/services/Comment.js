@@ -42,7 +42,16 @@ export class Comment {
          postDate: moment().format("YYYY-MM-DD HH:mm"),
          stars: [],
          userId: this.userId,
-      }).then(() => {
+      }).then(async () => {
+         //Salvando a quantidade de comentários no banco de dados
+         const userComments = await new Comment(
+            "",
+            "",
+            this.userId
+         ).GetMyComments();
+         updateDoc(doc(db, "users", this.userId), {
+            userComments: userComments.length,
+         });
          //Enviando notificação para o usuário que fez a pergunta
          if (userLogged !== userIdSendQuestion) {
             const notification = new Notification("", this.userId, {
@@ -167,6 +176,17 @@ export class Comment {
          stars: deleteField(),
          userId: deleteField(),
       });
-      await deleteDoc(commentsRef);
+      await  deleteDoc(commentsRef)
+      const userComments = await new Comment(
+         "",
+         "",
+         this.userId
+      ).GetMyComments();
+
+      console.log(userComments);
+
+      updateDoc(doc(db, "users", this.userId), {
+         userComments: userComments.length,
+      });
    }
 }

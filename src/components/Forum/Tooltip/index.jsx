@@ -52,7 +52,7 @@ export const Tooltip = ({
       const newComments = comments.filter((comment) => commentUid !== comment.commentUid );
       setComments(newComments);
       //Deletando do banco
-      const comment = new Comment(commentUid)
+      const comment = new Comment(commentUid, "",userIdSend)
       comment.DeleteComment().then(
          toast.success("Comentário deletado com sucesso!")
       );
