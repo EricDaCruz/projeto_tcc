@@ -19,6 +19,7 @@ export const Questions = ({
    stars,
    userId,
    questionUid,
+   commentsLength,
    isInQuestion,
    image,
 }) => {
@@ -145,7 +146,7 @@ export const Questions = ({
                   }
                >
                   <FiMessageSquare />
-                  <p>{comments.length}</p>
+                  <p>{commentsLength || comments.length}</p>
                </span>
             </div>
          </div>
