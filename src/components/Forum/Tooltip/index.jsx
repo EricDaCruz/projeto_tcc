@@ -77,7 +77,7 @@ export const Tooltip = ({
          closeOnDocumentClick
       >
          <Container>
-            {userIdSend === userLogged && (
+            { userLogged === userIdSend || userLogged === 'ut8WCJp85KYpEtAFjoJyRQMiq4t2' ? (
                <Button
                   action="true"
                   onClick={isQuestion ? deleteQuestion : deleteComment}
@@ -85,7 +85,10 @@ export const Tooltip = ({
                   <BsTrashFill /> Deletar{" "}
                   {isQuestion ? "Questão" : "Comentário"}
                </Button>
-            )}
+            )
+            : (
+               <></>
+            ) }
             <Button
                action="true"
                onClick={isQuestion ? denounceQuestion : denounceComment}
