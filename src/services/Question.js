@@ -47,7 +47,7 @@ export class Question {
       const userQuestions = await new Question().GetMyQuestions(this.userId)
 
       updateDoc(doc(db, "users", this.userId), {
-         questionsAsked: userQuestions.length
+         userQuestions: userQuestions.length
       })
 
       toast.success("Questão registrada com sucesso!");
@@ -206,7 +206,7 @@ export class Question {
       const userQuestions = await new Question().GetMyQuestions(this.userId)
 
       updateDoc(doc(db, "users", this.userId), {
-         questionsAsked: userQuestions.length
+         userQuestions: userQuestions.length
       })
    }
 }
