@@ -10,9 +10,11 @@ import {
    doc,
    setDoc,
    getDoc,
+   getDocs,
    updateDoc,
    deleteDoc,
    deleteField,
+   collection,
 } from "firebase/firestore";
 import { db, auth } from "../firebase";
 import { toast } from "react-toastify";
@@ -26,6 +28,7 @@ import moment from "moment";
 import { Storage } from "./Storage";
 import { Question } from "./Question";
 import { Comment } from "./Comment";
+import { sortUserByQuestionsAsked } from "../helpers/Sort";
 
 export class User {
    constructor(data, uid) {
@@ -60,6 +63,23 @@ export class User {
       };
 
       await setDoc(userRef, data);
+   }
+   //Get all users
+   async GetAllUsers() {
+
+      const querySnapshot = await getDocs(collection(db, "users"));
+
+      let users = [];
+
+      querySnapshot.forEach((doc) => {
+         // doc.data() is never undefined for query doc snapshots
+         users.push({...doc.data(), userId: doc.id});
+      });
+
+      const ranking = sortUserByQuestionsAsked(users)
+
+      return ranking;
+
    }
    // Get Info User
    async GetInfoUser() {
@@ -188,9 +208,11 @@ export class User {
                      break;
                   case "auth/invalid-email":
                      toast.error("Email inválido");
-                     break; 
+                     break;
                   case "auth/requires-recent-login":
-                     toast.error("Estamos com dificuldades para validar seu usuário, tente logar novamente.");
+                     toast.error(
+                        "Estamos com dificuldades para validar seu usuário, tente logar novamente."
+                     );
                      break;
                }
             });
