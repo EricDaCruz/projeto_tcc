@@ -140,6 +140,7 @@ export function HeaderForum() {
             return "Técnico em Design de Interiores | Estudo e Aplicação dos Materiais e Revestimentos no Design de Interiores";
       }
    };
+
    useEffect(() => {
       setShowNavbar(false);
       const pathName = location.pathname;
@@ -163,6 +164,9 @@ export function HeaderForum() {
             break;
          case "my-answer":
             setTitleHeader("Minhas Respostas");
+            break;
+         case "ranking":
+            setTitleHeader("Ranking");
             break;
          case lastPath:
             if (uuidValidate(lastPath)) {
