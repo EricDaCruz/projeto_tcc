@@ -18,9 +18,10 @@ export const sortByStars = (list) => {
 };
 
 export const sortUserByQuestionsAsked = (list) => {
-   const sortList = list.sort((item, otherItem) => {
+   const sortList = list.filter((item) => item.username !== 'adm_roxa').sort((item, otherItem) => {
       return otherItem.userQuestions - item.userQuestions ;
    });
 
-   return sortList;
+   return sortList
+
 };

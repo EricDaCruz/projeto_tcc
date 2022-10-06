@@ -22,8 +22,8 @@ export function Ranking() {
                <th>Perguntas Feitas</th>
             </thead>
             <tbody>
-                {ranking.map((user) => (
-                    <tr className="is-size-6">
+                {ranking.map((user, key) => (
+                    <tr key={key} className="is-size-6">
                         <td>{user.username}</td>
                         <td>{user.userQuestions > 0 ? `${user.userQuestions} pergunta(s)`: 'Nenhuma pergunta'}</td>
                     </tr>
