@@ -23,7 +23,8 @@ import { FindExistUserName } from "../../../services/FindExistUserName";
 /* Classes */
 import { User } from "../../../services/User";
 import { Modal } from "../Modal";
-import moment from "moment";
+/* Firebase */
+import { auth } from "../../../firebase";
 
 export const Profile = (params) => {
    const heightScreen = window.screen.height;
@@ -41,36 +42,44 @@ export const Profile = (params) => {
    const [changedData, setChangeData] = useState(false);
 
    useEffect(() => {
-      const user = new User("", userId);
-      user.GetInfoUser().then((data) => {
-         setDateBorn(data.dateBorn);
-         setName(data.name);
-         setEmail(data.email);
-         setUsername(data.username);
-         setPhotoUrl(data.photoUrl);
-         setCity(data.location.city);
-         setState(data.location.state);
-         setPhone(data.phone);
-      });
-      //  setHaveUserData(true);
+      const currentUser = auth.currentUser;
+      const user = new User();
+
+      if (currentUser?.uid !== userId) {
+         user.SignOutUser().then(() => {
+            navigate("/");
+         });
+      } else {
+         const user = new User("", userId);
+         user.GetInfoUser().then((data) => {
+            setDateBorn(data.dateBorn);
+            setName(data.name);
+            setEmail(data.email);
+            setUsername(data.username);
+            setPhotoUrl(data.photoUrl);
+            setCity(data.location.city);
+            setState(data.location.state);
+            setPhone(data.phone);
+         });
+      }
    }, []);
    const handlePhotoUrl = async (dataImage) => {
-    if (
-       dataImage.type === "image/jpeg" ||
-       dataImage.type === "image/png" ||
-       dataImage.type === "image/jpg"
-    ) {
-       const reader = new FileReader();
-       reader.onload = async () => {
-          const base64String = await reader.result;
-          setPhotoUrl(base64String);
-          setChangeData(true);
-          setData({ ...data, photoUrl: base64String });
-       };
-       reader.readAsDataURL(dataImage);
-    } else {
-       toast.error("Formato de imagem inválido");
-    }
+      if (
+         dataImage.type === "image/jpeg" ||
+         dataImage.type === "image/png" ||
+         dataImage.type === "image/jpg"
+      ) {
+         const reader = new FileReader();
+         reader.onload = async () => {
+            const base64String = await reader.result;
+            setPhotoUrl(base64String);
+            setChangeData(true);
+            setData({ ...data, photoUrl: base64String });
+         };
+         reader.readAsDataURL(dataImage);
+      } else {
+         toast.error("Formato de imagem inválido");
+      }
    };
    const handleChangeData = async (value, input) => {
       setChangeData(true);
@@ -90,7 +99,7 @@ export const Profile = (params) => {
                const formatPhone = format(validPhone).replace(/[-]/g, " ");
                setPhone(formatPhone);
                await setData({ ...data, phone: formatPhone });
-            }else{
+            } else {
                await setData({ ...data, phone: value });
             }
             break;
@@ -104,11 +113,11 @@ export const Profile = (params) => {
             break;
          case "city":
             setCity(value);
-            await setData({ ...data, location: {state, city: value } });
+            await setData({ ...data, location: { state, city: value } });
             break;
          case "state":
             setState(value);
-            await setData({ ...data, location: { state: value,city } });
+            await setData({ ...data, location: { state: value, city } });
             break;
       }
    };
@@ -240,7 +249,10 @@ export const Profile = (params) => {
                      >
                         Atualizar Perfil
                      </Button>
-                     <Modal deleteProfile={deleteProfile} height={heightScreen}/>
+                     <Modal
+                        deleteProfile={deleteProfile}
+                        height={heightScreen}
+                     />
                   </ContentButton>
                </ContentInputs>
             </>
