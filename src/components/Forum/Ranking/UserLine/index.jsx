@@ -3,7 +3,7 @@ import {useState, useEffect} from 'react';
 import { Question } from '../../../../services/Question';
 import { Comment } from '../../../../services/Comment';
 
-export function UserLine({user, ranking}) {
+export function UserLine({user}) {
     const [userStars, setUserStars] = useState(0);
     const [userComments, setUserComments] = useState(0);
 

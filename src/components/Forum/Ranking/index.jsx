@@ -47,20 +47,20 @@ export function Ranking() {
             <thead>
                <tr>
                   <th>Username</th>
-                  <th className="has-text-centered is-clickable">
+                  <th className="has-text-centered">
                      <BsQuestionLg />
                   </th>
-                  <th className="has-text-centered is-clickable">
+                  <th className="has-text-centered">
                      <BsStarFill />
                   </th>
-                  <th className="has-text-centered is-clickable">
+                  <th className="has-text-centered">
                      <FiMessageSquare fill="#363636"/>
                   </th>
                </tr>
             </thead>
             <tbody>
                {ranking.map((user, key) => (
-                  <UserLine key={key} user={user} ranking={ranking}/>
+                  <UserLine key={key} user={user} />
                ))}
             </tbody>
          </Table>

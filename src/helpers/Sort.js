@@ -27,26 +27,6 @@ export const sortUserByQuestionsAsked = (list) => {
    return sortList.filter((item) => item.username !== "adm_roxa");
 };
 
-export const sortUserByStars = (list) => {
-   let sortList = sortUserByAlphabetical(list)
-
-   sortList = list.sort((item, otherItem) => {
-      return otherItem.userQuestions - item.userQuestions;
-   });
-
-   return sortList.filter((item) => item.username !== "adm_roxa");
-};
-
-export const sortUserByComments = (list) => {
-   let sortList = sortUserByAlphabetical(list)
-
-   sortList = list.sort((item, otherItem) => {
-      return otherItem.userQuestions - item.userQuestions;
-   });
-
-   return sortList.filter((item) => item.username !== "adm_roxa");
-};
-
 export const sortUserByAlphabetical = (list) => {
    const sortList = list.sort((item, otherItem) => {
       let itemUpperCase = item.username.toUpperCase();
