@@ -28,7 +28,7 @@ import moment from "moment";
 import { Storage } from "./Storage";
 import { Question } from "./Question";
 import { Comment } from "./Comment";
-import { sortUserByQuestionsAsked } from "../helpers/Sort";
+import { sortUserByAlphabetical } from "../helpers/Sort";
 
 export class User {
    constructor(data, uid) {
@@ -76,8 +76,7 @@ export class User {
          users.push({...doc.data(), userId: doc.id});
       });
 
-      const ranking = sortUserByQuestionsAsked(users)
-
+      const ranking = sortUserByAlphabetical(users)
       return ranking;
 
    }

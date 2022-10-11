@@ -18,10 +18,46 @@ export const sortByStars = (list) => {
 };
 
 export const sortUserByQuestionsAsked = (list) => {
-   const sortList = list.filter((item) => item.username !== 'adm_roxa').sort((item, otherItem) => {
-      return otherItem.userQuestions - item.userQuestions ;
+   let sortList = sortUserByAlphabetical(list)
+
+   sortList = list.sort((item, otherItem) => {
+      return otherItem.userQuestions - item.userQuestions;
    });
 
-   return sortList
+   return sortList.filter((item) => item.username !== "adm_roxa");
+};
 
+export const sortUserByStars = (list) => {
+   let sortList = sortUserByAlphabetical(list)
+
+   sortList = list.sort((item, otherItem) => {
+      return otherItem.userQuestions - item.userQuestions;
+   });
+
+   return sortList.filter((item) => item.username !== "adm_roxa");
+};
+
+export const sortUserByComments = (list) => {
+   let sortList = sortUserByAlphabetical(list)
+
+   sortList = list.sort((item, otherItem) => {
+      return otherItem.userQuestions - item.userQuestions;
+   });
+
+   return sortList.filter((item) => item.username !== "adm_roxa");
+};
+
+export const sortUserByAlphabetical = (list) => {
+   const sortList = list.sort((item, otherItem) => {
+      let itemUpperCase = item.username.toUpperCase();
+      let otherItemUpperCase = otherItem.username.toUpperCase();
+
+      return itemUpperCase == otherItemUpperCase
+         ? 0
+         : itemUpperCase > otherItemUpperCase
+         ? 1
+         : -1;
+   });
+
+   return sortList.filter((item) => item.username !== "adm_roxa");
 };

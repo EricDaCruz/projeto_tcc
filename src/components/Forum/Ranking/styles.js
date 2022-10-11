@@ -15,11 +15,15 @@ export const Table = styled.table`
    width: 100%;
    max-width: 700px;
 
+   th{
+      background: #fff;
+   }
+
    tr {
-      background: #EDEDED;
+      background: lightgray;
 
       &:nth-child(even) {
-         background-color: lightgray
+         background-color: #EDEDED
       }
    }
 

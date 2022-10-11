@@ -6,7 +6,6 @@ import { Section, ContentImages } from "./styles";
 import { Avatar } from "../Avatar";
 import { FiMessageSquare, FiStar } from "react-icons/fi";
 import { BsStarFill } from "react-icons/bs";
-import { useComments } from "../../../contexts/CommentsContext";
 /* Classes */
 import { User } from "../../../services/User";
 import { Question } from "../../../services/Question";
