@@ -15,6 +15,8 @@ import {
    deleteDoc,
    deleteField,
    collection,
+   query,
+   where,
 } from "firebase/firestore";
 import { db, auth } from "../firebase";
 import { toast } from "react-toastify";
@@ -32,16 +34,21 @@ import { sortUserByAlphabetical } from "../helpers/Sort";
 
 export class User {
    constructor(data, uid) {
-      this.data = data;
+      this._data = data;
       this.uid = uid;
+   }
+
+   //Set
+   set setData(data) {
+      this._data = data;
    }
 
    // Create Account with Email and Password
    async CreateAuthEmail() {
       const authentication = await createUserWithEmailAndPassword(
          auth,
-         this.data.email,
-         this.data.password
+         this._data.email,
+         this._data.password
       ).catch((err) => err.code);
 
       return authentication;
@@ -49,36 +56,34 @@ export class User {
    async RegisterUser(uid) {
       const userRef = doc(db, "users", uid);
       const data = {
-         name: this.data.name,
-         email: this.data.email,
-         dateBorn: this.data.dateBorn,
-         phone: this.data.phone,
+         name: this._data.name,
+         email: this._data.email,
+         dateBorn: this._data.dateBorn,
+         phone: this._data.phone,
          location: {
-            state: this.data.state,
-            city: this.data.city,
+            state: this._data.state,
+            city: this._data.city,
          },
-         interests: this.data.interests,
-         username: this.data.username,
-         photoUrl: this.data.photoUrl,
+         interests: this._data.interests,
+         username: this._data.username,
+         photoUrl: this._data.photoUrl,
       };
 
       await setDoc(userRef, data);
    }
    //Get all users
    async GetAllUsers() {
-
       const querySnapshot = await getDocs(collection(db, "users"));
 
       let users = [];
 
       querySnapshot.forEach((doc) => {
          // doc.data() is never undefined for query doc snapshots
-         users.push({...doc.data(), userId: doc.id});
+         users.push({ ...doc.data(), userId: doc.id });
       });
 
-      const ranking = sortUserByAlphabetical(users)
+      const ranking = sortUserByAlphabetical(users);
       return ranking;
-
    }
    // Get Info User
    async GetInfoUser() {
@@ -92,13 +97,28 @@ export class User {
          console.log("No such document!");
       }
    }
+
+   async GetUserEmailByUsername(username) {
+      const queryUser = query(
+         collection(db, "users"),
+         where("username", "==", username)
+      );
+
+      let userEmail = ""
+
+      const querySnapshotUser = await getDocs(queryUser);
+      querySnapshotUser.forEach((doc) => {
+         userEmail = doc.data().email
+      });
+      return userEmail
+   }
    // SingIn and SingOut
    async SignInUser() {
       try {
          const userCredential = await signInWithEmailAndPassword(
             auth,
-            this.data.email,
-            this.data.password
+            this._data.email,
+            this._data.password
          );
          const storage = new Storage("uid", userCredential.user.uid);
          storage.SetItemSessionStorage();
@@ -131,7 +151,7 @@ export class User {
    }
    // Forgot password
    ForgotPassword() {
-      const { email } = this.data;
+      const { email } = this._data;
       email
          ? sendPasswordResetEmail(auth, email)
               .then(() => {
@@ -158,10 +178,10 @@ export class User {
       const updateUserEmail = async (email) => {
          updateEmail(auth.currentUser, email)
             .then(async () => {
-               if (this.data.dateBorn) {
-                  if (moment(this.data.dateBorn).isValid()) {
+               if (this._data.dateBorn) {
+                  if (moment(this._data.dateBorn).isValid()) {
                      if (
-                        moment(this.data.dateBorn).isAfter(
+                        moment(this._data.dateBorn).isAfter(
                            moment().subtract(10, "years")
                         )
                      ) {
@@ -173,28 +193,28 @@ export class User {
                      toast.error("Data de nascimento inválida");
                   }
                }
-               if (this.data.email) {
-                  if (!validator.isEmail(this.data.email)) {
+               if (this._data.email) {
+                  if (!validator.isEmail(this._data.email)) {
                      isDataValid = false;
                      toast.error("Email inválido");
                   }
                }
-               if (this.data.username) {
+               if (this._data.username) {
                   const existUsernames = await FindExistUserName();
-                  if (existUsernames.includes(this.data.username)) {
+                  if (existUsernames.includes(this._data.username)) {
                      isDataValid = false;
                      toast.error("Este nome de usuário já existe");
                   }
                }
-               if (this.data.phone) {
-                  if (!validatePhoneNumber(this.data.phone)) {
+               if (this._data.phone) {
+                  if (!validatePhoneNumber(this._data.phone)) {
                      isDataValid = false;
                      toast.error("Celular inválido");
                   }
                }
 
                if (isDataValid) {
-                  await updateDoc(userRef, this.data);
+                  await updateDoc(userRef, this._data);
                   toast.success("Perfil atualizado com sucesso!");
                }
             })
@@ -216,7 +236,7 @@ export class User {
                }
             });
       };
-      updateUserEmail(this.data.email);
+      updateUserEmail(this._data.email);
    }
    async DeleteProfile() {
       const userRef = doc(db, "users", this.uid);

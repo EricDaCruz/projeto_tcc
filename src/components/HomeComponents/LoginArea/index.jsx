@@ -7,9 +7,10 @@ import { BsEyeSlash, BsEye, BsFacebook } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 import * as C from "./styles";
 /*Class*/
-import { User } from '../../../services/User';
+import { User } from "../../../services/User";
 import { Storage } from "../../../services/Storage";
-
+/* Validações */
+import validator from "validator";
 
 export function LoginArea() {
    const navigate = useNavigate();
@@ -20,7 +21,7 @@ export function LoginArea() {
    useEffect(() => {
       //Verificar se tem um uid e levar pra /forum
       const storage = new Storage("uid");
-      const userUid = storage.GetItemSessionStorage()
+      const userUid = storage.GetItemSessionStorage();
       if (userUid) {
          navigate("/forum/chats");
       }
@@ -33,15 +34,23 @@ export function LoginArea() {
       if (email === "" || password === "") {
          toast.error("Por favor, preencha todos os campos");
       } else {
-         const data = {email, password}
-         const user = new User(data);
-         const isLogged = await user.SignInUser()
-         isLogged && navigate('/forum/chats')
+         if (validator.isEmail(email)) {
+            const data = { email, password };
+            const user = new User(data);
+            const isLogged = await user.SignInUser();
+            isLogged && navigate("/forum/chats");
+         } else {
+            const user = new User();
+            const userEmail = await user.GetUserEmailByUsername(email);
+            user.setData = { email: userEmail, password };
+            const isLogged = await user.SignInUser();
+            isLogged && navigate("/forum/chats");
+         }
       }
    };
    const handleForgotPassword = () => {
-      const user = new User({email})
-      user.ForgotPassword()
+      const user = new User({ email });
+      user.ForgotPassword();
    };
 
    return (
@@ -71,7 +80,7 @@ export function LoginArea() {
                      <input
                         type="email"
                         className="is-size-5"
-                        placeholder="E-mail"
+                        placeholder="E-mail ou username"
                         onChange={(e) => setEmail(e.target.value)}
                      />
                   </div>
@@ -134,12 +143,16 @@ export function LoginArea() {
                         className="mr-6"
                         size="45"
                         style={{ cursor: "pointer" }}
-                        onClick={() => toast.warning("Funcionalidade dispovinível em breve")}
+                        onClick={() =>
+                           toast.warning("Funcionalidade dispovinível em breve")
+                        }
                      />
                      <BsFacebook
                         size="45"
                         style={{ color: "#3B5998", cursor: "pointer" }}
-                        onClick={() => toast.warning("Funcionalidade dispovinível em breve")}
+                        onClick={() =>
+                           toast.warning("Funcionalidade dispovinível em breve")
+                        }
                      />
                   </div>
                   <p className="is-size-6">
