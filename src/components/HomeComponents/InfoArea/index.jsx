@@ -27,8 +27,8 @@ export function InfoArea() {
             <div className="column is-half" style={{ color: "#020202" }}>
                <h2 className="is-size-3 is-size-4-mobile mb-3">INTERAÇÃO</h2>
                <p className="is-size-5 is-size-6-mobile">
-                  Criamos um ambiente prático, onde poderá interagir e obter
-                  um estudo de melhor qualidade. Aqui você pode interagir com
+                  Criamos um ambiente prático, onde poderá interagir e obter um
+                  estudo de melhor qualidade. Aqui você pode interagir com
                   outros alunos e professores, trazendo o benefício de uma forma
                   de estudo diferente, onde poderá ensinar outras pessoas, e
                   aprender mais ensinando.
@@ -44,14 +44,11 @@ export function InfoArea() {
                   AVALIAÇÃO E RANKING
                </h2>
                <p className="is-size-5 is-size-6-mobile">
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, Lorem Ipsum is
-                  simply dummy text of the printing and typesetting industry.
-                  Lorem Ipsum has been the industry's standard dummy text ever
-                  since the 1500s, Lorem Ipsum is simply dummy text of the
-                  printing and typesetting industry. Lorem Ipsum has been the
-                  industry's standard dummy text ever since the 1500s,
+                  No ranking, os alunos podem conferir a colocação das pessoas
+                  que mais fizeram perguntas e as que mais responderam. Você
+                  pode visualizar o nome de perfil, a quantidade de respostas e
+                  de questões favoritadas que o usuário possui, que estão em
+                  ordem de colocação numérica.
                </p>
             </div>
             <div className="column is-hidden-mobile has-text-center-touch">
@@ -62,7 +59,9 @@ export function InfoArea() {
             <div className="column is-half" style={{ color: "#020202" }}>
                <h2 className="is-size-3 is-size-4-mobile mb-3">AVISOS</h2>
                <p className="is-size-5 is-size-6-mobile">
-               Notificações sobre suas questões serão enviadas ao seu perfil, para saber quando suas dúvidas foram respondidas, ou quando curtirem elas. Fique atento ao seu perfil!!
+                  Notificações sobre suas questões serão enviadas ao seu perfil,
+                  para saber quando suas dúvidas foram respondidas, ou quando
+                  curtirem elas. Fique atento ao seu perfil!!
                </p>
             </div>
             <div className="column is-hidden-mobile  has-text-center-touch">
