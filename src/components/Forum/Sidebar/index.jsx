@@ -129,9 +129,11 @@ export function Sidebar() {
             <p>Perfil</p>
             {sidebarProfileItens.map((item, key) => (
                <ContentItens
-                  onClick={() => handleNavigateRoutes(item.path)}
+                  onClick={item.path === "" ? null : () => handleNavigateRoutes(item.path)}
                   key={key}
                   selected={selectItems === item.path ? true : false}
+                  onDoubleClick={item.path === "" ? () => handleNavigateRoutes(item.path) : null }
+                  title={item.path === "" ? "Clique duas vezes para sair" : ""}
                >
                   {item.icon}
                   <span>{item.name}</span>
