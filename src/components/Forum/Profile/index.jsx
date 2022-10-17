@@ -129,8 +129,8 @@ export const Profile = (params) => {
          dateBorn === "" ||
          phone === "" ||
          photoUrl === "" ||
-         location.city === "" ||
-         location.state === ""
+         city === "" ||
+         state === ""
       ) {
          toast.error("Preencha todos os campos");
       } else {
