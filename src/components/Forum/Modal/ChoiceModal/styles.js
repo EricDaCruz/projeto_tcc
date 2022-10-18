@@ -9,7 +9,7 @@ export const Container = styled.div`
          : "#d9d9d9"};
    border-radius: 1rem;
    padding: 2px;
-
+   cursor: pointer;
 `;
 
 export const Content = styled.div`
