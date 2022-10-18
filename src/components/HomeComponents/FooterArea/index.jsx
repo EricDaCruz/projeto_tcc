@@ -1,5 +1,6 @@
 import { Link, Img } from './styles'
 import AcrosticoVert from '../../../assets/images/acrostico-vertical.png'
+import ImgFooter from '../../../assets/images/img-footer.png'
 
 export function FooterArea() {
    return (
@@ -10,7 +11,7 @@ export function FooterArea() {
             </div>
             <div className="column is-flex is-flex-direction-column is-align-items-center">
                 <div className="mb-4">
-                    H E T E C
+                    <img src={ImgFooter} style={{width: '400px'}}/>
                 </div>
                 <div className="is-flex is-justify-content-space-evenly mt-6" style={{width:"100%"}}>
                     <div>
