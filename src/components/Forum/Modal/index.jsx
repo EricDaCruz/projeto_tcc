@@ -1,13 +1,23 @@
 import { useState } from "react";
 import { StyledModal, ContentAll } from "./styles";
 import { Button } from "../Profile/styles";
-import { IoClose } from 'react-icons/io5';
+import { IoClose } from "react-icons/io5";
+import { ChoiceModal } from "./ChoiceModal";
 
 export const Modal = ({ deleteProfile, height }) => {
    const [modalIsOpen, setIsOpen] = useState(false);
+   const [choice, setChoice] = useState("no");
 
    function openAndCloseModal() {
       setIsOpen(!modalIsOpen);
+   }
+
+   const handleDeleteProfile = () => {
+      if (choice === "yes") {
+         deleteProfile();
+      } else {
+         openAndCloseModal();
+      }
    }
 
    return (
@@ -18,18 +28,27 @@ export const Modal = ({ deleteProfile, height }) => {
          {modalIsOpen && (
             <ContentAll height={height}>
                <StyledModal>
-                  <div className="header">
-                     <IoClose onClick={openAndCloseModal}/>
-                  </div>
-                  <div className="content">
-                     <h2>Tem certeza que deseja deletar seu perfil?</h2>
-                     <p>Caso você realmente queira excluir seu perfil, você não terá mais acesso a perguntas e respostas feita no site, e seus dados serão deletados do nosso sistema</p>
-                  </div>
-                  <div className="actions">
-                     <Button delete={true} onClick={openAndCloseModal}>Cancelar</Button>
-                     <Button onClick={()=>{deleteProfile();openAndCloseModal()}} color="#059142">
-                        Excluir Perfil
-                     </Button>
+                  <div>
+                     <h1>Deletar Conta</h1>
+                     <div>
+                        <h2>Tem certeza que deseja excluir a conta?</h2>
+                        <p>Vamos sentir sua falta!</p>
+                     </div>
+                     <div className="choice">
+                        <ChoiceModal
+                           type={"yes"}
+                           choice={choice}
+                           setChoice={setChoice}
+                        />
+                        <ChoiceModal
+                           type={"no"}
+                           choice={choice}
+                           setChoice={setChoice}
+                        />
+                     </div>
+                     <div className="content-btn">
+                        <button onClick={handleDeleteProfile}>Confirmar</button>
+                     </div>
                   </div>
                </StyledModal>
             </ContentAll>
