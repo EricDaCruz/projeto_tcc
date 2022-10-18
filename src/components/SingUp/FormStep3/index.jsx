@@ -9,8 +9,8 @@ import { PreviousStep } from "../Buttons/PreviousStep";
 import { toast } from 'react-toastify'
 /*Images*/
 import Ds from "../../../assets/images/ds.png";
-import Wd from "../../../assets/images/wd.png";
-import Mk from "../../../assets/images/marketing.png";
+import Tdi from "../../../assets/images/tdi.png";
+import Tma from "../../../assets/images/tma.png";
 import Ot from "../../../assets/images/others.png";
 
 export function FormStep3() {
@@ -76,14 +76,14 @@ export function FormStep3() {
                      onClick={() => setInterests(0)}
                   />
                   <SelectOption
-                     title="Web Design"
-                     icon={Wd}
+                     title="Design de Interiores"
+                     icon={Tdi}
                      selected={interests === 1}
                      onClick={() => setInterests(1)}
                   />
                   <SelectOption
-                     title="Marketing"
-                     icon={Mk}
+                     title="Meio Ambiente"
+                     icon={Tma}
                      selected={interests === 2}
                      onClick={() => setInterests(2)}
                   />
