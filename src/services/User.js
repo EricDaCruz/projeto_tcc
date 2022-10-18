@@ -67,6 +67,7 @@ export class User {
          interests: this._data.interests,
          username: this._data.username,
          photoUrl: this._data.photoUrl,
+         userQuestions: 0,
       };
 
       await setDoc(userRef, data);
