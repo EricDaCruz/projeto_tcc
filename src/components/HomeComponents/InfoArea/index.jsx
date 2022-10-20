@@ -13,10 +13,10 @@ export function InfoArea() {
                   PERGUNTAS E RESPOSTAS
                </h2>
                <p className="is-size-5 is-size-6-mobile">
-                  Nosso sistema de perguntas e respostas é onde irá compartilhar
-                  suas dúvidas ou responder as de outra pessoa de forma segura
-                  ajudando a construir, coletivamente, vários tipos de
-                  conhecimento.
+                  Nosso sistema de perguntas e respostas é onde você irá
+                  compartilhar suas dúvidas, ou responder as de outra pessoa de
+                  forma segura. Ajudando a construir, coletivamente, o
+                  conhecimento em muitas áreas da educação.
                </p>
             </div>
             <div className="column is-hidden-mobile has-text-center-touch">
