@@ -36,4 +36,13 @@ export const Content = styled.div`
       font-size: 1.125rem;
       color: #170f49;
    }
+
+   @media screen and (max-width: 600px) {
+      min-width: 100px;
+
+      .circle{
+         width: 50px;
+         height: 50px;
+      }
+   }
 `;

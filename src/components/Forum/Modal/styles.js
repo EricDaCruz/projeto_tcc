@@ -51,13 +51,17 @@ export const StyledModal = styled.div`
       text-align: center;
    }
 
-   .choice {
+   .choices {
       display: flex;
       gap: 3rem;
       margin: 4rem;
+
+      @media screen and (max-width: 600px) {
+         flex-direction: column;
+      }
    }
 
-   .content-btn{
+   .content-btn {
       display: flex;
       width: 100%;
       justify-content: flex-end;
