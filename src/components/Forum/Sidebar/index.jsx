@@ -2,15 +2,41 @@ import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import { BiPurchaseTag, BiAward, BiSearch } from "react-icons/bi";
+import Modal from "react-modal";
 import {
    RiQuestionLine,
    RiChat3Line,
    RiStarLine,
    RiLogoutBoxLine,
 } from "react-icons/ri";
-import { Aside, SectionInput, Section, ContentItens } from "./styles";
+import { Aside, ContentModal, Section, ContentItens } from "./styles";
 /* Classes */
-import { User } from '../../../services/User'
+import { User } from "../../../services/User";
+import { ChoiceModal } from "../Modal/ChoiceModal";
+
+const modalStyles = {
+   overlay: {
+      backgroundColor: "rgba(45,43,43,0.5)",
+      zIndex: 1000,
+   },
+   content: {
+      top: "55%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+      borderRadius: "2rem",
+      border: "1px solid #eff0f7",
+      maxWidth: "43rem",
+      width: "100%",
+      boxShadow: "0px 5px 16px rgba(8, 15, 52, 0.06)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      flexDirection: "column",
+   },
+};
 
 export function Sidebar() {
    const navigate = useNavigate();
@@ -54,15 +80,17 @@ export function Sidebar() {
       },
    ];
    const [selectItems, setSelectItems] = useState("");
+   const [modalIsOpen, setModalIsOpen] = useState(false);
+   const [choiceModal, setChoiceModal] = useState("no");
 
    useEffect(() => {
       const pathName = location.pathname;
       const pathNameSplit = pathName.split("/");
       const lastPath = pathNameSplit[pathNameSplit.length - 1];
-    
+
       switch (lastPath) {
          case "subjects":
-         case pathNameSplit.includes('subjects') ? lastPath : "":
+         case pathNameSplit.includes("subjects") ? lastPath : "":
             setSelectItems("subjects");
             break;
          case "ranking":
@@ -101,14 +129,22 @@ export function Sidebar() {
             navigate(item);
             break;
          default:
-            const user = new User("",)
+            const user = new User("");
             user.SignOutUser().then(() => {
-               toast.success('Usuário Deslogado')
-               navigate("/")
-            })
+               toast.success("Usuário Deslogado");
+               navigate("/");
+            });
             break;
       }
    };
+
+   const handleExitAccount = (path) => {
+      if(choiceModal === "no") {
+         setModalIsOpen(false);
+      }else {
+         handleNavigateRoutes("")
+      }
+   }
 
    return (
       <Aside>
@@ -129,17 +165,42 @@ export function Sidebar() {
             <p>Perfil</p>
             {sidebarProfileItens.map((item, key) => (
                <ContentItens
-                  onClick={item.path === "" ? null : () => handleNavigateRoutes(item.path)}
+                  onClick={
+                     item.path === ""
+                        ? () => {
+                             setModalIsOpen(true);
+                          }
+                        : () => handleNavigateRoutes(item.path)
+                  }
                   key={key}
                   selected={selectItems === item.path ? true : false}
-                  onDoubleClick={item.path === "" ? () => handleNavigateRoutes(item.path) : null }
-                  title={item.path === "" ? "Clique duas vezes para sair" : ""}
                >
                   {item.icon}
                   <span>{item.name}</span>
                </ContentItens>
             ))}
          </Section>
+         <Modal isOpen={modalIsOpen} style={modalStyles}>
+            <ContentModal>
+               <h1>Certeza que quer sair da sua conta?</h1>
+               <p>Caso saia não se esqueça de voltar aqui, sentiremos saudades...</p>
+               <div className="choices">
+                  <ChoiceModal
+                     type={"no"}
+                     choice={choiceModal}
+                     setChoice={setChoiceModal}
+                  />
+                  <ChoiceModal
+                     type={"yes"}
+                     choice={choiceModal}
+                     setChoice={setChoiceModal}
+                  />
+               </div>
+               <div className="content-btn">
+                  <button onClick={handleExitAccount}>Confirmar</button>
+               </div>
+            </ContentModal>
+         </Modal>
       </Aside>
    );
 }

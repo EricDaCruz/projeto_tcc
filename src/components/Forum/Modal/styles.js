@@ -65,18 +65,18 @@ export const StyledModal = styled.div`
       display: flex;
       width: 100%;
       justify-content: flex-end;
-   }
 
-   button {
-      background: #188f67;
-      box-shadow: 0px 3px 12px rgba(74, 58, 255, 0.18);
-      border-radius: 56px;
-      border: none;
-      padding: 0.75rem 2rem;
-      font-weight: 700;
-      font-size: 1.125rem;
-      text-align: center;
-      color: #ffffff;
-      cursor: pointer;
+      button {
+         background: #188f67;
+         box-shadow: 0px 3px 12px rgba(74, 58, 255, 0.18);
+         border-radius: 56px;
+         border: none;
+         padding: 0.75rem 2rem;
+         font-weight: 700;
+         font-size: 1.125rem;
+         text-align: center;
+         color: #ffffff;
+         cursor: pointer;
+      }
    }
 `;
