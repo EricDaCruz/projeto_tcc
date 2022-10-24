@@ -6,8 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { ProgressStepBar } from "../ProgressStepBar";
 import { Field } from "../Field";
-import { NextStep } from "../Buttons/NextStep";
-import { PreviousStep } from "../Buttons/PreviousStep";
+import { Buttons } from "../Buttons";
 import { FindExistUserName } from "../../../services/FindExistUserName";
 
 export function FormStep1() {
@@ -16,7 +15,7 @@ export function FormStep1() {
 
    const [inputName, setInputName] = useState(data.name);
    const [inputUsername, setInptuUsername] = useState(data.username);
-   const [existUsernames, setExistUsernames] = useState([])
+   const [existUsernames, setExistUsernames] = useState([]);
 
    useEffect(() => {
       setData({ ...data, currentStep: 1 });
@@ -26,12 +25,14 @@ export function FormStep1() {
       if (inputName === "" || inputUsername === "") {
          toast.error("Por favor, preencha todos os campo");
       } else {
-         FindExistUserName().then((usernames) => setExistUsernames(usernames))
-         if(existUsernames.length === 0){
-            toast.warning("Aguarde um instante e clique novamente no botão, verificando disponibilidade do nome de usuário");
-         }else if(existUsernames.includes(inputUsername)){
+         FindExistUserName().then((usernames) => setExistUsernames(usernames));
+         if (existUsernames.length === 0) {
+            toast.warning(
+               "Aguarde um instante e clique novamente no botão, verificando disponibilidade do nome de usuário"
+            );
+         } else if (existUsernames.includes(inputUsername)) {
             toast.error("O nome de usuário já existe");
-         }else{
+         } else {
             setData({ ...data, name: inputName, username: inputUsername });
             navigate("/sing-up/step2");
          }
@@ -101,10 +102,11 @@ export function FormStep1() {
                </Field>
             </form>
          </ContentForm>
-         <div className="is-flex is-justify-content-space-between mt-6">
-            <PreviousStep onClick={handlePreviousStep} />
-            <NextStep text="Próxima Etapa" onClick={handleNextStep} />
-         </div>
+         <Buttons
+            handlePreviousStep={handlePreviousStep}
+            handleNextStep={handleNextStep}
+            textNextStep="Próxima Etapa"
+         />
       </div>
    );
 }

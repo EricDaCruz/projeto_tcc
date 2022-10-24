@@ -4,8 +4,7 @@ import { ProgressStepBar } from "../ProgressStepBar";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useForm } from "../../../contexts/FormContext";
-import { NextStep } from "../Buttons/NextStep";
-import { PreviousStep } from "../Buttons/PreviousStep";
+import { Buttons } from "../Buttons";
 import { toast } from 'react-toastify'
 import { Field } from "../Field";
 /*Validação*/
@@ -124,10 +123,11 @@ export function FormStep4() {
                </div>
             </form>
          </ContentForm>
-         <div className="is-flex is-justify-content-space-between mt-6">
-            <PreviousStep onClick={handlePreviousStep} />
-            <NextStep text="Próxima Etapa" onClick={handleNextStep} />
-         </div>
+         <Buttons
+            handlePreviousStep={handlePreviousStep}
+            handleNextStep={handleNextStep}
+            textNextStep="Próxima Etapa"
+         />
       </div>
    );
 }

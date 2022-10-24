@@ -3,10 +3,8 @@ import { useForm } from "../../../contexts/FormContext";
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify'
 import { ProgressStepBar } from "../ProgressStepBar";
-import { NextStep } from "../Buttons/NextStep";
-import { PreviousStep } from "../Buttons/PreviousStep";
-import { ContentForm, Inputs } from "./styles";
-import { Field } from "../Field";
+import { Buttons } from "../Buttons";
+import { ContentForm } from "./styles";
 import { SelectPhoto } from '../SelectPhoto'
 
 export function FormStep5() {
@@ -81,10 +79,11 @@ export function FormStep5() {
                }
             </div>
          </ContentForm>
-         <div className="is-flex is-justify-content-space-between mt-6">
-            <PreviousStep onClick={handlePreviousStep} />
-            <NextStep text="Próxima Etapa" onClick={handleNextStep} />
-         </div>
+         <Buttons
+            handlePreviousStep={handlePreviousStep}
+            handleNextStep={handleNextStep}
+            textNextStep="Próxima Etapa"
+         />
       </div>
    );
 }

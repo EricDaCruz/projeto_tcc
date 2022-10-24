@@ -4,8 +4,7 @@ import { SelectOption } from "../SelectOption";
 import { useEffect, useState } from "react";
 import { useForm } from "../../../contexts/FormContext";
 import { ProgressStepBar } from "../ProgressStepBar";
-import { NextStep } from "../Buttons/NextStep";
-import { PreviousStep } from "../Buttons/PreviousStep";
+import { Buttons } from "../Buttons";
 import { toast } from 'react-toastify'
 /*Images*/
 import Ds from "../../../assets/images/ds.png";
@@ -95,10 +94,11 @@ export function FormStep3() {
                   />
             </ContentOptions>
          </ContentForm>
-         <div className="is-flex is-justify-content-space-between mt-6">
-            <PreviousStep onClick={handlePreviousStep} />
-            <NextStep text="Próxima Etapa" onClick={handleNextStep} />
-         </div>
+         <Buttons
+            handlePreviousStep={handlePreviousStep}
+            handleNextStep={handleNextStep}
+            textNextStep="Próxima Etapa"
+         />
       </div>
    );
 }

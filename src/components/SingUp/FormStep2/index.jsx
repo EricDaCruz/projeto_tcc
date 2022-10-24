@@ -10,8 +10,7 @@ import { IoPhonePortraitOutline } from "react-icons/io5";
 import { DropdownCities } from "../Dropdowns/DropdownCities";
 import { DropdownStates } from "../Dropdowns/DropdownStates";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
-import { NextStep } from "../Buttons/NextStep";
-import { PreviousStep } from "../Buttons/PreviousStep";
+import { Buttons } from "../Buttons";
 /* Validações */
 import moment from "moment";
 import { validatePhoneNumber } from "../../../helpers/ValidFormRegister";
@@ -172,10 +171,11 @@ export function FormStep2() {
                </div>
             </form>
          </ContentForm>
-         <div className="is-flex is-justify-content-space-between mt-6">
-            <PreviousStep onClick={handlePreviousStep} />
-            <NextStep text="Próxima Etapa" onClick={handleNextStep} />
-         </div>
+         <Buttons
+            handlePreviousStep={handlePreviousStep}
+            handleNextStep={handleNextStep}
+            textNextStep="Próxima Etapa"
+         />
       </div>
    );
 }

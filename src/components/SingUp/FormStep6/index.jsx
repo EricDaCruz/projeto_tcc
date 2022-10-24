@@ -10,8 +10,7 @@ import { DropdownCities } from "../Dropdowns/DropdownCities";
 import { DropdownStates } from "../Dropdowns/DropdownStates";
 import { DropdownInterest } from "../Dropdowns/DropdownInterest";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
-import { PreviousStep } from "../Buttons/PreviousStep";
-import { NextStep } from "../Buttons/NextStep";
+import { Buttons } from "../Buttons";
 /* Validações */
 import { validatePhoneNumber } from "../../../helpers/ValidFormRegister";
 import validator from 'validator'
@@ -245,10 +244,11 @@ export function FormStep6() {
                </Field>
             </form>
          </ContentForm>
-         <div className="is-flex is-justify-content-space-between mt-6">
-            <PreviousStep onClick={handlePreviousStep} />
-            <NextStep text="Cadastrar-se" onClick={handleRegisterUser} />
-         </div>
+         <Buttons
+            handlePreviousStep={handlePreviousStep}
+            handleNextStep={handleRegisterUser}
+            textNextStep="Cadastrar-se"
+         />
       </div>
    );
 }
