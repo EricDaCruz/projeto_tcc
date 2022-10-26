@@ -5,6 +5,7 @@ import { LoaderQuestion } from "../../../LoaderQuestion";
 import { useQuestions } from "../../../../contexts/QuestionsContext"; 
 /* Classes */
 import { Question } from "../../../../services/Question";
+import { PaginationQuestions } from "../../Pagination/Questions";
 
 export const Subject = () => {
    const { category } = useParams();
@@ -26,20 +27,7 @@ export const Subject = () => {
          {loading ? (
             <LoaderQuestion />
          ) : questions.length !== 0 ? (
-            questions.map((quest) => {
-               return (
-                  <Questions
-                     key={quest.questionUid}
-                     title={quest.title}
-                     content={quest.content}
-                     postDate={quest.postDate}
-                     stars={quest.stars}
-                     userId={quest.userId}
-                     questionUid={quest.questionUid}
-                     image={quest.image}
-                  />
-               );
-            })
+               <PaginationQuestions list={questions}/>
          ) : (
             <div>
                <p className="has-text-centered is-size-4">

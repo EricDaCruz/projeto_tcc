@@ -4,7 +4,7 @@ import { LoaderQuestion } from "../../LoaderQuestion";
 import { useQuestions } from "../../../contexts/QuestionsContext";
 /* Classes */
 import { Question } from "../../../services/Question";
-import { Pagination } from "../Pagination";
+import { PaginationQuestions } from "../Pagination/Questions";
 
 export const Chats = () => {
    const {questions, setQuestions} = useQuestions()
@@ -22,7 +22,7 @@ export const Chats = () => {
          {loading ? (
             <LoaderQuestion />
          ) : questions.length > 0 ? (
-            <Pagination list={questions}/>
+            <PaginationQuestions list={questions}/>
          ) : (
             <div>
                <p className="has-text-centered is-size-4">

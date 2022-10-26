@@ -4,6 +4,7 @@ import { useComments } from '../../../contexts/CommentsContext'
 /* Classes */
 import { Storage } from "../../../services/Storage";
 import { Comment } from "../../../services/Comment";
+import { PaginationComments } from "../Pagination/Comments";
 
 export const MyAnswer = () => {
    const storage = new Storage("uid");
@@ -18,20 +19,7 @@ export const MyAnswer = () => {
    return (
       <div>
          {comments.length > 0 ? (
-            comments.map((comment) => {
-               const { commentUid, content, stars, postDate, questionUid } = comment;
-               return (
-                  <Comments
-                     key={commentUid}
-                     content={content}
-                     stars={stars}
-                     postDate={postDate}
-                     questionUid={questionUid}
-                     commentUid={commentUid}
-                     userId={userLogged}
-                  />
-               );
-            })
+            <PaginationComments list={comments} />
          ) : (
             <div>
                <div>

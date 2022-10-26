@@ -1,26 +1,22 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import { PagesNavigation } from'./styles'
 
-export function PaginationNav({ questionsPerPages, totalQuestions }) {
-  const [pageNumber, setPageNumber] = useState([]);
 
-  useEffect(() => {
-    for (let i = 0; i <= Math.ceil(totalQuestions / questionsPerPages); i++) {
-      setPageNumber([...pageNumber, i]);
-    }
-  }, []);
+export function PaginationNav({ itensPerPages, totalQuestions, paginate }) {
+   let pageNumber = [];
 
-  return (
-    <nav>
-      <ul>
-        {pageNumber.length > 1 && (
-            pageNumber.map((number) => {
-                <li key={number}>
-                  <a href="!#">1</a>
-                </li>;
-              })
-        )}
-      </ul>
-    </nav>
-  );
+   for (let i = 1; i <= Math.ceil(totalQuestions / itensPerPages); i++) {
+      pageNumber.push(i);
+   }
+
+   return (
+      <PagesNavigation>
+         <ul>
+            {pageNumber.map((number) => (
+               <li key={number} onClick={() =>paginate(number)}>
+                  <a>{number}</a>
+               </li>
+            ))}
+         </ul>
+      </PagesNavigation>
+   );
 }

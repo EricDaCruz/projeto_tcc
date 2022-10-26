@@ -1,8 +1,8 @@
 import {useEffect, useState} from 'react';
 import { Storage } from '../../../services/Storage';
-import { Questions } from '../Questions';
 import { LoaderQuestion } from '../../LoaderQuestion'
 import { useQuestions } from '../../../contexts/QuestionsContext'
+import { PaginationQuestions } from '../Pagination/Questions'	
 /* Classes */
 import { Question } from '../../../services/Question';
 
@@ -33,22 +33,8 @@ export const FavoriteQuestions = () => {
       ) 
       :(
         questions.length > 0 ? (
-          questions.map((quest) => {
-            const {title, postDate, content, stars, userId, questionUid, image} = quest
-            return (
-              <Questions  
-                key={questionUid}
-                title={title}
-                postDate={postDate}
-                content={content}
-                stars={stars}
-                userId={userId}
-                questionUid={questionUid}
-                image={image}
-              />
-            )
-          }
-        )):(
+         <PaginationQuestions list={questions}/>
+        ):(
           <div>
                <p className="has-text-centered is-size-4">
                   Ainda não há questões favoritadas
