@@ -4,6 +4,7 @@ import { LoaderQuestion } from "../../LoaderQuestion";
 import { useQuestions } from "../../../contexts/QuestionsContext";
 /* Classes */
 import { Question } from "../../../services/Question";
+import { Pagination } from "../Pagination";
 
 export const Chats = () => {
    const {questions, setQuestions} = useQuestions()
@@ -21,30 +22,7 @@ export const Chats = () => {
          {loading ? (
             <LoaderQuestion />
          ) : questions.length > 0 ? (
-            questions.map((chat) => {
-               const {
-                  title,
-                  postDate,
-                  content,
-                  stars,
-                  userId,
-                  questionUid,
-                  image
-               } = chat;
-               return (
-                  <Questions
-                     key={questionUid}
-                     title={title}
-                     postDate={postDate}
-                     content={content}
-                     stars={stars}
-                     userId={userId}
-                     questionUid={questionUid}
-                     isInQuestion={false}
-                     image={image}
-                  />
-               );
-            })
+            <Pagination list={questions}/>
          ) : (
             <div>
                <p className="has-text-centered is-size-4">
