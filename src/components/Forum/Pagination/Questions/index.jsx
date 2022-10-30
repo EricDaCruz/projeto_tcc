@@ -45,7 +45,7 @@ export function PaginationQuestions({ list }) {
 
          <PaginationNav
             itensPerPages={questionsPerPage}
-            totalQuestions={list.length}
+            totalItens={list.length}
             paginate={paginate}
          />
       </>

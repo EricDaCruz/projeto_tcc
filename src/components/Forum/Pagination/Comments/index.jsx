@@ -45,7 +45,7 @@ export function PaginationComments({ list }) {
 
          <PaginationNav
             itensPerPages={commentsPerPage}
-            totalQuestions={list.length}
+            totalItens={list.length}
             paginate={paginate}
          />
       </>

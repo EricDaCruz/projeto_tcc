@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const PagesNavigation = styled.nav`
     padding-bottom: 2rem;
-
+    width: 100%;
     ul{
         display: flex;
         justify-content: center;

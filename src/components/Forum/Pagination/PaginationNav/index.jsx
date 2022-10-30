@@ -1,10 +1,10 @@
 import { PagesNavigation } from'./styles'
 
 
-export function PaginationNav({ itensPerPages, totalQuestions, paginate }) {
+export function PaginationNav({ itensPerPages, totalItens, paginate }) {
    let pageNumber = [];
 
-   for (let i = 1; i <= Math.ceil(totalQuestions / itensPerPages); i++) {
+   for (let i = 1; i <= Math.ceil(totalItens / itensPerPages); i++) {
       pageNumber.push(i);
    }
 

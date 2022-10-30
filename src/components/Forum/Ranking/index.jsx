@@ -9,9 +9,13 @@ import { sortUserByQuestionsAsked } from "../../../helpers/Sort";
 /* Class */
 import { User } from "../../../services/User";
 import { UserLine } from "./UserLine";
+import { PaginationRanking } from "../Pagination/Ranking";
+import { PaginationNav } from "../Pagination/PaginationNav";
 
 export function Ranking() {
    const [ranking, setRanking] = useState([]);
+   const [currentPage, setCurrentPage] = useState(1);
+   const [rankingPerPage, setRankingPerPage] = useState(15);
 
    useEffect(() => {
       const user = new User();
@@ -21,29 +25,12 @@ export function Ranking() {
       });
    }, []);
 
-   const handleSortRanking = (sortBy) => {
-      switch (sortBy) {
-         case "questions":
-            const rankingByQuestion = sortUserByQuestionsAsked(ranking)
-            setRanking(rankingByQuestion)
-            break;
-         case "stars":
-            const rankingByStar = sortUserByStars(ranking)
-            setRanking(rankingByStar)
-            break;
-         case "comments":
-            const rankingByComments = sortUserByComments(ranking)
-            setRanking(rankingByComments)
-            break;
-      }
-   }
-
    return (
       <Container>
          <h1 className="mb-5 is-size-4">
             Usuários que mais fizeram perguntas 🥰
          </h1>
-         <Table>
+         <Table className="mb-4">
             <thead>
                <tr>
                   <th>Username</th>
@@ -54,16 +41,19 @@ export function Ranking() {
                      <BsStarFill />
                   </th>
                   <th className="has-text-centered">
-                     <FiMessageSquare fill="#363636"/>
+                     <FiMessageSquare fill="#363636" />
                   </th>
                </tr>
             </thead>
             <tbody>
-               {ranking.map((user, key) => (
-                  <UserLine key={key} user={user} />
-               ))}
+               <PaginationRanking list={ranking} rakingPerPage={rankingPerPage} currentPage={currentPage}/>
             </tbody>
          </Table>
+         <PaginationNav 
+            itensPerPages={rankingPerPage}
+            totalItens={ranking.length}
+            paginate={setCurrentPage}
+         />
       </Container>
    );
 }
