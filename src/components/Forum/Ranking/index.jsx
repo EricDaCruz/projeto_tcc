@@ -33,6 +33,7 @@ export function Ranking() {
          <Table className="mb-4">
             <thead>
                <tr>
+                  <th>#</th>
                   <th>Username</th>
                   <th className="has-text-centered">
                      <BsQuestionLg />

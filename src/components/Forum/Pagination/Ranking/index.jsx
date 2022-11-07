@@ -1,8 +1,6 @@
 import { UserLine } from "../../Ranking/UserLine";
-import { PaginationNav } from "../PaginationNav";
 
 export function PaginationRanking({ list, rakingPerPage, currentPage }) {
- 
    //Get current questions
    const indexOfLastRanking = currentPage * rakingPerPage;
    const indexOfFirstRanking = indexOfLastRanking - rakingPerPage;
@@ -10,12 +8,8 @@ export function PaginationRanking({ list, rakingPerPage, currentPage }) {
 
    return (
       <>
-         {currentRanking.map((user) => {
-            return (
-               <UserLine
-                 user={user}
-               />
-            );
+         {currentRanking.map((user, index) => {
+            return <UserLine user={user} key={user.userId} list={list}/>;
          })}
       </>
    );
