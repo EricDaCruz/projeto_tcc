@@ -46,7 +46,11 @@ export function FaqArea() {
             Dúvidas Frequentes
          </h2>
          <div
+<<<<<<< HEAD
             className="columns "
+=======
+            className="columns"
+>>>>>>> 7d59b808e3398091f1597a21a2a98b999e294f98
             style={{ height: "100%" }}
          >
             <SlideFaq className="column is-three-fifths ">
