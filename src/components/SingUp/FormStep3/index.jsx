@@ -61,10 +61,10 @@ export function FormStep3() {
             <hr />
             <div className="mb-4">
                <h2 className="mb-3 is-size-5 has-text-weight-semibold has-text-centered has-text-dark">
-                  Quais são seus interesses?
+                  Qual é o seu interesses?
                </h2>
                <p className="is-size-6 has-text-centered">
-                  Garanto que temos as suas matérias preferidas!
+                  Garanto que temos a sua matéria preferida!
                </p>
             </div>
             <ContentOptions className="mt-6">

@@ -28,7 +28,7 @@ export function FormStep1() {
          FindExistUserName().then((usernames) => setExistUsernames(usernames));
          if (existUsernames.length === 0) {
             toast.warning(
-               "Aguarde um instante e clique novamente no botão, verificando disponibilidade do nome de usuário"
+               "Aguarde um instante e clique novamente em próxima etapa, verificando disponibilidade do nome de usuário"
             );
          } else if (existUsernames.includes(inputUsername)) {
             toast.error("O nome de usuário já existe");

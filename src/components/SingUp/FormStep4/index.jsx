@@ -76,7 +76,7 @@ export function FormStep4() {
                   Dados cadastrais
                </h2>
                <p className="is-size-6 has-text-centered">
-                  Dica de ouro: anote seu nome de usuário e sua senha de acesso
+                  Dica de ouro: anote seu email e sua senha de acesso
                   para não esquece-la.
                </p>
             </div>
