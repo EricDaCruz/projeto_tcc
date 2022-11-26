@@ -48,7 +48,6 @@ const modalStyles = {
 Modal.setAppElement('#root');
 
 export const Profile = (params) => {
-   const heightScreen = window.screen.height;
    const navigate = useNavigate();
    const { userId } = useParams();
    const [data, setData] = useState([]);
@@ -65,13 +64,15 @@ export const Profile = (params) => {
 
    useEffect(() => {
       const currentUser = auth.currentUser;
-      const user = new User();
+      // if (currentUser?.uid !== userId) {
+      //    const user = new User();
 
-      if (currentUser?.uid !== userId) {
-         user.SignOutUser().then(() => {
-            navigate("/");
-         });
-      } else {
+      //    user.SignOutUser().then(() => {
+      //       navigate("/");
+      //    });
+
+      //    return;
+      // } 
          const user = new User("", userId);
          user.GetInfoUser().then((data) => {
             setDateBorn(data.dateBorn);
@@ -83,7 +84,7 @@ export const Profile = (params) => {
             setState(data.location.state);
             setPhone(data.phone);
          });
-      }
+
    }, []);
    const handlePhotoUrl = async (dataImage) => {
       if (
