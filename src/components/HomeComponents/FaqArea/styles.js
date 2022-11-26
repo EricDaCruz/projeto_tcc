@@ -43,12 +43,13 @@ export const SlideFaq = styled.div`
       max-width: 80%;
 
       h3{
-         font-size: 2.5rem;
+         font-size: 1.75rem;
          font-weight: bold;
       }
       p{
-         font-size: 2rem;
+         font-size: 1.25rem;
          font-weight: normal;
+         margin-top: 30px;
       }
     }
   }
