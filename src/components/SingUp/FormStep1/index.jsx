@@ -75,6 +75,7 @@ export function FormStep1() {
                <Field className="column is-full mb-4" label="Nome">
                   <div className="is-flex is-align-items-center control has-icons-right">
                      <Inputs
+                        autoFocus
                         className="input is-rounded is-medium"
                         type="text"
                         placeholder="Seu nome"

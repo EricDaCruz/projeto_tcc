@@ -85,6 +85,7 @@ export function FormStep4() {
                   <Field label="Email">
                      <div className="control has-icons-right">
                         <Inputs
+                           autoFocus
                            className="input is-medium is-rounded"
                            type="text"
                            placeholder="Seu email"

@@ -131,7 +131,7 @@ export function FormStep6() {
                style={{ maxWidth: "500px" }}
             >
                Agora só precisamos que você confirme seus dados, para ter uma
-               fidelidade maior nas infromações.
+               fidelidade maior nas informações.
             </p>
          </div>
          <ContentForm className="px-6 py-6 has-background-white">
