@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { StyledModal, ContentAll } from "./styles";
+import { StyledModal } from "./styles";
 import { Button } from "../Profile/styles";
 import { ChoiceModal } from "./ChoiceModal";
 

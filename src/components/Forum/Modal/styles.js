@@ -1,28 +1,13 @@
 import styled from "styled-components";
 
-export const ContentAll = styled.div`
-   background-color: rgba(45, 43, 43, 0.5);
-   position: absolute;
-   top: 0;
-   left: 0;
-   min-width: 100vw;
-   min-height: ${(props) => props.height}px;
-   height: 100%;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   z-index: 99;
-   overflow: hidden;
-`;
-
 export const StyledModal = styled.div`
+  
    z-index: 999;
    max-width: 750px;
    width: 100%;
-   min-height: 600px;
+   min-height: 200px;
    border-radius: 2rem;
    border: 1px solid #eff0f7;
-   padding: 4rem 0;
    background-color: #fff;
    display: flex;
    flex-direction: column;
@@ -35,7 +20,7 @@ export const StyledModal = styled.div`
       text-align: center;
       color: #170f49;
       text-align: center;
-      margin-bottom: 4rem;
+      margin-bottom: 3rem;
    }
    h2 {
       font-weight: 700;
@@ -54,7 +39,7 @@ export const StyledModal = styled.div`
    .choices {
       display: flex;
       gap: 3rem;
-      margin: 4rem;
+      margin: 3.5rem;
 
       @media screen and (max-width: 600px) {
          flex-direction: column;
