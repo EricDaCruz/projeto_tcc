@@ -110,7 +110,7 @@ export const MakeQuestions = () => {
    return (
       <Form>
          <select onChange={(e) => setCategory(e.target.value)} value={category}>
-            <option value="">Escolha uma categoria</option>
+            <option value="">Escolha uma disciplina</option>
             {CategoriesSelect.map((subject, key) => (
                <option key={key} value={subject.value}>
                   {subject.label}
